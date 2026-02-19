@@ -1,0 +1,88 @@
+.donation_section {
+    width: 100%;
+    padding: 120px 0;
+    background: #ffffff;
+}
+.donation_section .container {
+    width: 80%;
+    margin: 0 auto;
+}
+.info_box {
+  padding: 30px 40px 30px 120px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.info_box h4 {
+    margin-bottom: 15px;
+    font-size: 45px;
+    line-height: 55px;
+    color: #000000;
+    font-family: "Oswald", sans-serif;
+    text-transform: uppercase;
+}
+.volunteerBox p{
+    color: #000000;
+}
+.volunteerBox h4{
+    color: #3c44a7;
+}
+.smallsubhead h4{
+    color: #000000;
+} 
+.volunteerBox{
+  background-color: #f3f3f3;
+  position: relative;
+}
+.smallsubhead{
+    color: #3B3B3B;
+    font-size: 22px;
+    line-height: 30px;
+    font-weight: 600;
+}
+.volunteerBox::before{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    bottom: 0;
+    width: 100px;
+    background: #3C44A7;
+    content: ""; 
+}
+.donateBox::before{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    bottom: 0;
+    width: 100px;
+    background: #D8B01F;
+    content: ""; 
+} 
+.donateBox {
+  background-color: #f3f3f3;
+  color: #000000;
+  position: relative;
+} 
+.donateBox p{
+    color: #000000;
+} 
+.btnLink {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 16px;
+  color: #000000;
+  font-family: "Oswald", sans-serif;
+}
+.btnLink span {
+  margin-left: 8px;
+} 
+.btnLink.dark {
+  color: #000000;
+}
+.volunteerBox .btnLink{
+    color: #3c44a7;
+}

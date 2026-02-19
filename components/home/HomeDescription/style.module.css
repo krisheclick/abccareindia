@@ -1,0 +1,134 @@
+.posterAd {
+  width: 100%;
+  overflow: hidden;
+}
+.left {
+  background: #3d3f82;
+  color: #fff;
+  position: relative;
+  padding: 10px 60px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 48px;
+}
+
+.leftContent {
+  max-width: 500px;
+}
+
+.smallTitle {
+  margin-bottom: 10px;
+  font-size: 35px;
+  font-weight: 300;
+  color: #fff;
+}
+
+.mainTitle {
+  font-size: 40px;
+  line-height: 1.25;
+  font-weight: 600;
+  color: inherit;
+}
+
+.mainTitle span {
+  color: #ffcc33;
+  font-size: 1.5em;
+  font-weight: 700;
+}
+.mainTitle em{
+  font-size: 1.11em;
+  font-style: normal;
+}
+
+.donateBtn {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 14px 40px;
+  background: #ffcc33;
+  color: #000000;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  -moz-transition: all 300ms ease-in-out;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+.donateBtn:hover{
+  background: #f4f4f4;
+}
+
+/* QR */
+.qrBox {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  width: 200px;
+  text-align: center;
+  color: #000;
+}
+
+.qrBox img{
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain;
+  position: static !important;
+}
+
+.right {
+  background: #f4f4f4;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rightContent {
+  max-width: 480px;
+  z-index: 2;
+  padding: 12px 0px 12px 50px;
+}
+
+.right h2 {
+  font-size: 45px;
+  font-weight: 700;
+}
+.right h2 span {
+  font-weight: 400;
+}
+.right p {
+  margin-top: 20px;
+  color: #000000;
+  line-height: 1.6;
+}
+.secondaryBtn {
+  display: inline-block;
+  margin-top: 32px;
+  margin-top: 20px;
+  padding: 12px 28px;
+  background: transparent;
+  border: 1px solid #828282;
+  color: #000000;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  -moz-transition: all 300ms ease-in-out;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+.secondaryBtn:hover{
+  color: #fff;
+  background: #3d3f82;
+}
+
+/* Image */
+.imageWrap{
+  background: transparent;
+  padding-top: 0;
+}
+.imageWrap img {
+	position: static !important;
+	transform: scaleX(-1) !important;
+  max-height: 426px;
+}

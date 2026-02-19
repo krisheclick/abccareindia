@@ -1,0 +1,163 @@
+.ourReachSection {
+  background: #fff;
+  width: 100%;
+  padding: 100px 0;
+}
+.ourReachSection .container {
+  width: 80%;
+  margin: 0 auto;
+}
+.ourReachHeader {
+  text-align: center;
+  margin-bottom: 72px;
+}
+.ourReachHeader h2 {
+  margin-bottom: 10px;
+  font-size: 40px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.ourReachHeader h2 span {
+    flex-shrink: 0;
+}
+.ourReachHeader h2::before,
+.ourReachHeader h2::after {
+  content: "";
+  background: #ddd;
+  width: 100%;
+  height: 1px;
+  top: 50%;
+  display: block;
+}
+.ourReachHeader p {
+  color: #3C3C3C;
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 20px;
+  line-height: 1.8;
+  font-weight: 600;
+}
+
+.ourReach_wrapper {
+  grid-template-columns: 1.2fr 1fr;
+  align-items: stretch;
+  gap: 50px;
+  display: grid;
+}
+
+.ourReachImageLeftCard {
+  background: #f9f9f9;
+  border-radius: 16px;
+  grid-template-columns: 1fr 1fr;
+  display: grid;
+  overflow: hidden;
+  box-shadow: 0 20px 40px #0000000d;
+}
+
+.ourReachImage {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.ourReachImage img {
+  object-fit: cover;
+  width: 100%;
+}
+.ourReachDescription {
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 0 40px 20px;
+  display: flex;
+}
+.ourReachDescription p {
+  color: #555;
+  margin-bottom: 20px;
+  line-height: 1.8;
+}
+.ourReachDescription ul{
+    display: grid;
+    row-gap: 12px;
+    text-wrap: balance
+}
+.ourReachDescription ul li {
+    position: relative;
+    display: flex;
+    align-items: start;
+    gap: 8px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+}
+.ourReachDescription ul li::before {
+    content: '';
+    padding: 4px;
+    background: #009000;
+    border-radius: 100%;
+    margin-top: 9px;
+}
+.ourReachDescription ul li[data-color="black"]::before{
+    background: #000000;
+}
+.ourReachDescription ul li[data-color="yellow"]::before{
+    background: #EBC436;
+}
+.ourReachBtn {
+  display: flex;
+  align-items: center;
+  border: 1px solid #DADADA;
+  font-size: 15px;
+  color: #000;
+  max-width: max-content;
+  border-radius: 8px;
+  padding: 8px 12px;
+  gap: 4px;
+  margin-top: 32px;
+}
+.ourReachBtn:hover {
+  background: #e55a00;
+  color: #ffffff;
+}
+.ourReachRightCard {
+  background: #fff;
+  border-radius: 16px;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 0px;
+  display: flex;
+}
+.ourReachCounters {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  width: 100%;
+  display: grid;
+}
+.ourReachCounter {
+  text-align: center;
+  color: #fff;
+}
+.counterCircle {
+  color: #000;
+  background: #F2F2F2;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 15px;
+  font-size: 28px;
+  font-weight: 700;
+  transition: all .3s;
+  display: flex;
+}
+.ourReachCounter:hover .counter-circle {
+  transform: scale(1.08);
+}
+.ourReachCounter p {
+  color: #111;
+  font-size: 16px;
+  line-height: normal;
+  font-weight: 600;
+  text-wrap: balance;
+}

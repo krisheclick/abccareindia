@@ -1,0 +1,15 @@
+.volunteer{
+    min-height: 414px;
+    display: grid;
+    align-content: center;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+.volunteer::before{
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #2B316E80;
+    z-index: -1;
+}

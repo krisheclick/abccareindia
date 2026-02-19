@@ -1,0 +1,88 @@
+.urgentNeeds_section {
+  width: 100%;
+  padding: 100px 0px 20px;
+}
+.urgentNeeds_wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 0;
+}
+.urgentNeeds_image {
+  position: relative;
+  flex: 0 0 60%;
+  border-radius: 16px;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+}
+.urgentNeeds_image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.urgentNeeds_content {
+  flex: 0 0 45%;
+  background: #ffffff;
+  padding: 50px;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);  
+  margin-left: -80px;
+  
+  position: relative;
+  z-index: 2;
+}
+.urgentNeeds_content h2,
+.urgentNeeds_content h3 {
+  margin-bottom: 20px;
+  font-size: 32px;
+}
+.urgentNeeds_content p {
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 15px;
+}
+.urgentNeeds_content li{
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: start;
+    gap: 10px;
+    font-weight: 400;
+    font-size: 16px;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #D9D9D9;
+}
+.urgentNeeds_content li:last-child{
+    border: none;
+}
+.urgentNeeds_content li::before{
+    content: '';
+    display: block;
+    background: url(../../../public/assets/images/check-icon.webp) no-repeat center / contain;
+    width: 20px;
+    height: 19px;
+    flex-shrink: 0;
+    margin-top: 7px;
+}
+.button{
+    margin-top: 8px;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 16px;
+    background: #2B316E;
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 10px 34px;
+    text-transform: uppercase;
+    -moz-transition: all 300ms ease-in-out;
+    -webkit-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
+}
+.button:hover{
+    background: #d4af37;
+    color: #000000;
+
+}

@@ -1,0 +1,17 @@
+.brand_section{
+    background: #ffffff;
+    padding: 2.25rem 0rem;
+}
+.brandslider {
+    padding: 0px 40px;
+}
+.brandItem a {
+    display: grid;
+    height: 100px;
+}
+.brandItem img{
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    margin: auto;
+}
