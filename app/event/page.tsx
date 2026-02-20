@@ -4,9 +4,6 @@ import EventDescription from '@/components/Event/EventDescription/EventDescripti
 import AllEvent from '@/components/Event/AllEvent/AllEvent';
 
 import ProjectSection from '@/components/common/ProjectSection';
-import DonationSection from '@/components/common/DonationSection';
-import CounterSection from '@/components/common/CounterSection';
-import Footer from '@/components/layout/Footer';
 import PageHeader from '@/components/layout/PageHeader';
 
 export default async function EventsPage() {
@@ -33,11 +30,6 @@ export default async function EventsPage() {
 
       
       <AllEvent events={data.events} />
-
-       <CounterSection
-        counterMedia={data.settings.counter_media} 
-        className="event-counter-section"
-      />
 
       
       <ProjectSection

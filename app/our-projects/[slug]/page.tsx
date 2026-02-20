@@ -1,5 +1,4 @@
 
-import DonationSection from "@/components/common/DonationSection";
 import ProjectSection from "@/components/common/ProjectSection";
 import ProjectDetails from "@/components/project/ProjectDetails/ProjectDetails";
 import { ProjectDetailsPageData } from "@/lib/api";

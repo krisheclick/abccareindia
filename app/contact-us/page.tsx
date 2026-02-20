@@ -1,6 +1,5 @@
 import { ContactUsPageData } from '@/lib/api';
 import Counter from '@/components/common/Counter';
-import CounterSection from '@/components/common/CounterSection';
 import ContactDescription from '@/components/contact/ContactDescription/ContactDescription';
 import Contact from '@/components/contact/Contact/Contact';
 import PageHeader from '@/components/layout/PageHeader';
