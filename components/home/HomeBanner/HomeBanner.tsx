@@ -68,9 +68,7 @@ const HomeBanner = ({ banner }: { banner?: BannerItem | null }) => {
                     </>
 
                 ) : (
-                    <>
-                        <div className="skeleton skeletonFill"></div>
-                    </>
+                    <div className="skeleton skeletonFill"></div>
                 )}
             </div>
             <Modal className="customBackdrop" show={showVideo} onHide={handleCloseVideo} size="xl" centered backdrop={false}>

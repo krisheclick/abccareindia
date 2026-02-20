@@ -10,3 +10,14 @@ export const parseToArray = <Text extends object>(value: unknown): Text[] => {
         return [];
     }
 }
+
+// export const safeParse = <T = unknown>(value: unknown): T | null => {
+//     try {
+//         if (!value) return null;
+//         return typeof value === "string" 
+//             ? JSON.parse(value) 
+//             : value as T;
+//     } catch {
+//         return null;
+//     }
+// };

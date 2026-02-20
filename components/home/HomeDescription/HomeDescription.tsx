@@ -3,24 +3,28 @@ import Link from 'next/link';
 import Styles from "./style.module.css";
 import { Col, Container, Row } from 'react-bootstrap';
 import CustomImage from '@/utlis/imagefunction';
+import { useGlobalContext } from '@/context/global_context';
 
-interface HomeDescriptionProps {
-    aboutSection: {
-        about_subtitle?: string;
-        about_title?: string;
+interface AboutInfo {
+    aboutSection?: {
         about_left_button_text?: string;
         about_left_button_url?: string;
         about_left_image?: string;
-        about_right_description?: string;
+        about_left_image_text?: string;
         about_right_button_text?: string;
         about_right_button_url?: string;
+        about_right_description?: string;
         about_right_image?: string;
-    };
+        about_subtitle?: string;
+        about_title?: string;
+    }
 }
 
 const mediaBaseURL = process.env.NEXT_PUBLIC_MEDIA_URL;
 
-export default function HomeDescription({ aboutSection }: HomeDescriptionProps) {
+export default function HomeDescription({ aboutSection }: AboutInfo) {
+    const { hasLoading } = useGlobalContext();
+
     if (!aboutSection) return null;
 
     return (
@@ -30,28 +34,35 @@ export default function HomeDescription({ aboutSection }: HomeDescriptionProps) 
 
                     {/* LEFT SIDE */}
                     <Col lg={6} className={Styles.left}>
-                        <div className={Styles.leftContent}>
-                            <h4 className={Styles.smallTitle}>{aboutSection.about_subtitle}</h4>
+                        {!hasLoading ? (
+                            <>
+                                <div className={Styles.leftContent}>
+                                    <h4 className={Styles.smallTitle}>{aboutSection.about_subtitle}</h4>
 
-                            <h1 className={Styles.mainTitle}
-                                dangerouslySetInnerHTML={{
-                                    __html: aboutSection.about_title ?? '',
-                                }}
-                            />
-                            {aboutSection.about_left_button_text && (
-                                <Link
-                                    href={aboutSection.about_left_button_url ?? ''}
-                                    className={Styles.donateBtn}
-                                >
-                                    {aboutSection.about_left_button_text}
-                                </Link>
-                            )}
-                        </div>
-                        <CustomImage
-                            src={`${mediaBaseURL}/uploads/page_image/${aboutSection.about_left_image}`}
-                            alt="QR Code"
-                            className={Styles.qrBox}
-                        />
+                                    <h1 className={Styles.mainTitle}
+                                        dangerouslySetInnerHTML={{
+                                            __html: aboutSection.about_title ?? '',
+                                        }}
+                                    />
+                                    {aboutSection.about_left_button_text && (
+                                        <Link
+                                            href={aboutSection.about_left_button_url ?? ''}
+                                            className={Styles.donateBtn}
+                                        >
+                                            {aboutSection.about_left_button_text}
+                                        </Link>
+                                    )}
+                                </div>
+                                <CustomImage
+                                    src={`${mediaBaseURL}/uploads/page_image/${aboutSection.about_left_image}`}
+                                    alt="QR Code"
+                                    className={Styles.qrBox}
+                                />
+                            </>
+                        ) : (
+                            <>Loader</>
+                        )}
+
                     </Col>
 
                     {/* RIGHT SIDE */}

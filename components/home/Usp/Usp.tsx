@@ -3,10 +3,9 @@ import { Col, Container, Row } from 'react-bootstrap';
 import CustomImage from '@/utlis/imagefunction';
 
 interface USPItem {
-    id: number;
-    usp_title: string;
-    usp_description: string;
-    usp_feature_image: string;
+    usp_title?: string;
+    usp_description?: string;
+    usp_feature_image?: string;
 }
 
 interface USPProps {
