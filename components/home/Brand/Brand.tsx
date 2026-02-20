@@ -17,7 +17,7 @@ interface DonorBrand {
 }
 
 interface BrandProps {
-    brands: DonorBrand[];
+    brands: DonorBrand[] | undefined;
 }
 
 const mediaBaseURL = process.env.NEXT_PUBLIC_MEDIA_URL;

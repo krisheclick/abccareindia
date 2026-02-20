@@ -13,7 +13,7 @@ interface UrgentNeedsSectionData {
 }
 
 interface UrgentNeedsProps {
-    sectionData: UrgentNeedsSectionData;
+    sectionData: UrgentNeedsSectionData | undefined;
 }
 
 const mediaBaseURL = process.env.NEXT_PUBLIC_MEDIA_URL;

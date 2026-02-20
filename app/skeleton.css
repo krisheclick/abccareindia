@@ -35,26 +35,6 @@
 	height: 48px;
 	border-radius: 4px;
 }
-.skeletonDot {
-	background: linear-gradient(45deg, rgba(31, 88, 203, .26), #F4A70D);
-	border-radius: 6px;
-	width: 120px;
-	height: 6px;
-	margin-top: 16px;
-	position: relative;
-	z-index: 1;
-}
-.skeletonDot span {
-    background: #ffffff;
-    width: 8px;
-    height: 100%;
-    border-radius: 2px;
-    position: absolute;
-    left: 60%;
-}
-.skeletonDot span + span {
-    left: 80%;
-}
 .skeletonFill{
 	position: absolute;
 	inset: 0;

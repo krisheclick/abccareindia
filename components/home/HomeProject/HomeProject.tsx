@@ -17,25 +17,26 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons/faPlay';
 import { normalizeYouTubeUrl } from '@/utlis/videoUrl';
 
 
-interface ProjectSectionConfig {
-    project_title: string;
-    project_subtitle: string;
+interface ProjectSection {
+    project_title?: string;
+    project_subtitle?: string;
     project_button_text?: string;
     project_button_url?: string;
 }
 
 interface ProjectItem {
-    project_id: number;
-    project_title: string;
-    project_subtitle: string;
-    project_slug: string;
-    project_feature_image: string;
-    project_video_link: string;
-    project_short_description: string;
+    project_title?: string;
+    project_subtitle?: string;
+    project_slug?: string;
+    project_short_description?: string;
+    project_feature_image?: string;
+    project_location?: string;
+    project_button?: string;
+    project_video_link?: string;
 }
 
 interface HomeProjectProps {
-    sectionData: ProjectSectionConfig;
+    sectionData: ProjectSection | null;
     projects: ProjectItem[];
 }
 
@@ -87,8 +88,8 @@ const HomeProject = ({ sectionData, projects}: HomeProjectProps) =>  {
                         });
                     }}
                 >
-                    {projects.map((item) => (
-                        <SwiperSlide key={item.project_id} className={Styles.item}>
+                    {projects.map((item, index) => (
+                        <SwiperSlide key={index} className={Styles.item}>
                             <Row className='gx-0 align-items-center'>
                                 <Col lg={6}>
                                     <Card className={Styles.card}>
@@ -136,7 +137,7 @@ const HomeProject = ({ sectionData, projects}: HomeProjectProps) =>  {
                                         />
                                         <span 
                                             className={Styles.videoIcon}
-                                            onClick={() => handleOpenVideo(item.project_video_link)}
+                                            onClick={() => handleOpenVideo(item.project_video_link ?? '')}
                                         >
                                             <FontAwesomeIcon icon={faPlay} />
                                         </span>

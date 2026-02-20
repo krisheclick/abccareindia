@@ -11,7 +11,7 @@ interface VolunteerSectionData {
 }
 
 interface VolunteerProps {
-    sectionData: VolunteerSectionData;
+    sectionData?: VolunteerSectionData;
 }
 
 const mediaBaseURL = process.env.NEXT_PUBLIC_MEDIA_URL;

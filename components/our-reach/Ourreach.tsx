@@ -6,26 +6,26 @@ import Link from 'next/link';
 import { Container } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { safeParse } from '@/utlis/safe_parse';
 
-interface OurReachSectionData {
-    our_reach_title?: string;
-    our_reach_description?: string;
-}
-
-interface OurReachItem {
-    our_reach_description?: string;
-    our_reach_feature_image?: string;
-    our_reach_button_data?: string;
-    our_reach_counter_data?: string;
-}
 interface CounterData {
     our_reach_counter_number?: number;
     our_reach_counter_icon?: string;
     our_reach_counter_title?: string;
 }
+interface OurReachItem {
+    our_reach_description?: string;
+    our_reach_feature_image?: string;
+    our_reach_button_data?: string;
+    our_reach_counter_data?: CounterData[] | null;
+}
+interface OurReachSectionData {
+    our_reach_title?: string;
+    our_reach_description?: string;
+}
 interface HomeOurReachProps {
-    sectionData: OurReachSectionData;
-    ourReachData: OurReachItem[];
+    sectionData: OurReachSectionData | undefined;
+    ourReachData: OurReachItem[] | undefined;
 }
 
 const mediaBaseURL = process.env.NEXT_PUBLIC_MEDIA_URL;
@@ -35,9 +35,7 @@ const Ourreach = ({ sectionData, ourReachData, }: HomeOurReachProps) => {
 
     const reachItem = ourReachData?.[0];
 
-    const counters = reachItem?.our_reach_counter_data
-        ? JSON.parse(reachItem.our_reach_counter_data)
-        : [];
+    const counters = safeParse<CounterData[]>(reachItem?.our_reach_counter_data) ?? [];
 
     const button = reachItem?.our_reach_button_data
         ? JSON.parse(reachItem.our_reach_button_data)
@@ -90,10 +88,10 @@ const Ourreach = ({ sectionData, ourReachData, }: HomeOurReachProps) => {
                     </div>
 
                     {/* RIGHT CARD - COUNTERS */}
-                    {counters.length > 0 && (
+                    {counters?.length > 0 && (
                         <div className={Styles.ourReachRightCard}>
                             <div className={Styles.ourReachCounters}>
-                                {counters.map((counter: CounterData, index: number) => (
+                                {counters?.map((counter, index) => (
                                     <div key={index} className={Styles.ourReachCounter}>
                                         <div className={Styles.counterCircle}>
                                             {counter.our_reach_counter_number}

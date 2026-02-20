@@ -29,8 +29,8 @@ interface CharitableMessageItem {
 }
 
 interface CharitableMessageProps {
-  sectionData: EmpowerSectionData;
-  messages: CharitableMessageItem[];
+  sectionData: EmpowerSectionData | undefined;
+  messages: CharitableMessageItem[] | undefined;
 }
 
 const mediaBaseURL = process.env.NEXT_PUBLIC_MEDIA_URL;

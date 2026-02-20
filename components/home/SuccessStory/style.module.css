@@ -115,3 +115,11 @@
     border-color: #2B316E;
     color: #ffffff;
 }
+
+/* Skeleton */
+.skeleton_small_title{
+    height: 24px;
+}
+.skeleton_title{
+    height: 36px;
+}

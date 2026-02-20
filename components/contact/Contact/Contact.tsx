@@ -1,5 +1,7 @@
 'use client'
 
+import Link from "next/link";
+
 interface ContactProps {
   site_contact_phone: string;
   site_contact_email: string;
@@ -21,18 +23,18 @@ export default function Contact({
         {site_contact_phone && (
           <p>
             <strong>Phone:</strong>{" "}
-            <a href={`tel:${site_contact_phone}`}>
+            <Link href={`tel:${site_contact_phone}`}>
               {site_contact_phone}
-            </a>
+            </Link>
           </p>
         )}
 
         {site_contact_email && (
           <p>
             <strong>Email:</strong>{" "}
-            <a href={`mailto:${site_contact_email}`}>
+            <Link href={`mailto:${site_contact_email}`}>
               {site_contact_email}
-            </a>
+            </Link>
           </p>
         )}
 
@@ -49,13 +51,13 @@ export default function Contact({
 
         {site_contact_map_link && (
           <p>
-            <a
+            <Link
               href={site_contact_map_link}
               target="_blank"
               rel="noopener noreferrer"
             >
               View on Map
-            </a>
+            </Link>
           </p>
         )}
       </div>

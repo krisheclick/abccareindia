@@ -9,7 +9,7 @@ export async function getHomeData() {
     console.error("API Error:", res.status, res.statusText);
     throw new Error("Failed to fetch home data");
   }
-  let response = await res.json()
+  const response = await res.json()
   return response.response_data;
 }
 
@@ -24,7 +24,7 @@ export async function getAboutPageData() {
     console.error("API Error:", res.status, res.statusText);
     throw new Error("Failed to fetch about us page data");
   }
-  let response = await res.json()
+  const response = await res.json()
   return response.response_data;
 }
 
@@ -40,7 +40,7 @@ export async function getProjectPageData() {
     console.error("API Error:", res.status, res.statusText);
     throw new Error("Failed to fetch about project page data");
   }
-  let response = await res.json()
+  const response = await res.json()
   return response.response_data;
 
 }
@@ -57,7 +57,7 @@ export async function getEventPageData() {
     console.error("API Error:", res.status, res.statusText);
     throw new Error("Failed to fetch event page data");
   }
-  let response = await res.json()
+  const response = await res.json()
   return response.response_data;
 
 }
@@ -74,7 +74,7 @@ export async function getSiteSettingData() {
     console.error("API Error:", res.status, res.statusText);
     throw new Error("Failed to fetch site setting data");
   }
-  let response = await res.json()
+  const response = await res.json()
   return response.response_data;
 
 }
@@ -91,7 +91,7 @@ export async function WhereWeArePageData() {
     console.error("API Error:", res.status, res.statusText);
     throw new Error("Failed to fetch page data");
   }
-  let response = await res.json()
+  const response = await res.json()
   return response.response_data;
 
 }
@@ -108,7 +108,7 @@ export async function LegalStatusPageData() {
     console.error("API Error:", res.status, res.statusText);
     throw new Error("Failed to fetch page data");
   }
-  let response = await res.json()
+  const response = await res.json()
   return response.response_data;
 
 }
@@ -126,7 +126,7 @@ export async function ContactUsPageData() {
     console.error("API Error:", res.status, res.statusText);
     throw new Error("Failed to fetch page data");
   }
-  let response = await res.json()
+  const response = await res.json()
   return response.response_data;
 
 }
@@ -143,7 +143,7 @@ export async function BlogPageData() {
     console.error("API Error:", res.status, res.statusText);
     throw new Error("Failed to fetch page data");
   }
-  let response = await res.json()
+  const response = await res.json()
   return response.response_data;
 
 }

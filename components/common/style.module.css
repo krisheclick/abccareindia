@@ -81,11 +81,19 @@
     padding: 50px 25px;
     height: 100%;
 }
+.img_icon figure{
+    background: transparent;
+    padding-top: 0;
+    margin-bottom: 12px;
+}
 .img_icon img{
+    width: auto !important;
+    height: auto !important;
+    position: static !important;
     border: 2px dotted #000000;
     border-radius: 100%;
     padding: 5px;
-    margin-bottom: 10px;
+    margin: auto;
 }
 .contact_sub_text{
     font-size: 23px; 

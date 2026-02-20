@@ -17,32 +17,27 @@ interface Testimonial {
 }
 
 interface TestimonialSectionProps {
-    testimonials: Testimonial[];
-    customFields?: any;
-    sectionKey?: string;
+    testimonials: Testimonial[] | undefined;
+    data?: {
+        testimonial_title?: string;
+    }
     className?: string;
 }
 
 const mediaBaseURL = process.env.NEXT_PUBLIC_MEDIA_URL;
 
-export default function TestimonialSection({
-    testimonials,
-    customFields,
-    sectionKey,
-    className = 'testimonial-section',
-}: TestimonialSectionProps) {
+export default function TestimonialSection({ data, testimonials, className}: TestimonialSectionProps) {
 
     if (!testimonials || testimonials.length === 0) return null;
 
-    const group = customFields?.group_name;
-    const section = sectionKey ? group?.[sectionKey] : null;
-    const sectionTitle = section?.testimonial_title || 'Testimonials';
-
     return (
-        <section className={`testimonial_sectionsm pt_90 pb_90 ${className}`}>
+        <section className={`testimonial_sectionsm pt_90 pb_90 ${className ? className : 'testimonial-section'}`}>
             <div className='container'>
                 <div className='testimonial-section-heading'>
-                    <h2 className='cmn_black_heading'>{sectionTitle}</h2>
+                    <h2 
+                        className='cmn_black_heading'
+                        dangerouslySetInnerHTML={{__html: data?.testimonial_title ?? ''}}
+                    />
                 </div>
 
                 <div className="testimonialslidebx">
