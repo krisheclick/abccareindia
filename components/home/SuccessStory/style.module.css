@@ -1,0 +1,117 @@
+.giftImpact{
+    padding: 80px 0px 48px;
+}
+.small_title{
+    color: #3B3B3B;
+    font-weight: 600;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+.title *{
+    display: block;
+    color: #2C3378;
+}
+.description{
+    color: #000000;
+    font-size: 16px;
+    line-height: 1.8;
+    font-weight: 400;
+}
+.description p{
+    font: inherit;
+    color: inherit;
+}
+.slide_item{
+    --round: 8px;
+    background: #EFEFEF;
+    border-radius: var(--round);
+    padding: 12px;
+}
+.video_poster{
+    padding-top: 110%;
+    border-radius: var(--round);
+    background: transparent;
+}
+.video_poster::before{
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #00000033;
+    z-index: 1;
+}
+.video_poster img{
+    border-radius: var(--round);
+    object-fit: cover;
+}
+.video_duration{
+    font-size: 18px;
+    color: #ffffff;
+    font-style: normal;
+    font-weight: 600;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 2;
+}
+.videoIcon{
+    --size: 36px;
+    display: grid;
+    place-items: center;
+    width: var(--size);
+    height: var(--size);
+    font-size: calc(var(--size) / 3);
+    background: #ffffff;
+    border: 2px solid #E9E9E9;
+    border-radius: 100%;
+    box-shadow: 1px 14px 37px 0px #0000001C;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    cursor: pointer;
+    padding-left: 1px;
+    -moz-transition: all 300ms ease-in-out;
+    -webkit-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
+}
+.videoIcon:hover{
+    background: #ff0000;
+    color: #ffffff;
+}
+.controls{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 40px;
+}
+.controls::before{
+    content: '';
+    display: block;
+    background: #D9D9D9;
+    height: 1px;
+    width: 100%;
+}
+.controls button{
+    --size: 48px;
+    flex-shrink: 0;
+    width: var(--size);
+    height: var(--size);
+    background: #ffffff;
+    border: 1px solid #E9E9E9;
+    border-radius: 100%;
+    box-shadow: 1px 14px 37px 0px #0000001C;
+    cursor: pointer;
+    -moz-transition: all 300ms ease-in-out;
+    -webkit-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
+}
+.controls button[disabled]{
+    opacity: .5;
+    cursor: not-allowed;
+}
+.controls button:hover{
+    background: #2B316E;
+    border-color: #2B316E;
+    color: #ffffff;
+}

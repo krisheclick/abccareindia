@@ -8,6 +8,7 @@
 .top_header{
     background: #000000;
     padding: 5px 0;
+    min-height: 38px;
 }
 .top_header_donate{
     text-transform: uppercase;
