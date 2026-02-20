@@ -1,7 +1,5 @@
-import CounterSection from "@/components/common/CounterSection";
 import ProjectSection from "@/components/common/ProjectSection";
 import PageHeader from "@/components/layout/PageHeader";
-import OurReach from "@/components/our-reach/OurReach/OurReach";
 import OurReachDescription from "@/components/our-reach/OurReachPageDescription/OurReachDescription";
 import { WhereWeArePageData } from "@/lib/api";
 
@@ -25,14 +23,6 @@ export default async function WhereWeArePage() {
             page_content={data.page.page_content}
             page_feature_image={data.page.page_feature_image}
         />
-
-      <OurReach data={data.our_reach} />
-
-        <CounterSection
-            counterMedia={data.settings.counter_media} 
-            className="event-counter-section"
-        />
-      
       <ProjectSection
         projects={data.projects}
         customFields={customFields}
