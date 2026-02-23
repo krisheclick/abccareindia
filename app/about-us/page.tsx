@@ -1,76 +1,39 @@
-import { getAboutPageData } from "@/lib/api";
+import { Metadata } from "next";
+import Clientpage from "./Clientpage";
 
-import AboutDescription from "@/components/about/AboutDescription/AboutDescription";
-import AboutOurReach from "@/components/about/AboutOurReach/AboutOurReach";
+export async function generateMetadata(): Promise<Metadata> {
+    const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/page/about-us`,
+        { cache: "no-store" }
+    );
 
-import ProjectSection from "@/components/common/ProjectSection";
-import PageHeader from "@/components/layout/PageHeader";
+    const { response_data } = await res.json();
 
-export default async function AboutUsPage() {
-  const data = await getAboutPageData();
+    if (!response_data) {
+        return {
+            title: "Page Not Found",
+            description: "This page does not exist",
+        };
+    }
 
-
-  const customFields = JSON.parse(
-    data.page.pages_custom_field
-  );
-
-  return (
-    <>
-      <PageHeader
-        page_name={data.page.page_name}
-        page_slug={data.page.page_slug}
-        page_feature_image={data.page.page_feature_image}
-      />
-
-      <AboutDescription
-        customFields={customFields}
-        settings={data.settings}
-      />
-
-      
-      <AboutOurReach ourReach={data.our_reach} />
-
-      
-      <ProjectSection
-        projects={data.projects}
-        customFields={customFields}
-        projectTitle="about_us_project_section_title"
-        projectDescription="about_us_project_section_description"
-        sectionKey="about-us-project-section"
-        className="our-projects"
-      />
-    </>
-  );
+    return {
+        title: response_data.page.seo.seo_meta_title || response_data.page.page_name,
+        description: response_data.page.seo.seo_meta_description || "Default about page description",
+        keywords: response_data.page.seo.seo_meta_description || [],
+        openGraph: {
+            title: response_data.page.seo.seo_meta_title || response_data.page.page_name,
+            description: response_data.page.seo.seo_meta_description,
+            images: [
+                {
+                    url: `${process.env.NEXT_PUBLIC_MEDIA_URL}${response_data.page.seo.seo_og_image}`,
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+        },
+    };
 }
 
-
-
-
-// import { getAboutPageData } from "@/lib/api";
-// import AboutDescription from "@/components/about/AboutDescription/AboutDescription";
-// import AboutOurReach from "@/components/about/AboutOurReach/AboutOurReach";
-// import AboutProjects from "@/components/about/AboutProjects/AboutProjects";
-
-// export default async function AboutUsPage() {
-//   const data = await getAboutPageData();
-
-//   const customFields = JSON.parse(
-//     data.page.pages_custom_field
-//   );
-
-//   return (
-//      <>
-//     <AboutDescription
-//       customFields={customFields}
-//       settings={data.settings}
-//     />
-//     <AboutOurReach 
-//         ourReach={data.our_reach}
-//     />
-//     <AboutProjects 
-//         customFields={customFields}
-//         projects={data.projects}
-//     />
-//     </>
-//   );
-// }
+export default function AboutPage() {
+    return <Clientpage />;
+}

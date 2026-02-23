@@ -16,13 +16,31 @@ const oswald = Oswald({
 });
 import "@/app/globals.css";
 import { GlobalContextProvider } from '@/context/global_context';
+import { SEOContextProvider } from '@/context/seo_context';
+import { Metadata } from 'next';
 
-export default function RootLayout({children}: {children: React.ReactNode}) {
+export const metadata: Metadata = {
+    metadataBase: new URL(process.env.NEXT_PUBLIC_ENV_URL || "http://localhost:3000"),
+    title: {
+        default: "Asha Bhavan Centre",
+        template: "%s | Asha Bhavan Centre Dashboard",
+    },
+    description: "Default website description",
+    keywords: ["Next.js", "React", "Dashboard"],
+    openGraph: {
+        title: "Asha Bhavan Centre",
+        description: "Default OG description",
+        type: "website",
+    },
+};
+export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en">
             <body className={`${openSans.variable} ${oswald.variable}`}>
                 <GlobalContextProvider>
-                    {children}
+                    <SEOContextProvider>
+                        {children}
+                    </SEOContextProvider>
                 </GlobalContextProvider>
             </body>
         </html>

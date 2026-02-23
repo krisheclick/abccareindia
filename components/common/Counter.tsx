@@ -9,34 +9,45 @@ interface CounterItem {
     site_counter_number?: number;
     site_counter_title?: string;
 }
-const Counter = ({ className = '', poster = false}: { className?: string; poster?: boolean}) => {
+const Counter = ({ className = '', poster = false }: { className?: string; poster?: boolean }) => {
     const { commonData } = useGlobalContext();
     const counters = parseToArray<CounterItem>(commonData?.counter_media);
     return (
         counters && counters.length > 0 && (
-            <div 
-                className={`${Styles.counter_section} ${Styles[className]}`}
-                {...(poster && {
-                    style: {
-                        background: `url(${counterPoster.src}) no-repeat center / cover`
-                    }
-                })}
-            >
-                <Container>
-                    <div className={Styles.counterList}>
-                        <Row>
-                            {counters.map((counter, index) => (
-                                <Col lg={3} sm={6} key={index}>
-                                    <div className={Styles.counterBox}>
-                                        <h3 className={Styles.counter_number}>{counter.site_counter_number}</h3>
-                                        <p className={Styles.counter_title}>{counter.site_counter_title}</p>
-                                    </div>
-                                </Col>
-                            ))}
-                        </Row>
-                    </div>
-                </Container>
-            </div>
+            poster ? (
+                <div
+                    className={`${Styles.counter_section} ${Styles[className]}`}
+                    {...(poster && {
+                        style: {
+                            background: `url(${counterPoster.src}) no-repeat center / cover`
+                        }
+                    })}
+                >
+                    <Container>
+                        <div className={Styles.counterList}>
+                            <Row>
+                                {counters.map((counter, index) => (
+                                    <Col lg={3} sm={6} key={index}>
+                                        <div className={Styles.counterBox}>
+                                            <h3 className={Styles.counter_number}>{counter.site_counter_number}</h3>
+                                            <p className={Styles.counter_title}>{counter.site_counter_title}</p>
+                                        </div>
+                                    </Col>
+                                ))}
+                            </Row>
+                        </div>
+                    </Container>
+                </div>
+            ) : (
+                <div className={Styles.abtrcountmb}>
+                    {counters.map((counter, index) => (
+                        <div className={Styles.abtrcountsb} key={index}>
+                            <div className={Styles.abtrcounnum}>{counter.site_counter_number}</div>
+                            <div className={Styles.abtrcounnumtext}>{counter.site_counter_title}</div>
+                        </div>
+                    ))}
+                </div>
+            )
         )
     )
 }

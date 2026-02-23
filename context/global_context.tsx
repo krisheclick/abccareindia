@@ -38,6 +38,11 @@ interface setCommonDataType {
     counter_media?: CounterItem[] | null;
     social_media?: SocialItem[] | null;
 }
+interface BannerData {
+    page_name?: string;
+    page_slug?: string;
+    page_feature_image?: string;
+}
 interface GlobalDataVariable {
     hasLoading: boolean;
     setHasLoading: (hasLoading: boolean) => void;
@@ -46,18 +51,23 @@ interface GlobalDataVariable {
 
     commonData: setCommonDataType | null;
     setCommonData: (commonData: setCommonDataType) => void;
+
+    innerBanner: BannerData | null;
+    setInnerBanner: (innerBanner: BannerData) => void;
 }
 const GlobalWebContext = createContext<GlobalDataVariable | undefined>(undefined);
 export const GlobalContextProvider = ({children}: {children: ReactNode}) => {
     const [hasLoading, setHasLoading] = useState(true);
     const [mediaUrl, setMediaUrl] = useState<string | null>(null);
     const [commonData, setCommonData] = useState<setCommonDataType | null>(null);
+    const [innerBanner, setInnerBanner] = useState<BannerData | null>(null);
     return (
         <GlobalWebContext.Provider
             value={{
                 hasLoading, setHasLoading,
                 mediaUrl, setMediaUrl,
-                commonData, setCommonData
+                commonData, setCommonData,
+                innerBanner, setInnerBanner
             }}
         >
             <Header />
