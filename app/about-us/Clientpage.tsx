@@ -1,6 +1,7 @@
 "use client";
 
 import About from "@/components/about/About";
+import ZigzagContent from "@/components/about/Zigzag";
 import Ourreach from "@/components/our-reach/Ourreach";
 import Projects from "@/components/project/Projects";
 import { useGlobalContext } from "@/context/global_context";
@@ -112,6 +113,8 @@ const Clientpage = () => {
     const pageData = data?.page;
     const customFields = safeParse<PageCustomField>(pageData?.pages_custom_field);
     const secretarysMessage = customFields?.group_name['secretarys-message'];
+    const whatwedo = customFields?.group_name['what-we-do'];
+    const success_story = customFields?.group_name['success-story-of-about-us-section'];
 
     return (
         <div className="about-page">
@@ -119,13 +122,27 @@ const Clientpage = () => {
                 posterPart={customFields?.group_name['under-banner-section']}
                 content={pageData?.page_content}
             />
-            {/* <ZigzagContent
+            <ZigzagContent
+                background="#f7f7f7"
                 data={{
                     poster: secretarysMessage?.["secretary's_feature_image_1"],
-                    title: secretarysMessage?.["secretary's_message_description"],
                     description: secretarysMessage?.["secretary's_message_description"],
                 }}
-            /> */}
+            />
+            <ZigzagContent
+                reverse={true}
+                data={{
+                    poster: whatwedo?.["what_we_do_feature_image"],
+                    description: whatwedo?.["what_we_do_description"],
+                }}
+            />
+            <ZigzagContent
+                background="#f7f7f7"
+                data={{
+                    poster: success_story?.["success_story_feature_image"],
+                    description: success_story?.["success_story_description"],
+                }}
+            />
             <Ourreach
                 sectionData={{
                     our_reach_title: "Our Reach",

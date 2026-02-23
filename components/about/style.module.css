@@ -1,3 +1,10 @@
+.inrmdl_upcomsec{
+    padding: 80px 0px;
+}
 .abtintrighttbx {
 	padding-left: 20px;
+}
+.paragraph p {
+	color: inherit;
+	font: inherit;
 }

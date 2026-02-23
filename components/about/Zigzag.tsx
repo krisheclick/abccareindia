@@ -1,18 +1,23 @@
+"use client";
 import { Col, Container, Row } from 'react-bootstrap'
 import Styles from './style.module.css'
 import CustomImage from '@/utlis/imagefunction'
+import { useGlobalContext } from '@/context/global_context';
 interface DataProps {
     data?: {
         poster?: string;
         title?: string;
         description?: string;
     }
+    reverse?: boolean;
+    background?: string;
 }
-const ZigzagContent = ({data}: DataProps) => {
+const ZigzagContent = ({data, reverse = false, background}: DataProps) => {
+    const poster = `${process.env.NEXT_PUBLIC_MEDIA_URL}/uploads/page_image/${data?.poster}`
     return (
-        <div className={Styles.inrmdl_upcomsec}>
+        <div className={Styles.inrmdl_upcomsec} style={{background: background}}>
             <Container>
-                <Row className='align-items-center'>
+                <Row className={`align-items-center ${reverse ? 'flex-row-reverse' : ''}`}>
                     <Col lg={7}>
                         <div className={Styles.inner_mdlprheadindg}>
                             <h2 className="cmn_black_heading"
@@ -25,7 +30,7 @@ const ZigzagContent = ({data}: DataProps) => {
                     </Col>
                     <Col lg={5}>
                         <CustomImage
-                            src={`${process.env.NEXT_PUBLIC_MEDIA_URL}${data?.poster}`}
+                            src={poster}
                             alt={data?.title}
                         />
                     </Col>
