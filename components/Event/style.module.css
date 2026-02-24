@@ -1,0 +1,47 @@
+.inner_mdlprheading {
+	text-align: center;
+	width: 80%;
+	margin: 0 auto 70px;
+	border-bottom: 1px solid #ededed;
+	padding-bottom: 40px;
+}
+.evlsbxdetails {
+    background: #2222220d;
+}
+.evlsbxdetails .evlsimg {
+	width: 100%;
+	height: 600px;
+	overflow: hidden;
+	border-radius: 8px;
+	margin-bottom: 20px;
+}
+.evlsimg img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.evlsdate {
+	font-size: 18px;
+	font-weight: 700;
+	line-height: 27px;
+	color: #2a2f6e;
+	margin-bottom: 6px;
+}
+.evlshead {
+	font-size: 30px;
+	line-height: 36px;
+	font-weight: 600;
+	text-transform: capitalize;
+	margin-bottom: 13px;
+}
+.evlspara {
+	font-size: 17px;
+	line-height: 25px;
+	margin-bottom: 15px;
+	height: 53px;
+	overflow: hidden;
+}
+.evlspara p{
+    font: inherit;
+    color: inherit;
+}

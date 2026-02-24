@@ -16,7 +16,7 @@ const InnerBanner = () => {
             {!hasLoading ? (
                 <CustomImage
                     src={`${mediaUrl}${innerBanner?.page_feature_image}`}
-                    fallBack="/assets/images/innerbanner.jpg"
+                    fallBack="/assets/images/home_banner.jpg"
                     alt="Inner-Banner"
                     className={Styles.inerbnrimg}
                 />

@@ -1,5 +1,4 @@
 
-import DonationSection from "@/components/common/DonationSection";
 import ProjectSection from "@/components/common/ProjectSection";
 import ProjectDetails from "@/components/project/ProjectDetails/ProjectDetails";
 import { ProjectDetailsPageData } from "@/lib/api";
@@ -15,7 +14,6 @@ export default async function ProjectDetailsPage({
   const data = await ProjectDetailsPageData(slug);
 
   const project = data?.project;
-  const settings = data?.settings || {};
 
   if (!project) {
     return <div>Project not found</div>;

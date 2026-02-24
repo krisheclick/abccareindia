@@ -3,7 +3,7 @@ import Clientpage from "./Clientpage";
 
 export async function generateMetadata(): Promise<Metadata> {
     const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/page/events`,
+        `${process.env.NEXT_PUBLIC_API_URL}/page/about-us`,
         { cache: "no-store" }
     );
 
@@ -18,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
     return {
         title: response_data.page.seo.seo_meta_title || response_data.page.page_name,
-        description: response_data.page.seo.seo_meta_description || "Default description",
+        description: response_data.page.seo.seo_meta_description || "Default about page description",
         keywords: response_data.page.seo.seo_meta_description || [],
         openGraph: {
             title: response_data.page.seo.seo_meta_title || response_data.page.page_name,

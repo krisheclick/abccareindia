@@ -15,12 +15,6 @@ export default async function OurProjectsPage() {
 
     return (
         <>
-            <PageHeader
-                page_name={data.page.page_name}
-                page_slug={data.page.page_slug}
-                page_feature_image={data.page.page_feature_image}
-            />
-            {/* Page description */}
             <ProjectDescription page={data.page} />
 
             <ProjectListing projects={data.projects} projectCategories={data.project_categories} />
