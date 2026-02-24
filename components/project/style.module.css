@@ -22,12 +22,16 @@
 	border-radius: 15px;
 	overflow: hidden;
 	border: 1px solid #ebc436;
+	min-height: 100%;
 }
 .upcmsimg {
 	width: 100%;
 	height: 350px;
 	overflow: hidden;
     padding-top: 0;
+}
+.upcmsimg img{
+	object-fit: cover;
 }
 .upgoal {
 	justify-content: space-between;
@@ -49,6 +53,11 @@
 	color: #111111;
 	font-weight: 600;
 	line-height: 27px;
+}
+.upgoaltext span {
+	text-transform: uppercase;
+	color: #d1222e;
+	font-size: 16px;
 }
 .donatenowup {
 	background: #ebc436;

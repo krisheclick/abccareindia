@@ -74,19 +74,26 @@
     transition: .35s;
 }
 /**HEADER-LM-ENDS**/
+.abtintrighttbx h2.cmn_black_heading {
+	font-size: 32px;
+	line-height: normal;
+	margin-bottom: 10px;
+}
 .whatwedlist li {
-	position: relative;
 	font-size: 17px;
 	line-height: 26px;
-	padding: 3px 23px;
+	position: relative;
+	display: flex;
+	align-items: start;
+	gap: 8px;
+	margin-bottom: 10px;
 }
 .whatwedlist li::before {
 	font-family: "Font Awesome 7 Free";
 	content: "\f058";
 	font-weight: 600;
 	color: #2c3070;
-	position: absolute;
-	top: 3px;
-	left: 0;
+    display: block;
+    flex-shrink: 0;
 	font-size: 18px;
 }

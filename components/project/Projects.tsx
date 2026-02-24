@@ -44,11 +44,13 @@ const Projects = ({ sectionData, projects }: DataProps) => {
                                 />
                                 <div className={`${Styles.upgoal} d-flex align-items-center`}>
                                     <div className={Styles.upgoaltext}
-                                        dangerouslySetInnerHTML={{ __html: value?.project_title ?? '' }}                                        
+                                        dangerouslySetInnerHTML={{ __html: value?.project_subtitle ?? '' }}                                        
                                     />
                                 </div>
                                 <div className={Styles.upcpheadbx}>
-                                    <div className={Styles.upcphead}>project name goes here project name goes here</div>
+                                    <div className={Styles.upcphead}
+                                        dangerouslySetInnerHTML={{ __html: value?.project_title ?? '' }}                                        
+                                    />
                                     <div className={Styles.paragraph}
                                         dangerouslySetInnerHTML={{ __html: value?.project_short_description ?? '' }}   
                                     />

@@ -126,6 +126,7 @@ const Clientpage = () => {
                 background="#f7f7f7"
                 data={{
                     poster: secretarysMessage?.["secretary's_feature_image_1"],
+                    poster2: secretarysMessage?.["secretary's_feature_image_2"],
                     description: secretarysMessage?.["secretary's_message_description"],
                 }}
             />
