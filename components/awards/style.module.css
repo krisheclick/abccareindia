@@ -1,0 +1,25 @@
+.inrmdl_upcomsecourrecog{
+	max-width: 1920px;
+	margin: auto;
+}
+.inner_mdlprheading {
+	text-align: center;
+	width: 80%;
+	margin: 0 auto 70px;
+	border-bottom: 1px solid #ededed;
+	padding-bottom: 40px;
+}
+.reog_alltextimg .row:nth-child(2n+1) {
+	flex-direction: row-reverse;
+}
+.recogparan {
+	max-width: 730px;
+	padding-left: 100px;
+}
+.recogparan p{
+    font: inherit;
+}
+.recogimgn {
+	height: 500px;
+	overflow: hidden;
+}
