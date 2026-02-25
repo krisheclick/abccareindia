@@ -49,10 +49,10 @@ const ContactForm = () => {
         setFormErrors(errorArray);
         
         // Focus 
-        if(formData.contact_name && nameRef.current) nameRef.current.focus();
-        else if(formData.contact_email && emailRef.current) emailRef.current.focus();
-        else if(formData.contact_phone && phoneRef.current) phoneRef.current.focus();
-        else if(formData.contact_msg && messageRef.current) messageRef.current.focus();
+        if(errorArray.contact_name && nameRef.current) nameRef.current.focus();
+        else if(errorArray.contact_email && emailRef.current) emailRef.current.focus();
+        else if(errorArray.contact_phone && phoneRef.current) phoneRef.current.focus();
+        else if(errorArray.contact_msg && messageRef.current) messageRef.current.focus();
         
         return Object.keys(errorArray).length === 0;
     }
@@ -134,7 +134,7 @@ const ContactForm = () => {
                 {formError.contact_email && <div className="form-error text-danger">{formError.contact_email}</div>}
 
                 <Form.Control
-                    type="number"
+                    type="tel"
                     name="contact_phone"
                     id="contact_phone"
                     ref={phoneRef}
