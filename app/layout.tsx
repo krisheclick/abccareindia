@@ -18,6 +18,8 @@ import "@/app/globals.css";
 import { GlobalContextProvider } from '@/context/global_context';
 import { SEOContextProvider } from '@/context/seo_context';
 import { Metadata } from 'next';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
 
 export const metadata: Metadata = {
     metadataBase: new URL(process.env.NEXT_PUBLIC_ENV_URL || "http://localhost:3000"),
@@ -39,7 +41,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <body className={`${openSans.variable} ${oswald.variable}`}>
                 <GlobalContextProvider>
                     <SEOContextProvider>
+                        <Header />
                         {children}
+                        <Footer />
                     </SEOContextProvider>
                 </GlobalContextProvider>
             </body>

@@ -1,6 +1,4 @@
 "use client";
-import Footer from "@/components/layout/Footer";
-import Header from "@/components/layout/Header";
 import { createContext, ReactNode, useContext, useState } from "react";
 interface SocialItem {
     site_social_link_name?: string;
@@ -70,9 +68,7 @@ export const GlobalContextProvider = ({children}: {children: ReactNode}) => {
                 innerBanner, setInnerBanner
             }}
         >
-            <Header />
             {children}
-            <Footer />
         </GlobalWebContext.Provider>
     )
 }

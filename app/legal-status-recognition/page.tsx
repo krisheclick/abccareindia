@@ -40,6 +40,6 @@ export async function generateMetadata(): Promise<Metadata> {
     };
 }
 
-export default function AboutPage() {
+export default function LegalPage() {
     return <Clientpage />;
 }
