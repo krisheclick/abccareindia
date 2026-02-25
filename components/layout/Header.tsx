@@ -97,12 +97,20 @@ const Header = () => {
                             {menuData && menuData?.length > 0 && (
                                 <ul className="menuheader d-flex align-items-center">
                                     {menuData.map((item, index) => {
+                                        const itemPath = item.url?.startsWith("/")
+                                            ? item.url
+                                            : `/${item.url}`;
+
                                         return (
-                                            <li key={index}>
-                                                {/* <Link href={`${appLink}${item.url?.startsWith("/") ? item.url : `/${item.url}`}`}>{item.label}</Link> */}
-                                                <Link href={item.url || '#'}>{item.label}</Link>
+                                            <li
+                                                key={index}
+                                                className={pathName === itemPath ? "active" : ""}
+                                            >
+                                                <Link href={`${appLink}${itemPath}`}>
+                                                    {item.label}
+                                                </Link>
                                             </li>
-                                        )
+                                        );
                                     })}
                                 </ul>
                             )}
