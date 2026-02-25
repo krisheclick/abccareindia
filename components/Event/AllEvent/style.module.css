@@ -1,0 +1,21 @@
+.gllist {
+	gap: 13px;
+	margin-bottom: 45px;
+}
+.tabLink {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	background: #2a2e6d;
+	padding: 11px 40px;
+	color: #ffffff;
+	text-transform: uppercase;
+	font-size: 16px;
+	font-weight: 600;
+	border-radius: 5px;
+	position: relative;
+    cursor: pointer;
+}
+.active .tabLink {
+	background: #d8af1f;
+}

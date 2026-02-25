@@ -18,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
     return {
         title: response_data.page.seo.seo_meta_title || response_data.page.page_name,
-        description: response_data.page.seo.seo_meta_description || "Default about page description",
+        description: response_data.page.seo.seo_meta_description || "Asha Bhavan Centre",
         keywords: response_data.page.seo.seo_meta_description || [],
         openGraph: {
             title: response_data.page.seo.seo_meta_title || response_data.page.page_name,

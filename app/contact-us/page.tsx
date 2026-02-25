@@ -1,24 +1,57 @@
 import { ContactUsPageData } from '@/lib/api';
 import Counter from '@/components/common/Counter';
 import ContactDescription from '@/components/contact/ContactDescription/ContactDescription';
-import Contact from '@/components/contact/Contact/Contact';
-// import PageHeader from '@/components/layout/PageHeader';
+import ContactFormSection from '@/components/contact/ContactFormSection';
+import { Metadata } from 'next';
+import { stripTags } from '@/utlis/strip_tags';
+
+export async function generateMetadata(): Promise<Metadata> {
+    const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/page/contact-us`,
+        { cache: "no-store" }
+    );
+
+    const { response_data } = await res.json();
+
+    if (!response_data) {
+        return {
+            title: "Page Not Found",
+            description: "This page does not exist",
+        };
+    }
+    
+    const title = stripTags(response_data.page.seo.seo_meta_title);
+    const pageTitle = stripTags(response_data.page.page_name);
+    const description = stripTags(response_data.page.seo?.seo_meta_description);
+    const keyword = stripTags(response_data.page.seo?.seo_meta_keyword);
+
+    return {
+        title: title || pageTitle,
+        description: description || "Asha Bhavan Centre",
+        keywords: keyword || [],
+        openGraph: {
+            title: title || pageTitle,
+            description: description,
+            images: [
+                {
+                    url: `${process.env.NEXT_PUBLIC_MEDIA_URL}${response_data.page.seo.seo_og_image}`,
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+        },
+    };
+}
 
 export default async function EventsPage() {
     const data = await ContactUsPageData();
-
     return (
         <>
-            {/* <PageHeader
-        page_name={data.page.page_name}
-        page_slug={data.page.page_slug}
-        page_feature_image={data.page.page_feature_image}
-      /> */}
-
             <ContactDescription
                 page_short_description={data.page.page_short_description}
                 page_content={data.page.page_content}
             />
+            <ContactFormSection formData={data?.page} />
             <Counter
                 className='home_counter'
                 poster={true}

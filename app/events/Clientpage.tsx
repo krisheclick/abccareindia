@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { Container, Stack } from "react-bootstrap";
 import Styles from "@/components/Event/style.module.css";
 import EventPoster from "@/components/Event/EventPoster";
+import Events from "@/components/Event/AllEvent/Events";
 
 interface ProjectItem {
     project_title?: string;
@@ -27,9 +28,15 @@ interface ProjectContent {
     events_poster_title?: string;
     evevts_short_description?: string;
 }
-interface AwardItem {
-    "recognition_award_description"?: string;
-    "recognition_award_feature_image"?: string;
+interface EventsData {
+    event_title?: string;
+    event_slug?: string;
+    event_short_description?: string;
+    event_description?: string;
+    event_feature_image?: string;
+    event_date?: string;
+    event_gallery?: string[] | string;
+    event_video_link_gallery?: string[] | string;
 }
 interface PageCustomField {
     group_name: {
@@ -45,7 +52,7 @@ interface PageData {
         page_content?: string;
         pages_custom_field?: PageCustomField;
     }
-    recognition_award?: AwardItem[] | null;
+    events?: EventsData[] | null;
     projects?: ProjectItem[] | null;
 }
 const Clientpage = () => {
@@ -81,7 +88,6 @@ const Clientpage = () => {
     const pageData = data?.page;
     const customFields = safeParse<PageCustomField>(pageData?.pages_custom_field);
     const projectsData = customFields?.group_name['event-project-section'];
-    console.log('projectsData', projectsData)
 
     return (
         <div className="event-page">
@@ -104,6 +110,9 @@ const Clientpage = () => {
                 date={projectsData?.events_date}
                 title={projectsData?.events_poster_title}
                 description={projectsData?.evevts_short_description}
+            />
+            <Events 
+                data={data?.events}
             />
             <Counter
                 className='home_counter'

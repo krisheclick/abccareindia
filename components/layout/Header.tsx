@@ -110,7 +110,7 @@ const Header = () => {
                     </div>
                 </div>
             </div>
-            {!hasLoading && !(pathName === '/') && innerBanner && (
+            {!hasLoading && (!(pathName === '/')) && innerBanner && (
                 <InnerBanner />
             )}
         </>

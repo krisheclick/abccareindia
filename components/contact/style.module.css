@@ -1,0 +1,64 @@
+.contact_form_map_section {
+	position: relative;
+	padding-top: 70px;
+	padding-bottom: 90px;
+}
+.contact_form_map_section::before {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	background: linear-gradient(to right, #3c44a7, #3c44a7);
+	width: 100%;
+	height: 50%;
+	content: "";
+}
+.contact_us_heading {
+	position: relative;
+	margin-bottom: 40px;
+}
+.formArea {
+	background: #ffffff;
+	position: relative;
+	padding: 40px 24px;
+	border-radius: 10px;
+	box-shadow: 0 0 11px 0 rgba(110,110,110,0.3);
+}
+.contact_form input {
+	width: 100%;
+	border: 1px solid #d5d5d5;
+	height: 40px;
+	border-radius: 5px;
+	font-size: 14px;
+	margin-top: 4px;
+	margin-bottom: 4px;
+	padding-left: 10px;
+}
+.contact_form textarea {
+	width: 100%;
+	font-size: 15px;
+	height: 180px;
+	border-radius: 5px;
+	padding-left: 10px;
+	border: 1px solid #d5d5d5;
+	margin-top: 5px;
+}
+.button_contact {
+	color: #fff !important;
+	text-transform: uppercase;
+	background: #000;
+	border: none;
+	border-radius: 50px;
+	margin-top: 20px;
+	padding: 10px 40px;
+}
+.button_contact:hover{
+	background: #3c44a7;
+}
+.maps{
+	height: max(300px, 100%);
+}
+.maps iframe{
+	width: 100%;
+	height: 100%;
+}

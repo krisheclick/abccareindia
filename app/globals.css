@@ -1997,3 +1997,9 @@ a:hover{
     opacity: 1;
     transform: scale(1);
 }
+.form-error{
+  font-size: 14px;
+  color: rgba(var(--bs-danger-rgb), var(--bs-text-opacity)) !important;
+  line-height: normal;
+  margin-bottom: 10px;
+}

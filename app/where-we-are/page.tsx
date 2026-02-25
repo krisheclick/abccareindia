@@ -1,36 +1,39 @@
-import ProjectSection from "@/components/common/ProjectSection";
-import PageHeader from "@/components/layout/PageHeader";
-import OurReachDescription from "@/components/our-reach/OurReachPageDescription/OurReachDescription";
-import { WhereWeArePageData } from "@/lib/api";
+import { Metadata } from "next";
+import Clientpage from "./Clientpage";
 
-export default async function WhereWeArePage() {
-  const data = await WhereWeArePageData();
+export async function generateMetadata(): Promise<Metadata> {
+    const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/page/our-reach`,
+        { cache: "no-store" }
+    );
 
-  const customFields = JSON.parse(
-    data.page.pages_custom_field
-  );
+    const { response_data } = await res.json();
 
-  return (
-    <>
-      <PageHeader
-        page_name={data.page.page_name}
-        page_slug={data.page.page_slug}
-        page_feature_image={data.page.page_feature_image}
-      />
-        <OurReachDescription
-            page_name={data.page.page_name}
-            page_short_description={data.page.page_short_description}
-            page_content={data.page.page_content}
-            page_feature_image={data.page.page_feature_image}
-        />
-      <ProjectSection
-        projects={data.projects}
-        customFields={customFields}
-        projectTitle="project_title"
-        projectDescription="project_description"
-        sectionKey="our-reach-project-section"
-        className="our-projects"
-      />
-    </>
-  );
+    if (!response_data) {
+        return {
+            title: "Page Not Found",
+            description: "This page does not exist",
+        };
+    }
+
+    return {
+        title: response_data.page.seo.seo_meta_title || response_data.page.page_name,
+        description: response_data.page.seo.seo_meta_description || "Asha Bhavan Centre",
+        keywords: response_data.page.seo.seo_meta_description || [],
+        openGraph: {
+            title: response_data.page.seo.seo_meta_title || response_data.page.page_name,
+            description: response_data.page.seo.seo_meta_description,
+            images: [
+                {
+                    url: `${process.env.NEXT_PUBLIC_MEDIA_URL}${response_data.page.seo.seo_og_image}`,
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+        },
+    };
+}
+
+export default function AboutPage() {
+    return <Clientpage />;
 }

@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Clientpage from "./Clientpage";
+import { stripTags } from "@/utlis/strip_tags";
 
 export async function generateMetadata(): Promise<Metadata> {
     const res = await fetch(
@@ -15,14 +16,19 @@ export async function generateMetadata(): Promise<Metadata> {
             description: "This page does not exist",
         };
     }
+    
+    const title = stripTags(response_data.page.seo.seo_meta_title);
+    const pageTitle = stripTags(response_data.page.page_name);
+    const description = stripTags(response_data.page.seo?.seo_meta_description);
+    const keyword = stripTags(response_data.page.seo?.seo_meta_keyword);
 
     return {
-        title: response_data.page.seo.seo_meta_title || response_data.page.page_name,
-        description: response_data.page.seo.seo_meta_description || "Default about page description",
-        keywords: response_data.page.seo.seo_meta_description || [],
+        title: title || pageTitle,
+        description: description || "Asha Bhavan Centre",
+        keywords: keyword || [],
         openGraph: {
-            title: response_data.page.seo.seo_meta_title || response_data.page.page_name,
-            description: response_data.page.seo.seo_meta_description,
+            title: title || pageTitle,
+            description: description,
             images: [
                 {
                     url: `${process.env.NEXT_PUBLIC_MEDIA_URL}${response_data.page.seo.seo_og_image}`,

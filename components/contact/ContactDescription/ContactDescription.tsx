@@ -30,7 +30,7 @@ export default function ContactDescription({
         <Stack className={styles.contact_inner_page}>
             <Container>
                 <div className={styles.inner_mdlprheading}>
-                    <h2
+                    <h1
                         className={styles.cmn_black_heading}
                         dangerouslySetInnerHTML={{ __html: page_short_description }}
                     />
