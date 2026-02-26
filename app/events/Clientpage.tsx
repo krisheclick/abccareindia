@@ -42,11 +42,12 @@ interface PageData {
     };
     projects?: ProjectItem[] | null;
 }
-
-const Clientpage = () => {
-    const { setHasLoading, setInnerBanner} = useGlobalContext();
+interface Props {
+  page: number;
+}
+const Clientpage = ({ page }: Props) => {
+    const { hasLoading, setHasLoading, setInnerBanner} = useGlobalContext();
     const [data, setData] = useState<PageData | null>(null);
-
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -72,7 +73,7 @@ const Clientpage = () => {
         };
 
         fetchData();
-    }, [setHasLoading]);
+    }, [hasLoading]);
 
     const pageData = data?.page;
     const customFields = safeParse<PageCustomField>(pageData?.pages_custom_field);
@@ -97,7 +98,7 @@ const Clientpage = () => {
                             }}
                         />
                     </div>
-                    <EventList />
+                    <EventList page={page}/>
                 </Container>
             </Stack>
 

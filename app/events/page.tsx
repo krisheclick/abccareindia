@@ -2,6 +2,10 @@ import { Metadata } from "next";
 import Clientpage from "./Clientpage";
 import { stripTags } from "@/utlis/strip_tags";
 
+interface EventsPageProps {
+  searchParams: { page?: string };
+}
+
 export async function generateMetadata(): Promise<Metadata> {
     const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/page/events`,
@@ -40,6 +44,7 @@ export async function generateMetadata(): Promise<Metadata> {
     };
 }
 
-export default function EventsMainPage() {
-    return <Clientpage />;
+export default function EventsMainPage({ searchParams }: EventsPageProps) {
+    const page = Number(searchParams?.page) || 1;
+    return <Clientpage page={page}/>;
 }

@@ -28,14 +28,18 @@ interface ApiResponseData {
   pagination: PaginationData;
 }
 
-const EventList = () => {
+interface Props {
+  page: number;
+}
+
+const EventList = ({ page }: Props) => {
   const { hasLoading, setHasLoading } = useGlobalContext();
 
   const router = useRouter();
-  const searchParams = useSearchParams();
-
+  // const searchParams = useSearchParams();
+  
   // ✅ Get page from URL
-  const pageFromUrl = Number(searchParams.get("page")) || 1;
+  const pageFromUrl = page;
 
   const [events, setEvents] = useState<EventItem[]>([]);
   const [pagination, setPagination] = useState<PaginationData | null>(null);

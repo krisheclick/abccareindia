@@ -8,7 +8,6 @@ import Image from 'next/image';
 import FancyboxWrapper from '@/utlis/FancyboxWrapper';
 import Link from 'next/link';
 import { useGlobalContext } from '@/context/global_context';
-import { useState } from 'react';
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 
 interface EventsData {
