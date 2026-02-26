@@ -9,7 +9,18 @@ interface CounterItem {
     site_counter_number?: number;
     site_counter_title?: string;
 }
+interface ProjectItem {
+    project_title?: string;
+    project_subtitle?: string;
+    project_slug?: string;
+    project_short_description?: string;
+    project_feature_image?: string;
+    project_location?: string;
+    project_button?: string;
+    project_video_link?: string;
+}
 interface setCommonDataType {
+    site_title?: string;
     site_footer_phone_1?: string;
     site_footer_phone_2?: string;
     site_footer_email?: string;
@@ -33,6 +44,8 @@ interface setCommonDataType {
     site_donate_short_desc?: string;
     site_donate_button_text?: string;
     site_donate_button_url?: string;
+    site_project_title?: string;
+    site_project_short_description?: string;
     counter_media?: CounterItem[] | null;
     social_media?: SocialItem[] | null;
 }
@@ -50,6 +63,9 @@ interface GlobalDataVariable {
     commonData: setCommonDataType | null;
     setCommonData: (commonData: setCommonDataType) => void;
 
+    projectData: ProjectItem[] | null;
+    setProjectData: (projectData: ProjectItem[] | null) => void;
+
     innerBanner: BannerData | null;
     setInnerBanner: (innerBanner: BannerData) => void;
 }
@@ -58,6 +74,7 @@ export const GlobalContextProvider = ({children}: {children: ReactNode}) => {
     const [hasLoading, setHasLoading] = useState(true);
     const [mediaUrl, setMediaUrl] = useState<string | null>(null);
     const [commonData, setCommonData] = useState<setCommonDataType | null>(null);
+    const [projectData, setProjectData] = useState<ProjectItem[] | null>(null);
     const [innerBanner, setInnerBanner] = useState<BannerData | null>(null);
     return (
         <GlobalWebContext.Provider
@@ -65,6 +82,7 @@ export const GlobalContextProvider = ({children}: {children: ReactNode}) => {
                 hasLoading, setHasLoading,
                 mediaUrl, setMediaUrl,
                 commonData, setCommonData,
+                projectData, setProjectData,
                 innerBanner, setInnerBanner
             }}
         >

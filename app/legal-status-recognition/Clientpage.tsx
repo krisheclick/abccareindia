@@ -1,5 +1,6 @@
 "use client";
 import Awards from "@/components/awards/Awards";
+import InnerBanner from "@/components/layout/banner/InnerBanner";
 import Projects from "@/components/project/Projects";
 import { useGlobalContext } from "@/context/global_context";
 import { safeParse } from "@/utlis/safe_parse";
@@ -41,7 +42,7 @@ interface PageData {
     projects?: ProjectItem[] | null;
 }
 const Clientpage = () => {
-    const { setHasLoading } = useGlobalContext();
+    const { setHasLoading, setInnerBanner} = useGlobalContext();
     const [data, setData] = useState<PageData | null>(null);
 
     useEffect(() => {
@@ -56,6 +57,7 @@ const Clientpage = () => {
 
                 const { response_data } = await response.json();
                 setData(response_data ?? null);
+                setInnerBanner(response_data?.page ?? undefined);
 
             } catch (err: unknown) {
                 console.log(
@@ -75,19 +77,14 @@ const Clientpage = () => {
     const projectsData = customFields?.group_name['legal-status-project-section'];
 
     return (
-        <div className="legal-page">
+        <div className="legal-page">            
+            <InnerBanner />
             <Awards 
                 title={projectsData?.award_title}
                 content={pageData?.page_content}
                 awards={data?.recognition_award}
             />
-            <Projects
-                sectionData={{
-                    about_us_project_section_title: projectsData?.project_title,
-                    about_us_project_section_description: projectsData?.project_description
-                }}
-                projects={data?.projects}
-            />
+            <Projects />
         </div>
     )
 }

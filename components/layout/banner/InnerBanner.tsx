@@ -4,8 +4,17 @@ import CustomImage from '@/utlis/imagefunction';
 import Link from 'next/link';
 import { Container } from 'react-bootstrap';
 
-const InnerBanner = () => {
-    const { hasLoading, mediaUrl, innerBanner } = useGlobalContext();
+interface BreadcrumbItem {
+    breadcrumb_item?: string;
+    breadcrumb_slug?: string;
+}
+
+interface InnerBannerProps {
+    breadcrumb?: BreadcrumbItem[] | null;
+}
+
+const InnerBanner = ({ breadcrumb }: InnerBannerProps) => {
+    const { hasLoading, mediaUrl, innerBanner,} = useGlobalContext();
     const title = innerBanner?.page_name ?? '';
     const words = title.trim().split(/\s+/);
     const lastWord = words.pop();
@@ -32,6 +41,11 @@ const InnerBanner = () => {
                     </div>
                     <ul className={`d-flex align-items-center ${Styles.brdcminr}`}>
                         <li><Link href="/">Home</Link></li>
+                        {breadcrumb && breadcrumb?.length > 0 && (
+                            breadcrumb.map((value, index) => (
+                                <li key={index}><Link href={value?.breadcrumb_slug || ''}>{value.breadcrumb_item}</Link></li>
+                            ))
+                        )}
                         <li>{innerBanner?.page_name}</li>
                     </ul>
                 </Container>

@@ -1,48 +1,59 @@
+import { stripTags } from "@/utlis/strip_tags";
+import { Metadata } from "next";
+import SingleClientpage from "./Clientpage";
+// import { notFound } from "next/navigation";
 
+// export async function generateMetadata(
+//   { params }: { params: { slug: string } }
+// ): Promise<Metadata> {
 
-import ProjectSection from "@/components/common/ProjectSection";
-import EventDetails from "@/components/Event/EventDetails/EventDetails";
-import { EventDetailsPageData } from "@/lib/api";
+//     const slug = params.slug;
 
-export default async function EventDetailsData({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
+//     const res = await fetch(
+//         `${process.env.NEXT_PUBLIC_API_URL}/event/${slug}`,
+//         { cache: "no-store" }
+//     );
 
-  const data = await EventDetailsPageData(slug);
-  
+//     const data = await res.json();
+//     const response_data = data?.response_data;
 
-  const event = data?.event;
-  const settings = data?.settings || {}; 
+//     // ✅ Correct 404 check
+//     // if (!response_data?.event) {
+//     //     notFound();
+//     // }
 
-  if (!event) {
-    return <div>Event not found</div>;
-  }
+//     const event = response_data.event;
+//     const seo = event?.EventSeo;
 
-  return (
-    <div>
-      <EventDetails
-        event_title={event.event_title}
-        event_slug={event.event_slug}
-        event_short_description={event.event_short_description}
-        event_description={event.event_description}
-        event_feature_image={event.event_feature_image}
-        event_date={event.event_date}
-        event_gallery={event.event_gallery}
-        event_video_link_gallery={event.event_video_link_gallery}
-      />
+//     const title = stripTags(seo?.seo_meta_title || "");
+//     const pageTitle = stripTags(event?.event_title || "");
+//     const description = stripTags(seo?.seo_meta_description || "");
+//     const keyword = stripTags(seo?.seo_meta_keyword || "");
 
-      <ProjectSection
-        projects={data.projects}
-        projectTitle="project_title"
-        projectDescription="project_description"
-        sectionKey="legal-status-project-section"
-        className="our-projects"
-      />
+//     return {
+//         title: title || pageTitle,
+//         description: description || "Asha Bhavan Centre",
+//         keywords: keyword || [],
+//         openGraph: {
+//             title: title || pageTitle,
+//             description: description,
+//             images: seo?.seo_og_image
+//                 ? [
+//                     {
+//                         url: `${process.env.NEXT_PUBLIC_MEDIA_URL}${seo.seo_og_image}`,
+//                         width: 1200,
+//                         height: 630,
+//                     },
+//                 ]
+//                 : [],
+//         },
+//     };
+// }
 
-    </div>
-  );
+const Singlepage = async({ params }: { params: { slug: string } }) => {
+    const {slug} = await params;
+
+    return <SingleClientpage permalink={slug ?? ''} />
 }
 
+export default Singlepage

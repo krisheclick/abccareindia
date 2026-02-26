@@ -2,6 +2,7 @@
 
 import About from "@/components/about/About";
 import ZigzagContent from "@/components/about/Zigzag";
+import InnerBanner from "@/components/layout/banner/InnerBanner";
 import Ourreach from "@/components/our-reach/Ourreach";
 import Projects from "@/components/project/Projects";
 import { useGlobalContext } from "@/context/global_context";
@@ -81,7 +82,7 @@ interface PageData {
     our_reach?: OurReachItem[];
 }
 const Clientpage = () => {
-    const { setHasLoading } = useGlobalContext();
+    const { setHasLoading, setInnerBanner} = useGlobalContext();
     const [data, setData] = useState<PageData | null>(null);
 
     useEffect(() => {
@@ -96,6 +97,7 @@ const Clientpage = () => {
 
                 const { response_data } = await response.json();
                 setData(response_data ?? null);
+                setInnerBanner(response_data?.page ?? undefined);
 
             } catch (err: unknown) {
                 console.log(
@@ -109,7 +111,7 @@ const Clientpage = () => {
 
         fetchData();
     }, [setHasLoading]);
-    
+
     const pageData = data?.page;
     const customFields = safeParse<PageCustomField>(pageData?.pages_custom_field);
     const secretarysMessage = customFields?.group_name['secretarys-message'];
@@ -118,6 +120,7 @@ const Clientpage = () => {
 
     return (
         <div className="about-page">
+            <InnerBanner />
             <About
                 posterPart={customFields?.group_name['under-banner-section']}
                 content={pageData?.page_content}
@@ -148,13 +151,10 @@ const Clientpage = () => {
                 sectionData={{
                     our_reach_title: "Our Reach",
                     our_reach_description: "Asha Bhavan Center Project Area"
-                }} 
+                }}
                 ourReachData={data?.our_reach}
             />
-            <Projects
-                sectionData={customFields?.group_name['about-us-project-section']}
-                projects={data?.projects}
-            />
+            <Projects />
         </div>
     )
 }

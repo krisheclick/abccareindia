@@ -5,9 +5,10 @@ import Projects from "@/components/project/Projects";
 import { useGlobalContext } from "@/context/global_context";
 import { safeParse } from "@/utlis/safe_parse";
 import { useEffect, useState } from "react";
-import { Col, Container, Row, Stack } from "react-bootstrap";
+import { Container, Stack } from "react-bootstrap";
 import Styles from "@/components/Event/style.module.css";
-import EventCard from "@/components/Event/Card";
+import EventList from "@/components/Event/List";
+import InnerBanner from "@/components/layout/banner/InnerBanner";
 
 interface ProjectItem {
     project_title?: string;
@@ -19,19 +20,10 @@ interface ProjectItem {
     project_button?: string;
     project_video_link?: string;
 }
-
 interface ProjectContent {
     project_section_title?: string;
     project_section_description?: string;
     events_title?: string;
-}
-
-interface EventsData {
-    event_title?: string;
-    event_slug?: string;
-    event_short_description?: string;
-    event_feature_image?: string;
-    event_date?: string;
 }
 
 interface PageCustomField {
@@ -39,14 +31,6 @@ interface PageCustomField {
         "event-project-section"?: ProjectContent;
     };
 }
-
-interface Pagination {
-    totalItems?: number;
-    totalPages?: number;
-    currentPage?: number;
-    pageSize?: number;
-}
-
 interface PageData {
     page?: {
         page_name?: string;
@@ -56,18 +40,12 @@ interface PageData {
         page_content?: string;
         pages_custom_field?: PageCustomField;
     };
-    events?: EventsData[] | null;
     projects?: ProjectItem[] | null;
-    pagination?: Pagination;
 }
 
 const Clientpage = () => {
-    const { setHasLoading } = useGlobalContext();
-
+    const { setHasLoading, setInnerBanner} = useGlobalContext();
     const [data, setData] = useState<PageData | null>(null);
-    const [currentPage, setCurrentPage] = useState(1);
-
-    const itemsPerPage = 10;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -75,43 +53,34 @@ const Clientpage = () => {
                 setHasLoading(true);
 
                 const response = await fetch(
-                    `${process.env.NEXT_PUBLIC_API_URL}/page/events?page=${currentPage}&limit=${itemsPerPage}`,
+                    `${process.env.NEXT_PUBLIC_API_URL}/page/events`,
                     { cache: "no-cache" }
                 );
 
                 const { response_data } = await response.json();
-                setData(response_data ?? null);
 
-                // Scroll to top when page changes
+                setData(response_data ?? null);
+                setInnerBanner(response_data?.page ?? undefined);
+
                 window.scrollTo({ top: 0, behavior: "smooth" });
 
             } catch (err: unknown) {
-                console.log(
-                    "API error:",
-                    (err as Error).message
-                );
+                console.log("API error:", (err as Error).message);
             } finally {
                 setHasLoading(false);
             }
         };
 
         fetchData();
-    }, [currentPage, setHasLoading]);
+    }, [setHasLoading]);
 
     const pageData = data?.page;
-
-    const customFields = safeParse<PageCustomField>(
-        pageData?.pages_custom_field
-    );
-
-    const projectsData =
-        customFields?.group_name?.["event-project-section"];
-
-    const totalItems = data?.pagination?.totalItems ?? 0;
-    const totalPages = data?.pagination?.totalPages ?? 0;
+    const customFields = safeParse<PageCustomField>(pageData?.pages_custom_field);
+    const projectsData = customFields?.group_name?.["event-project-section"];
 
     return (
         <div className="event-page">
+            <InnerBanner />
             <Stack className={`pt_80 pb_100 ${Styles.inrmdl_upcomsecds ?? ""}`}>
                 <Container>
                     <div className={Styles.inner_mdlprheading}>
@@ -128,75 +97,13 @@ const Clientpage = () => {
                             }}
                         />
                     </div>
-
-                    {data?.events && data.events.length > 0 && (
-                        <div className={Styles.eventList}>
-                            <Row className={Styles.rowevesblist}>
-                                {data.events.map((value) => (
-                                    <Col
-                                        lg={6}
-                                        sm={6}
-                                        key={value.event_slug}
-                                    >
-                                        <EventCard
-                                            poster={`${process.env.NEXT_PUBLIC_MEDIA_URL}${value.event_feature_image}`}
-                                            date={value.event_date}
-                                            title={value.event_title}
-                                            slug={value.event_slug}
-                                            description={value.event_short_description}
-                                        />
-                                    </Col>
-                                ))}
-                            </Row>
-
-                            {/* Pagination */}
-                            {totalItems > itemsPerPage && totalPages > 1 && (
-                                <div className="d-flex justify-content-center mt-4">
-                                    <nav>
-                                        <ul className="pagination">
-                                            {Array.from(
-                                                { length: totalPages },
-                                                (_, i) => (
-                                                    <li
-                                                        key={i}
-                                                        className={`page-item ${
-                                                            currentPage === i + 1
-                                                                ? "active"
-                                                                : ""
-                                                        }`}
-                                                    >
-                                                        <button
-                                                            className="page-link"
-                                                            onClick={() =>
-                                                                setCurrentPage(i + 1)
-                                                            }
-                                                        >
-                                                            {i + 1}
-                                                        </button>
-                                                    </li>
-                                                )
-                                            )}
-                                        </ul>
-                                    </nav>
-                                </div>
-                            )}
-                        </div>
-                    )}
+                    <EventList />
                 </Container>
             </Stack>
 
-            <Counter
-                className="home_counter"
-                poster={true}
-            />
+            <Counter className="home_counter" poster={true} />
 
-            <Projects
-                sectionData={{
-                    about_us_project_section_title: projectsData?.project_section_title,
-                    about_us_project_section_description: projectsData?.project_section_description,
-                }}
-                projects={data?.projects}
-            />
+            <Projects />
         </div>
     );
 };

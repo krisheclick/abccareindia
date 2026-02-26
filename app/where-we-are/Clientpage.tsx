@@ -2,6 +2,7 @@
 
 import About from "@/components/about/About";
 import ZigzagContent from "@/components/about/Zigzag";
+import InnerBanner from "@/components/layout/banner/InnerBanner";
 import Ourreach from "@/components/our-reach/Ourreach";
 import Projects from "@/components/project/Projects";
 import { useGlobalContext } from "@/context/global_context";
@@ -115,6 +116,7 @@ const Clientpage = () => {
 
     return (
         <div className="where-page">
+            <InnerBanner />
             <Ourreach
                 sectionData={{
                     our_reach_title: "Our Reach",
@@ -122,10 +124,7 @@ const Clientpage = () => {
                 }} 
                 ourReachData={data?.our_reach}
             />
-            <Projects
-                sectionData={customFields?.group_name['about-us-project-section']}
-                projects={data?.projects}
-            />
+            <Projects />
         </div>
     )
 }

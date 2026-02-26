@@ -7,6 +7,7 @@ import Social from './Social';
 import './style.css';
 import { usePathname } from 'next/navigation';
 import InnerBanner from './banner/InnerBanner';
+import BannerSkeleton from './banner/BannerSkeleton';
 
 interface MenuItem {
     url?: string;
@@ -18,7 +19,7 @@ const Header = () => {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     const pathName = usePathname();
 
-    const { setHasLoading, hasLoading, setMediaUrl, mediaUrl, setCommonData, commonData, setInnerBanner, innerBanner } = useGlobalContext();
+    const { setHasLoading, hasLoading, setMediaUrl, mediaUrl, setCommonData, commonData, setProjectData } = useGlobalContext();
     const [menuData, setMenuData] = useState<MenuItem[] | null>(null);
     const fetchData = async () => {
         try {
@@ -26,19 +27,13 @@ const Header = () => {
             const response = await fetch(`${apiUrl}/site-setting`, { cache: "no-cache" });
             const { response_data } = await response.json();
             setCommonData(response_data?.filteredSettings ?? null);
+            setProjectData(response_data?.projects ?? null);
             setMediaUrl(`${process.env.NEXT_PUBLIC_MEDIA_URL}`);
 
             // Menus
             const menuResponse = await fetch(`${apiUrl}/menu/e3d5ab2ac0ed686cef5a`, { cache: "no-cache" });
             const { response_data: menuData } = await menuResponse.json();
             setMenuData(Object.values(menuData ?? {}));
-
-            if ((!(pathName === '/'))) {
-                //Page Data 
-                const pageResponse = await fetch(`${apiUrl}/page${pathName}`);
-                const { response_data: pageResponseData } = await pageResponse.json();
-                setInnerBanner(pageResponseData?.page ?? undefined);
-            }
 
         } catch (err: unknown) {
             console.log('Site Settings api is something: ', (err as Error).message)
@@ -47,28 +42,8 @@ const Header = () => {
         }
     }
 
-    const pageData = async () => {
-        try {
-            setHasLoading(true);
-            if ((!(pathName === '/'))) {
-                const pageResponse = await fetch(`${apiUrl}/page${pathName}`);
-                const { response_data } = await pageResponse.json();
-                setInnerBanner(response_data?.page ?? undefined);
-            }
-
-        } catch (err: unknown) {
-            console.log('Page api is something: ', (err as Error).message)
-        } finally {
-            setHasLoading(false);
-        }
-    }
-
     useEffect(() => {
         fetchData();
-    }, []);
-
-    useEffect(() => {
-        pageData();
     }, [pathName]);
 
     return (
@@ -90,7 +65,7 @@ const Header = () => {
                             <Link href={`${appLink}`} className="headerlgoo">
                                 <Image
                                     src={`${mediaUrl}${commonData?.site_logo}`}
-                                    alt="ABC India Logo"
+                                    alt={commonData?.site_title || "ABC India Logo"}
                                     width={218} height={84}
                                 />
                             </Link>
@@ -118,9 +93,13 @@ const Header = () => {
                     </div>
                 </div>
             </div>
-            {!hasLoading && (!(pathName === '/')) && innerBanner && (
-                <InnerBanner />
-            )}
+            {/* {pathName !== "/" && innerBanner !== null &&(
+                innerBanner && hasLoading ? (
+                    <BannerSkeleton />
+                ) : (
+                    <InnerBanner />
+                )
+            )} */}
         </>
     )
 }

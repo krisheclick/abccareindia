@@ -1,9 +1,6 @@
-import { ContactUsPageData } from '@/lib/api';
-import Counter from '@/components/common/Counter';
-import ContactDescription from '@/components/contact/ContactDescription/ContactDescription';
-import ContactFormSection from '@/components/contact/ContactFormSection';
 import { Metadata } from 'next';
 import { stripTags } from '@/utlis/strip_tags';
+import ContactClient from './Client';
 
 export async function generateMetadata(): Promise<Metadata> {
     const res = await fetch(
@@ -44,18 +41,5 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function EventsPage() {
-    const data = await ContactUsPageData();
-    return (
-        <>
-            <ContactDescription
-                page_short_description={data.page.page_short_description}
-                page_content={data.page.page_content}
-            />
-            <ContactFormSection formData={data?.page} />
-            <Counter
-                className='home_counter'
-                poster={true}
-            />
-        </>
-    );
+    return <ContactClient />
 }

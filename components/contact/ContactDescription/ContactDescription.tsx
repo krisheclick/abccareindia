@@ -6,14 +6,11 @@ import CustomImage from "@/utlis/imagefunction";
 import { Col, Container, Row, Stack } from "react-bootstrap";
 
 interface ContactDescriptionProps {
-    page_short_description: string;
-    page_content: string;
+    page_short_description?: string;
+    page_content?: string;
 }
 
-export default function ContactDescription({
-    page_short_description,
-    page_content,
-}: ContactDescriptionProps) {
+export default function ContactDescription({ page_short_description, page_content, }: ContactDescriptionProps) {
 
     const { commonData } = useGlobalContext();
 
@@ -32,12 +29,12 @@ export default function ContactDescription({
                 <div className={styles.inner_mdlprheading}>
                     <h1
                         className={styles.cmn_black_heading}
-                        dangerouslySetInnerHTML={{ __html: page_short_description }}
+                        dangerouslySetInnerHTML={{ __html: page_short_description || ''}}
                     />
 
                     <div
                         className={styles.paragraph}
-                        dangerouslySetInnerHTML={{ __html: page_content }}
+                        dangerouslySetInnerHTML={{ __html: page_content || ''}}
                     />
 
                 </div>

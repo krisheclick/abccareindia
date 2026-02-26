@@ -1,0 +1,29 @@
+.pagination{
+    margin-top: 50px;
+    justify-content: center;
+}
+.page-item.disabled {
+	cursor: not-allowed;
+}
+.page-link {
+	display: grid;
+	place-items: center;
+	--size: 40px;
+	width: var(--size);
+	height: var(--size);
+	font-size: 16px;
+	padding: 2px;
+    color: #000000;
+}
+.active > .page-link, .page-link.active {
+	z-index: 3;
+	color: #000;
+	background-color: #ebc436;
+	border-color: #ebc436;
+}
+.page-link:hover,
+.page-link:focus {
+	color: #000;
+	background-color: #ebc43691;
+	border-color: #ebc436;
+}

@@ -1,41 +1,28 @@
+"use client";
 import CustomImage from '@/utlis/imagefunction';
 import Styles from "./style.module.css";
 import { Col, Container, Row } from 'react-bootstrap';
 import Link from 'next/link';
-interface AboutProject {
-    about_us_project_section_title?: string;
-    about_us_project_section_description?: string;
-}
-interface ProjectItem {
-    project_title?: string;
-    project_subtitle?: string;
-    project_slug?: string;
-    project_short_description?: string;
-    project_feature_image?: string;
-    project_location?: string;
-    project_button?: string;
-    project_video_link?: string;
-}
-interface DataProps {
-    sectionData: AboutProject | undefined;
-    projects?: ProjectItem[] | null;
-}
-const Projects = ({ sectionData, projects }: DataProps) => {
-    if (!sectionData || projects?.length === 0) return null;
+import { useGlobalContext } from '@/context/global_context';
+
+const Projects = () => {
+    const {commonData, projectData} = useGlobalContext();
+    
+    if (!projectData || projectData.length === 0) return null;
 
     return (
         <div className={Styles.inrmdl_upcomsec}>
             <Container>
                 <div className={Styles.inner_mdlprheading}>
                     <div className="cmn_black_heading"
-                        dangerouslySetInnerHTML={{ __html: sectionData?.about_us_project_section_title ?? '' }}
+                        dangerouslySetInnerHTML={{ __html: commonData?.site_project_title ?? '' }}
                     />
                     <div className={Styles.paragraph}
-                        dangerouslySetInnerHTML={{ __html: sectionData?.about_us_project_section_description ?? '' }}
+                        dangerouslySetInnerHTML={{ __html: commonData?.site_project_short_description ?? '' }}
                     />
                 </div>
                 <Row>
-                    {projects?.map((value, index) => (
+                    {projectData?.map((value, index) => (
                         <Col lg={4} key={index}>
                             <div className={Styles.upcomsbx}>
                                 <CustomImage
