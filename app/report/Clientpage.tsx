@@ -151,10 +151,7 @@ const Clientpage = () => {
                 }} 
                 ourReachData={data?.our_reach}
             />
-            <Projects
-                sectionData={customFields?.group_name['about-us-project-section']}
-                projects={data?.projects}
-            />
+            <Projects />
         </div>
     )
 }
