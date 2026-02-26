@@ -5,10 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage, faPlay } from '@fortawesome/free-solid-svg-icons';
 import { safeParse } from '@/utlis/safe_parse';
 import Image from 'next/image';
-import FancyboxWrapper from '@/utlis/FancyboxWrapper';
 import Link from 'next/link';
 import { useGlobalContext } from '@/context/global_context';
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import FancyboxWrapper from '@/utlis/FancyboxWrapper';
 
 interface EventsData {
     event_title?: string;
