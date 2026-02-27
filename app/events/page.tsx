@@ -1,6 +1,7 @@
 import { Metadata } from "next";
-import Clientpage from "./Clientpage";
 import { stripTags } from "@/utlis/strip_tags";
+import SingleClientpage from "./[slug]/Clientpage";
+import Clientpage from "../about-us/Clientpage";
 
 interface EventsPageProps {
   searchParams: { page?: string };
@@ -44,7 +45,10 @@ export async function generateMetadata(): Promise<Metadata> {
     };
 }
 
-export default function EventsMainPage({ searchParams }: EventsPageProps) {
-    const page = Number(searchParams?.page) || 1;
-    return <Clientpage page={page}/>;
+// export default function EventsMainPage({ searchParams }: EventsPageProps) {
+//     const page = Number(searchParams?.page) || 1;
+//     return <Clientpage page={page}/>;
+// }
+export default function EventsMainPage() {
+    return <Clientpage />;
 }
