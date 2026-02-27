@@ -16,7 +16,6 @@ const oswald = Oswald({
 });
 import "@/app/globals.css";
 import { GlobalContextProvider } from '@/context/global_context';
-import { SEOContextProvider } from '@/context/seo_context';
 import { Metadata } from 'next';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -40,11 +39,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <html lang="en">
             <body className={`${openSans.variable} ${oswald.variable}`}>
                 <GlobalContextProvider>
-                    <SEOContextProvider>
-                        <Header />
-                        {children}
-                        <Footer />
-                    </SEOContextProvider>
+                    <Header />
+                    {children}
+                    <Footer />
                 </GlobalContextProvider>
             </body>
         </html>

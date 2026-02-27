@@ -1,30 +1,47 @@
-import { getProjectPageData } from "@/lib/api";
+import { Metadata } from "next";
+import { stripTags } from "@/utlis/strip_tags";
+import Clientpage from "./Clientpage";
 
-import ProjectDescription from "@/components/project/ProjectDescription/ProjectDescription";
-
-import TestimonialSection from "@/components/common/Testimonial";
-import PageHeader from "@/components/layout/PageHeader";
-import ProjectListing from "@/components/project/ProjectListing/ProjectListing";
-
-export default async function OurProjectsPage() {
-    const data = await getProjectPageData();
-
-    const customFields = JSON.parse(
-        data.page.pages_custom_field
+export async function generateMetadata(): Promise<Metadata> {
+    const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/page/our-projects`,
+        { cache: "no-store" }
     );
 
-    return (
-        <>
-            <ProjectDescription page={data.page} />
+    const { response_data } = await res.json();
 
-            <ProjectListing projects={data.projects} projectCategories={data.project_categories} />
-            <TestimonialSection
-                data={customFields?.group_name['testimonial-section']}
-                testimonials={data?.testimonial}
-                className="event-testimonials"
-            />
-        </>
-    );
+    if (!response_data) {
+        return {
+            title: "Page Not Found",
+            description: "This page does not exist",
+        };
+    }
+    
+    const title = stripTags(response_data.page.seo.seo_meta_title);
+    const pageTitle = stripTags(response_data.page.page_name);
+    const description = stripTags(response_data.page.seo?.seo_meta_description);
+    const keyword = stripTags(response_data.page.seo?.seo_meta_keyword);
+
+    return {
+        title: title || pageTitle,
+        description: description || "Asha Bhavan Centre",
+        keywords: keyword || [],
+        openGraph: {
+            title: title || pageTitle,
+            description: description,
+            images: [
+                {
+                    url: `${process.env.NEXT_PUBLIC_MEDIA_URL}${response_data.page.seo.seo_og_image}`,
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+        },
+    };
 }
 
+const ProjectsPage = () => {
+    return <Clientpage />;
+};
 
+export default ProjectsPage;

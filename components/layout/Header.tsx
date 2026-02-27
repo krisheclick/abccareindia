@@ -19,7 +19,7 @@ const Header = () => {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     const pathName = usePathname();
 
-    const { setHasLoading, hasLoading, setMediaUrl, mediaUrl, setCommonData, commonData, setProjectData } = useGlobalContext();
+    const { setHasLoading, setMediaUrl, mediaUrl, setCommonData, commonData, setProjectData } = useGlobalContext();
     const [menuData, setMenuData] = useState<MenuItem[] | null>(null);
     const fetchData = async () => {
         try {
@@ -44,7 +44,7 @@ const Header = () => {
 
     useEffect(() => {
         fetchData();
-    }, [pathName]);
+    }, [pathName, setHasLoading]);
 
     return (
         <>

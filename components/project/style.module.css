@@ -74,3 +74,8 @@
 	background: #000000;
 	color: #ebc436;
 }
+
+/* //page */
+.inner_mdl {
+	padding: 80px 0 10px 0;
+}
