@@ -2009,10 +2009,27 @@ a:hover{
   line-height: normal;
   margin-bottom: 10px;
 }
-body:has(.error-page) .thm_both {
-	position: static;
-	background: #000;
+
+.abtintrighttbx h2.cmn_black_heading {
+	font-size: 32px;
+	line-height: normal;
+	margin-bottom: 10px;
 }
-.error-page{
-  padding: 120px 0px;
+.whatwedlist li {
+	font-size: 17px;
+	line-height: 26px;
+	position: relative;
+	display: flex;
+	align-items: start;
+	gap: 8px;
+	margin-bottom: 10px;
+}
+.whatwedlist li::before {
+	font-family: "Font Awesome 7 Free";
+	content: "\f058";
+	font-weight: 600;
+	color: #2c3070;
+    display: block;
+    flex-shrink: 0;
+	font-size: 18px;
 }

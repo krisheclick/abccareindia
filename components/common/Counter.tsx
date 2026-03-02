@@ -4,6 +4,8 @@ import { Col, Container, Row } from 'react-bootstrap';
 import { parseToArray } from '@/utlis/array_prase';
 import counterPoster from "@/public/assets/images/couter_poster.webp";
 import Styles from './style.module.css';
+import { useInView } from 'react-intersection-observer';
+import CountUp from 'react-countup';
 
 interface CounterItem {
     site_counter_number?: number;
@@ -12,6 +14,14 @@ interface CounterItem {
 const Counter = ({ className = '', poster = false }: { className?: string; poster?: boolean }) => {
     const { commonData } = useGlobalContext();
     const counters = parseToArray<CounterItem>(commonData?.counter_media);
+
+    // Counter
+    const { ref, inView } = useInView({
+        triggerOnce: true, // run only once
+        threshold: 0.3,
+    });
+    const duration = 3;
+
     return (
         counters && counters.length > 0 && (
             poster ? (
@@ -24,12 +34,23 @@ const Counter = ({ className = '', poster = false }: { className?: string; poste
                     })}
                 >
                     <Container>
-                        <div className={Styles.counterList}>
+                        <div className={Styles.counterList} ref={ref}>
                             <Row>
                                 {counters.map((counter, index) => (
                                     <Col lg={3} sm={6} key={index}>
                                         <div className={Styles.counterBox}>
-                                            <h3 className={Styles.counter_number}>{counter.site_counter_number}</h3>
+                                            <h3 className={Styles.counter_number}>
+                                                {inView ? (
+                                                    <CountUp
+                                                        start={0}
+                                                        end={counter?.site_counter_number || 0}
+                                                        duration={duration}
+                                                        useEasing={false} // linear speed
+                                                    />
+                                                ) : (
+                                                    0
+                                                )}
+                                            </h3>
                                             <p className={Styles.counter_title}>{counter.site_counter_title}</p>
                                         </div>
                                     </Col>
@@ -39,10 +60,21 @@ const Counter = ({ className = '', poster = false }: { className?: string; poste
                     </Container>
                 </div>
             ) : (
-                <div className={Styles.abtrcountmb}>
+                <div className={Styles.abtrcountmb} ref={ref}>
                     {counters.map((counter, index) => (
                         <div className={Styles.abtrcountsb} key={index}>
-                            <div className={Styles.abtrcounnum}>{counter.site_counter_number}</div>
+                            <div className={Styles.abtrcounnum}>
+                                {inView ? (
+                                    <CountUp
+                                        start={0}
+                                        end={counter?.site_counter_number || 0}
+                                        duration={duration}
+                                        useEasing={false} // linear speed
+                                    />
+                                ) : (
+                                    0
+                                )}
+                            </div>
                             <div className={Styles.abtrcounnumtext}>{counter.site_counter_title}</div>
                         </div>
                     ))}

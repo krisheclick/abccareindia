@@ -7,21 +7,6 @@ import { Container, Stack } from "react-bootstrap";
 import Styles from "@/components/project/style.module.css";
 import ProjectList from "@/components/project/ProjectListing/List";
 
-interface CounterData {
-    our_reach_counter_number?: number;
-    our_reach_counter_icon?: string;
-    our_reach_counter_title?: string;
-}
-interface OurReachItem {
-    our_reach_description?: string;
-    our_reach_feature_image?: string;
-    our_reach_button_data?: string;
-    our_reach_counter_data?: CounterData[] | null;
-}
-interface OurReachSectionData {
-    our_reach_title?: string;
-    our_reach_description?: string;
-}
 interface ProjectItem {
     project_title?: string;
     project_subtitle?: string;
@@ -32,39 +17,11 @@ interface ProjectItem {
     project_button?: string;
     project_video_link?: string;
 }
-interface UnderBanner {
-    video_thumb_nail_image?: string;
-    upload_video_file?: string;
-    upload_feature_image?: string;
-}
-interface SecretaryMessage {
-    "secretary's_message_description"?: string;
-    "secretary's_feature_image_1"?: string;
-    "secretary's_feature_image_2"?: string;
-}
-interface WhatWeDo {
-    what_we_do_description?: string;
-    what_we_do_feature_image?: string;
-}
-interface Successstory {
-    success_story_description?: string;
-    success_story_feature_image?: string;
-}
-interface AboutProject {
-    about_us_project_section_title?: string;
-    about_us_project_section_description?: string;
-}
 interface PageCustomField {
     group_name: {
-        "under-banner-section"?: UnderBanner;
-        "secretarys-message"?: SecretaryMessage;
-        "what-we-do"?: WhatWeDo;
-        "success-story-of-about-us-section"?: Successstory;
-        "about-us-project-section"?: AboutProject;
-        "our-reach-section"?: OurReachSectionData;
         "testimonial-section"?: {
-            testimonial_title?: string;
-        };
+            testimonial_section_title?: string;
+        }
     }
 }
 interface PageData {
@@ -77,7 +34,6 @@ interface PageData {
         pages_custom_field?: PageCustomField;
     }
     projects?: ProjectItem[] | null;
-    our_reach?: OurReachItem[];
 }
 const Clientpage = () => {
     const { setHasLoading, setInnerBanner} = useGlobalContext();

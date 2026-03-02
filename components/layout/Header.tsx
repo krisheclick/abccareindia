@@ -6,8 +6,6 @@ import { useEffect, useState } from 'react';
 import Social from './Social';
 import './style.css';
 import { usePathname } from 'next/navigation';
-import InnerBanner from './banner/InnerBanner';
-import BannerSkeleton from './banner/BannerSkeleton';
 
 interface MenuItem {
     url?: string;
@@ -45,6 +43,38 @@ const Header = () => {
     useEffect(() => {
         fetchData();
     }, [pathName, setHasLoading]);
+
+    // Sticky Header
+
+    useEffect(() => {
+        const body = document.body as HTMLElement;
+        let previousScroll = 0;
+
+        const handleScroll = () => {
+            const currentScroll = window.scrollY;
+            if (currentScroll > 20) {
+                if (currentScroll > previousScroll) {
+                    body.classList.remove('sticky');
+                } else {
+                    body.classList.add('sticky');
+                }
+            } else if (currentScroll < 20) {
+                body.classList.remove('sticky');
+                body.classList.add('stickyFixed');
+            } else {
+                body.classList.add('sticky');
+                body.classList.add('stickyFixed');
+            }
+
+            previousScroll = currentScroll;
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     return (
         <>

@@ -7,6 +7,8 @@ import { useGlobalContext } from '@/context/global_context';
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Donation from "@/components/donation/Donation";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 interface MenuItem {
     url?: string;
@@ -15,6 +17,7 @@ interface MenuItem {
 const Footer = () => {
     const appLink = process.env.NEXT_PUBLIC_ENV_URL;
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    const [visible, setVisible] = useState(false);
     const { setHasLoading, commonData } = useGlobalContext();
     const [quickMenu, setQuickMenu] = useState<MenuItem[] | null>(null);
     const [relativeMenu, setRelativeMenu] = useState<MenuItem[] | null>(null);
@@ -37,8 +40,23 @@ const Footer = () => {
     }
 
     useEffect(() => {
+
+        const handleScroll = () => {
+            setVisible(window.scrollY > 200);
+        };
         fetchData();
+
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
     }, []);
+
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
 
     const pathName = usePathname();
     const innerLocation = (pathName === '/');
@@ -118,6 +136,13 @@ const Footer = () => {
 
                 </Container>
             </footer>
+            <span
+                className="scrollup"
+                style={{ display: visible ? "grid" : "none" }}
+                onClick={scrollToTop}
+            >
+                <FontAwesomeIcon icon={faArrowUp} />
+            </span>
         </>
     );
 };
