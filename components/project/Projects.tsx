@@ -41,7 +41,7 @@ const Projects = () => {
                                     <div className={Styles.paragraph}
                                         dangerouslySetInnerHTML={{ __html: value?.project_short_description ?? '' }}   
                                     />
-                                    <Link href={`/projects/${value.project_slug}`} className={Styles.donatenowup}>Donate Now</Link>
+                                    <Link href={`/our-projects/${value.project_slug}`} className={Styles.donatenowup}>Donate Now</Link>
                                 </div>
                             </div>
                         </Col>

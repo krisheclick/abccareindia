@@ -1,7 +1,6 @@
 "use client";
 import InnerBanner from "@/components/layout/banner/InnerBanner";
 import { useGlobalContext } from "@/context/global_context";
-import { safeParse } from "@/utlis/safe_parse";
 import { useEffect, useState } from "react";
 import { Container, Stack } from "react-bootstrap";
 import Styles from "@/components/project/style.module.css";
@@ -67,7 +66,7 @@ const Clientpage = () => {
     }, [setHasLoading]);
 
     const pageData = data?.page;
-    const customFields = safeParse<PageCustomField>(pageData?.pages_custom_field);
+    // const customFields = safeParse<PageCustomField>(pageData?.pages_custom_field);
 
     return (
         <div className="project-page">

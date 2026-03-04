@@ -7,7 +7,7 @@ import { useEffect, useState, useRef } from "react";
 import { useGlobalContext } from "@/context/global_context";
 import PaginationBar from "../pagination/Pagination";
 import Cardskeleton from "./Cardskeleton";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 interface EventItem {
     event_id: number;
@@ -34,37 +34,60 @@ interface Props {
 
 const EventList = ({ page }: Props) => {
     const { hasLoading, setHasLoading } = useGlobalContext();
-
     const router = useRouter();
-    const pageFromUrl = page;
 
     const [events, setEvents] = useState<EventItem[]>([]);
     const [pagination, setPagination] = useState<PaginationData | null>(null);
 
-    const itemsPerPage = 10;
     const eventListRef = useRef<HTMLDivElement | null>(null);
+    const itemsPerPage = 10;
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 setHasLoading(true);
 
+                console.log("Fetching page:", page);
+
                 const response = await fetch(
-                    `${process.env.NEXT_PUBLIC_API_URL}/event?page=${pageFromUrl}&size=${itemsPerPage}`,
-                    { cache: "no-cache" }
+                    `${process.env.NEXT_PUBLIC_API_URL}/event?page=${page}&size=${itemsPerPage}`,
+                    { cache: "no-store" }
                 );
 
                 const result = await response.json();
-                const responseData: ApiResponseData = result?.response_data;
+                const responseData: ApiResponseData =
+                    result?.response_data ?? { events: [], pagination: null };
 
-                setEvents(responseData?.events ?? []);
-                setPagination(responseData?.pagination ?? null);
+                setEvents(responseData.events ?? []);
+                setPagination(responseData.pagination ?? null);
 
                 // eventListRef.current?.scrollIntoView({
                 //     behavior: "smooth",
                 //     block: "start",
                 // });
+                // if (eventListRef.current) {
+                //     const yOffset = -200; // 👈 your offset
+                //     const y =
+                //         eventListRef.current.getBoundingClientRect().top +
+                //         window.pageYOffset +
+                //         yOffset;
 
+                //     window.scrollTo({
+                //         top: y,
+                //         behavior: "smooth",
+                //     });
+                // }
+
+                if (page > 1 && eventListRef.current) {
+                    const yOffset = -200;
+
+                    const y =
+                        eventListRef.current.getBoundingClientRect().top +
+                        window.pageYOffset +
+                        yOffset;
+
+                    window.scrollTo({ top: y, behavior: "smooth" });
+                }
             } catch (err: unknown) {
                 console.log("API error:", (err as Error).message);
             } finally {
@@ -73,11 +96,10 @@ const EventList = ({ page }: Props) => {
         };
 
         fetchData();
-    }, [pageFromUrl, setHasLoading]);
+    }, [page]);
 
-    // ✅ Update URL when page changes
-    const handlePageChange = (page: number) => {
-        router.push(`/events?page=${page}`);
+    const handlePageChange = (newPage: number) => {
+        router.push(`/events?page=${newPage}`, { scroll: false });
     };
 
     return (
@@ -93,7 +115,7 @@ const EventList = ({ page }: Props) => {
                     events.map((value) => (
                         <Col lg={6} sm={6} key={value.event_id}>
                             <EventCard
-                                poster={`${process.env.NEXT_PUBLIC_MEDIA_URL}${value.event_feature_image}`}
+                                poster={`${process.env.NEXT_PUBLIC_MEDIA_URL}${value.event_feature_image ?? ""}`}
                                 date={value.event_date}
                                 title={value.event_title}
                                 slug={value.event_slug}
@@ -108,7 +130,7 @@ const EventList = ({ page }: Props) => {
 
             <PaginationBar
                 pagination={pagination}
-                currentPage={pageFromUrl}
+                currentPage={page}
                 onPageChange={handlePageChange}
                 className={Styles.paginationClass}
             />

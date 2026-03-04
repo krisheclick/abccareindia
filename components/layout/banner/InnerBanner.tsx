@@ -2,7 +2,8 @@ import { useGlobalContext } from '@/context/global_context';
 import Styles from './style.module.css';
 import CustomImage from '@/utlis/imagefunction';
 import Link from 'next/link';
-import { Container } from 'react-bootstrap';
+import { Container, Stack } from 'react-bootstrap';
+import Image from 'next/image';
 
 interface BreadcrumbItem {
     breadcrumb_item?: string;
@@ -23,12 +24,15 @@ const InnerBanner = ({ breadcrumb }: InnerBannerProps) => {
     return (
         <div className={Styles.innerbanner_sec}>
             {!hasLoading ? (
-                <CustomImage
-                    src={`${mediaUrl}${innerBanner?.page_feature_image}`}
-                    fallBack="/assets/images/home_banner.jpg"
-                    alt="Inner-Banner"
-                    className={Styles.inerbnrimg}
-                />
+                <Stack as="figure" className={Styles.inerbnrimg}>
+                    <Image
+                        src={`${mediaUrl}${innerBanner?.page_feature_image}`}
+                        alt={innerBanner?.page_name || "Inner-Banner"}
+                        
+                        fill
+                        style={{objectFit: "cover"}}
+                    />
+                </Stack>
 
             ) : (
                 <div className="skeleton skeletonFill"></div>

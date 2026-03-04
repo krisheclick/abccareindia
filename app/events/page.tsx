@@ -44,7 +44,20 @@ export async function generateMetadata(): Promise<Metadata> {
     };
 }
 
-export default function EventsMainPage({ searchParams }: EventsPageProps) {
-    const page = Number(searchParams?.page) || 1;
-    return <Clientpage page={page}/>;
+interface EventsPageProps {
+  searchParams: { page?: string };
+}
+
+// export default function EventsMainPage({ searchParams }: EventsPageProps) {
+//   const page = Number(searchParams?.page) || 1;
+
+//   return <Clientpage page={page} />;
+// }
+
+export default async function EventsMainPage({searchParams,}: EventsPageProps) {
+  const params = await searchParams;
+
+  const page = Number(params?.page) || 1;
+
+  return <Clientpage page={page} />;
 }

@@ -10,43 +10,30 @@ import Styles from "@/components/Event/style.module.css";
 import EventList from "@/components/Event/List";
 import InnerBanner from "@/components/layout/banner/InnerBanner";
 
-interface ProjectItem {
-    project_title?: string;
-    project_subtitle?: string;
-    project_slug?: string;
-    project_short_description?: string;
-    project_feature_image?: string;
-    project_location?: string;
-    project_button?: string;
-    project_video_link?: string;
-}
 interface ProjectContent {
-    project_section_title?: string;
-    project_section_description?: string;
-    events_title?: string;
+  events_title?: string;
 }
 
 interface PageCustomField {
-    group_name: {
-        "event-project-section"?: ProjectContent;
-    };
+  group_name?: {
+    "event-project-section"?: ProjectContent;
+  };
 }
+
 interface PageData {
-    page?: {
-        page_name?: string;
-        page_slug?: string;
-        page_feature_image?: string;
-        page_short_description?: string;
-        page_content?: string;
-        pages_custom_field?: PageCustomField;
-    };
-    projects?: ProjectItem[] | null;
+  page?: {
+    page_name?: string;
+    page_short_description?: string;
+    pages_custom_field?: PageCustomField;
+  };
 }
+
 interface Props {
   page: number;
 }
+
 const Clientpage = ({ page }: Props) => {
-    const { hasLoading, setHasLoading, setInnerBanner} = useGlobalContext();
+    const { setHasLoading, setInnerBanner} = useGlobalContext();
     const [data, setData] = useState<PageData | null>(null);
     useEffect(() => {
         const fetchData = async () => {
@@ -55,16 +42,14 @@ const Clientpage = ({ page }: Props) => {
 
                 const response = await fetch(
                     `${process.env.NEXT_PUBLIC_API_URL}/page/events`,
-                    { cache: "no-cache" }
+                    { cache: "no-store" }
                 );
 
                 const { response_data } = await response.json();
 
                 setData(response_data ?? null);
                 setInnerBanner(response_data?.page ?? undefined);
-
-                window.scrollTo({ top: 0, behavior: "smooth" });
-
+                
             } catch (err: unknown) {
                 console.log("API error:", (err as Error).message);
             } finally {
@@ -73,7 +58,7 @@ const Clientpage = ({ page }: Props) => {
         };
 
         fetchData();
-    }, [setHasLoading]);
+    }, []);
 
     const pageData = data?.page;
     const customFields = safeParse<PageCustomField>(pageData?.pages_custom_field);
@@ -98,7 +83,7 @@ const Clientpage = ({ page }: Props) => {
                             }}
                         />
                     </div>
-                    <EventList page={page}/>
+                    <EventList page={page} />
                 </Container>
             </Stack>
 
