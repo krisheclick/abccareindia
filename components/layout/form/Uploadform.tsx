@@ -118,7 +118,7 @@ const Uploadform = () => {
         if (statusMessage === "CV Uploaded Successfully") {
             const timer = setTimeout(() => {
                 setStatusMessage(null);      // remove alert
-                // window.location.href = "/thank-you";
+                window.location.href = "/thank-you";
             }, 2000);
 
             return () => clearTimeout(timer);
