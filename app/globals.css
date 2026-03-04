@@ -1516,6 +1516,10 @@ a:hover{
 .brandslider :is(.swiper-button-prev, .swiper-button-next) svg.swiper-navigation-icon{
 	width: 6px !important;
 }
+:is(.swiper-button-prev, .swiper-button-next).swiper-button-disabled{
+  pointer-events: inherit !important;
+  cursor: not-allowed !important;
+}
 /**TESTIMONIAL_SECTION_ENDS**/ 
 
 
