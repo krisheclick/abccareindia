@@ -4,7 +4,7 @@ import TestimonialSection from "@/components/common/Testimonial";
 import Donation from "@/components/donation/Donation";
 import Brand from "@/components/home/Brand/Brand";
 import ChildEmpower from "@/components/home/CharitableMessage/ChildEmpower";
-import HomeBanner from "@/components/home/HomeBanner/HomeBanner";
+import HomeBanner from "@/components/layout/banner/HomeBanner";
 import HomeDescription from "@/components/home/HomeDescription/HomeDescription";
 import HomeProject from "@/components/home/HomeProject/HomeProject";
 import SuccessStory from "@/components/home/SuccessStory/SuccessStroy";

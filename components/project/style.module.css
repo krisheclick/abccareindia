@@ -19,6 +19,7 @@
 .paragraph p{
 	font: inherit;
 	color: inherit;
+	margin: inherit;
 }
 .upcomsbx {
 	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -138,4 +139,12 @@
 
 .swiperItem {
   width: 100% !important;
+}
+.paragraph :is(h1, h2, h3) {
+	font-size: 37px;
+	line-height: 44px;
+	text-transform: capitalize;
+	color: #111111;
+	font-weight: 700;
+	margin-bottom: 26px;
 }

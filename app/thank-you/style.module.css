@@ -1,0 +1,55 @@
+.thankWrapper {
+    min-height: 60vh;
+    background: linear-gradient(135deg, #f4f7ff, #e6f0ff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cardBox {
+    background: #ffffff;
+    padding: 50px 40px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    max-width: 500px;
+    margin: auto;
+    transition: 0.3s ease-in-out;
+}
+.cardBox:hover {
+    transform: translateY(-5px);
+}
+.iconCircle {
+    width: 90px;
+    height: 90px;
+    background: #28a745;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 25px auto;
+    box-shadow: 0 10px 20px rgba(40, 167, 69, 0.3);
+}
+.title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #222;
+}
+.message {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+.homeBtn {
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-weight: 600;
+    background-color: #3c44a7;
+    color: #ffffff !important;
+    border: none;
+    transition: 0.3s ease;
+}

@@ -34,8 +34,6 @@ const HomeBanner = ({ banner }: { banner?: BannerItem | null }) => {
         }, 300);
     };
 
-    // if (!banner) return null;
-
     return (
         <>
             <div className={`${Styles.innerbanner_sec} ${Styles.home_banner_sec}`}>
@@ -43,7 +41,7 @@ const HomeBanner = ({ banner }: { banner?: BannerItem | null }) => {
                     <>
                         <CustomImage
                             src={`${mediaUrl}${banner?.banner_link}`}
-                            alt={banner?.banner_title || "Inner-Banner"}
+                            alt={banner?.banner_title || "Banner"}
                             className={`pt-0 ${Styles.inerbnrimg}`}
                             fallBack='/assets/images/home_banner.jpg'
                         />

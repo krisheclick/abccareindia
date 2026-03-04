@@ -101,7 +101,7 @@ const ContactForm = () => {
 
             setStatusMessage(response_message || "Message Sent Successfully");
             sessionStorage.setItem("contact-us-success", "true");
-            // router.push('/contact-us/thank-you');
+            // router.push('/thank-you');
 
         }catch(err: unknown){
             setStatusMessage((err as Error).message);

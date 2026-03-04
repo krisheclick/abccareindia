@@ -9,6 +9,7 @@ import { usePathname } from 'next/navigation';
 import Donation from "@/components/donation/Donation";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import Uploadform from './form/Uploadform';
 
 interface MenuItem {
     url?: string;
@@ -120,6 +121,7 @@ const Footer = () => {
                                     <div dangerouslySetInnerHTML={{ __html: commonData?.site_career_with_us || '', }} />
                                 </div>
                             </div>
+                            <Uploadform />
                         </Col>
                     </Row>
 

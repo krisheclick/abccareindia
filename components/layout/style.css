@@ -143,7 +143,7 @@
 		transform: none;
 	}
 }
-body:has(.error-page) .thm_both {
+body:has(.error-page, .thank-you-page) .thm_both {
 	position: static;
 	background: linear-gradient(215deg, #3d3f82 40%, #ebc436 65%, #000 100%);
 }

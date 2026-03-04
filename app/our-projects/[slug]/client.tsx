@@ -169,6 +169,12 @@ const SingleProject = ({ permalink }: { permalink: string }) => {
                                 </Swiper>
                             </Stack>
                         )}
+                        <Stack>
+                            <div
+                                className={Styles.paragraph}
+                                dangerouslySetInnerHTML={{__html: pageData?.project_description || ''}}
+                            />
+                        </Stack>
                     </Container>
                 </Stack>
                 <Projects />

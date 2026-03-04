@@ -1,0 +1,42 @@
+.cvForm {
+    --round: 48px;
+    --height: 60px;
+    position: relative;
+    z-index: 1;
+    margin-top: 32px;
+    max-width: 480px;
+}
+.from_group input {
+    background: #D9D9D9 !important;
+    border: none !important;
+    box-shadow: none !important;
+    height: var(--height);
+    border-radius: var(--round);
+    padding: 8px 160px 8px 8px;
+}
+.from_group .error{
+    margin: 12px 0px 0px 8px;
+}
+.from_group input[type=file]::file-selector-button {
+    background: #ffffff;
+    color: #000000;
+    padding: 10px 24px;
+    border-radius: var(--round);
+    font-weight: 600;
+    border: none !important;
+    outline: none;
+    margin: 0px 16px 0px 0px;
+    transition: all .2s ease-in-out;
+}
+.button_contact{
+    border-radius: var(--round);
+    margin: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #d4af37;
+    border-color: #d4af37;
+    padding: 0px 30px;
+    height: var(--height);
+    transform: none !important;
+}
