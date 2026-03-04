@@ -116,11 +116,11 @@ const SingleProject = ({ permalink }: { permalink: string }) => {
                             <Stack className={Styles.pdetailsslideforvid}>
                                 <Swiper
                                     navigation
-                                    autoplay={{
-                                        delay: 5000,
-                                        disableOnInteraction: false,
-                                        pauseOnMouseEnter: true
-                                    }}
+                                    // autoplay={{
+                                    //     delay: 5000,
+                                    //     disableOnInteraction: false,
+                                    //     pauseOnMouseEnter: true
+                                    // }}
                                     modules={[Autoplay, Navigation, FreeMode]}
                                     className={`gallery_slider ${Styles.gallery_slider ?? ''}`}
                                     breakpoints={{
