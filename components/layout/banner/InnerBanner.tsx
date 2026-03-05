@@ -1,6 +1,5 @@
 import { useGlobalContext } from '@/context/global_context';
 import Styles from './style.module.css';
-import CustomImage from '@/utlis/imagefunction';
 import Link from 'next/link';
 import { Container, Stack } from 'react-bootstrap';
 import Image from 'next/image';

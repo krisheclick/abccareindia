@@ -9,6 +9,7 @@ import { usePathname } from 'next/navigation';
 import { Container, Stack } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
+import MenuLink from '@/utlis/custom_link';
 
 interface MenuItem {
     url?: string;
@@ -124,10 +125,10 @@ const Header = () => {
                                                 onMouseEnter={() => setOpenMenu(index)}
                                                 onMouseLeave={() => setOpenMenu(null)}
                                             >
-                                                <Link href={`${appLink}${itemPath}`}>
+                                                <MenuLink href={`${appLink}${itemPath}`}>
                                                     {item.label}
                                                     {item.children && <FontAwesomeIcon icon={faChevronDown} />}
-                                                </Link>
+                                                </MenuLink>
                                                 {/* CHILD MENU */}
                                                 {item.children && item.children.length > 0 && (
                                                     <ul className="submenu">
@@ -138,9 +139,9 @@ const Header = () => {
 
                                                             return (
                                                                 <li className='menuItem' key={childIndex}>
-                                                                    <Link href={`${appLink}/report${childPath}`}>
+                                                                    <MenuLink href={`${appLink}/report${childPath}`}>
                                                                         {child.label}
-                                                                    </Link>
+                                                                    </MenuLink>
                                                                 </li>
                                                             );
                                                         })}

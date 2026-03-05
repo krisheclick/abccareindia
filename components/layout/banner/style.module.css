@@ -84,7 +84,7 @@
     font-size: 16px;
     text-transform: uppercase;
     font-weight: 500;
-    line-height: 25px;
+    line-height: 2;
     position: relative;
 }
 .brdcminr li::before{
@@ -102,5 +102,6 @@
     display: none;
 }
 .brdcminr li a{
+    display: block;
     color: #EBC436;
 } 

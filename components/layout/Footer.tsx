@@ -10,6 +10,7 @@ import Donation from "@/components/donation/Donation";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import Uploadform from './form/Uploadform';
+import MenuLink from '@/utlis/custom_link';
 
 interface MenuItem {
     url?: string;
@@ -105,9 +106,9 @@ const Footer = () => {
                                     <ul className='ftr_linkscmn'>
                                         {relativeMenu.map((menu, index) => (
                                             <li key={index}>
-                                                <Link href={menu.url || ''}>
+                                                <MenuLink href={menu.url || ''}>
                                                     {menu.label}
-                                                </Link>
+                                                </MenuLink>
                                             </li>
                                         ))}
                                     </ul>
