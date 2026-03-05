@@ -1,5 +1,5 @@
 "use client";
-import { Card, CardBody, Container, Stack } from 'react-bootstrap';
+import { Card, CardBody, Container, Modal, ModalBody, ModalHeader, ModalTitle, Stack } from 'react-bootstrap';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
@@ -14,47 +14,67 @@ import type { Swiper as SwiperType } from 'swiper';
 import CustomImage from '@/utlis/imagefunction';
 
 interface EmpowerSectionData {
-  empower_title?: string;
-  empower_description?: string;
-  empower_button_text?: string;
-  empower_button_url?: string;
+    empower_title?: string;
+    empower_description?: string;
+    empower_button_text?: string;
+    empower_button_url?: string;
 }
 
 interface CharitableMessageItem {
-  charitable_msg_title: string;
-  charity_msg_slug: string;
-  charity_msg_description: string;
-  charitable_msg_file_link?: string;
-  charitable_msg_button_data: string;
+    charitable_msg_title: string;
+    charity_msg_slug: string;
+    charity_msg_description: string;
+    charitable_msg_file_link?: string;
+    charitable_msg_button_data: string;
 }
 
 interface CharitableMessageProps {
-  sectionData: EmpowerSectionData | undefined;
-  messages: CharitableMessageItem[] | undefined;
+    sectionData: EmpowerSectionData | undefined;
+    messages: CharitableMessageItem[] | undefined;
+}
+
+interface PopUpData {
+    poster?: string;
+    title?: string;
+    description?: string;
 }
 
 const mediaBaseURL = process.env.NEXT_PUBLIC_MEDIA_URL;
 
-const ChildEmpower = ({sectionData, messages}: CharitableMessageProps) => {
-    
+const ChildEmpower = ({ sectionData, messages }: CharitableMessageProps) => {
+
     const [isBeginning, setIsBeginning] = useState(true);
     const [isEnd, setIsEnd] = useState(false);
-    
+    const [showContent, setShowContent] = useState<boolean>(false);
+    const [popupData, setPopupData] = useState<PopUpData | null>(null);
+
+    const handleOpenPopup = (data: PopUpData) => {
+        setPopupData(data);
+        setShowContent(true);
+    };
+
+    const handleClosePopup = () => {
+        setShowContent(false);
+        setTimeout(() => {
+            setPopupData(null);
+        }, 300);
+    };
+
     const swiperRef = useRef<SwiperType | null>(null);
-    
+
 
     if (!sectionData || !messages || messages.length === 0) return null;
-    
+
     return (
         <Stack as="section" className={Styles.section_stack}>
             <Container>
                 <Stack direction='horizontal' className={Styles.stack_wrapper}>
                     <article className={Styles.content}>
-                        <h2 className={Styles.heading} 
-                            dangerouslySetInnerHTML={{__html: sectionData.empower_title || ''}}                            
+                        <h2 className={Styles.heading}
+                            dangerouslySetInnerHTML={{ __html: sectionData.empower_title || '' }}
                         />
                         <div className={Styles.description}
-                            dangerouslySetInnerHTML={{__html: sectionData.empower_description || ''}}
+                            dangerouslySetInnerHTML={{ __html: sectionData.empower_description || '' }}
                         />
                     </article>
                     <Stack as="aside" className={Styles.button_wrap}>
@@ -87,7 +107,7 @@ const ChildEmpower = ({sectionData, messages}: CharitableMessageProps) => {
                     className={`childEmpower_slider ${Styles.childEmpower_slider}`}
                     loop={(messages.length || 0) > 3}
                     spaceBetween={20}
-                    slidesPerView={Math.min(messages.length || 1,3 )}
+                    slidesPerView={Math.min(messages.length || 1, 3)}
                     navigation={false}
                     modules={[Autoplay, Navigation, FreeMode]}
                     onSwiper={(swiper) => {
@@ -95,7 +115,7 @@ const ChildEmpower = ({sectionData, messages}: CharitableMessageProps) => {
 
                         setIsBeginning(swiper.isBeginning);
                         setIsEnd(swiper.isEnd);
-                        
+
                         swiper.on("slideChange", () => {
                             setIsBeginning(swiper.isBeginning);
                             setIsEnd(swiper.isEnd);
@@ -112,18 +132,41 @@ const ChildEmpower = ({sectionData, messages}: CharitableMessageProps) => {
                                 />
                                 <CardBody className={Styles.cardBody}>
                                     <Card.Title as="div" className={Styles.card_title}>{value.charitable_msg_title}</Card.Title>
-                                    <Link
-                                        href={JSON.parse(value.charitable_msg_button_data).url}
+                                    <span
                                         className={Styles.cardButton}
-                                        >
+                                        onClick={() =>
+                                            handleOpenPopup({
+                                                poster: `${mediaBaseURL}${value.charitable_msg_file_link}`,
+                                                title: value.charitable_msg_title,
+                                                description: value.charity_msg_description
+                                            })
+                                        }
+                                    >
                                         {JSON.parse(value.charitable_msg_button_data).text}
-                                    </Link>
+                                    </span>
                                 </CardBody>
                             </Card>
                         </SwiperSlide>
                     ))}
                 </Swiper>
             </Container>
+
+            <Modal className="customBackdrop" show={showContent} onHide={handleClosePopup} size="xl" centered backdrop={false} scrollable>
+                <ModalHeader closeButton>
+                    <ModalTitle className="fw-bold">
+                        {popupData?.title}
+                    </ModalTitle>
+                </ModalHeader>
+
+                <ModalBody>
+                    <CustomImage
+                        className={Styles.modelPoster}
+                        src={ popupData?.poster}
+                        alt={popupData?.title}
+                    />
+                    <div dangerouslySetInnerHTML={{ __html: popupData?.description || "" }} className={Styles.paragraph}/>
+                </ModalBody>
+            </Modal>
         </Stack>
     )
 }

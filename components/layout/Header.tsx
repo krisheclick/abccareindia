@@ -7,10 +7,13 @@ import Social from './Social';
 import './style.css';
 import { usePathname } from 'next/navigation';
 import { Container, Stack } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
 
 interface MenuItem {
     url?: string;
     label?: string;
+    children?: MenuItem[] | null;
 }
 
 const Header = () => {
@@ -18,7 +21,7 @@ const Header = () => {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     const pathName = usePathname();
 
-    const { setHasLoading, setMediaUrl, mediaUrl, setCommonData, commonData, setProjectData, staticHeader} = useGlobalContext();
+    const { setHasLoading, setMediaUrl, mediaUrl, setCommonData, commonData, setProjectData, staticHeader } = useGlobalContext();
     const [menuData, setMenuData] = useState<MenuItem[] | null>(null);
     const fetchData = async () => {
         try {
@@ -46,7 +49,6 @@ const Header = () => {
     }, [pathName, setHasLoading]);
 
     // Sticky Header
-
     useEffect(() => {
         const body = document.body as HTMLElement;
         let previousScroll = 0;
@@ -77,11 +79,13 @@ const Header = () => {
         };
     }, []);
 
+    const [openMenu, setOpenMenu] = useState<number | null>(null);
+
     return (
         <header className={`mainHeader ${staticHeader ?? ''}`}>
             <Stack className="top_header">
                 <Container>
-                    <Stack 
+                    <Stack
                         direction="horizontal"
                         gap={3}
                         className="top_header_ds justify-content-between"
@@ -94,8 +98,8 @@ const Header = () => {
                 </Container>
             </Stack>
             <Stack className="nav_wrapper">
-                <div className="container">
-                    <div className="tmlbox d-flex align-items-center justify-content-between">
+                <Container>
+                    <Stack direction="horizontal" gap={3} className="tmlbox justify-content-between">
                         <Link href={`${appLink}`} className="headerlgoo">
                             <Image
                                 src={`${mediaUrl}${commonData?.site_logo}`}
@@ -104,27 +108,52 @@ const Header = () => {
                             />
                         </Link>
                         {menuData && menuData?.length > 0 && (
-                            <ul className="menuheader d-flex align-items-center">
-                                {menuData.map((item, index) => {
-                                    const itemPath = item.url?.startsWith("/")
-                                        ? item.url
-                                        : `/${item.url}`;
+                            <nav role="navigation" className="navMenu">
+                                <Stack as="ul" direction="horizontal" className="menuheader">
+                                    {menuData.map((item, index) => {
+                                        const itemPath = item.url?.startsWith("/")
+                                            ? item.url
+                                            : `/${item.url}`;
 
-                                    return (
-                                        <li
-                                            key={index}
-                                            className={pathName === itemPath ? "active" : ""}
-                                        >
-                                            <Link href={`${appLink}${itemPath}`}>
-                                                {item.label}
-                                            </Link>
-                                        </li>
-                                    );
-                                })}
-                            </ul>
+                                        return (
+                                            <li
+                                                key={index}
+                                                className={`menuItem ${item.children ? "children-item" : ""}
+                                                ${pathName === itemPath ? "active" : ""} 
+                                                ${openMenu === index ? "showSubmenu" : ""}`}
+                                                onMouseEnter={() => setOpenMenu(index)}
+                                                onMouseLeave={() => setOpenMenu(null)}
+                                            >
+                                                <Link href={`${appLink}${itemPath}`}>
+                                                    {item.label}
+                                                    {item.children && <FontAwesomeIcon icon={faChevronDown} />}
+                                                </Link>
+                                                {/* CHILD MENU */}
+                                                {item.children && item.children.length > 0 && (
+                                                    <ul className="submenu">
+                                                        {item.children.map((child, childIndex) => {
+                                                            const childPath = child.url?.startsWith("/")
+                                                                ? child.url
+                                                                : `/${child.url}`;
+
+                                                            return (
+                                                                <li className='menuItem' key={childIndex}>
+                                                                    <Link href={`${appLink}${childPath}`}>
+                                                                        {child.label}
+                                                                    </Link>
+                                                                </li>
+                                                            );
+                                                        })}
+                                                    </ul>
+                                                )}
+                                            </li>
+                                        );
+                                    })}
+                                </Stack>
+                            </nav>
                         )}
-                    </div>
-                </div>
+                    </Stack>
+                </Container>
             </Stack>
         </header>
     )

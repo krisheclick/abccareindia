@@ -36,21 +36,27 @@
 .title {
     font-size: 32px;
     font-weight: 700;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     color: #222;
 }
 .message {
     font-size: 16px;
+    text-wrap: balance;
     color: #666;
-    margin-bottom: 30px;
+    margin-bottom: 48px;
     line-height: 1.6;
 }
 .homeBtn {
-    padding: 10px 25px;
+    padding: 14px 36px;
     border-radius: 50px;
-    font-weight: 600;
+    font-weight: 500;
     background-color: #3c44a7;
     color: #ffffff !important;
+    display: inline-block;
     border: none;
     transition: 0.3s ease;
+}
+.homeBtn:hover{
+    background-color: #d8b01f;
+    color: #000000 !important;
 }

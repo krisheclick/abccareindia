@@ -116,6 +116,7 @@
     border-radius: 8px;
     text-align: center;
     background: #d4af37;
+    cursor: pointer;
     -moz-transition: all 300ms ease-in-out;
     -webkit-transition: all 300ms ease-in-out;
     transition: all 300ms ease-in-out;
@@ -123,4 +124,23 @@
 .cardButton:hover{
     background: #ffffff;
     color: #000000;
+}
+
+.modelPoster{
+    background: transparent;
+    margin-bottom: 20px;
+}
+.modelPoster img{
+    object-fit: contain;
+}
+.paragraph{
+    font-size: 16px;
+    line-height: 1.75em;
+    color: #000000;
+    font-weight: normal;
+}
+.paragraph p{
+    font: inherit;
+    margin: inherit;
+    margin-bottom: 16px;
 }
