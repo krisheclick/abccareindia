@@ -203,6 +203,14 @@
 	}
 }
 
+
+.stickyPoster{
+  position: sticky;
+  top: 10px;
+}
+.sticky .stickyPoster{
+  top: 110px;
+}
 /* Scroll Up */
 .scrollup {
 	position: fixed;

@@ -65,7 +65,7 @@ const KidsSingleClient = ({ permalink }: { permalink: string }) => {
                         <Col lg={6}>
                             {!hasLoading && (
                                 <CustomImage
-                                    className={Styles.poster}
+                                    className={`stickyPoster ${Styles.poster ?? ''}`}
                                     src={`${mediaUrl}${data?.amazing_kids?.ak_feature_image}`}
                                     alt={data?.amazing_kids?.ak_title}
                                     width={720}
