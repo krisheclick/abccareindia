@@ -83,7 +83,7 @@ const Header = () => {
     const [openMenu, setOpenMenu] = useState<number | null>(null);
 
     return (
-        <header className={`mainHeader ${staticHeader ?? ''}`}>
+        <header role="banner" className={`mainHeader ${staticHeader ?? ''}`}>
             <Stack className="top_header">
                 <Container>
                     <Stack

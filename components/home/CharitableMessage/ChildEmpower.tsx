@@ -89,6 +89,7 @@ const ChildEmpower = ({ sectionData, messages }: CharitableMessageProps) => {
                                 className={`${Styles.prev} ${isBeginning ? Styles.disabled : ""}`}
                                 onClick={() => swiperRef.current?.slidePrev()}
                                 disabled={isBeginning}
+                                aria-label="Previous Button"
                             >
                                 <FontAwesomeIcon icon={faChevronLeft} />
                             </button>
@@ -97,6 +98,7 @@ const ChildEmpower = ({ sectionData, messages }: CharitableMessageProps) => {
                                 className={`${Styles.next} ${isEnd ? Styles.disabled : ""}`}
                                 onClick={() => swiperRef.current?.slideNext()}
                                 disabled={isEnd}
+                                aria-label="Next Button"
                             >
                                 <FontAwesomeIcon icon={faChevronRight} />
                             </button>

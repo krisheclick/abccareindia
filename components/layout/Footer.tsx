@@ -65,7 +65,7 @@ const Footer = () => {
     return (
         <>
             {!innerLocation && <Donation />}
-            <footer className='footer_sec'>
+            <footer role="contentinfo" className='footer_sec'>
                 <Container>
                     <Row>
                         <Col xl={3} lg={4}>

@@ -42,7 +42,7 @@ interface HomeProjectProps {
 
 const mediaBaseURL = process.env.NEXT_PUBLIC_MEDIA_URL;
 
-const HomeProject = ({ sectionData, projects}: HomeProjectProps) =>  {
+const HomeProject = ({ sectionData, projects }: HomeProjectProps) => {
     const [isBeginning, setIsBeginning] = useState(true);
     const [isEnd, setIsEnd] = useState(false);
     const swiperRef = useRef<SwiperType | null>(null);
@@ -113,6 +113,7 @@ const HomeProject = ({ sectionData, projects}: HomeProjectProps) =>  {
                                                 className={`${Styles.prev} ${isBeginning ? Styles.disabled : ""}`}
                                                 onClick={() => swiperRef.current?.slidePrev()}
                                                 disabled={isBeginning}
+                                                aria-label="Previous Button"
                                             >
                                                 <FontAwesomeIcon icon={faChevronLeft} />
                                             </button>
@@ -121,6 +122,7 @@ const HomeProject = ({ sectionData, projects}: HomeProjectProps) =>  {
                                                 className={`${Styles.next} ${isEnd ? Styles.disabled : ""}`}
                                                 onClick={() => swiperRef.current?.slideNext()}
                                                 disabled={isEnd}
+                                                aria-label="Next Button"
                                             >
                                                 <FontAwesomeIcon icon={faChevronRight} />
                                             </button>
@@ -135,7 +137,7 @@ const HomeProject = ({ sectionData, projects}: HomeProjectProps) =>  {
                                             alt={item.project_title || 'Poster Image'}
                                             style={{ objectFit: "cover" }}
                                         />
-                                        <span 
+                                        <span
                                             className={Styles.videoIcon}
                                             onClick={() => handleOpenVideo(item.project_video_link ?? '')}
                                         >
@@ -163,7 +165,7 @@ const HomeProject = ({ sectionData, projects}: HomeProjectProps) =>  {
                     <Modal.Title className="fw-semibold"></Modal.Title>
                 </Modal.Header>
                 <Modal.Body style={{ padding: 0 }}>
-                    <div style={{ position: "relative", paddingTop: "56.25%"}}>
+                    <div style={{ position: "relative", paddingTop: "56.25%" }}>
                         <iframe width="100%" height="100%" src={videoUrl} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen
                             style={{ position: "absolute", top: 0, left: 0 }}></iframe>
                     </div>

@@ -112,7 +112,7 @@ const Uploadform = () => {
                 setStatusMessage(null);      // remove alert
                 // window.location.href = "/thank-you";
                 router.push('/thank-you');
-                
+
             }, 2000);
 
             return () => clearTimeout(timer);
@@ -127,16 +127,18 @@ const Uploadform = () => {
         <Stack className={Styles.cvForm}>
             <Form method="POST" onSubmit={handleSubmit} encType="multipart/form-data">
                 <FormGroup className={Styles.from_group}>
-                    <FormControl
-                        type="file"
-                        name="cv_path"
-                        id="cv_path"
-                        ref={cv_path}
-                        accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                        onChange={formHandelClick}
-                    />
+                    <label htmlFor="cv_path">
+                        <FormControl
+                            type="file"
+                            name="cv_path"
+                            id=""
+                            ref={cv_path}
+                            accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                            onChange={formHandelClick}
+                        />
+                    </label>
 
-                    {formError.cv_path && <div className={`form-error text-danger ${Styles.error}`} style={{backgroundImage: "url('/assets/images/error_icon.png')"}}>{formError.cv_path}</div>}
+                    {formError.cv_path && <div className={`form-error text-danger ${Styles.error}`} style={{ backgroundImage: "url('/assets/images/error_icon.png')" }}>{formError.cv_path}</div>}
                 </FormGroup>
 
                 <Button

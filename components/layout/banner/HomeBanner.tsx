@@ -56,6 +56,7 @@ const HomeBanner = ({ banner }: { banner?: BannerItem | null }) => {
                                             type="button"
                                             onClick={() => handleOpenVideo(banner.banner_file_link ?? '')}
                                             className={Styles.playBtn}
+                                            aria-label="Video Play Button"
                                         >
                                             <FontAwesomeIcon icon={faPlay} />
                                         </button>

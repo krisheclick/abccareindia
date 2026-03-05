@@ -40,7 +40,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <body className={`${openSans.variable} ${oswald.variable}`}>
                 <GlobalContextProvider>
                     <Header />
-                    {children}
+                    <main role="main">
+                        {children}
+                    </main>
                     <Footer />
                 </GlobalContextProvider>
             </body>
