@@ -1861,7 +1861,6 @@ a:hover{
 /* Wrapper */
 .custom_image {
 	display: block;
-    background-color: #000000;
 	position: relative;
 	z-index: 1;
 	overflow: hidden;
@@ -1876,7 +1875,7 @@ a:hover{
 	z-index: 1;
 	width: var(--loader);
 	height: var(--loader);
-	border: 2px solid var(--primary-color);
+	border: 2px solid #363636;
 	border-right-color: transparent;
 	border-radius: 100%;
 	animation: imageLoader 1s ease-in-out 0s infinite forwards;

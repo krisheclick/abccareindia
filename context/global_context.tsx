@@ -46,6 +46,7 @@ interface setCommonDataType {
     site_donate_button_url?: string;
     site_project_title?: string;
     site_project_short_description?: string;
+    site_amazing_kids_page_title?: string;
     counter_media?: CounterItem[] | null;
     social_media?: SocialItem[] | null;
 }

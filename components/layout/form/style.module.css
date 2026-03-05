@@ -14,8 +14,21 @@
     border-radius: var(--round);
     padding: 8px 160px 8px 8px;
 }
-.from_group .error{
+.error {
+    background-color: #ffd1d1;
+    background-repeat: no-repeat;
+    background-size: 18px 18px;
+    background-position: 12px 9px;
+	border: 1px solid #de7a7b;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	color: #c00;
+	display: block;
+	font-size: .85em;
+	line-height: 1.5;
     margin: 12px 0px 0px 8px;
+	padding: 6px 10px 6px 36px;
+	text-align: left;
 }
 .from_group input[type=file]::file-selector-button {
     background: #ffffff;

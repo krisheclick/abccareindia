@@ -23,7 +23,7 @@ const Uploadform = () => {
         const errorArray: { [key: string]: string } = {};
 
         if (!uploadData.cv_path) {
-            errorArray.cv_path = "Please upload your CV in PDF format.";
+            errorArray.cv_path = "Please upload your CV in .pdf, .doc, .docx file!";
             if (cv_path.current) cv_path.current.focus();
         }
 
@@ -40,7 +40,7 @@ const Uploadform = () => {
 
         // ✅ Check file type
         if (file.type !== "application/pdf") {
-            setFormErrors({ cv_path: "Only PDF files are allowed." });
+            setFormErrors({ cv_path: ".pdf, .doc, .docx files are allowed." });
             setUploadData({ cv_path: null });
             return;
         }
@@ -132,11 +132,11 @@ const Uploadform = () => {
                         name="cv_path"
                         id="cv_path"
                         ref={cv_path}
-                        accept="application/pdf"
+                        accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                         onChange={formHandelClick}
                     />
 
-                    {formError.cv_path && <div className={`form-error text-danger ${Styles.error}`}>{formError.cv_path}</div>}
+                    {formError.cv_path && <div className={`form-error text-danger ${Styles.error}`} style={{backgroundImage: "url('/assets/images/error_icon.png')"}}>{formError.cv_path}</div>}
                 </FormGroup>
 
                 <Button
