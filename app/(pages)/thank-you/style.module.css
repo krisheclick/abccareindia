@@ -4,6 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-block: 90px;
 }
 .cardBox {
     background: #ffffff;
@@ -11,7 +12,7 @@
     border-radius: 16px;
     text-align: center;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
-    max-width: 500px;
+    max-width: 720px;
     margin: auto;
     transition: 0.3s ease-in-out;
 }

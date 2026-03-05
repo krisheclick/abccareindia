@@ -57,6 +57,8 @@ interface BannerData {
 interface GlobalDataVariable {
     hasLoading: boolean;
     setHasLoading: (hasLoading: boolean) => void;
+    staticHeader: string | null;
+    staticHeaderSet: (staticHeader: string) => void;
     mediaUrl: string | null;
     setMediaUrl: (mediaUrl: string) => void;
 
@@ -70,8 +72,9 @@ interface GlobalDataVariable {
     setInnerBanner: (innerBanner: BannerData) => void;
 }
 const GlobalWebContext = createContext<GlobalDataVariable | undefined>(undefined);
-export const GlobalContextProvider = ({children}: {children: ReactNode}) => {
+export const GlobalContextProvider = ({ children }: { children: ReactNode }) => {
     const [hasLoading, setHasLoading] = useState(true);
+    const [staticHeader, staticHeaderSet] = useState<string | null>(null)
     const [mediaUrl, setMediaUrl] = useState<string | null>(null);
     const [commonData, setCommonData] = useState<setCommonDataType | null>(null);
     const [projectData, setProjectData] = useState<ProjectItem[] | null>(null);
@@ -80,6 +83,7 @@ export const GlobalContextProvider = ({children}: {children: ReactNode}) => {
         <GlobalWebContext.Provider
             value={{
                 hasLoading, setHasLoading,
+                staticHeader, staticHeaderSet,
                 mediaUrl, setMediaUrl,
                 commonData, setCommonData,
                 projectData, setProjectData,
@@ -91,9 +95,9 @@ export const GlobalContextProvider = ({children}: {children: ReactNode}) => {
     )
 }
 
-export const useGlobalContext = () : GlobalDataVariable => {
+export const useGlobalContext = (): GlobalDataVariable => {
     const contextData = useContext(GlobalWebContext);
-    if(!contextData){
+    if (!contextData) {
         throw new Error("GlobalContextProvider must be use in layout.tsx");
     }
     return contextData;

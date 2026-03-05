@@ -1716,25 +1716,6 @@ a:hover{
   .charitable-grid {
     grid-template-columns: 1fr;
   }
-
-
-   /* .home-about-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .home-about-left,
-  .home-about-right {
-    grid-template-columns: 1fr;
-    padding: 3rem 1.5rem;
-    text-align: center;
-  }
-
-  .home-about-left img,
-  .home-about-right img {
-    grid-column: auto;
-    max-height: 300px;
-    margin-top: 2rem;
-  } */
 }
 
 @media (max-width: 600px) {
@@ -1868,102 +1849,10 @@ a:hover{
     display: flex;
     align-items: center;
 }
-/**FOOTER_ENDS**/
-
-
-/**DONATIONFTRTOP_STARTS**/
-/* .donation-section {
-  background-color: #ffffff;
-} 
-.highlight-text {
-  color: #2f3a8f;
-} 
-.info-box {
-  padding: 30px 40px 30px 120px;
-  color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.btn.disabled, .btn:disabled, fieldset:disabled .btn {
+	background-color: #d8b01f;
+	border-color: #ebc436;
 }
-.info-box h4 {
-    margin-bottom: 15px;
-    font-size: 45px;
-    line-height: 55px;
-    color: #000000;
-    font-family: "Oswald", sans-serif;
-}
-.volunteer-box p{
-    color: #000000;
-}
-.volunteer-box h4{
-    color: #3c44a7;
-}  
-.info-box p {
-  font-size: 16px;
-  line-height: 1.6;
-  margin-bottom: 25px;
-}
-.donate-box h4{
-    color: #000000;
-} 
-.volunteer-box{
-  background-color: #f3f3f3;
-  position: relative;
-}
-.smallsubhead{
-    color: #3B3B3B;
-    font-size: 22px;
-    line-height: 30px;
-    font-weight: 600;
-}
-.volunteer-box::before{
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    bottom: 0;
-    width: 100px;
-    background: #3C44A7;
-    content: ""; 
-}
-.donate-box::before{
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    bottom: 0;
-    width: 100px;
-    background: #D8B01F;
-    content: ""; 
-} 
-.donate-box {
-  background-color: #f3f3f3;
-  color: #000000;
-  position: relative;
-} 
-.donate-box p{
-    color: #000000;
-}
-.btn-link {
-  text-decoration: none;
-  text-transform: uppercase;
-  font-weight: 500;
-  font-size: 16px;
-  color: #000000;
-  font-family: "Oswald", sans-serif;
-}
-.btn-link span {
-  margin-left: 8px;
-} 
-.btn-link.dark {
-  color: #000000;
-}
-.volunteer-box .btn-link{
-    color: #3c44a7;
-}  */
-/**DONATIONFTRTOP_ENDS**/
-
-
 
 .customBackdrop {
   background-color: rgba(0,0,0,0.8);

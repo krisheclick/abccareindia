@@ -1,7 +1,19 @@
 "use client";
+import { useGlobalContext } from "@/context/global_context";
 import Link from "next/link";
+import { useEffect } from "react";
 import { Container, Stack } from "react-bootstrap";
 export default function NotFound() {
+    const { staticHeaderSet } = useGlobalContext();
+
+    useEffect(() => {
+        staticHeaderSet("staticHeader");
+
+        // SCROLL TO TOP
+        window.scrollTo({ top: 0, behavior: "instant" });
+
+        return () => staticHeaderSet("");
+    }, [staticHeaderSet]);
     return (
         <Stack className="error-page bg-light text-center">
             <Container>

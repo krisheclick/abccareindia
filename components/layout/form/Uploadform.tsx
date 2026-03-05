@@ -107,18 +107,12 @@ const Uploadform = () => {
     };
 
     useEffect(() => {
-        const isSubmitted = sessionStorage.getItem("upload-cv-form");
-
-        if (!isSubmitted) {
-            router.replace("/");
-        }
-    }, []);
-
-    useEffect(() => {
         if (statusMessage === "CV Uploaded Successfully") {
             const timer = setTimeout(() => {
                 setStatusMessage(null);      // remove alert
-                window.location.href = "/thank-you";
+                // window.location.href = "/thank-you";
+                router.push('/thank-you');
+                
             }, 2000);
 
             return () => clearTimeout(timer);
