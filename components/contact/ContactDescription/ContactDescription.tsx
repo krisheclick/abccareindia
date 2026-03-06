@@ -44,7 +44,7 @@ export default function ContactDescription({ page_short_description, page_conten
                         <div className={styles.contact_box}>
                             <div className={styles.img_icon}>
                                 <CustomImage
-                                    src="/assets/images/contact_call.png"
+                                    src="/assets/images/contact_call.webp"
                                     alt="Phone"
                                 />
                             </div>
@@ -72,7 +72,7 @@ export default function ContactDescription({ page_short_description, page_conten
                         <div className={styles.contact_box}>
                             <div className={styles.img_icon}>
                                 <CustomImage
-                                    src="/assets/images/contact_mail.png"
+                                    src="/assets/images/contact_mail.webp"
                                     alt="Email"
                                 />
                             </div>
@@ -92,7 +92,7 @@ export default function ContactDescription({ page_short_description, page_conten
                         <div className={styles.contact_box}>
                             <div className={styles.img_icon}>
                                 <CustomImage
-                                    src="/assets/images/contact_map.png"
+                                    src="/assets/images/contact_map.webp"
                                     alt="Map Location"
                                 />
                             </div>
@@ -109,7 +109,6 @@ export default function ContactDescription({ page_short_description, page_conten
                             </div>
                         </div>
                     </Col>
-
                 </Row>
             </Container>
         </Stack>

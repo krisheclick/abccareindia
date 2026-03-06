@@ -138,7 +138,7 @@ const Uploadform = () => {
                         />
                     </label>
 
-                    {formError.cv_path && <div className={`form-error text-danger ${Styles.error}`} style={{ backgroundImage: "url('/assets/images/error_icon.png')" }}>{formError.cv_path}</div>}
+                    {formError.cv_path && <div className={`form-error text-danger ${Styles.error}`} style={{ backgroundImage: "url('/assets/images/error_icon.webp')" }}>{formError.cv_path}</div>}
                 </FormGroup>
 
                 <Button

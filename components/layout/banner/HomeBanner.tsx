@@ -43,7 +43,7 @@ const HomeBanner = ({ banner }: { banner?: BannerItem | null }) => {
                             src={`${mediaUrl}${banner?.banner_link}`}
                             alt={banner?.banner_title || "Banner"}
                             className={`pt-0 ${Styles.inerbnrimg}`}
-                            fallBack='/assets/images/home_banner.jpg'
+                            fallBack='/assets/images/home_banner.webp'
                         />
                         <div className={Styles.innerbannertxtbx}>
                             <Container>

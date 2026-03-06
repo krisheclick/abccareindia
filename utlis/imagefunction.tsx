@@ -13,7 +13,7 @@ interface ImageProps {
   fallBack?: string;
 }
 
-const DEFAULT_FALLBACK = "/assets/images/noimage.jpg";
+const DEFAULT_FALLBACK = "/assets/images/noimage.webp";
 
 const MEDIA_URL = process.env.NEXT_PUBLIC_MEDIA_URL || "";
 

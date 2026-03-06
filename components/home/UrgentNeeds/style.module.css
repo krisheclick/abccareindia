@@ -48,7 +48,7 @@
     z-index: 1;
     display: flex;
     align-items: start;
-    gap: 10px;
+    gap: 8px;
     font-weight: 400;
     font-size: 16px;
     margin-bottom: 16px;
@@ -59,13 +59,18 @@
     border: none;
 }
 .urgentNeeds_content li::before{
-    content: '';
-    display: block;
-    background: url(../../../public/assets/images/check-icon.webp) no-repeat center / contain;
+    content: '\f00c';
+    font: 400 9px / 1 "FontAwesome";
+    padding-bottom: 1px;
+    display: grid;    
+    place-items: center;
+    background: #2B316E;
+    color: #ffffff;
+    border-radius: 100%;
     width: 20px;
-    height: 19px;
+    height: 20px;
     flex-shrink: 0;
-    margin-top: 7px;
+    margin-top: 6px;
 }
 .button{
     margin-top: 8px;

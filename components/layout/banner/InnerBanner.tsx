@@ -29,7 +29,7 @@ const InnerBanner = ({ breadcrumb }: InnerBannerProps) => {
                         alt={innerBanner?.page_name || "Inner-Banner"}
                         onError={(e) => {
                             const target = e.target as HTMLImageElement;
-                            target.src= `/assets/images/innerbanner.jpg`
+                            target.src= `/assets/images/innerbanner.webp`
                         }}
                         fill
                         style={{objectFit: "cover"}}
