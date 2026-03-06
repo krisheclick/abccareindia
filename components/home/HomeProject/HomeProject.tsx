@@ -95,15 +95,22 @@ const HomeProject = ({ sectionData, projects }: HomeProjectProps) => {
                                 <Col lg={6}>
                                     <Card className={Styles.card}>
                                         <CardBody className={Styles.cardBody}>
-                                            <div className={Styles.subtitle}>{item.project_subtitle}</div>
-                                            <CardTitle className={Styles.cardTitle}>{item.project_title}</CardTitle>
+                                            <div 
+                                                className={Styles.subtitle}
+                                                dangerouslySetInnerHTML={{ __html: item.project_subtitle || '' }}
+                                            />
+                                            <CardTitle 
+                                                className={Styles.cardTitle}
+                                                dangerouslySetInnerHTML={{ __html: item.project_title || '' }}
+
+                                            />
                                             <Stack
                                                 gap={2}
                                                 dangerouslySetInnerHTML={{ __html: item.project_short_description || '' }}
                                                 className={Styles.cardDescription}
                                             />
                                             <Link
-                                                href={`/our-project/${item.project_slug}`}
+                                                href={`/our-projects/${item.project_slug}`}
                                                 className={Styles.card_button}
                                                 aria-label='Project Button'
                                             >
