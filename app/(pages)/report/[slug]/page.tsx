@@ -1,12 +1,12 @@
-import { Metadata } from 'next'
-import SingleProject from './client'
+import { Metadata } from 'next';
 import { stripTags } from '@/utlis/strip_tags';
+import SingleReport from './client';
 
 export async function generateMetadata({params}: {params: {slug: string}}): Promise<Metadata> {
   const {slug} = await params;
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/get-projects/${slug}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/page/${slug}`,
     { cache: "no-store" }
   );
 
@@ -18,8 +18,8 @@ export async function generateMetadata({params}: {params: {slug: string}}): Prom
       description: "This page does not exist",
     };
   } else {
-    const pageData = response_data.project;
-    const seoData = pageData.ProjectSeo;
+    const pageData = response_data.page;
+    const seoData = pageData.seo;
 
     const title = stripTags(seoData?.seo_meta_title);
     const pageTitle = stripTags(pageData.project_title);
@@ -48,7 +48,7 @@ export async function generateMetadata({params}: {params: {slug: string}}): Prom
 const ProjectDeails = async({params}: {params: {slug: string}}) => {
   const {slug} = await params;
   
-  return <SingleProject permalink={slug} />
+  return <SingleReport permalink={slug} />
 }
 
 export default ProjectDeails

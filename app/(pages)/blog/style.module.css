@@ -1,0 +1,11 @@
+.blog_page{
+    padding: 80px 0px;
+    background: #fdfdfd;
+}
+.page_content{
+    text-align: center;
+    border-bottom: 1px solid #ededed;
+    width: 80%;
+    margin: 0 auto 70px;
+    padding-bottom: 40px;
+}

@@ -1,25 +1,15 @@
 import { Metadata } from "next";
-import ClientPage from "./client";
+import Clientpage from "./Clientpage";
 import { stripTags } from "@/utlis/strip_tags";
-
-interface PageProps {
-    searchParams: { page?: string };
-}
 
 export async function generateMetadata(): Promise<Metadata> {
     const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/page/blog`,
+        `${process.env.NEXT_PUBLIC_API_URL}/page/report`,
         { cache: "no-store" }
     );
 
     const { response_data } = await res.json();
-
-    if (!response_data) {
-        return {
-            title: "Page Not Found",
-            description: "This page does not exist",
-        };
-    }
+    
     const pageData = response_data.page;
     const seodata = pageData.seo;
     const title = stripTags(seodata.seo_meta_title);
@@ -43,13 +33,10 @@ export async function generateMetadata(): Promise<Metadata> {
             ],
         },
     };
-}
-const BlogMainPage = async ({ searchParams, }: PageProps) => {
-    const params = await searchParams;
 
-    const page = Number(params?.page) || 1;
-
-    return <ClientPage page={page} />;
 }
 
-export default BlogMainPage;
+const ReportPage = () => {
+    return <Clientpage />;
+}
+export default ReportPage;

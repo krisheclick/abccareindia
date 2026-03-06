@@ -139,7 +139,7 @@ const Header = () => {
 
                                                             return (
                                                                 <li className='menuItem' key={childIndex}>
-                                                                    <MenuLink href={`${appLink}${childPath}`}>
+                                                                    <MenuLink href={`${appLink}/report${childPath}`}>
                                                                         {child.label}
                                                                     </MenuLink>
                                                                 </li>

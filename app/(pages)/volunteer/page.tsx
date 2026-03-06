@@ -1,14 +1,11 @@
-import { Metadata } from "next";
-import ClientPage from "./client";
-import { stripTags } from "@/utlis/strip_tags";
+import { stripTags } from '@/utlis/strip_tags';
+import { Metadata } from 'next';
+import VolunteerClient from './client';
 
-interface PageProps {
-    searchParams: { page?: string };
-}
 
 export async function generateMetadata(): Promise<Metadata> {
     const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/page/blog`,
+        `${process.env.NEXT_PUBLIC_API_URL}/page/volunteer`,
         { cache: "no-store" }
     );
 
@@ -44,12 +41,8 @@ export async function generateMetadata(): Promise<Metadata> {
         },
     };
 }
-const BlogMainPage = async ({ searchParams, }: PageProps) => {
-    const params = await searchParams;
-
-    const page = Number(params?.page) || 1;
-
-    return <ClientPage page={page} />;
+const VolunteerPage = () => {
+    return <VolunteerClient />
 }
 
-export default BlogMainPage;
+export default VolunteerPage

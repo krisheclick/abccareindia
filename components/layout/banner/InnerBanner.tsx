@@ -32,6 +32,8 @@ const InnerBanner = ({ breadcrumb }: InnerBannerProps) => {
                             target.src= `/assets/images/innerbanner.webp`
                         }}
                         fill
+                        fetchPriority="high"
+                        loading="eager"
                         style={{objectFit: "cover"}}
                     />
                 </Stack>

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Container, Stack } from "react-bootstrap";
 import Styles from "@/components/project/style.module.css";
 import ProjectList from "@/components/project/ProjectListing/List";
+import Counter from "@/components/common/Counter";
 
 interface ProjectItem {
     project_title?: string;
@@ -90,6 +91,7 @@ const Clientpage = () => {
                     <ProjectList />
                 </Container>
             </Stack>
+            <Counter className="home_counter" poster={true} />
         </div>
     )
 }
