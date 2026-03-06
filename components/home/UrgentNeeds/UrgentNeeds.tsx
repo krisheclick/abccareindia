@@ -3,6 +3,7 @@ import Styles from "./style.module.css";
 import { Container } from 'react-bootstrap';
 import CustomImage from '@/utlis/imagefunction';
 import Link from "next/link";
+import { useGlobalContext } from "@/context/global_context";
 
 interface UrgentNeedsSectionData {
     urgent_needs_image?: string;
@@ -18,7 +19,8 @@ interface UrgentNeedsProps {
 
 const mediaBaseURL = process.env.NEXT_PUBLIC_MEDIA_URL;
 
-export default function UrgentNeeds({ sectionData }: UrgentNeedsProps) {
+const UrgentNeeds = ({ sectionData }: UrgentNeedsProps) => {
+    const {commonData} = useGlobalContext();
     if (!sectionData) return null;
 
     return (
@@ -51,7 +53,13 @@ export default function UrgentNeeds({ sectionData }: UrgentNeedsProps) {
                             />
                         )}
                         {sectionData.urgent_button && (
-                            <Link href={sectionData.urgent_button_link ?? ''} className={Styles.button}>{sectionData.urgent_button}</Link>
+                            <Link 
+                                href={sectionData.urgent_button_link ?? ''} 
+                                className={Styles.button}
+                                aria-label="About Page Button"
+                            >
+                                {sectionData.urgent_button} <span className='screen-reader-text'>{commonData?.site_title || "ABC India"}</span>
+                            </Link>
                         )}
                     </div>
                 </div>
@@ -59,3 +67,4 @@ export default function UrgentNeeds({ sectionData }: UrgentNeedsProps) {
         </div>
     );
 }
+export default UrgentNeeds;

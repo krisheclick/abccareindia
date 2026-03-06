@@ -46,6 +46,8 @@ const CustomImage = ({
         alt={alt || "Alt Image"}
         {...(isFixedSize ? { width, height } : { fill: true })}
         priority={false}
+        fetchPriority="high"
+        loading="eager"
         placeholder="empty"
         onLoad={() => setLoading(false)}
         onError={() => setImgSrc(imageFallback)}

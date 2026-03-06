@@ -15,6 +15,7 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 import type { Swiper as SwiperType } from 'swiper';
 import { faPlay } from '@fortawesome/free-solid-svg-icons/faPlay';
 import { normalizeYouTubeUrl } from '@/utlis/videoUrl';
+import { useGlobalContext } from '@/context/global_context';
 
 
 interface ProjectSection {
@@ -40,14 +41,14 @@ interface HomeProjectProps {
     projects: ProjectItem[];
 }
 
-const mediaBaseURL = process.env.NEXT_PUBLIC_MEDIA_URL;
-
 const HomeProject = ({ sectionData, projects }: HomeProjectProps) => {
     const [isBeginning, setIsBeginning] = useState(true);
     const [isEnd, setIsEnd] = useState(false);
     const swiperRef = useRef<SwiperType | null>(null);
     const [showVideo, setShowVideo] = useState<boolean>(false);
     const [videoUrl, setVideoUrl] = useState<string>("");
+
+    const {commonData, mediaUrl} = useGlobalContext();
 
     const handleOpenVideo = (url: string) => {
         setVideoUrl(normalizeYouTubeUrl(url));
@@ -104,8 +105,9 @@ const HomeProject = ({ sectionData, projects }: HomeProjectProps) => {
                                             <Link
                                                 href={`/our-project/${item.project_slug}`}
                                                 className={Styles.card_button}
+                                                aria-label='Project Button'
                                             >
-                                                Learn More
+                                                Learn More <span className='screen-reader-text'>{commonData?.site_title || "ABC India"}</span>
                                             </Link>
                                         </CardBody>
                                         <div className={Styles.controls}>
@@ -133,7 +135,7 @@ const HomeProject = ({ sectionData, projects }: HomeProjectProps) => {
                                     <Stack className='position-relative'>
                                         <CustomImage
                                             className={Styles.videoPoster}
-                                            src={`${mediaBaseURL}${item.project_feature_image}`}
+                                            src={`${mediaUrl}${item.project_feature_image}`}
                                             alt={item.project_title || 'Poster Image'}
                                             style={{ objectFit: "cover" }}
                                         />

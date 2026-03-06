@@ -18,7 +18,7 @@ interface MenuItem {
 }
 
 const Header = () => {
-    const appLink = process.env.NEXT_PUBLIC_ENV_URL;
+    const appLink = process.env.NEXT_PUBLIC_ENV_URL || "";
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     const pathName = usePathname();
 
@@ -81,7 +81,6 @@ const Header = () => {
     }, []);
 
     const [openMenu, setOpenMenu] = useState<number | null>(null);
-
     return (
         <header role="banner" className={`mainHeader ${staticHeader ?? ''}`}>
             <Stack className="top_header">
@@ -101,11 +100,12 @@ const Header = () => {
             <Stack className="nav_wrapper">
                 <Container>
                     <Stack direction="horizontal" gap={3} className="tmlbox justify-content-between">
-                        <Link href={`${appLink}`} className="headerlgoo">
+                        <Link href="/" className="headerLogo">
                             <Image
                                 src={`${mediaUrl}${commonData?.site_logo}`}
                                 alt={commonData?.site_title || "ABC India Logo"}
                                 width={218} height={84}
+                                loading="eager"
                             />
                         </Link>
                         {menuData && menuData?.length > 0 && (
@@ -129,7 +129,7 @@ const Header = () => {
                                                     {item.label}
                                                     {item.children && <FontAwesomeIcon icon={faChevronDown} />}
                                                 </MenuLink>
-                                                {/* CHILD MENU */}
+
                                                 {item.children && item.children.length > 0 && (
                                                     <ul className="submenu">
                                                         {item.children.map((child, childIndex) => {
