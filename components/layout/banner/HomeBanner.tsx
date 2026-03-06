@@ -1,6 +1,6 @@
 'use client';
 
-import { Container, Modal } from 'react-bootstrap';
+import { Container, Modal, Stack } from 'react-bootstrap';
 import Styles from "./style.module.css";
 import CustomImage from '@/utlis/imagefunction';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,6 +8,7 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import { normalizeYouTubeUrl } from '@/utlis/videoUrl';
 import { useGlobalContext } from '@/context/global_context';
+import Image from 'next/image';
 
 interface BannerItem {
     banner_name?: string;
@@ -39,12 +40,19 @@ const HomeBanner = ({ banner }: { banner?: BannerItem | null }) => {
             <div className={`${Styles.innerbanner_sec} ${Styles.home_banner_sec}`}>
                 {!hasLoading ? (
                     <>
-                        <CustomImage
-                            src={`${mediaUrl}${banner?.banner_link}`}
-                            alt={banner?.banner_title || "Banner"}
-                            className={`pt-0 ${Styles.inerbnrimg}`}
-                            fallBack='/assets/images/home_banner.webp'
-                        />
+                        <Stack className={Styles.inerbnrimg}>
+                            <Image
+                                src={`${mediaUrl}${banner?.banner_link}`}
+                                alt={banner?.banner_title || "Banner"}
+                                onError={(e) => {
+                                    const target = e.target as HTMLImageElement;
+                                    target.src="/assets/images/home_banner.webp"
+                                }}
+                                fill
+                                fetchPriority="high"
+                                loading="eager"
+                            />
+                        </Stack>
                         <div className={Styles.innerbannertxtbx}>
                             <Container>
                                 <div className={`${Styles.inrbnrhead} ${Styles.homebnrhead}`}>
