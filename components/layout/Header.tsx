@@ -10,6 +10,7 @@ import { Container, Stack } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
 import MenuLink from '@/utlis/custom_link';
+import { useWOW } from "@moondev/next-wow";
 
 interface MenuItem {
     url?: string;
@@ -81,6 +82,7 @@ const Header = () => {
     }, []);
 
     const [openMenu, setOpenMenu] = useState<number | null>(null);
+    useWOW({ animateClass: "animate__animated" });
     return (
         <header role="banner" className={`mainHeader ${staticHeader ?? ''}`}>
             <Stack className="top_header">
@@ -90,17 +92,17 @@ const Header = () => {
                         gap={3}
                         className="top_header_ds justify-content-between"
                     >
-                        <div className="top_header_donate"
+                        <div className="top_header_donate wow animate__fadeInDown"
                             dangerouslySetInnerHTML={{ __html: commonData?.site_header_title ?? '' }}
                         />
-                        <Social className='top_header_social' />
+                        <Social className='wow animate__fadeInRight top_header_social' />
                     </Stack>
                 </Container>
             </Stack>
             <Stack className="nav_wrapper">
                 <Container>
                     <Stack direction="horizontal" gap={3} className="tmlbox justify-content-between">
-                        <Link href="/" className="headerLogo">
+                        <Link href="/" className="wow animate__fadeInLeft headerLogo" data-wow-delay="0.2s">
                             <Image
                                 src={`${mediaUrl}${commonData?.site_logo}`}
                                 alt={commonData?.site_title || "ABC India Logo"}
@@ -109,7 +111,7 @@ const Header = () => {
                             />
                         </Link>
                         {menuData && menuData?.length > 0 && (
-                            <nav role="navigation" className="navMenu">
+                            <nav role="navigation" className="wow animate__fadeInUp navMenu" data-wow-delay="0.2s">
                                 <Stack as="ul" direction="horizontal" className="menuheader">
                                     {menuData.map((item, index) => {
                                         const itemPath = item.url?.startsWith("/")

@@ -2,13 +2,13 @@
 
 import { Container, Modal, Stack } from 'react-bootstrap';
 import Styles from "./style.module.css";
-import CustomImage from '@/utlis/imagefunction';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import { normalizeYouTubeUrl } from '@/utlis/videoUrl';
 import { useGlobalContext } from '@/context/global_context';
 import Image from 'next/image';
+import { useWOW } from "@moondev/next-wow";
 
 interface BannerItem {
     banner_name?: string;
@@ -34,6 +34,8 @@ const HomeBanner = ({ banner }: { banner?: BannerItem | null }) => {
             setVideoUrl("");
         }, 300);
     };
+    
+    useWOW({ animateClass: "animate__animated" });
 
     return (
         <>
@@ -46,7 +48,7 @@ const HomeBanner = ({ banner }: { banner?: BannerItem | null }) => {
                                 alt={banner?.banner_title || "Banner"}
                                 onError={(e) => {
                                     const target = e.target as HTMLImageElement;
-                                    target.src="/assets/images/home_banner.webp"
+                                    target.src = "/assets/images/home_banner.webp"
                                 }}
                                 fill
                                 fetchPriority="high"
@@ -55,20 +57,23 @@ const HomeBanner = ({ banner }: { banner?: BannerItem | null }) => {
                         </Stack>
                         <div className={Styles.innerbannertxtbx}>
                             <Container>
-                                <div className={`${Styles.inrbnrhead} ${Styles.homebnrhead}`}>
-                                    <em
-                                        dangerouslySetInnerHTML={{ __html: banner?.banner_name ?? "" }}
-                                        style={{ fontStyle: "normal" }}
-                                    />  {banner?.banner_file_link && (
-                                        <button
-                                            type="button"
-                                            onClick={() => handleOpenVideo(banner.banner_file_link ?? '')}
-                                            className={Styles.playBtn}
-                                            aria-label="Video Play Button"
-                                        >
-                                            <FontAwesomeIcon icon={faPlay} />
-                                        </button>
-                                    )}
+                                <div className="wow animate__fadeInRight" data-wow-delay="1s">
+                                    <div className={`${Styles.inrbnrhead} ${Styles.homebnrhead}`}>
+                                        <em
+                                            dangerouslySetInnerHTML={{ __html: banner?.banner_name ?? "" }}
+                                            style={{ fontStyle: "normal" }}
+                                        />  {banner?.banner_file_link && (
+                                            <button
+                                                type="button"
+                                                onClick={() => handleOpenVideo(banner.banner_file_link ?? '')}
+                                                className={`wow animate__fadeInUp ${Styles.playBtn}`}
+                                                data-wow-delay="2.5s"
+                                                aria-label="Video Play Button"
+                                            >
+                                                <FontAwesomeIcon icon={faPlay} />
+                                            </button>
+                                        )}
+                                    </div>
                                 </div>
                             </Container>
                         </div>

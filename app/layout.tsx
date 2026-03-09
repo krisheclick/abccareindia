@@ -15,6 +15,7 @@ const oswald = Oswald({
     weight: ['200', '300', '400', '500', '600', '700'],
 });
 import "@/app/globals.css";
+import "animate.css/animate.min.css";
 import { GlobalContextProvider } from '@/context/global_context';
 import { Metadata } from 'next';
 import Header from '@/components/layout/Header';
