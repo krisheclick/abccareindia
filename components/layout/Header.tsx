@@ -102,7 +102,7 @@ const Header = () => {
             <Stack className="nav_wrapper">
                 <Container>
                     <Stack direction="horizontal" gap={3} className="tmlbox justify-content-between">
-                        <Link href="/" className="wow animate__fadeInLeft headerLogo" data-wow-delay="0.2s">
+                        <Link href="/" className="wow animate__zoomInDown headerLogo" data-wow-delay="0.2s">
                             <Image
                                 src={`${mediaUrl}${commonData?.site_logo}`}
                                 alt={commonData?.site_title || "ABC India Logo"}

@@ -4,6 +4,7 @@ import Styles from "./style.module.css";
 import { Col, Container, Row } from 'react-bootstrap';
 import CustomImage from '@/utlis/imagefunction';
 import { useGlobalContext } from '@/context/global_context';
+import { useWOW } from '@moondev/next-wow';
 
 interface AboutInfo {
     aboutSection?: {
@@ -24,6 +25,7 @@ const mediaBaseURL = process.env.NEXT_PUBLIC_MEDIA_URL;
 
 export default function HomeDescription({ aboutSection }: AboutInfo) {
     const { hasLoading } = useGlobalContext();
+    useWOW({ animateClass: "animate__animated" });
 
     if (!aboutSection) return null;
 
@@ -37,9 +39,9 @@ export default function HomeDescription({ aboutSection }: AboutInfo) {
                         {!hasLoading ? (
                             <>
                                 <div className={Styles.leftContent}>
-                                    <h4 className={Styles.smallTitle}>{aboutSection.about_subtitle}</h4>
+                                    <h4 className={`wow animate__lightSpeedInRight ${Styles.smallTitle}`}>{aboutSection.about_subtitle}</h4>
 
-                                    <h1 className={Styles.mainTitle}
+                                    <h1 className={`wow animate__fadeInUp ${Styles.mainTitle}`}
                                         dangerouslySetInnerHTML={{
                                             __html: aboutSection.about_title ?? '',
                                         }}
@@ -47,7 +49,8 @@ export default function HomeDescription({ aboutSection }: AboutInfo) {
                                     {aboutSection.about_left_button_text && (
                                         <Link
                                             href={aboutSection.about_left_button_url ?? ''}
-                                            className={Styles.donateBtn}
+                                            className={`wow animate__backInUp ${Styles.donateBtn}`}
+                                            data-wow-delay="4s"
                                         >
                                             {aboutSection.about_left_button_text}
                                         </Link>
@@ -56,7 +59,8 @@ export default function HomeDescription({ aboutSection }: AboutInfo) {
                                 <CustomImage
                                     src={`${mediaBaseURL}/uploads/page_image/${aboutSection.about_left_image}`}
                                     alt="QR Code"
-                                    className={Styles.qrBox}
+                                    className={`wow animate__pulse ${Styles.qrBox}`}
+                                    data-wow-delay="1.5s"
                                 />
                             </>
                         ) : (
@@ -72,11 +76,12 @@ export default function HomeDescription({ aboutSection }: AboutInfo) {
                                 dangerouslySetInnerHTML={{
                                     __html: aboutSection.about_right_description ?? '',
                                 }}
+                                className='wow animate__slideInDown'
                             />
                             {aboutSection.about_right_button_text && (
                                 <Link
                                     href={aboutSection.about_right_button_url ?? ''}
-                                    className={Styles.secondaryBtn}
+                                    className={`wow animate__slideInUp ${Styles.secondaryBtn}`}
                                 >
                                     {aboutSection.about_right_button_text}
                                 </Link>
@@ -86,7 +91,7 @@ export default function HomeDescription({ aboutSection }: AboutInfo) {
                             <CustomImage
                                 src={`${mediaBaseURL}/uploads/page_image/${aboutSection.about_right_image}`}
                                 alt="About Image"
-                                className={Styles.imageWrap}
+                                className={`wow animate__slideInRight ${Styles.imageWrap}`}
                             />
                         )}
                     </Col>
@@ -96,83 +101,3 @@ export default function HomeDescription({ aboutSection }: AboutInfo) {
         </section>
     );
 }
-
-
-
-// 'use client';
-
-// import Image from 'next/image';
-// import Link from 'next/link';
-
-// interface HomeDescriptionProps {
-//   aboutSection: any;
-// }
-
-// const mediaBaseURL = process.env.NEXT_PUBLIC_MEDIA_URL;
-
-// export default function HomeDescription({
-//   aboutSection,
-// }: HomeDescriptionProps) {
-//   if (!aboutSection) return null;
-
-//   return (
-//     <section className="home-about">
-//       <div className="container home-about-grid">
-
-//         {/* LEFT */}
-//         <div className="home-about-left">
-//           <div
-//             dangerouslySetInnerHTML={{
-//               __html: aboutSection.about_left_description,
-//             }}
-//           />
-
-//           {aboutSection.about_left_button_text && (
-//             <Link
-//               href={aboutSection.about_left_button_url}
-//               className="btn-primary"
-//             >
-//               {aboutSection.about_left_button_text}
-//             </Link>
-//           )}
-
-//           {aboutSection.about_left_image && (
-//             <Image
-//               src={`${mediaBaseURL}/uploads/page_image/${aboutSection.about_left_image}`}
-//               alt="About Image"
-//               width={500}
-//               height={500}
-//             />
-//           )}
-//         </div>
-
-//         {/* RIGHT */}
-//         <div className="home-about-right">
-//           <div
-//             dangerouslySetInnerHTML={{
-//               __html: aboutSection.about_right_description,
-//             }}
-//           />
-
-//           {aboutSection.about_right_button_text && (
-//             <Link
-//               href={aboutSection.about_right_button_url}
-//               className="btn-secondary"
-//             >
-//               {aboutSection.about_right_button_text}
-//             </Link>
-//           )}
-
-//           {aboutSection.about_right_image && (
-//             <Image
-//               src={`${mediaBaseURL}/uploads/page_image/${aboutSection.about_right_image}`}
-//               alt="About Image"
-//               width={500}
-//               height={500}
-//             />
-//           )}
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }

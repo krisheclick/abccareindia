@@ -66,7 +66,7 @@ const HomeBanner = ({ banner }: { banner?: BannerItem | null }) => {
                                             <button
                                                 type="button"
                                                 onClick={() => handleOpenVideo(banner.banner_file_link ?? '')}
-                                                className={`wow animate__fadeInUp ${Styles.playBtn}`}
+                                                className={`wow animate__heartBeat ${Styles.playBtn}`}
                                                 data-wow-delay="2.5s"
                                                 aria-label="Video Play Button"
                                             >

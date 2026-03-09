@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { Col, Container, Row } from 'react-bootstrap';
 import Social from './Social';
 import { useGlobalContext } from '@/context/global_context';
