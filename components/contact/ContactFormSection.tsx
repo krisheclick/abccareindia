@@ -21,7 +21,7 @@ const ContactFormSection = ({ formData }: { formData?: Props }) => {
     return (
         <Stack className={Styles.contact_form_map_section}>
             <Container>
-                <h1 className={`cmn_white_heading text-center ${Styles.contact_us_heading ?? ''}`}>{data?.form_title}</h1>
+                <h2 className={`cmn_white_heading text-center ${Styles.contact_us_heading ?? ''}`}>{data?.form_title}</h2>
                 <div className={Styles.formArea}>
                     <Row>
                         <Col lg={6}>

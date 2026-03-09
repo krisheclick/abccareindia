@@ -55,6 +55,9 @@ const SuccessStory = ({ data }: { data?: SuccessStoryItem[] | null; }) => {
 
     if (!sectionData) return null;
 
+    const totalSlides = mediaItems?.length || 0;
+    const slidesView = Math.min(totalSlides, 3);
+
     return (
         <>
             <Stack as="section" className={Styles.giftImpact}>
@@ -100,9 +103,9 @@ const SuccessStory = ({ data }: { data?: SuccessStoryItem[] | null; }) => {
                                 <Swiper
                                     className={`gift_slider ${Styles.gift_slider}`}
                                     navigation={false}
-                                    loop={(mediaItems?.length || 0) > 3}
+                                    slidesPerView={slidesView}
+                                    loop={totalSlides > slidesView}
                                     spaceBetween={20}
-                                    slidesPerView={Math.min(mediaItems?.length || 1, 3)}
                                     modules={[FreeMode, Navigation]}
                                     onSwiper={(swiper) => {
                                         swiperRef.current = swiper;

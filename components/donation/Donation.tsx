@@ -24,7 +24,7 @@ const Donation = () => {
                                 {commonData?.site_volunteer_short_desc}
                             </p>
                             <Link
-                                href={commonData?.site_volunteer_button_url || ''}
+                                href={`${process.env.NEXT_PUBLIC_ENV_URL}/${commonData?.site_volunteer_button_url}` || ''}
                                 className={Styles.btnLink}
                             >
                                 {commonData?.site_volunteer_button_text} <FontAwesomeIcon icon={faArrowRightLong} />
@@ -38,7 +38,7 @@ const Donation = () => {
                                 {commonData?.site_donate_short_desc}
                             </p>
                             <Link
-                                href={commonData?.site_donate_button_url || ''}
+                                href={`${process.env.NEXT_PUBLIC_ENV_URL}/${commonData?.site_donate_button_url}` || ''}
                                 className={`${Styles.btnLink} ${Styles.dark}`}
                             >
                                 {commonData?.site_donate_button_text} <FontAwesomeIcon icon={faArrowRightLong} />

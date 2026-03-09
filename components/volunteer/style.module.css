@@ -1,0 +1,30 @@
+.volunteerForm{
+    margin-top: 40px;
+}
+.form_group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 17px;
+}
+.form_controller{
+    height: 48px;
+}
+textarea.form_controller{
+    height: 120px;
+    resize: none;
+}
+label.form_check_label{
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+.form_group input[type=number]::-webkit-outer-spin-button,
+.form_group input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.form_group input[type=number] {
+    -moz-appearance:textfield;
+}

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Container, Stack } from "react-bootstrap"
 import Styles from "./style.module.css";
 import Counter from "@/components/common/Counter";
+import VolunteerForm from "@/components/volunteer/VolunteerForm";
 
 interface CustomFields {
     "donation-page-fields"?: {
@@ -65,6 +66,10 @@ const VolunteerClient = () => {
                             }}
                         />
                     </div>
+                    <Stack className={Styles.volunteerForm}>
+                        <h2 className="text-center">Volunteer Information Record</h2>
+                        <VolunteerForm />
+                    </Stack>
                 </Container>
             </Stack>
             <Counter className="home_counter" poster={true} />

@@ -1,7 +1,7 @@
 'use client'
 
 import { useGlobalContext } from "@/context/global_context";
-import styles from "../../common/style.module.css";
+import styles from "./style.module.css";
 import CustomImage from "@/utlis/imagefunction";
 import { Col, Container, Row, Stack } from "react-bootstrap";
 

@@ -113,6 +113,9 @@ const Events = ({ data }: { data?: EventsData | null }) => {
                                                             alt={`${data?.event_title}-${index}`}
                                                             fill
                                                         />
+                                                        <Stack as="span" className={Styles.videoIcon}>
+                                                            <FontAwesomeIcon icon={faPlay} />
+                                                        </Stack>
                                                     </Link>
                                                 </Col>
                                             );

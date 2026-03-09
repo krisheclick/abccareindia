@@ -63,6 +63,9 @@
     margin-bottom: 90px;
     box-shadow: 0px 0px 8px 8px rgb(244 244 244);
 }
+.inner_mdlbxsin:last-child{
+    margin-bottom: 0;
+}
 .inrplsbl {
     width: 50%;
 }

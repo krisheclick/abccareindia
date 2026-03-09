@@ -16,11 +16,14 @@ export async function generateMetadata(): Promise<Metadata> {
             description: "This page does not exist",
         };
     }
+
+    const pagedata = response_data.page;
+    const seodata = pagedata.seo;
     
-    const title = stripTags(response_data.page.seo.seo_meta_title);
-    const pageTitle = stripTags(response_data.page.page_name);
-    const description = stripTags(response_data.page.seo?.seo_meta_description);
-    const keyword = stripTags(response_data.page.seo?.seo_meta_keyword);
+    const title = stripTags(seodata.seo_meta_title);
+    const pageTitle = stripTags(pagedata.page_name);
+    const description = stripTags(seodata?.seo_meta_description);
+    const keyword = stripTags(seodata?.seo_meta_keyword);
 
     return {
         title: title || pageTitle,
@@ -31,7 +34,7 @@ export async function generateMetadata(): Promise<Metadata> {
             description: description,
             images: [
                 {
-                    url: `${process.env.NEXT_PUBLIC_MEDIA_URL}${response_data.page.seo.seo_og_image}`,
+                    url: `${process.env.NEXT_PUBLIC_MEDIA_URL}${seodata.seo_og_image}`,
                     width: 1200,
                     height: 630,
                 },

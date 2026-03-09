@@ -1,5 +1,5 @@
 "use client";
-import { Container, Stack, Button } from "react-bootstrap";
+import { Container, Stack } from "react-bootstrap";
 import Styles from "./style.module.css";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,7 +8,11 @@ import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useGlobalContext } from "@/context/global_context";
 
-const ThankYouComponent = () => {
+interface Props {
+    sessionItem: string;
+    content?: string;
+}
+const ThankYouComponent = ({content, sessionItem} : Props) => {
     const router = useRouter();
     const pathname = usePathname();
     const [counter, setCounter] = useState(30); // countdown in seconds
@@ -25,7 +29,7 @@ const ThankYouComponent = () => {
 
     useEffect(() => {
 
-        const allowed = sessionStorage.getItem("upload-cv-form");
+        const allowed = sessionStorage.getItem(sessionItem);
 
         if (!allowed) {
             router.replace("/");
@@ -39,7 +43,7 @@ const ThankYouComponent = () => {
 
         // redirect after 30 seconds
         const redirectTimer = setTimeout(() => {
-            sessionStorage.removeItem("upload-cv-form"); // remove only when redirecting
+            sessionStorage.removeItem(sessionItem); // remove only when redirecting
             router.replace("/");
         }, 30000);
 
@@ -63,8 +67,7 @@ const ThankYouComponent = () => {
                     <h1 className={Styles.title}>Thank You!</h1>
 
                     <p className={Styles.message}>
-                        Your CV has been submitted successfully.
-                        Our team will review it and get back to you soon.
+                        {content || null}
                         <br /><br />
                         Redirecting to the Front Page in{" "}
                         <strong>{counter} second{counter !== 1 ? "s" : ""}</strong>.

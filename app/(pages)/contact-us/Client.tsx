@@ -1,6 +1,6 @@
 "use client"
 import Counter from '@/components/common/Counter'
-import ContactDescription from '@/components/contact/ContactDescription/ContactDescription'
+import ContactDescription from '@/components/contact/ContactDescription'
 import ContactFormSection from '@/components/contact/ContactFormSection'
 import InnerBanner from '@/components/layout/banner/InnerBanner';
 import { useGlobalContext } from '@/context/global_context';
