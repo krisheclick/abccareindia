@@ -90,9 +90,9 @@ const Footer = () => {
                                     <ul className='ftr_linkscmn'>
                                         {quickMenu.map((item, index) => (
                                             <li key={index}>
-                                                <Link href={item.url || ''}>
+                                                <MenuLink href={`${appLink}/${item.url}` || ''}>
                                                     {item.label}
-                                                </Link>
+                                                </MenuLink>
                                             </li>
                                         ))}
                                     </ul>
@@ -106,7 +106,7 @@ const Footer = () => {
                                     <ul className='ftr_linkscmn'>
                                         {relativeMenu.map((menu, index) => (
                                             <li key={index}>
-                                                <MenuLink href={menu.url || ''}>
+                                                <MenuLink href={`${appLink}/${menu.url}` || ''}>
                                                     {menu.label}
                                                 </MenuLink>
                                             </li>
