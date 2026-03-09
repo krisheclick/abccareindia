@@ -1,39 +1,52 @@
+import { Metadata } from 'next';
+import BlogDetailsClient from './client'
+import { stripTags } from '@/utlis/strip_tags';
 
 
-import { notFound } from 'next/navigation';
-import { BlogDetailsPageData } from '@/lib/api';
-import BlogDetails from '@/components/blog/BlogDetails/BlogDetails';
+export async function generateMetadata({params}: {params: Promise<{slug: string}>}): Promise<Metadata> {
+    const {slug} = await params;
+    const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/blog/${slug}`,
+        { cache: "no-store" }
+    );
 
-interface BlogDetailsPageProps {
-  params: Promise<{ slug: string }>;
+    const { response_data } = await res.json();
+
+    if (!response_data) {
+        return {
+            title: "Page Not Found",
+            description: "This page does not exist",
+        };
+    } else {
+        const pageData = response_data.blog;
+        const seodata = pageData.BlogSeo;
+        const title = stripTags(seodata.seo_meta_title);
+        const pageTitle = stripTags(pageData.blog_title);
+        const description = stripTags(seodata?.seo_meta_description);
+        const keyword = stripTags(seodata?.seo_meta_keyword);
+
+        return {
+            title: title || pageTitle,
+            description: description || "Asha Bhavan Centre",
+            keywords: keyword || [],
+            openGraph: {
+                title: title || pageTitle,
+                description: description,
+                images: [
+                    {
+                        url: `${process.env.NEXT_PUBLIC_MEDIA_URL}${seodata.seo_og_image}`,
+                        width: 1200,
+                        height: 630,
+                    },
+                ],
+            },
+        };
+    }
+
+}
+const BlogDetails = async({params}: {params: Promise<{slug: string}>}) => {
+    const {slug} = await params;
+    return <BlogDetailsClient permalink={slug} />
 }
 
-export default async function BlogDetailsPage({ params }: BlogDetailsPageProps) {
-    const { slug } = await params;
-  let blogData;
-  try {
-    blogData = await BlogDetailsPageData(slug);
-  } catch (error) {
-    console.error("Error fetching blog data:", error);
-    notFound();
-  }
-
-  const blog = blogData.blog;
-
-  if (!blog) {
-    notFound();
-  }
-
-  return (
-    
-    <BlogDetails
-      blog_title={blog.blog_title}
-      blog_short_description={blog.blog_short_description}
-      blog_description={blog.blog_description}
-      blog_feature_image={blog.blog_feature_image}
-      blog_banner_image={blog.blog_banner_image}
-      blog_publish_at={blog.blog_publish_at}
-      blog_category_title={blog.Category.blog_category_title}
-    />
-  );
-}
+export default BlogDetails

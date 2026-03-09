@@ -38,7 +38,7 @@ const Clientpage = () => {
                 setHasLoading(true);
 
                 const response = await fetch(
-                    `${process.env.NEXT_PUBLIC_API_URL}/page/about-us`,
+                    `${process.env.NEXT_PUBLIC_API_URL}/page/where-we-are`,
                     { cache: "no-cache" }
                 );
 
