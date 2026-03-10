@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import Uploadform from './form/Uploadform';
 import MenuLink from '@/utlis/custom_link';
+import Link from 'next/link';
 
 interface MenuItem {
     url?: string;
@@ -89,9 +90,9 @@ const Footer = () => {
                                     <ul className='ftr_linkscmn'>
                                         {quickMenu.map((item, index) => (
                                             <li key={index}>
-                                                <MenuLink href={`${appLink}/${item.url}` || ''}>
+                                                <Link href={`${appLink}/${item.url}` || ''}>
                                                     {item.label}
-                                                </MenuLink>
+                                                </Link>
                                             </li>
                                         ))}
                                     </ul>
@@ -105,9 +106,9 @@ const Footer = () => {
                                     <ul className='ftr_linkscmn'>
                                         {relativeMenu.map((menu, index) => (
                                             <li key={index}>
-                                                <MenuLink href={`${appLink}/${menu.url}` || ''}>
+                                                <Link href={`${appLink}/${menu.url}` || ''}>
                                                     {menu.label}
-                                                </MenuLink>
+                                                </Link>
                                             </li>
                                         ))}
                                     </ul>

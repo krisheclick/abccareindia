@@ -1,7 +1,7 @@
 "use client";
-import { Alert, Button, Form } from "react-bootstrap";
+import { Alert, Button, Form, Spinner } from "react-bootstrap";
 import Styles from "./style.module.css";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
 interface ContactData {
@@ -18,9 +18,10 @@ const ContactForm = () => {
         contact_phone: '',
         contact_msg: ''
     });
-    const [formError, setFormErrors] = useState<{[key: string]: string}>({});
+    const [formError, setFormErrors] = useState<{ [key: string]: string }>({});
     const [statusMessage, setStatusMessage] = useState<string>('');
     const [isSubmit, setIsSubmit] = useState<boolean>(false);
+    const [statusType, setStatusType] = useState<"success" | "danger" | "warning">("warning");
 
     // Field Reference Set
     const nameRef = useRef<HTMLInputElement>(null);
@@ -29,31 +30,27 @@ const ContactForm = () => {
     const messageRef = useRef<HTMLTextAreaElement>(null);
 
     const validateForm = () => {
-        const errorArray: {[key: string]: string} = {};
+        const errorArray: { [key: string]: string } = {};
 
-        // Name
-        if(!formData.contact_name.trim()) errorArray.contact_name = "Name is Required.";
+        if (!formData.contact_name.trim()) errorArray.contact_name = "Name is Required.";
 
-        // Email Address
-        if(!formData.contact_email.trim()){
+        if (!formData.contact_email.trim()) {
             errorArray.contact_email = "Email Address is Required.";
-        }else if(!/^\S+@\S+\.\S+$/.test(formData.contact_email)){
+        } else if (!/^\S+@\S+\.\S+$/.test(formData.contact_email)) {
             errorArray.contact_email = "Please enter valid Email Address.";
         }
 
-        // Phone
-        if(!formData.contact_phone.trim()) errorArray.contact_phone = "Phone Number is Required.";
-        // Message
-        if(!formData.contact_msg.trim()) errorArray.contact_msg = "Message is Required."
+        if (!formData.contact_phone.trim()) errorArray.contact_phone = "Phone Number is Required.";
+        if (!formData.contact_msg.trim()) errorArray.contact_msg = "Message is Required."
 
         setFormErrors(errorArray);
-        
+
         // Focus 
-        if(errorArray.contact_name && nameRef.current) nameRef.current.focus();
-        else if(errorArray.contact_email && emailRef.current) emailRef.current.focus();
-        else if(errorArray.contact_phone && phoneRef.current) phoneRef.current.focus();
-        else if(errorArray.contact_msg && messageRef.current) messageRef.current.focus();
-        
+        if (errorArray.contact_name && nameRef.current) nameRef.current.focus();
+        else if (errorArray.contact_email && emailRef.current) emailRef.current.focus();
+        else if (errorArray.contact_phone && phoneRef.current) phoneRef.current.focus();
+        else if (errorArray.contact_msg && messageRef.current) messageRef.current.focus();
+
         return Object.keys(errorArray).length === 0;
     }
 
@@ -62,7 +59,7 @@ const ContactForm = () => {
         const { id, value } = e.target;
         let cleanValue = value;
 
-        if(id === "contact_phone"){
+        if (id === "contact_phone") {
             cleanValue = value.replace(/(?!^\+)[^0-9]/g, "");
         }
 
@@ -71,7 +68,7 @@ const ContactForm = () => {
             [id]: cleanValue,
         }));
 
-        if(formError[id]){
+        if (formError[id]) {
             setFormErrors((prev) => ({
                 ...prev,
                 [id]: ""
@@ -79,14 +76,14 @@ const ContactForm = () => {
         }
     }
     // Handle Form Submit
-    const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if(!validateForm()) return;
+        if (!validateForm()) return;
 
         setIsSubmit(true)
-        setStatusMessage("");
+        setStatusMessage('');
 
-        try{
+        try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/contact-us`, {
                 method: "POST",
                 headers: {
@@ -96,19 +93,37 @@ const ContactForm = () => {
                 body: JSON.stringify(formData)
             });
 
-            if(!response.ok) throw new Error("Request Failed");
-            const {response_message} = await response.json();
+            if (!response.ok) throw new Error("Request Failed");
+            const { response_message } = await response.json();
 
             setStatusMessage(response_message || "Message Sent Successfully");
+            setStatusType("success");
             sessionStorage.setItem("contact-us-success", "true");
-            // router.push('/thank-you');
 
-        }catch(err: unknown){
+        } catch (err: unknown) {
             setStatusMessage((err as Error).message);
-        }finally{
+            setStatusType("danger");
+        } finally {
             setIsSubmit(false);
         }
-    }
+    };
+
+    useEffect(() => {
+        if (statusMessage === "Thank You For Contact Us!") {
+            const timer = setTimeout(() => {
+                setStatusMessage('');      // remove alert
+                router.push('/contact-us/thank-you');
+
+            }, 2000);
+
+            return () => clearTimeout(timer);
+        }
+    }, [statusMessage, router]);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
         <div className={Styles.form_wrap}>
             <Form method="POST" onSubmit={handleSubmit}>
@@ -155,24 +170,31 @@ const ContactForm = () => {
                 {formError.contact_msg && <div className="form-error text-danger">{formError.contact_msg}</div>}
 
                 <Button type="submit" className={Styles.button_contact} disabled={isSubmit}>
-                    <span>Submit</span>
+                    {isSubmit ? (
+                        <>
+                            <Spinner
+                                as="span"
+                                animation="border"
+                                size="sm"
+                                role="status"
+                                aria-hidden="true"
+                                className="me-2"
+                            />
+                            Submitting...
+                        </>
+                    ) : (
+                        <span>Submit</span>
+                    )}
                 </Button>
             </Form>
             {isSubmit && (
                 <Alert variant="warning" className="mt-4">
-                Submitting your message...
+                    Submitting your message...
                 </Alert>
             )}
             {statusMessage && !isSubmit && (
-                <Alert
-                variant={
-                    statusMessage.toLowerCase().includes("success") ? "success" :
-                    statusMessage.toLowerCase().includes("error") || statusMessage.toLowerCase().includes("network") ? "danger" :
-                    "warning"
-                }
-                className="mt-4"
-                >
-                {statusMessage}
+                <Alert variant={statusType} className="mt-4">
+                    {statusMessage}
                 </Alert>
             )}
         </div>

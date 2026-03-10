@@ -111,17 +111,17 @@
 	opacity: 1;
 	visibility: visible;
 }
-.submenu > .menuItem:not(:last-child){
+/* .submenu > .menuItem:not(:last-child){
 	border-bottom: 1px solid #ccc;
-}
+} */
 .submenu .menuItem a {
   padding: 8px 18px;
   display: block;
-  color: #333;
+  color: #000000;
   font-size: 14px;
 }
 .submenu .menuItem a:hover {
-  color: #3d3f82;
+  color: #000000;
 }
 .submenu .menuItem a::before {
 	height: 100%;

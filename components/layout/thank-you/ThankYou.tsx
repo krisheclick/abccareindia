@@ -10,9 +10,10 @@ import { useGlobalContext } from "@/context/global_context";
 
 interface Props {
     sessionItem: string;
+    title?: string;
     content?: string;
 }
-const ThankYouComponent = ({content, sessionItem} : Props) => {
+const ThankYouComponent = ({title, content, sessionItem} : Props) => {
     const router = useRouter();
     const pathname = usePathname();
     const [counter, setCounter] = useState(30); // countdown in seconds
@@ -64,7 +65,7 @@ const ThankYouComponent = ({content, sessionItem} : Props) => {
                         <FontAwesomeIcon icon={faCheck} />
                     </div>
 
-                    <h1 className={Styles.title}>Thank You!</h1>
+                    <h1 className={Styles.title}>{title || "Thank You!"}</h1>
 
                     <p className={Styles.message}>
                         {content || null}
