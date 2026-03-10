@@ -114,6 +114,7 @@
   padding: 8px 12px;
   gap: 4px;
   margin-top: 32px;
+  transition: all .3s ease-in-out;
 }
 .ourReachBtn:hover {
   background: #e55a00;
