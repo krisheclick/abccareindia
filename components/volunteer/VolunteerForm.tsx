@@ -760,7 +760,7 @@ const VolunteerForm = () => {
                                 ref={document_file}
                                 onChange={(e) => {
                                     onChangeValue(e);
-                                    const file = e.currentTarget.files?.[0] || null;
+                                    const file = (e.currentTarget as HTMLInputElement).files?.[0] || null;
                                     updatePreview(file, documentPreviewUrl, setDocumentPreviewUrl);
                                 }}
                                 isInvalid={!!errors.document_file}
@@ -1321,7 +1321,7 @@ const VolunteerForm = () => {
                                 ref={photoRef}
                                 onChange={(e) => {
                                     onChangeValue(e);
-                                    const file = e.currentTarget.files?.[0] || null;
+                                    const file = (e.currentTarget as HTMLInputElement).files?.[0] || null;;
                                     updatePreview(file, photoPreviewUrl, setPhotoPreviewUrl);
                                 }}
                                 isInvalid={!!errors.photo}
@@ -1346,7 +1346,7 @@ const VolunteerForm = () => {
                                 ref={signatureRef}
                                 onChange={(e) => {
                                     onChangeValue(e);
-                                    const file = e.currentTarget.files?.[0] || null;
+                                    const file = (e.currentTarget as HTMLInputElement).files?.[0] || null;
                                     updatePreview(file, signaturePreviewUrl, setSignaturePreviewUrl);
                                 }}
                                 isInvalid={!!errors.signature}
