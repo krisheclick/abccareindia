@@ -22,7 +22,7 @@ const Projects = () => {
                     />
                 </div>
                 <Row>
-                    {projectData?.map((value, index) => (
+                    {projectData.slice(0, 3)?.map((value, index) => (
                         <Col lg={4} key={index}>
                             <div className={Styles.upcomsbx}>
                                 <CustomImage
