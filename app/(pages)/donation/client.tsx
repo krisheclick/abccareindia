@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Container, Stack } from "react-bootstrap"
 import Styles from "./style.module.css";
 import Counter from "@/components/common/Counter";
+import DonationForm from "@/components/donation/DonationForm";
 
 interface CustomFields {
     "donation-page-fields"?: {
@@ -20,6 +21,9 @@ interface Pages {
         page_short_description?: string;
         page_content?: string;
         pages_custom_field?: CustomFields;
+    },
+    QrCode:{
+        about_left_image: string;
     }
 }
 const DonationClient = () => {
@@ -45,6 +49,7 @@ const DonationClient = () => {
     }, [setHasLoading]);
 
     const pageData = data?.page;
+    const QRData = data?.QrCode;
 
     return (
         <Stack className="donation-page">
@@ -65,8 +70,10 @@ const DonationClient = () => {
                             }}
                         />
                     </div>
+                    <DonationForm qrcode={QRData?.about_left_image ?? ""}/>
                 </Container>
             </Stack>
+            
             <Counter className="home_counter" poster={true} />
         </Stack>
     )

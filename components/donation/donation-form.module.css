@@ -1,0 +1,104 @@
+.donation_form_section {
+    padding: 80px 0 120px;
+    background: #f8f7f3;
+}
+
+.section_header {
+    max-width: 720px;
+    margin: 0 auto 40px;
+    text-align: center;
+}
+
+.section_label {
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #3c44a7;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.section_title {
+    font-size: 40px;
+    line-height: 1.2;
+    font-weight: 700;
+    margin-bottom: 12px;
+    font-family: "Oswald", sans-serif;
+    color: #111111;
+}
+
+.form {
+    max-width: 960px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+}
+
+.input {
+    height: 46px;
+}
+
+.textarea {
+    resize: vertical;
+}
+
+.form_actions {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.submit_button {
+    background: #3c44a7;
+    border: none;
+    padding: 12px 28px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.success_message {
+    color: #2c7a2c;
+    font-weight: 600;
+}
+
+.checkbox_row {
+    padding-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.subsection_title {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 10px 0 0;
+    font-family: "Oswald", sans-serif;
+    color: #111111;
+}
+
+.modal_button {
+    padding: 6px 16px;
+}
+
+@media (max-width: 768px) {
+    .donation_form_section {
+        padding: 60px 0 90px;
+    }
+
+    .section_title {
+        font-size: 32px;
+    }
+
+    .form {
+        padding: 24px;
+    }
+
+    .form_actions {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
