@@ -30,37 +30,37 @@ const SingleClientpage = ({ permalink }: { permalink: string }) => {
     const [data, setData] = useState<PageData | null>(null);
     const [notFound, setNotFound] = useState(false);
 
-    const fetchData = async () => {
-        try {
-            setHasLoading(true);
-
-            const response = await fetch(
-                `${process.env.NEXT_PUBLIC_API_URL}/event/${permalink}`,
-                { cache: "no-cache" }
-            );
-
-            const {response_code, response_data } = await response.json();
-            if (!response_code) {
-                setNotFound(true);
-                return
-            }
-
-            setData(response_data ?? null);
-            setInnerBanner({
-                page_name: response_data?.event?.event_title,
-                page_feature_image: response_data?.event?.event_feature_image,
-            });
-
-            window.scrollTo({ top: 0, behavior: "smooth" });
-
-        } catch (err: unknown) {
-            console.log("API error:", (err as Error).message);
-        } finally {
-            setHasLoading(false);
-        }
-    };
-
+    
     useEffect(() => {
+        const fetchData = async () => {
+            try {
+                setHasLoading(true);
+    
+                const response = await fetch(
+                    `${process.env.NEXT_PUBLIC_API_URL}/event/${permalink}`,
+                    { cache: "no-cache" }
+                );
+    
+                const {response_code, response_data } = await response.json();
+                if (!response_code) {
+                    setNotFound(true);
+                    return
+                }
+    
+                setData(response_data ?? null);
+                setInnerBanner({
+                    page_name: response_data?.event?.event_title,
+                    page_feature_image: response_data?.event?.event_feature_image,
+                });
+    
+                window.scrollTo({ top: 0, behavior: "smooth" });
+    
+            } catch (err: unknown) {
+                console.log("API error:", (err as Error).message);
+            } finally {
+                setHasLoading(false);
+            }
+        };
         fetchData();
     }, [permalink, setHasLoading, setInnerBanner]);
 

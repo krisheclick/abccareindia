@@ -53,7 +53,7 @@ const ContactClient = () => {
         };
 
         fetchData();
-    }, [setHasLoading]);
+    }, [setHasLoading, setInnerBanner]);
     return (
         <div className='contact-page'>
             <InnerBanner />

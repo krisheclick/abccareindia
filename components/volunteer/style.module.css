@@ -5,7 +5,7 @@
     display: block;
     margin-bottom: 6px;
     font-weight: 600;
-    font-size: 17px;
+    font-size: 16px;
 }
 .form_controller{
     height: 48px;
@@ -27,4 +27,49 @@ label.form_check_label{
 
 .form_group input[type=number] {
     -moz-appearance:textfield;
+}
+.volunteerForm h5 {
+	font-size: 22px;
+    font-weight: 600;
+}
+.volunteerForm ol {
+    list-style: auto;
+    font-weight: normal;
+    display: grid;
+    row-gap: 12px;
+    font-size: .9em;
+    margin-top: 20px;
+}
+.headTable th{
+    font-weight: 600;
+}
+.button button{
+    padding: 8px 20px;
+    font-size: 13px;
+}
+.addButton {
+	background: #3d3f82;
+	color: #fff !important;
+	border-color: #3d3f82;
+}
+.form_group input[type="file"]::file-selector-button {
+  
+  color: #ffffff;
+  background: #3d3f82;
+  outline: none;
+  margin: -6px 16px -6px -16px;
+  padding: 12px 24px;
+  font-weight: 600;
+  transition: all .2s ease-in-out;
+  border: none !important;
+}
+.openBtn{
+    padding: 8px 12px;
+    display: inline-block;
+    background: #e5cb6c;
+    color: #000;
+    font-size: 13px;
+    line-height: 1;
+    border-radius: 3px;
+    margin-top: 4px;
 }

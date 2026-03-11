@@ -51,7 +51,7 @@ const Clientpage = () => {
         };
 
         fetchData();
-    }, [setHasLoading]);
+    }, [setHasLoading, setInnerBanner]);
 
     return (
         <Stack className="report-page">

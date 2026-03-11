@@ -69,7 +69,6 @@ const Clientpage = () => {
                     our_reach_title: "Our Reach",
                     our_reach_description: "Asha Bhavan Center Project Area"
                 }} 
-                ourReachData={data?.our_reach}
             />
             <Counter 
                 poster={true}

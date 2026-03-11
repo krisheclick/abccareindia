@@ -110,7 +110,7 @@ const Clientpage = () => {
         };
 
         fetchData();
-    }, [setHasLoading]);
+    }, [setHasLoading, setInnerBanner]);
 
     const pageData = data?.page;
     const customFields = safeParse<PageCustomField>(pageData?.pages_custom_field);
@@ -152,7 +152,6 @@ const Clientpage = () => {
                     our_reach_title: "Our Reach",
                     our_reach_description: "Asha Bhavan Center Project Area"
                 }}
-                ourReachData={data?.our_reach}
             />
             <Projects />
         </div>

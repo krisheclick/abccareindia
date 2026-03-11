@@ -1,13 +1,6 @@
 .section{
     padding-block: 80px;
 }
-.section_content {
-    max-width: 80%;
-    text-align: center;
-    border-bottom: 1px solid #ededed;
-    margin: 0 auto 60px;
-    padding-bottom: 40px;
-}
 .paragraph {
 	color: #222;
 	margin-bottom: 15px;
@@ -24,4 +17,67 @@
 .paragraph p{
     font: inherit;
     color: inherit;
+}
+
+.donation_section{
+    padding-block: 80px;
+    margin-top: 50px;
+}
+.section_title {
+	color: #222;
+	text-transform: capitalize;
+	margin-bottom: 24px;
+	font-size: 32px;
+	font-weight: 700;
+	line-height: 1.25;
+}
+
+.form {
+    margin-left: auto;
+    width:60%;
+    background:rgba(255,255,255,0.8);
+    padding:50px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+}
+.form_group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 16px;
+}
+.checkbox_row {
+    padding-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+.checkbox_row label{
+    margin-bottom: 0;
+}
+.input{
+    height: 48px;
+}
+textarea.input{
+    height: 120px;
+    resize: none;
+}
+.form_group input[type=number]::-webkit-outer-spin-button,
+.form_group input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.form_group input[type=number] {
+    -moz-appearance:textfield;
+}
+.feedBackError{
+    font-size: 15px;
+}
+.modal_button {
+	font-size: .9em;
+	color: #3d3f82;
+	font-weight: 700;
+	padding: 4px;
 }

@@ -60,33 +60,33 @@ const SingleProject = ({ permalink }: { permalink: string }) => {
         }, 300);
     }
 
-    const fetchData = async () => {
-        try {
-            setHasLoading(true);
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/get-projects/${permalink}`);
-            const { response_code, response_data } = await response.json();
-
-            if (!response_code) {
-                setNotFound(true);
-            }
-
-            setData(response_data ?? undefined);
-            setInnerBanner({
-                page_name: response_data?.project?.project_title,
-                page_feature_image: response_data?.project?.project_feature_image
-            });
-        } catch (err: unknown) {
-            console.log('Projects Details API data is something wrong: ', (err as Error).message);
-        } finally {
-            setHasLoading(false);
-        }
-    }
-
+    
     useEffect(() => {
+        const fetchData = async () => {
+            try {
+                setHasLoading(true);
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/get-projects/${permalink}`);
+                const { response_code, response_data } = await response.json();
+    
+                if (!response_code) {
+                    setNotFound(true);
+                }
+    
+                setData(response_data ?? undefined);
+                setInnerBanner({
+                    page_name: response_data?.project?.project_title,
+                    page_feature_image: response_data?.project?.project_feature_image
+                });
+            } catch (err: unknown) {
+                console.log('Projects Details API data is something wrong: ', (err as Error).message);
+            } finally {
+                setHasLoading(false);
+            }
+        }
         if (permalink) {
             fetchData();
         }
-    }, [permalink]);
+    }, [setHasLoading, permalink, setInnerBanner]);
 
     if (notFound) {
         return <NotFound />

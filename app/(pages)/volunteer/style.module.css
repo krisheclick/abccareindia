@@ -25,3 +25,9 @@
     font: inherit;
     color: inherit;
 }
+.volunteerForm{
+    background: #f9f9f9;
+    padding: 40px;
+    box-shadow: 0px 0px 6px #3d3f8266;
+    border-radius: 8px;
+}

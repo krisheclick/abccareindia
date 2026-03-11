@@ -2,182 +2,193 @@
 
 import Image from "next/image";
 import Styles from "./style.module.css";
-import {
-  Container,
-  Modal,
-  ModalBody,
-  ModalHeader,
-  ModalTitle,
-  Stack,
-} from "react-bootstrap";
+import { Container, Modal, ModalBody, ModalHeader, ModalTitle, Stack, } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { safeParse } from "@/utlis/safe_parse";
-import CustomImage from "@/utlis/imagefunction";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useGlobalContext } from "@/context/global_context";
+import Link from "next/link";
 
 interface CounterData {
-  our_reach_counter_number?: number;
-  our_reach_counter_icon?: string;
-  our_reach_counter_title?: string;
-}
-interface OurReachItem {
-  our_reach_description?: string;
-  our_reach_feature_image?: string;
-  our_reach_button_data?: string;
-  our_reach_counter_data?: CounterData[] | null;
+    our_reach_counter_number?: number;
+    our_reach_counter_icon?: string;
+    our_reach_counter_title?: string;
 }
 interface OurReachSectionData {
-  our_reach_title?: string;
-  our_reach_description?: string;
+    our_reach_title?: string;
+    our_reach_description?: string;
 }
-interface HomeOurReachProps {
-  sectionData: OurReachSectionData | undefined;
-  ourReachData: OurReachItem[] | undefined;
+interface SectionDataProps {
+    sectionData: OurReachSectionData | undefined;
 }
 
-const mediaBaseURL = process.env.NEXT_PUBLIC_MEDIA_URL;
-interface PopUpData {
-  poster?: string;
-  title?: string;
-  description?: string;
+interface Result {
+    our_reach_description?: string;
+    our_reach_button_data?: string;
+    our_reach_counter_data?: string;
+    our_reach_feature_image?: string;
 }
-const Ourreach = ({ sectionData, ourReachData }: HomeOurReachProps) => {
-  const [showContent, setShowContent] = useState<boolean>(false);
+interface Projects {
+    data_color?: string;
+    project_title?: string;
+    project_slug?: string;
+}
+interface ProjectProps {
+    result?: Result[] | null;
+    projects?: Projects[] | null;
+}
+const Ourreach = ({ sectionData }: SectionDataProps) => {
+    const appLink = process.env.NEXT_PUBLIC_ENV_URL;
+    const [showContent, setShowContent] = useState<boolean>(false);
+    const [data, setData] = useState<ProjectProps | null>(null);
+    const { setHasLoading, mediaUrl } = useGlobalContext();
 
-  const handleOpenPopup = () => {
-    setShowContent(true);
-  };
+    
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                setHasLoading(true);
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/our-reach`, { cache: "no-store" });
+                const { response_data } = await response.json();
+                setData(response_data);
+            } catch (err: unknown) {
+                console.log('Projects Report fetch is something wrong: ', (err as Error).message)
+            } finally {
+                setHasLoading(false);
+            }
+        }
+        fetchData();
+    }, [setHasLoading]);
 
-  const handleClosePopup = () => {
-    setShowContent(false);
-  };
-  if (!sectionData && !ourReachData?.length) return null;
+    const handleOpenPopup = () => {
+        setShowContent(true);
+    };
 
-  const reachItem = ourReachData?.[0];
+    const handleClosePopup = () => {
+        setShowContent(false);
+    };
 
-  const counters =
-    safeParse<CounterData[]>(reachItem?.our_reach_counter_data) ?? [];
+    const reachItem = data?.result?.[0];
+    const projects = data?.projects;
+    const counters = safeParse<CounterData[]>(reachItem?.our_reach_counter_data) ?? [];
+    const button = reachItem?.our_reach_button_data ? JSON.parse(reachItem.our_reach_button_data) : null;
 
-  const button = reachItem?.our_reach_button_data
-    ? JSON.parse(reachItem.our_reach_button_data)
-    : null;
+    return (
+        <>
+            <Stack as="section" className={Styles.ourReachSection}>
+                <Container className={Styles.container}>
+                    <Stack className={Styles.ourReachHeader}>
+                        {sectionData?.our_reach_title && (
+                            <h2>
+                                <span>{sectionData.our_reach_title}</span>
+                            </h2>
+                        )}
+                        {sectionData?.our_reach_description && (
+                            <p>{sectionData.our_reach_description}</p>
+                        )}
+                    </Stack>
+                    <Stack className={Styles.ourReach_wrapper}>
+                        <Stack direction="horizontal" className={Styles.ourReachImage ?? ''}>
+                            {reachItem?.our_reach_feature_image && (
+                                <div className={Styles.ourReachImage}>
+                                    <Image
+                                        src={`${mediaUrl}${reachItem.our_reach_feature_image}`}
+                                        alt={sectionData?.our_reach_title || "Our Reach"}
+                                        width={100}
+                                        height={100}
+                                        style={{ objectFit: "cover" }}
+                                    />
+                                </div>
+                            )}
+                            {projects && projects.length > 0 && (
+                                <div className={Styles.ourReachDescription}>
+                                    <ul>
+                                        {projects.slice(0, 10).map((value, index) => (
+                                            <li key={index} data-color={value.data_color}>
+                                                <Link href={`${appLink}/our-projects/${value.project_slug}`}>{value.project_title}</Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    {button?.text && (
+                                        <span
+                                            className={Styles.ourReachBtn}
+                                            onClick={() => handleOpenPopup()}
+                                            role="button"
+                                        >
+                                            <FontAwesomeIcon icon={faChevronRight} /> {button.text}
+                                        </span>
+                                    )}
+                                </div>
+                            )}
+                        </Stack>
 
-  return (
-    <>
-      <section className={Styles.ourReachSection}>
-        <Container className={Styles.container}>
-          {/* SECTION HEADER */}
-          <div className={Styles.ourReachHeader}>
-            {sectionData?.our_reach_title && (
-              <h2>
-                <span>{sectionData.our_reach_title}</span>
-              </h2>
-            )}
-            {sectionData?.our_reach_description && (
-              <p>{sectionData.our_reach_description}</p>
-            )}
-          </div>
-          <div className={Styles.ourReach_wrapper}>
-            {/* LEFT CARD */}
-            <div className={Styles.ourReachImage}>
-              {reachItem?.our_reach_feature_image && (
-                <div className={Styles.ourReachImage}>
-                  <Image
-                    src={`${mediaBaseURL}${reachItem.our_reach_feature_image}`}
-                    alt={sectionData?.our_reach_title || "Our Reach"}
-                    width={100}
-                    height={100}
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-              )}
+                        {counters?.length > 0 && (
+                            <Stack direction="horizontal" className={Styles.ourReachRightCard ?? ''}>
+                                <div className={Styles.ourReachCounters}>
+                                    {counters?.map((counter, index) => (
+                                        <div key={index} className={Styles.ourReachCounter}>
+                                            <div className={Styles.counterCircle}>
+                                                {counter.our_reach_counter_number}
+                                                {counter.our_reach_counter_icon}
+                                            </div>
+                                            <p>{counter.our_reach_counter_title}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </Stack>
+                        )}
+                    </Stack>
+                </Container>
+            </Stack>
 
-              <div className={Styles.ourReachDescription}>
-                {reachItem?.our_reach_description && (
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: reachItem.our_reach_description,
-                    }}
-                  />
-                )}
+            <Modal
+                className="customBackdrop"
+                show={showContent}
+                onHide={handleClosePopup}
+                size="xl"
+                centered
+                backdrop={false}
+                scrollable
+            >
+                <ModalHeader closeButton>
+                    <ModalTitle className="fw-bold"></ModalTitle>
+                </ModalHeader>
 
-                {button?.text && (
-                  <span
-                    className={Styles.ourReachBtn}
-                    onClick={() => handleOpenPopup()}
-                    role="button"
-                  >
-                    <FontAwesomeIcon icon={faChevronRight} /> {button.text}
-                  </span>
-                )}
-              </div>
-            </div>
+                <ModalBody>
+                    <Stack
+                        direction="horizontal"
+                        gap={3}
+                        className={Styles.ourReachImage}
+                    >
+                        {reachItem?.our_reach_feature_image && (
+                            <div className={Styles.ourReachImage}>
+                                <Image
+                                    src={`${mediaUrl}${reachItem.our_reach_feature_image}`}
+                                    alt={sectionData?.our_reach_title || "Our Reach"}
+                                    width={100}
+                                    height={100}
+                                    style={{ objectFit: "cover" }}
+                                />
+                            </div>
+                        )}
 
-            {/* RIGHT CARD - COUNTERS */}
-            {counters?.length > 0 && (
-              <div className={Styles.ourReachRightCard}>
-                <div className={Styles.ourReachCounters}>
-                  {counters?.map((counter, index) => (
-                    <div key={index} className={Styles.ourReachCounter}>
-                      <div className={Styles.counterCircle}>
-                        {counter.our_reach_counter_number}
-                        {counter.our_reach_counter_icon}
-                      </div>
-                      <p>{counter.our_reach_counter_title}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-        </Container>
-      </section>
-      <Modal
-        className="customBackdrop"
-        show={showContent}
-        onHide={handleClosePopup}
-        size="xl"
-        centered
-        backdrop={false}
-        scrollable
-      >
-        <ModalHeader closeButton>
-          <ModalTitle className="fw-bold"></ModalTitle>
-        </ModalHeader>
-
-        <ModalBody>
-          <Stack
-            direction="horizontal"
-            gap={3}
-            className={Styles.ourReachImage}
-          >
-            {reachItem?.our_reach_feature_image && (
-              <div className={Styles.ourReachImage}>
-                <Image
-                  src={`${mediaBaseURL}${reachItem.our_reach_feature_image}`}
-                  alt={sectionData?.our_reach_title || "Our Reach"}
-                  width={100}
-                  height={100}
-                  style={{ objectFit: "cover" }}
-                />
-              </div>
-            )}
-
-            <div className={Styles.ourReachDescription}>
-              {reachItem?.our_reach_description && (
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: reachItem.our_reach_description,
-                  }}
-                />
-              )}
-            </div>
-          </Stack>
-        </ModalBody>
-      </Modal>
-    </>
-  );
+                        {projects && projects.length > 0 && (
+                            <div className={Styles.ourReachDescription}>
+                                <ul>
+                                    {projects.map((value, index) => (
+                                        <li key={index} data-color={value.data_color}>
+                                            <Link href={`${appLink}/our-projects/${value.project_slug}`}>{value.project_title}</Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+                    </Stack>
+                </ModalBody>
+            </Modal>
+        </>
+    );
 };
 
 export default Ourreach;

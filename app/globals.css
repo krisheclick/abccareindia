@@ -1848,3 +1848,19 @@ a:hover{
 	position: absolute !important;
 	width: 1px;
 }
+.table{
+  font-size: 16px;
+}
+.form-check-input:checked {
+	background-color: #3d3f82;
+	border-color: #3d3f82;
+}
+.donation-container{
+  display: grid;
+  row-gap: 20px;
+}
+.donation_data ol{
+  list-style: auto;
+  display: grid;
+  row-gap: 20px;
+}

@@ -4,10 +4,12 @@ import { Col, Container, Modal, Row } from 'react-bootstrap';
 import Counter from '@/components/common/Counter';
 import Image from 'next/image';
 import { useState } from 'react';
+import { normalizeYouTubeUrl } from '@/utlis/videoUrl';
 interface UnderBanner {
     video_thumb_nail_image?: string;
     upload_video_file?: string;
     upload_feature_image?: string;
+    video_file_link?: string;
 }
 interface PageProps {
     posterPart?: UnderBanner;
@@ -19,7 +21,7 @@ const About = ({ posterPart, content }: PageProps) => {
     const [videoUrl, setVideoUrl] = useState<string>('');
 
     const handleVideoOpen = (url: string) => {
-        setVideoUrl(url);
+        setVideoUrl(normalizeYouTubeUrl(url));
         setShowVideo(true)
     }
 
@@ -34,7 +36,7 @@ const About = ({ posterPart, content }: PageProps) => {
                         <figure 
                             className={Styles.abtinlimg}
                             onClick={() => { 
-                                handleVideoOpen(`${process.env.NEXT_PUBLIC_MEDIA_URL}/uploads/page_image/${posterPart?.upload_video_file}`);
+                                handleVideoOpen(posterPart?.video_file_link || '');
                             }}
                         >
                             <Image
@@ -58,12 +60,16 @@ const About = ({ posterPart, content }: PageProps) => {
                     <Modal.Title className="fw-semibold"></Modal.Title>
                 </Modal.Header>
                 <Modal.Body style={{ padding: 0 }}>
-                    <video width="100%" height="480" controls autoPlay muted style={{width: "100%", height: 580}}>
+                    {/* <video width="100%" height="480" controls autoPlay muted style={{width: "100%", height: 580}}>
                         <source
                             src={videoUrl}
                             type="video/mp4"
                         />
-                    </video>
+                    </video> */}
+                    <div style={{ position: "relative", paddingTop: "56.25%" }}>
+                        <iframe width="100%" height="100%" src={videoUrl} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen
+                            style={{ position: "absolute", top: 0, left: 0 }}></iframe>
+                    </div>
                 </Modal.Body>
             </Modal>
         </div>

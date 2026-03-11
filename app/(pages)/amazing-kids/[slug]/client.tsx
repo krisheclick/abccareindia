@@ -21,32 +21,32 @@ const KidsSingleClient = ({ permalink }: { permalink: string }) => {
     const [notFound, setNotFound] = useState<boolean>(false);
     const { setHasLoading, hasLoading, setInnerBanner, commonData, mediaUrl } = useGlobalContext();
 
-    const fetchData = async () => {
-        try {
-            setHasLoading(true);
-            const response = await fetch(
-                `${process.env.NEXT_PUBLIC_API_URL}/amazing-kids/${permalink}`,
-                { cache: "no-cache" }
-            );
-            const {response_code, response_data } = await response.json();
-            if(!response_code){
-                setNotFound(true);
-            }
-            setData(response_data);
-            setInnerBanner({
-                page_name: response_data.amazing_kids.ak_title,
-                page_feature_image: response_data.amazing_kids.ak_banner_image,
-            })
-        } catch (err: unknown) {
-            console.log('amazon kids page data fetch is something wrong: ', (err as Error).message)
-        } finally {
-            setHasLoading(false);
-        }
-    }
-
+    
     useEffect(() => {
+        const fetchData = async () => {
+            try {
+                setHasLoading(true);
+                const response = await fetch(
+                    `${process.env.NEXT_PUBLIC_API_URL}/amazing-kids/${permalink}`,
+                    { cache: "no-cache" }
+                );
+                const {response_code, response_data } = await response.json();
+                if(!response_code){
+                    setNotFound(true);
+                }
+                setData(response_data);
+                setInnerBanner({
+                    page_name: response_data.amazing_kids.ak_title,
+                    page_feature_image: response_data.amazing_kids.ak_banner_image,
+                })
+            } catch (err: unknown) {
+                console.log('amazon kids page data fetch is something wrong: ', (err as Error).message)
+            } finally {
+                setHasLoading(false);
+            }
+        }
         fetchData();
-    }, [setHasLoading]);
+    }, [setHasLoading, setInnerBanner, permalink]);
 
     if(notFound){
         return <NotFound />

@@ -40,23 +40,23 @@ interface PageProps {
 const ClientPage = ({page}: PageProps) => {
     const {setHasLoading, setInnerBanner} = useGlobalContext();
     const [data, setData] = useState<Pages | null>(null);
-    const fetchData = async() => {
-        try{
-            setHasLoading(true);
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/page/blog`, {cache: "no-store"});
-            const {response_data} = await response.json();
-            setData(response_data ?? undefined)
-            setInnerBanner(response_data.page ?? undefined)
-        }catch(err: unknown){
-            console.log('Blog page api is something wrong: ', (err as Error).message)
-        }finally{
-            setHasLoading(false);
-        }
-    }
-
+    
     useEffect(() => {
+        const fetchData = async() => {
+            try{
+                setHasLoading(true);
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/page/blog`, {cache: "no-store"});
+                const {response_data} = await response.json();
+                setData(response_data ?? undefined)
+                setInnerBanner(response_data.page ?? undefined)
+            }catch(err: unknown){
+                console.log('Blog page api is something wrong: ', (err as Error).message)
+            }finally{
+                setHasLoading(false);
+            }
+        }
         fetchData();
-    }, [setHasLoading]);
+    }, [setHasLoading, setInnerBanner]);
     return (
         <Stack className="blog-page">
             <InnerBanner />

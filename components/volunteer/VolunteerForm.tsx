@@ -1,9 +1,10 @@
 "use client"
 import { Button, Col, Form, FormCheck, FormControl, FormGroup, Row, Stack, Table } from 'react-bootstrap';
 import Styles from './style.module.css';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import FormCheckInput from 'react-bootstrap/esm/FormCheckInput';
 import FormCheckLabel from 'react-bootstrap/esm/FormCheckLabel';
+import { useRouter } from 'next/navigation';
 
 interface EducationDetail {
     qualification: string;
@@ -65,6 +66,8 @@ interface VolunteerFormData {
 }
 
 const VolunteerForm = () => {
+    const router = useRouter();
+
     const volunteer_name = useRef<HTMLInputElement>(null);
     const full_address = useRef<HTMLTextAreaElement>(null);
     const phoneNumber = useRef<HTMLInputElement>(null);
@@ -453,6 +456,7 @@ const VolunteerForm = () => {
                 return res.json().catch(() => ({}));
             })
             .then(() => {
+                sessionStorage.setItem("volunteer-form", "true");
                 setSubmitSuccess("Application submitted successfully.");
                 resetForm();
             })
@@ -476,6 +480,23 @@ const VolunteerForm = () => {
         }
         setUrl(URL.createObjectURL(file));
     };
+    
+    useEffect(() => {
+        if (submitSuccess === "Application submitted successfully.") {
+            const timer = setTimeout(() => {
+                setSubmitSuccess(null);
+                router.push("/volunteer/thank-you");
+            }, 2000);
+
+            return () => clearTimeout(timer);
+        }
+    }, [submitSuccess, router]);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+    const today = new Date().toISOString().split("T")[0];
     return (
         <Stack className={Styles.volunteerForm}>
             <Form onSubmit={handleSubmit} method='POST' encType='multipart/form-data'>
@@ -769,7 +790,7 @@ const VolunteerForm = () => {
                             {documentPreviewUrl && (
                                 <div className="mt-2">
                                     <div>{document_file.current?.files?.[0]?.name}</div>
-                                    <a href={documentPreviewUrl} target="_blank" rel="noreferrer">Open</a>
+                                    <a href={documentPreviewUrl} target="_blank" rel="noreferrer" className={Styles.openBtn}>Open</a>
                                 </div>
                             )}
                         </FormGroup>
@@ -792,12 +813,12 @@ const VolunteerForm = () => {
                 </Row>
                 <div className="d-flex align-items-center justify-content-between mt-4">
                     <h5 className="mb-0">Educational Details</h5>
-                    <Button variant="outline-secondary" type="button" onClick={addEducationRow}>
+                    <Button className={Styles.addButton} type="button" onClick={addEducationRow}>
                         Add Row
                     </Button>
                 </div>
                 <Table bordered responsive className="mt-2">
-                    <thead>
+                    <thead className={`table-primary ${Styles.headTable}`}>
                         <tr>
                             <th>Qualification</th>
                             <th>Year</th>
@@ -837,7 +858,7 @@ const VolunteerForm = () => {
                                         onChange={(e) => updateEducationDetail(index, "subjects", e.target.value)}
                                     />
                                 </td>
-                                <td className="text-center">
+                                <td className={`text-center ${Styles.button}`}>
                                     <Button
                                         variant="outline-danger"
                                         size="sm"
@@ -1253,6 +1274,7 @@ const VolunteerForm = () => {
                                 ref={proposed_start_date}
                                 onChange={onChangeValue}
                                 isInvalid={!!errors.proposed_start_date}
+                                min={today}
                             />
                             <Form.Control.Feedback type="invalid">{errors.proposed_start_date}</Form.Control.Feedback>
                         </FormGroup>
@@ -1330,7 +1352,7 @@ const VolunteerForm = () => {
                             {photoPreviewUrl && (
                                 <div className="mt-2">
                                     <div>{photoRef.current?.files?.[0]?.name}</div>
-                                    <a href={photoPreviewUrl} target="_blank" rel="noreferrer">Open</a>
+                                    <a href={photoPreviewUrl} target="_blank" rel="noreferrer" className={Styles.openBtn}>Open</a>
                                 </div>
                             )}
                         </FormGroup>
@@ -1355,7 +1377,7 @@ const VolunteerForm = () => {
                             {signaturePreviewUrl && (
                                 <div className="mt-2">
                                     <div>{signatureRef.current?.files?.[0]?.name}</div>
-                                    <a href={signaturePreviewUrl} target="_blank" rel="noreferrer">Open</a>
+                                    <a href={signaturePreviewUrl} target="_blank" rel="noreferrer" className={Styles.openBtn}>Open</a>
                                 </div>
                             )}
                         </FormGroup>
@@ -1366,8 +1388,8 @@ const VolunteerForm = () => {
                         {isSubmitting ? "Submitting..." : "Submit"}
                     </Button>
                     
-                    {submitError && <div className="alert alert-danger">{submitError}</div>}
-                    {submitSuccess && <div className="alert alert-success">{submitSuccess}</div>}
+                    {submitError && <div className="alert alert-danger mt-3">{submitError}</div>}
+                    {submitSuccess && <div className="alert alert-success mt-3">{submitSuccess}</div>}
                 </div>
             </Form>
         </Stack>

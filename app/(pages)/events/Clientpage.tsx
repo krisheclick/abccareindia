@@ -58,7 +58,7 @@ const Clientpage = ({ page }: Props) => {
         };
 
         fetchData();
-    }, []);
+    }, [setHasLoading, setInnerBanner]);
 
     const pageData = data?.page;
     const customFields = safeParse<PageCustomField>(pageData?.pages_custom_field);

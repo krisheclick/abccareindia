@@ -1,8 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Col, Form, FormControl, FormGroup, Modal, Row } from "react-bootstrap";
-import Styles from "./donation-form.module.css";
+import Styles from "@/app/(pages)/donation/style.module.css";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface DonationFormState {
     name: string;
@@ -20,7 +21,12 @@ interface DonationFormState {
     qrcode_transfer: boolean;
 }
 
-const DonationForm = ({qrcode}:{qrcode:string}) => {
+interface InformationProps {
+    qrcode: string | null;
+    bankInfo?: string;
+}
+const DonationForm = ({qrcode, bankInfo}: InformationProps) => {
+    const router = useRouter();
     const [formState, setFormState] = useState<DonationFormState>({
         name: "",
         phone: "",
@@ -132,7 +138,9 @@ const DonationForm = ({qrcode}:{qrcode:string}) => {
             if (res.ok) {
                 setSubmitted(true);
                 setSubmitStatus("success");
+                sessionStorage.setItem("donation-form", "true");
                 setSubmitMessage("Thank you. Your donation request has been submitted.");
+                
                 // Reset form after successful submission
                 setFormState({
                     name: "",
@@ -165,18 +173,28 @@ const DonationForm = ({qrcode}:{qrcode:string}) => {
         }
     };
 
+    useEffect(() => {
+        if (submitStatus === "success") {
+            const timer = setTimeout(() => {
+                setSubmitMessage('');
+                router.push("/donation/thank-you");
+            }, 2000);
+
+            return () => clearTimeout(timer);
+        }
+    }, [submitStatus, router]);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
         <>
             <Form onSubmit={handleSubmit} className={Styles.form}>
-                {submitStatus === "error" && (
-                    <div className="alert alert-danger">{submitMessage}</div>
-                )}
-                {submitStatus === "success" && (
-                    <div className="alert alert-success">{submitMessage}</div>
-                )}
+                <h2 className={Styles.section_title}>Personal Information</h2>
                 <Row className="g-3">
                     <Col lg={6} sm={6}>
-                        <FormGroup>
+                        <FormGroup className={Styles.form_group}>
                             <label htmlFor="donation_name">Name *</label>
                             <FormControl
                                 type="text"
@@ -187,11 +205,11 @@ const DonationForm = ({qrcode}:{qrcode:string}) => {
                                 className={Styles.input}
                                 isInvalid={!!errors.name}
                             />
-                            <Form.Control.Feedback type="invalid">{errors.name}</Form.Control.Feedback>
+                            <Form.Control.Feedback type="invalid" className={Styles.feedBackError}>{errors.name}</Form.Control.Feedback>
                         </FormGroup>
                     </Col>
                     <Col lg={6} sm={6}>
-                        <FormGroup>
+                        <FormGroup className={Styles.form_group}>
                             <label htmlFor="donation_phone">Phone *</label>
                             <FormControl
                                 type="text"
@@ -202,11 +220,11 @@ const DonationForm = ({qrcode}:{qrcode:string}) => {
                                 className={Styles.input}
                                 isInvalid={!!errors.phone}
                             />
-                            <Form.Control.Feedback type="invalid">{errors.phone}</Form.Control.Feedback>
+                            <Form.Control.Feedback type="invalid" className={Styles.feedBackError}>{errors.phone}</Form.Control.Feedback>
                         </FormGroup>
                     </Col>
                     <Col lg={6} sm={6}>
-                        <FormGroup>
+                        <FormGroup className={Styles.form_group}>
                             <label htmlFor="donation_email">Email *</label>
                             <FormControl
                                 type="email"
@@ -217,11 +235,11 @@ const DonationForm = ({qrcode}:{qrcode:string}) => {
                                 className={Styles.input}
                                 isInvalid={!!errors.email}
                             />
-                            <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
+                            <Form.Control.Feedback type="invalid" className={Styles.feedBackError}>{errors.email}</Form.Control.Feedback>
                         </FormGroup>
                     </Col>
                     <Col lg={6} sm={6}>
-                        <FormGroup>
+                        <FormGroup className={Styles.form_group}>
                             <label htmlFor="donation_address">Address *</label>
                             <FormControl
                                 type="text"
@@ -232,11 +250,11 @@ const DonationForm = ({qrcode}:{qrcode:string}) => {
                                 className={Styles.input}
                                 isInvalid={!!errors.address}
                             />
-                            <Form.Control.Feedback type="invalid">{errors.address}</Form.Control.Feedback>
+                            <Form.Control.Feedback type="invalid" className={Styles.feedBackError}>{errors.address}</Form.Control.Feedback>
                         </FormGroup>
                     </Col>
                     <Col lg={6} sm={6}>
-                        <FormGroup>
+                        <FormGroup className={Styles.form_group}>
                             <label htmlFor="donation_city">City *</label>
                             <FormControl
                                 type="text"
@@ -247,11 +265,11 @@ const DonationForm = ({qrcode}:{qrcode:string}) => {
                                 className={Styles.input}
                                 isInvalid={!!errors.city}
                             />
-                            <Form.Control.Feedback type="invalid">{errors.city}</Form.Control.Feedback>
+                            <Form.Control.Feedback type="invalid" className={Styles.feedBackError}>{errors.city}</Form.Control.Feedback>
                         </FormGroup>
                     </Col>
                     <Col lg={6} sm={6}>
-                        <FormGroup>
+                        <FormGroup className={Styles.form_group}>
                             <label htmlFor="donation_state">State *</label>
                             <FormControl
                                 type="text"
@@ -262,11 +280,11 @@ const DonationForm = ({qrcode}:{qrcode:string}) => {
                                 className={Styles.input}
                                 isInvalid={!!errors.state}
                             />
-                            <Form.Control.Feedback type="invalid">{errors.state}</Form.Control.Feedback>
+                            <Form.Control.Feedback type="invalid" className={Styles.feedBackError}>{errors.state}</Form.Control.Feedback>
                         </FormGroup>
                     </Col>
                     <Col lg={6} sm={6}>
-                        <FormGroup>
+                        <FormGroup className={Styles.form_group}>
                             <label htmlFor="donation_zip">Zip *</label>
                             <FormControl
                                 type="text"
@@ -277,11 +295,11 @@ const DonationForm = ({qrcode}:{qrcode:string}) => {
                                 className={Styles.input}
                                 isInvalid={!!errors.zip}
                             />
-                            <Form.Control.Feedback type="invalid">{errors.zip}</Form.Control.Feedback>
+                            <Form.Control.Feedback type="invalid" className={Styles.feedBackError}>{errors.zip}</Form.Control.Feedback>
                         </FormGroup>
                     </Col>
                     <Col lg={6} sm={6}>
-                        <FormGroup>
+                        <FormGroup className={Styles.form_group}>
                             <label htmlFor="donation_country">Country *</label>
                             <Form.Select
                                 id="donation_country"
@@ -342,7 +360,7 @@ const DonationForm = ({qrcode}:{qrcode:string}) => {
                                 <option>Congo</option>
                                 <option>Cook Islands</option>
                                 <option>Costa Rica</option>
-                                <option>Cote D'Ivorie (Ivory Coast)</option>
+                                <option>{`Cote D'Ivorie (Ivory Coast)`}</option>
                                 <option>Croatia (Hrvatska)</option>
                                 <option>Cuba</option>
                                 <option>Cyprus</option>
@@ -531,11 +549,11 @@ const DonationForm = ({qrcode}:{qrcode:string}) => {
                                 <option>Zambia</option>
                                 <option>Zimbabwe</option>
                             </Form.Select>
-                            <Form.Control.Feedback type="invalid">{errors.country}</Form.Control.Feedback>
+                            <Form.Control.Feedback type="invalid" className={Styles.feedBackError}>{errors.country}</Form.Control.Feedback>
                         </FormGroup>
                     </Col>
                     <Col lg={6} sm={6}>
-                        <FormGroup>
+                        <FormGroup className={Styles.form_group}>
                             <label htmlFor="donation_currency">Currency *</label>
                             <Form.Select
                                 id="donation_currency"
@@ -549,11 +567,11 @@ const DonationForm = ({qrcode}:{qrcode:string}) => {
                                 <option>AUD</option>
                                 <option>USD</option>
                             </Form.Select>
-                            <Form.Control.Feedback type="invalid">{errors.currency}</Form.Control.Feedback>
+                            <Form.Control.Feedback type="invalid" className={Styles.feedBackError}>{errors.currency}</Form.Control.Feedback>
                         </FormGroup>
                     </Col>
                     <Col lg={6} sm={6}>
-                        <FormGroup>
+                        <FormGroup className={Styles.form_group}>
                             <label htmlFor="donation_amount">Amount *</label>
                             <FormControl
                                 type="number"
@@ -564,11 +582,11 @@ const DonationForm = ({qrcode}:{qrcode:string}) => {
                                 className={Styles.input}
                                 isInvalid={!!errors.amount}
                             />
-                            <Form.Control.Feedback type="invalid">{errors.amount}</Form.Control.Feedback>
+                            <Form.Control.Feedback type="invalid" className={Styles.feedBackError}>{errors.amount}</Form.Control.Feedback>
                         </FormGroup>
                     </Col>
                     <Col lg={12}>
-                        <FormGroup>
+                        <FormGroup className={Styles.form_group}>
                             <label htmlFor="donation_comment">Comment</label>
                             <FormControl
                                 as="textarea"
@@ -576,7 +594,7 @@ const DonationForm = ({qrcode}:{qrcode:string}) => {
                                 value={formState.comment}
                                 onChange={(e) => updateField("comment", e.target.value)}
                                 placeholder="Comment"
-                                className={Styles.textarea}
+                                className={Styles.input}
                                 rows={3}
                             />
                         </FormGroup>
@@ -590,14 +608,13 @@ const DonationForm = ({qrcode}:{qrcode:string}) => {
                                 checked={formState.bank_transfer}
                                 onChange={(e) => updateField("bank_transfer", e.target.checked)}
                             />
-                            <Button
-                                type="button"
-                                variant="outline-secondary"
+                            <span
+                                role="button"
                                 className={Styles.modal_button}
                                 onClick={() => setShowBankModal(true)}
                             >
                                 Bank Information
-                            </Button>
+                            </span>
                         </FormGroup>
                         <FormGroup className={Styles.checkbox_row}>
                             <Form.Check
@@ -607,17 +624,16 @@ const DonationForm = ({qrcode}:{qrcode:string}) => {
                                 checked={formState.qrcode_transfer}
                                 onChange={(e) => updateField("qrcode_transfer", e.target.checked)}
                             />
-                            <Button
-                                type="button"
-                                variant="outline-secondary"
+                            <span
+                                role="button"
                                 className={Styles.modal_button}
                                 onClick={() => setShowQRcodeModal(true)}
                             >
                                 QRcode Informantion
-                            </Button>
+                            </span>
                         </FormGroup>
                         {errors.payment_type && (
-                            <div className="text-danger mt-2">{errors.payment_type}</div>
+                            <div className={`text-danger mt-2 ${Styles.feedBackError}`}>{errors.payment_type}</div>
                         )}
                     </Col>
                 </Row>
@@ -633,294 +649,24 @@ const DonationForm = ({qrcode}:{qrcode:string}) => {
                         )}
                     </Button>
                 </div>
+                {submitStatus === "error" && (
+                    <div className="alert alert-danger mt-3">{submitMessage}</div>
+                )}
+                {submitStatus === "success" && (
+                    <div className="alert alert-success mt-3">{submitMessage}</div>
+                )}
             </Form>
             <Modal show={showBankModal} onHide={() => setShowBankModal(false)} centered size="xl" scrollable>
                 <Modal.Header closeButton>
                     <Modal.Title>Bank Information</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <div className="donation-container">
-                        <div className="subheading">
-                            We inform you that kindly pay all payments through the following process
-                            for Indian donors:
-                        </div>
-
-                        <p>
-                            <strong>
-                                <u>For Cheque:</u>
-                            </strong>
-                            <br />
-                            In Name of "Asha Bhavan Centre"
-                        </p>
-
-                        <p>
-                            <strong>
-                                <u>For Demand Draft:</u>
-                            </strong>
-                            <br />
-                            <strong>Name:</strong> Asha Bhavan Centre <br />
-                            <strong>Bank Name & Address:</strong> Union Bank of India, Uluberia
-                            Branch Biswanath Tower, Majherati, P.O. Jadurberia, Uluberia, 711316
-                            <br />
-                            <strong>Payable at:</strong> Kolkata
-                        </p>
-
-                        <p>
-                            <strong>
-                                <u>For RTGS / NEFT:</u>
-                            </strong>
-                            <br />
-                            <strong>Account Name:</strong> Asha Bhavan Centre <br />
-                            <strong>Account Number:</strong> 590902010002546 <br />
-                            <strong>IFSC Code:</strong> UBIN0559091 <br />
-                            <strong>MICR Code:</strong> 700026050
-                        </p>
-
-                        <div className="subheading">
-                            Process to Send International Donation to Asha Bhavan Centre
-                        </div>
-
-                        <p>
-                            Please find the process of how to send donation. Donor walks into their
-                            bank and has to fill up information in a form, which has 2 parts:
-                        </p>
-
-                        <ol style={{ paddingLeft: "20px" }}>
-                            <li style={{ marginBottom: "20px" }}>
-                                <p>Beneficiary details – here donor has to fill:</p>
-
-                                <div className="table-responsive">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td><strong>Organization Name</strong></td>
-                                                <td>Asha Bhavan Centre</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>Organization Account No</strong></td>
-                                                <td>40099009078 (FCRA Savings Account)</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>Bank Name</strong></td>
-                                                <td>State Bank of India</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>Branch Address</strong></td>
-                                                <td>
-                                                    New Delhi Main Branch, 11, Sansad Marg, New Delhi, 110001,
-                                                    India
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>Bank SWIFT Code</strong></td>
-                                                <td>SBININBB104</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>IFSC Code</strong></td>
-                                                <td>SBIN000691</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </li>
-
-                            <li>
-                                <p>
-                                    Correspondent bank details: Donor will fill the correspondent bank
-                                    depending on the currency they are sending.
-                                </p>
-
-                                <div className="table-responsive">
-                                    <table className="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th>CURRENCY</th>
-                                                <th>BANK NAME</th>
-                                                <th>ACCOUNT NO.</th>
-                                                <th>SWIFT CODE</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td><strong>USD</strong></td>
-                                                <td>Bank of New York, New York, USA</td>
-                                                <td>8900517794</td>
-                                                <td>IRVTUS3N</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td><strong>USD</strong></td>
-                                                <td>JP Morgan Chase Bank, New York, USA</td>
-                                                <td>400913062</td>
-                                                <td>CHASUS33</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td><strong>USD</strong></td>
-                                                <td>Wachovia Bank NA, NY, USA</td>
-                                                <td>2000193008564</td>
-                                                <td>PNBPUS3NNYC</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td><strong>USD</strong></td>
-                                                <td>HSBC Bank, NY, USA</td>
-                                                <td>159549</td>
-                                                <td>MRMDUS33</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td><strong>EUR</strong></td>
-                                                <td>Deutsche Bank AG, Frankfurt, Germany</td>
-                                                <td>9535345</td>
-                                                <td>DEUTDEFF</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td><strong>GBP</strong></td>
-                                                <td>Standard Chartered Bank, London, UK</td>
-                                                <td>1250776501</td>
-                                                <td>SCBLGB2L</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td><strong>GBP</strong></td>
-                                                <td>Lloyd TSB Bank Plc, London, UK</td>
-                                                <td>1024613</td>
-                                                <td>LOYDGB2L</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td><strong>CHF</strong></td>
-                                                <td>Zurcher Kantonal Bank, Zurich, Switzerland</td>
-                                                <td>0700-00045 381</td>
-                                                <td>ZKBKCHZZ80A</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td><strong>JPY</strong></td>
-                                                <td>Bank of India, Tokyo, Japan</td>
-                                                <td>2373003732</td>
-                                                <td>BKIDJPJT</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td><strong>JPY</strong></td>
-                                                <td>Wachovia Bank N.A., Tokyo, Japan</td>
-                                                <td>99815069</td>
-                                                <td>PNBPJPJX</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td><strong>CAD</strong></td>
-                                                <td>Canadian Imperial Bank of Commerce, Toronto, Canada</td>
-                                                <td>1775812</td>
-                                                <td>CIBCCATT</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td><strong>SGD</strong></td>
-                                                <td>DBS Bank Ltd., Singapore</td>
-                                                <td>370034681</td>
-                                                <td>DBSSSGSG</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td><strong>AUD</strong></td>
-                                                <td>Commonwealth Bank of Australia, Sydney, Australia</td>
-                                                <td>06796710000597</td>
-                                                <td>CTBAAU2S</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td><strong>AED</strong></td>
-                                                <td>Standard Chartered Bank, Dubai, UAE</td>
-                                                <td>15422458201AED</td>
-                                                <td>SCBLAEAD</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td><strong>EUR</strong></td>
-                                                <td>COMMERZBANK AG Frankfurt AM Main DE</td>
-                                                <td>400875025900</td>
-                                                <td>COBADEFF</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td><strong>SGD</strong></td>
-                                                <td>Oversea Chinese Banking Corporation Limited Singapore SGSYDNEY</td>
-                                                <td>517784310001</td>
-                                                <td>OCBCSGSG</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td><strong>JPY</strong></td>
-                                                <td>Sumitomo Mitsui Banking Corporation, Tokyo 100-0005</td>
-                                                <td>4904</td>
-                                                <td>SMBCJPJTXXX</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td><strong>HKD</strong></td>
-                                                <td>Jpmorgan Chase Bank N.A., Hong Kong Branch</td>
-                                                <td>6896014096</td>
-                                                <td>CHASHKHHXXX</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td><strong>EUR</strong></td>
-                                                <td>
-                                                    Standard Chartered Bank Germany Branch<br />
-                                                    60486 Frankfurt Am Main<br />
-                                                    Frankfurt Am Main<br />
-                                                    DE<br />
-                                                    Germany
-                                                </td>
-                                                <td>500006901</td>
-                                                <td>SCBLDEFXXXX</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td><strong>AED</strong></td>
-                                                <td>
-                                                    Emirates Nbd Bank PJSC (Head Office)<br />
-                                                    Dubai<br />
-                                                    AE<br />
-                                                    United Arab Emirates
-                                                </td>
-                                                <td>1261168007501</td>
-                                                <td>EBILAEADXXX</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td><strong>USD</strong></td>
-                                                <td>CITIBANK NA</td>
-                                                <td>36317907</td>
-                                                <td>CITIUS33</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td><strong>SEK</strong></td>
-                                                <td>Svenska Handelsbanken AB</td>
-                                                <td></td>
-                                                <td>HANDSESSXXX</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td><strong>DKK</strong></td>
-                                                <td>Svenska</td>
-                                                <td>08803901660</td>
-                                                <td>HANDDKKK</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </li>
-                        </ol>
-                    </div>
+                    <div className="donation_data"
+                        dangerouslySetInnerHTML={{__html: bankInfo || ''}}
+                    />
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => setShowBankModal(false)}>
+                    <Button variant="primary" onClick={() => setShowBankModal(false)}>
                         Close
                     </Button>
                 </Modal.Footer>
@@ -931,7 +677,7 @@ const DonationForm = ({qrcode}:{qrcode:string}) => {
                     <Image src={`${process.env.NEXT_PUBLIC_MEDIA_URL}${qrcode}`} alt="" width={300} height={300} />
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => setShowQRcodeModal(false)}>
+                    <Button variant="primary" onClick={() => setShowQRcodeModal(false)}>
                         Close
                     </Button>
                 </Modal.Footer>

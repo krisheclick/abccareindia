@@ -64,7 +64,7 @@ const Clientpage = () => {
         };
 
         fetchData();
-    }, [setHasLoading]);
+    }, [setHasLoading, setInnerBanner]);
 
     const pageData = data?.page;
     // const customFields = safeParse<PageCustomField>(pageData?.pages_custom_field);

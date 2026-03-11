@@ -37,43 +37,43 @@ const BlogDetailsClient = ({ permalink }: { permalink: string }) => {
 
     const apiBase = process.env.NEXT_PUBLIC_API_URL;
 
-    const fetchData = async () => {
-        try {
-            setHasLoading(true);
-
-            const response = await fetch(`${apiBase}/blog/${permalink}`);
-            const { response_code, response_data } = await response.json();
-
-            if (!response_code) {
-                setNotFound(true);
-                return;
-            }
-
-            const blog = response_data?.blog;
-
-            setData(response_data ?? null);
-
-            setInnerBanner({
-                page_name: blog?.blog_title,
-                page_feature_image:
-                    blog?.blog_banner_image ?? blog?.blog_feature_image,
-            });
-
-        } catch (err: unknown) {
-            console.log(
-                "Blog Details API error:",
-                (err as Error).message
-            );
-        } finally {
-            setHasLoading(false);
-        }
-    };
 
     useEffect(() => {
-        if (permalink) {
+        const fetchData = async () => {
+            try {
+                setHasLoading(true);
+
+                const response = await fetch(`${apiBase}/blog/${permalink}`);
+                const { response_code, response_data } = await response.json();
+
+                if (!response_code) {
+                    setNotFound(true);
+                    return;
+                }
+
+                const blog = response_data?.blog;
+
+                setData(response_data ?? null);
+
+                setInnerBanner({
+                    page_name: blog?.blog_title,
+                    page_feature_image:
+                        blog?.blog_banner_image ?? blog?.blog_feature_image,
+                });
+
+            } catch (err: unknown) {
+                console.log(
+                    "Blog Details API error:",
+                    (err as Error).message
+                );
+            } finally {
+                setHasLoading(false);
+            }
+        };
+        if (permalink && apiBase) {
             fetchData();
         }
-    }, [permalink]);
+    }, [permalink, apiBase, setHasLoading, setInnerBanner]);
 
     if (notFound) {
         return <NotFound />;
@@ -112,7 +112,7 @@ const BlogDetailsClient = ({ permalink }: { permalink: string }) => {
 
                 </Container>
             </Stack>
-            <Counter 
+            <Counter
                 poster={true}
                 className="home_counter"
             />

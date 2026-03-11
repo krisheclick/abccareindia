@@ -33,34 +33,34 @@ interface ReportData {
     report_data?: ReportDataType;
 }
 const SingleReport = ({ permalink }: { permalink: string }) => {
-    const { hasLoading, setHasLoading, setInnerBanner, mediaUrl } = useGlobalContext();
+    const { setHasLoading, setInnerBanner, mediaUrl } = useGlobalContext();
     const [notFound, setNotFound] = useState<boolean>(false)
     const [data, setData] = useState<ReportData | null>(null);
 
-    const fetchData = async () => {
-        try {
-            setHasLoading(true);
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/page/${permalink}`);
-            const { response_code, response_data } = await response.json();
-
-            if (!response_code) {
-                setNotFound(true);
-            }
-
-            setData(response_data ?? undefined);
-            setInnerBanner(response_data.page);
-        } catch (err: unknown) {
-            console.log('Projects Details API data is something wrong: ', (err as Error).message);
-        } finally {
-            setHasLoading(false);
-        }
-    }
-
+    
     useEffect(() => {
+        const fetchData = async () => {
+            try {
+                setHasLoading(true);
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/page/${permalink}`);
+                const { response_code, response_data } = await response.json();
+    
+                if (!response_code) {
+                    setNotFound(true);
+                }
+    
+                setData(response_data ?? undefined);
+                setInnerBanner(response_data.page);
+            } catch (err: unknown) {
+                console.log('Projects Details API data is something wrong: ', (err as Error).message);
+            } finally {
+                setHasLoading(false);
+            }
+        }
         if (permalink) {
             fetchData();
         }
-    }, [permalink]);
+    }, [permalink, setInnerBanner, setHasLoading]);
 
     const report = safeParse<Report[]>(data?.report_data?.report_file);
     const baseUrl = process.env.NEXT_PUBLIC_ENV_URL || "";

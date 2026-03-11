@@ -154,23 +154,23 @@ interface PageData {
 const Homeclintpage = () => {
     const [data, setData] = useState<PageData | null>(null);
     const { setHasLoading } = useGlobalContext();
-    const fetchData = async () => {
-        try {
-            setHasLoading(true);
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/page/home`, { cache: "no-cache" });
-            const { response_data } = await response.json();
-            setData(response_data);
-
-        } catch (err: unknown) {
-            console.log('Home Page API fetch is something wrong: ', (err as Error).message)
-        } finally {
-            setHasLoading(false);
-        }
-    }
-
+    
     useEffect(() => {
+        const fetchData = async () => {
+            try {
+                setHasLoading(true);
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/page/home`, { cache: "no-cache" });
+                const { response_data } = await response.json();
+                setData(response_data);
+    
+            } catch (err: unknown) {
+                console.log('Home Page API fetch is something wrong: ', (err as Error).message)
+            } finally {
+                setHasLoading(false);
+            }
+        }
         fetchData();
-    }, []);
+    }, [setHasLoading]);
 
     // const customFields = typeof data?.pages_custom_field === "string"
     //                     ? JSON.parse(data.pages_custom_field)
@@ -203,7 +203,6 @@ const Homeclintpage = () => {
             />
             <Ourreach
                 sectionData={customFields?.group_name['our-reach-section']}
-                ourReachData={data?.our_reach}
             />
 
             <Counter 

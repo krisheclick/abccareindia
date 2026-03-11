@@ -29,26 +29,26 @@ const AmazingKidsClient = () => {
     const [data, setData] = useState<PageData | null>(null);
     const { setHasLoading, setInnerBanner, commonData } = useGlobalContext();
 
-    const fetchData = async () => {
-        try {
-            setHasLoading(true);
-            const response = await fetch(
-                `${process.env.NEXT_PUBLIC_API_URL}/page/amazing-kids`,
-                { cache: "no-cache" }
-            );
-            const { response_data } = await response.json();
-            setData(response_data);
-            setInnerBanner(response_data.page)
-        } catch (err: unknown) {
-            console.log('amazon kids page data fetch is something wrong: ', (err as Error).message)
-        } finally {
-            setHasLoading(false);
-        }
-    }
-
+    
     useEffect(() => {
+        const fetchData = async () => {
+            try {
+                setHasLoading(true);
+                const response = await fetch(
+                    `${process.env.NEXT_PUBLIC_API_URL}/page/amazing-kids`,
+                    { cache: "no-cache" }
+                );
+                const { response_data } = await response.json();
+                setData(response_data);
+                setInnerBanner(response_data.page)
+            } catch (err: unknown) {
+                console.log('amazon kids page data fetch is something wrong: ', (err as Error).message)
+            } finally {
+                setHasLoading(false);
+            }
+        }
         fetchData();
-    }, [setHasLoading]);
+    }, [setHasLoading, setInnerBanner]);
 
     return (
         <Stack as="section" className="amazing-kids-page">
