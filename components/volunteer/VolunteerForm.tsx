@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from 'react';
 import FormCheckInput from 'react-bootstrap/esm/FormCheckInput';
 import FormCheckLabel from 'react-bootstrap/esm/FormCheckLabel';
 import { useRouter } from 'next/navigation';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 interface EducationDetail {
     qualification: string;
@@ -67,6 +69,7 @@ interface VolunteerFormData {
 
 const VolunteerForm = () => {
     const router = useRouter();
+    const [startDate, setStartDate] = useState<Date | null>(null);
 
     const volunteer_name = useRef<HTMLInputElement>(null);
     const full_address = useRef<HTMLTextAreaElement>(null);
@@ -653,6 +656,16 @@ const VolunteerForm = () => {
                     <Col xl={4} sm={6}>
                         <FormGroup className={Styles.form_group}>
                             <label htmlFor="dob">Date of Birth</label>
+                            {/* <DatePicker
+                                selected={startDate}
+                                onChange={(date) => setStartDate(date)}
+                                dateFormat="dd/MM/yyyy"
+                                placeholderText="Select Date of Birth"
+                                className={`form-control ${Styles.form_controller}`}
+                                maxDate={new Date()}
+                                showYearDropdown
+                                scrollableYearDropdown
+                            /> */}
                             <FormControl
                                 type="date"
                                 name='dob'

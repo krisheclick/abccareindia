@@ -36,6 +36,7 @@ interface ProjectDataType {
 }
 interface ProjectData {
     project?: ProjectDataType;
+    relatedProjects?: ProjectDataType[] | null;
 }
 const SingleProject = ({ permalink }: { permalink: string }) => {
     const { hasLoading, setHasLoading, setInnerBanner, mediaUrl } = useGlobalContext();
@@ -93,6 +94,7 @@ const SingleProject = ({ permalink }: { permalink: string }) => {
     }
     const pageData = data?.project;
     const gallery = safeParse<Gallery[]>(pageData?.project_gallery);
+    
     return (
         <>
             <div className="single-project-page">
@@ -177,7 +179,9 @@ const SingleProject = ({ permalink }: { permalink: string }) => {
                         </Stack>
                     </Container>
                 </Stack>
-                <Projects />
+                <Projects 
+                    relatedProjects={data?.relatedProjects}
+                />
             </div>
 
             <Modal className="customBackdrop" show={showVideo} onHide={handleClose} size="xl" centered backdrop={false}>
