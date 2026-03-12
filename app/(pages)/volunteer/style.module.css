@@ -31,3 +31,7 @@
     box-shadow: 0px 0px 6px #3d3f8266;
     border-radius: 8px;
 }
+.section_content ol{
+    list-style-position: inside;
+    padding: 0;
+}

@@ -43,6 +43,9 @@
   color: #555;
   margin-bottom: 15px;
 }
+.urgentNeeds_content :is(ol, ul){
+  padding: 0;
+}
 .urgentNeeds_content li{
     position: relative;
     z-index: 1;

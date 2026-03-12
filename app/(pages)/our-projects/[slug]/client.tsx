@@ -17,6 +17,7 @@ import Styles from "@/components/project/style.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { normalizeYouTubeUrl } from "@/utlis/videoUrl";
+import Link from "next/link";
 interface Gallery {
     upload_type?: string;
     file_name?: string;
@@ -176,6 +177,14 @@ const SingleProject = ({ permalink }: { permalink: string }) => {
                                 className={Styles.paragraph}
                                 dangerouslySetInnerHTML={{__html: pageData?.project_description || ''}}
                             />
+                            <div className={Styles.btn_wrap}>
+                                <Link 
+                                    href={`${process.env.NEXT_PUBLIC_ENV_URL}/donation`}
+                                    className="btn btn-primary"
+                                >
+                                    Donate Now
+                                </Link>
+                            </div>
                         </Stack>
                     </Container>
                 </Stack>

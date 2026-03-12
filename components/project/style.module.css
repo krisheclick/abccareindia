@@ -162,3 +162,36 @@
 	font-weight: 600;
 	color: #000;
 }
+.btn_wrap{
+	text-align: center;
+}
+.btn_wrap a{
+	animation: 2s ease-out infinite rjPulse;
+}
+@-webkit-keyframes rjPulse {
+  0% {
+    -webkit-box-shadow: 0 0 #d4af37;
+  }
+
+  70% {
+    -webkit-box-shadow: 0 0 0 10px #cca92c00;
+  }
+
+  100% {
+    -webkit-box-shadow: 0 0 #cca92c00;
+  }
+}
+
+@keyframes rjPulse {
+  0% {
+    box-shadow: 0 0 #d4af37;
+  }
+
+  70% {
+    box-shadow: 0 0 0 10px #cca92c00;
+  }
+
+  100% {
+    box-shadow: 0 0 #cca92c00;
+  }
+}
