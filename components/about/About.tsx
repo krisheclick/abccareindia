@@ -5,6 +5,8 @@ import Counter from '@/components/common/Counter';
 import Image from 'next/image';
 import { useState } from 'react';
 import { normalizeYouTubeUrl } from '@/utlis/videoUrl';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlay } from '@fortawesome/free-solid-svg-icons';
 interface UnderBanner {
     video_thumb_nail_image?: string;
     upload_video_file?: string;
@@ -31,19 +33,34 @@ const About = ({ posterPart, content }: PageProps) => {
     return (
         <div className={`pt_80 pb_100 ${Styles.abtinr}`}>
             <Container>
-                <Row className="align-items-center">
+                <Row className="align-items-center gx-xl-5">
                     <Col lg={5}>
-                        <figure 
-                            className={Styles.abtinlimg}
-                            onClick={() => { 
-                                handleVideoOpen(posterPart?.video_file_link || '');
-                            }}
+                        <figure
+                            className={Styles.multiPoster}
+                            style={{"--poster-bg": "url('/assets/images/dot.webp') no-repeat top left / contain" } as React.CSSProperties}
                         >
+                            <div className={Styles.bigThumb}>
+                                <Image
+                                    src={`${process.env.NEXT_PUBLIC_MEDIA_URL}/uploads/page_image/${posterPart?.video_thumb_nail_image}`}
+                                    alt=""
+                                    width={720}
+                                    height={600}
+                                />
+                                <span
+                                    className={Styles.player}
+                                    onClick={() => {
+                                        handleVideoOpen(posterPart?.video_file_link || '');
+                                    }}
+                                >
+                                    <FontAwesomeIcon icon={faPlay} />
+                                </span>
+                            </div>
                             <Image
-                                src={`${process.env.NEXT_PUBLIC_MEDIA_URL}/uploads/page_image/${posterPart?.video_thumb_nail_image}`}
+                                src={`${process.env.NEXT_PUBLIC_MEDIA_URL}/uploads/page_image/${posterPart?.upload_feature_image}`}
                                 alt=""
-                                width={720}
-                                height={600}
+                                width={360}
+                                height={240}
+                                className={Styles.small_poster}
                             />
                         </figure>
                     </Col>
