@@ -86,7 +86,7 @@ const ChildEmpower = ({ sectionData, messages }: CharitableMessageProps) => {
 
                         <div className={Styles.controls}>
                             <button
-                                className={`${Styles.prev} ${isBeginning ? Styles.disabled : ""}`}
+                                className={`swiper-nav-button-prev ${Styles.next ?? ''} ${isEnd ? Styles.disabled ?? '' : ""}`}
                                 onClick={() => swiperRef.current?.slidePrev()}
                                 disabled={isBeginning}
                                 aria-label="Previous Button"
@@ -95,7 +95,7 @@ const ChildEmpower = ({ sectionData, messages }: CharitableMessageProps) => {
                             </button>
 
                             <button
-                                className={`${Styles.next} ${isEnd ? Styles.disabled : ""}`}
+                                className={`swiper-nav-button-next ${Styles.next ?? ''} ${isEnd ? Styles.disabled ?? '' : ""}`}
                                 onClick={() => swiperRef.current?.slideNext()}
                                 disabled={isEnd}
                                 aria-label="Next Button"

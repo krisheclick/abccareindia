@@ -16,6 +16,7 @@
     font-size: 16px;
     line-height: 1.8;
     font-weight: 400;
+    max-width: 720px;
 }
 .description p{
     font: inherit;
@@ -93,33 +94,45 @@
     width: 100%;
 }
 .controls button{
-    --size: 48px;
-    flex-shrink: 0;
-    width: var(--size);
-    height: var(--size);
-    background: #ffffff;
-    border: 1px solid #E9E9E9;
-    border-radius: 100%;
-    box-shadow: 1px 14px 37px 0px #0000001C;
-    cursor: pointer;
-    -moz-transition: all 300ms ease-in-out;
-    -webkit-transition: all 300ms ease-in-out;
-    transition: all 300ms ease-in-out;
+    position: static;
+    transform: none;
 }
-.controls button[disabled]{
-    opacity: .5;
-    cursor: not-allowed;
-}
-.controls button:hover{
-    background: #2B316E;
-    border-color: #2B316E;
-    color: #ffffff;
-}
-
 /* Skeleton */
 .skeleton_small_title{
     height: 24px;
 }
 .skeleton_title{
     height: 36px;
+}
+/* 1200px */
+@media only screen and (max-width: 1399px){
+    .giftImpact {
+        padding: 60px 0 40px;
+    }
+    .small_title {
+        margin-bottom: 4px;
+        font-size: 20px;
+    }
+    .slide_item{
+        --round:6px;
+        padding: 9px;
+    }
+    .video_duration{
+        font-size: 15px;
+        bottom: 10px;
+        right: 10px;
+    }
+}
+
+/* 992px */
+@media only screen and (max-width: 1199px){
+    .controls{
+        display: none;
+    }
+}
+/* 576px */
+@media only screen and (max-width: 767px){
+    .title *{
+        display: initial;
+    }
 }

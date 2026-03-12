@@ -1,74 +1,32 @@
 .donation_section {
-    width: 100%;
-    padding: 120px 0;
-    background: #ffffff;
-}
-.donation_section .container {
-    width: 80%;
-    margin: 0 auto;
+    padding: 100px 0;
 }
 .info_box {
-  padding: 30px 40px 30px 120px;
-  color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  padding: 30px;
+  background: #f3f3f3;
+  border-left: 80px solid #3c44a7;
+}
+.info_box.donateBox {
+  border-color: #d8b01f;
+}
+.smallsubhead {
+	color: #3b3b3b;
+	font-size: 22px;
+	line-height: 1.35em;
+	font-weight: 600;
 }
 .info_box h4 {
-    margin-bottom: 15px;
-    font-size: 45px;
-    line-height: 55px;
+    font: 700 45px / 1.2 "Oswald", sans-serif;
     color: #000000;
-    font-family: "Oswald", sans-serif;
     text-transform: uppercase;
+    margin-bottom: 15px;
 }
-.volunteerBox p{
+.info_box p{
     color: #000000;
 }
 .volunteerBox h4{
     color: #3c44a7;
 }
-.smallsubhead h4{
-    color: #000000;
-} 
-.volunteerBox{
-  background-color: #f3f3f3;
-  position: relative;
-}
-.smallsubhead{
-    color: #3B3B3B;
-    font-size: 22px;
-    line-height: 30px;
-    font-weight: 600;
-}
-.volunteerBox::before{
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    bottom: 0;
-    width: 100px;
-    background: #3C44A7;
-    content: ""; 
-}
-.donateBox::before{
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    bottom: 0;
-    width: 100px;
-    background: #D8B01F;
-    content: ""; 
-} 
-.donateBox {
-  background-color: #f3f3f3;
-  color: #000000;
-  position: relative;
-} 
-.donateBox p{
-    color: #000000;
-} 
 .btnLink {
   text-decoration: none;
   text-transform: uppercase;
@@ -85,4 +43,50 @@
 }
 .volunteerBox .btnLink{
     color: #3c44a7;
+}
+/* 1200px */
+@media only screen and (max-width: 1399px){
+    .donation_section{
+        padding-block: 70px;
+    }
+    .smallsubhead{
+        font-size: 20px;
+    }
+    .info_box {
+        border-left-width: 48px;
+        padding: 30px 20px;
+    }
+    .info_box h4 {
+        font-size: 38px;
+    }
+}
+
+/* 768px */
+@media only screen and (max-width: 991px){
+    .donation_section{
+        padding-block: 50px;
+    }
+    .smallsubhead{
+        font-size: 18px;
+    }
+}
+/* 576px */
+@media only screen and (max-width: 767px){
+    .info_box h4 {
+        font-size: 32px;
+    }
+}
+/* 576px */
+@media only screen and (max-width: 450px){
+    .donation_section{
+        padding-block: 40px;
+    }
+    .info_box{
+        border-left-width: 24px;
+        padding: 24px 20px;
+    }
+    .info_box{
+        margin-bottom: 10px;
+        font-size: 30px;
+    }
 }

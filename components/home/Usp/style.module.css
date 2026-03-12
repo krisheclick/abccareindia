@@ -48,9 +48,45 @@
 .card_content{
   font-weight: 400;
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: 1.7;
 }
 .card_content p{
   font-size: inherit;
+  line-height: inherit;
   color: inherit;
+}
+
+/* 1400px */
+@media only screen and (max-width: 1399px){
+  .usp_section{
+    padding: 4rem 0px;
+  }
+  .card{
+    padding: 24px 16px;
+  }
+  .cardImage{
+    max-width: 60px;
+    margin-bottom: 12px;
+  }
+  .card h3{
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+  .card_content{
+    font-size: 15px;
+  }
+}
+
+/* 480px */
+@media only screen and (max-width: 575px){
+  .usp_section{
+    padding: 3rem 0px;
+  }
+}
+
+/* 360px */
+@media only screen and (max-width: 440px){
+  .usp_section{
+    padding: 2.5rem 0px;
+  }
 }

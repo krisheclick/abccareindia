@@ -13,3 +13,9 @@
     background: #2B316E80;
     z-index: -1;
 }
+/* 1200px */
+@media only screen and (max-width: 1399px){
+    .volunteer{
+        min-height: 360px;
+    }
+}

@@ -20,7 +20,7 @@ const USP = ({ usp }: USPProps) => {
     return (
         <div className={Styles.usp_section}>
             <Container>
-                <Row className='g-4'>
+                <Row className={`g-4 ${Styles.row ?? ''}`}>
                     {usp.map((item, index) => (
                         <Col lg={3} sm={6} key={index} className={Styles.cardItem}>
                             <div className={Styles.card}>

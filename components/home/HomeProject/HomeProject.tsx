@@ -67,7 +67,7 @@ const HomeProject = ({ sectionData, projects }: HomeProjectProps) => {
         <Stack className={`d-block ${Styles.projects}`}>
             <Container fluid className='p-0'>
                 <Stack className={`d-block text-center ${Styles.projects_header}`}>
-                    <h2 className={Styles.heading}>{sectionData.project_title}</h2>
+                    <h2 className={`cmn_black_heading big ${Styles.heading}`}>{sectionData.project_title}</h2>
                     <div
                         className={Styles.headDescription}
                         dangerouslySetInnerHTML={{ __html: sectionData.project_subtitle || '' }}
@@ -91,7 +91,7 @@ const HomeProject = ({ sectionData, projects }: HomeProjectProps) => {
                 >
                     {projects.map((item, index) => (
                         <SwiperSlide key={index} className={Styles.item}>
-                            <Row className='gx-0 align-items-center'>
+                            <Row className={`gx-0 align-items-center ${Styles.row}`}>
                                 <Col lg={6}>
                                     <Card className={Styles.card}>
                                         <CardBody className={Styles.cardBody}>
@@ -119,7 +119,7 @@ const HomeProject = ({ sectionData, projects }: HomeProjectProps) => {
                                         </CardBody>
                                         <div className={Styles.controls}>
                                             <button
-                                                className={`${Styles.prev} ${isBeginning ? Styles.disabled : ""}`}
+                                                className={`swiper-nav-button-prev ${Styles.prev ?? ''} ${isBeginning ? Styles.disabled ?? '' : ""}`}
                                                 onClick={() => swiperRef.current?.slidePrev()}
                                                 disabled={isBeginning}
                                                 aria-label="Previous Button"
@@ -128,7 +128,7 @@ const HomeProject = ({ sectionData, projects }: HomeProjectProps) => {
                                             </button>
 
                                             <button
-                                                className={`${Styles.next} ${isEnd ? Styles.disabled : ""}`}
+                                                className={`swiper-nav-button-next ${Styles.next ?? ''} ${isEnd ? Styles.disabled ?? '' : ""}`}
                                                 onClick={() => swiperRef.current?.slideNext()}
                                                 disabled={isEnd}
                                                 aria-label="Next Button"

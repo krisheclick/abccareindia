@@ -6,31 +6,27 @@
   background: #3d3f82;
   color: #fff;
   position: relative;
-  padding: 10px 60px 10px;
+  padding: 20px 60px;
   display: flex;
   align-items: center;
   justify-content: end;
   gap: 48px;
 }
-
 .leftContent {
   max-width: 500px;
 }
-
 .smallTitle {
   margin-bottom: 10px;
   font-size: 35px;
   font-weight: 300;
   color: #fff;
 }
-
 .mainTitle {
   font-size: 40px;
   line-height: 1.25;
   font-weight: 600;
   color: inherit;
 }
-
 .mainTitle span {
   color: #ffcc33;
   font-size: 1.5em;
@@ -40,7 +36,6 @@
   font-size: 1.11em;
   font-style: normal;
 }
-
 .donateBtn {
   display: inline-block;
   margin-top: 30px;
@@ -58,7 +53,6 @@
 .donateBtn:hover{
   background: #f4f4f4;
 }
-
 /* QR */
 .qrBox {
   background: #fff;
@@ -68,14 +62,12 @@
   text-align: center;
   color: #000;
 }
-
 .qrBox img{
   width: 100% !important;
   height: 100% !important;
   object-fit: contain;
   position: static !important;
 }
-
 .right {
   background: #f4f4f4;
   position: relative;
@@ -83,13 +75,11 @@
   align-items: center;
   justify-content: space-between;
 }
-
 .rightContent {
   max-width: 480px;
   z-index: 2;
-  padding: 12px 0px 12px 50px;
+  padding: 20px 0px 20px 50px;
 }
-
 .right h2 {
   font-size: 45px;
   font-weight: 700;
@@ -131,4 +121,60 @@
 	position: static !important;
 	transform: scaleX(-1) !important;
   max-height: 426px;
+}
+/* 1400px */
+@media only screen and (max-width: 1600px){
+  .mainTitle{
+    font-size: 36px;
+  }
+}
+/* 1200px */
+@media only screen and (max-width: 1399px){
+  .left{
+    padding-inline: 36px;
+    gap: 24px;
+  }
+  .smallTitle{
+    font-size: 30px;
+  }
+  .mainTitle{
+    font-size: 28px;
+  }
+  .donateBtn, .secondaryBtn{
+    margin-top: 20px;
+    padding: 10px 24px;
+    font-size: 15px;
+  }
+  .right{
+    min-height: 360px;
+  }
+  .rightContent{
+    padding-left: 36px;
+  }
+  .right h2{
+    font-size: 36px;
+  }
+}
+/* 992 */
+@media only screen and (min-width: 992px) and (max-width: 1199px){
+  .left {
+    padding-inline: 20px;
+  }
+  .mainTitle {
+    font-size: 24px;
+  }
+  .rightContent{
+    max-width: 250px;
+    padding-left: 20px;
+  }
+  .right h2{
+    font-size: 26px;
+  }
+}
+/* 768px */
+@media only screen and (max-width: 991px){
+  .left{
+    justify-content: space-between;
+    padding-block: 30px;
+  }
 }

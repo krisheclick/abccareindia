@@ -9,9 +9,6 @@
     padding-inline: var(--padding);
 }
 .heading {
-	margin-bottom: .5rem;
-	font-size: clamp(1.5rem, 3vw, 2.5rem);
-	font-weight: 700;
     color: #000;
 }
 .headDescription {
@@ -54,6 +51,12 @@
     margin-bottom: 16px;
     font-weight: 400;
 }
+.cardDescription{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+}
 .cardDescription *:first-child{
     font-weight: 300;
     font-size: 1.15em;
@@ -80,37 +83,6 @@
 .card_button:hover{
     background: #EBC436;
     color: #000000;
-}
-.controls button{
-    --size: 48px;
-    width: var(--size);
-    height: var(--size);
-    background: #ffffff;
-    border: 1px solid #E9E9E9;
-    border-radius: 100%;
-    box-shadow: 1px 14px 37px 0px #0000001C;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    -moz-transition: all 300ms ease-in-out;
-    -webkit-transition: all 300ms ease-in-out;
-    transition: all 300ms ease-in-out;
-}
-.controls button[disabled]{
-    opacity: .5;
-    cursor: not-allowed;
-}
-.controls button:hover{
-    background: #2B316E;
-    border-color: #2B316E;
-    color: #ffffff;
-}
-.controls .prev{
-    left: calc(-.5 * var(--size));
-}
-.controls .next{
-    right: calc(-.5 * var(--size));
 }
 .videoPoster {
 	padding-top: 72%;
@@ -167,4 +139,53 @@
 .project_button:hover{
     background: #2B316E;
     color: #ffffff;
+}
+
+/* 1200px */
+@media only screen and (max-width: 1399px){
+    .projects{
+        padding-block: 60px;
+    }
+    .card{
+        padding: 30px;
+    }
+    .cardTitle{
+        font-size: 28px;
+    }
+    .card_button {
+        margin-top: 20px;
+        padding: 10px 24px;
+        font-size: 14px;
+    }
+    .videoIcon{
+        --size: 60px;
+    }
+    .buttonWrap{
+        margin-top: 50px;
+    }
+    .project_button {
+        padding: 12px 30px;
+        font-size: 16px;
+    }
+}
+
+/* 768px */
+@media only screen and (max-width: 991px){
+    .row{
+        flex-direction: column-reverse;
+    }
+    .card {
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0 48px;
+    }
+    .controls .prev{
+        left: 10px;
+    }
+    .controls .next{
+        right: 10px;
+    }
+    .videoPoster{
+        margin: 0;
+    }
 }

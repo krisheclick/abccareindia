@@ -62,8 +62,8 @@ const SuccessStory = ({ data }: { data?: SuccessStoryItem[] | null; }) => {
         <>
             <Stack as="section" className={Styles.giftImpact}>
                 <Container>
-                    <Row>
-                        <Col lg={4}>
+                    <Row className={`gy-4 ${Styles.row ?? ''}`}>
+                        <Col xl={4}>
 
                             {!hasLoading && sectionData ? (
                                 <Stack className={Styles.content}>
@@ -98,13 +98,14 @@ const SuccessStory = ({ data }: { data?: SuccessStoryItem[] | null; }) => {
                                 </Stack>
                             )}
                         </Col>
-                        <Col lg={8}>
+                        <Col xl={8}>
                             <div className={Styles.slider_wrapper}>
                                 <Swiper
                                     className={`gift_slider ${Styles.gift_slider}`}
-                                    navigation={false}
-                                    slidesPerView={slidesView}
-                                    loop={totalSlides > slidesView}
+                                    navigation
+                                    slidesPerView={Math.min(mediaItems?.length || 0, 3)}
+                                    loop={false}
+                                    // loop={(mediaItems?.length || 0) > 3}
                                     spaceBetween={20}
                                     modules={[FreeMode, Navigation]}
                                     onSwiper={(swiper) => {
@@ -117,6 +118,21 @@ const SuccessStory = ({ data }: { data?: SuccessStoryItem[] | null; }) => {
                                             setIsBeginning(swiper.isBeginning);
                                             setIsEnd(swiper.isEnd);
                                         });
+                                    }}
+                                    breakpoints={{
+                                        0: {
+                                            slidesPerView: Math.min(mediaItems?.length || 0, 1)
+                                        },
+                                        575: {
+                                            slidesPerView: Math.min(mediaItems?.length || 0, 2)
+                                        },
+                                        992: {
+                                            slidesPerView: Math.min(mediaItems?.length || 0, 3)
+                                        },
+                                        1200: {
+                                            slidesPerView: Math.min(mediaItems?.length || 0, 3),
+                                            navigation: false
+                                        }
                                     }}
                                 >
                                     {mediaItems?.map((item, index) => (
@@ -143,7 +159,7 @@ const SuccessStory = ({ data }: { data?: SuccessStoryItem[] | null; }) => {
                                 </Swiper>
                                 <div className={Styles.controls}>
                                     <button
-                                        className={`${Styles.prev} ${isBeginning ? Styles.disabled : ""}`}
+                                        className={`swiper-nav-button-prev ${Styles.prev ?? ''} ${isBeginning ? Styles.disabled ?? '' : ""}`}
                                         onClick={() => swiperRef.current?.slidePrev()}
                                         disabled={isBeginning}
                                         aria-label="Previous Button"
@@ -152,7 +168,7 @@ const SuccessStory = ({ data }: { data?: SuccessStoryItem[] | null; }) => {
                                     </button>
 
                                     <button
-                                        className={`${Styles.next} ${isEnd ? Styles.disabled : ""}`}
+                                        className={`swiper-nav-button-next ${Styles.next ?? ''} ${isEnd ? Styles.disabled ?? '' : ""}`}
                                         onClick={() => swiperRef.current?.slideNext()}
                                         disabled={isEnd}
                                         aria-label="Next Button"

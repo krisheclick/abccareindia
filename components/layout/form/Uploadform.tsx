@@ -137,8 +137,6 @@ const Uploadform = () => {
                             onChange={formHandelClick}
                         />
                     </label>
-
-                    {formError.cv_path && <div className={`form-error text-danger ${Styles.error}`} style={{ backgroundImage: "url('/assets/images/error_icon.webp')" }}>{formError.cv_path}</div>}
                 </FormGroup>
 
                 <Button
@@ -148,6 +146,8 @@ const Uploadform = () => {
                 >
                     {isSubmit ? "Submitting..." : "Submit Now"}
                 </Button>
+                
+                {formError.cv_path && <div className={`form-error text-danger ${Styles.error}`} style={{ backgroundImage: "url('/assets/images/error_icon.webp')" }}>{formError.cv_path}</div>}
 
                 {isSubmit && (
                     <Alert variant="warning" className="mt-4">

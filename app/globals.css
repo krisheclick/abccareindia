@@ -30,15 +30,9 @@
 	margin: 0;
 	padding: 0;
 }
-img, svg, video, canvas, audio, iframe, embed, object {
-	vertical-align: middle;
-	display: block;
+html, body{
+  overflow-x: hidden;
 }
-img, video {
-	max-width: 100%;
-	height: auto;
-}
-
 body{
   width: 100%;
   font-family: "Open Sans", sans-serif;
@@ -48,6 +42,24 @@ body{
   line-height: 28px; 
   margin: 0;
   padding: 0;
+}
+img, svg, video, canvas, audio, iframe, embed, object {
+	vertical-align: middle;
+	display: block;
+}
+img, video {
+	max-width: 100%;
+	height: auto;
+}
+.stickyPoster{
+  position: sticky;
+  top: 10px;
+}
+.sticky .stickyPoster{
+  top: 110px;
+}
+.rowGap{
+  row-gap: var(--bs-gutter-x);
 }
 p{
   color: #282828;
@@ -61,30 +73,24 @@ h1, h2, h3, h4, h5, h6{
   font-weight: 600;
   text-transform: capitalize;
 }
-.cmn_black_heading {
+.cmn_black_heading, .cmn_white_heading{
   color: #222222;
   font-size: 40px;
-  line-height: 48px;
+  line-height: 1.2em;
   font-weight: 700;
   text-transform: capitalize;
-  margin-bottom: 25px;
+  margin-bottom: 24px;
 }
+.cmn_white_heading{ 
+  color: #ffffff;
+} 
 .cmn_black_heading span{
   color: #2c3070;
 }
 .cmn_white_heading.big,
 .cmn_black_heading.big{
   font-size: 55px;
-  line-height: 65px;
 }
-.cmn_white_heading{ 
-  color: #ffffff;
-  font-size: 40px;
-  line-height: 48px;
-  font-weight: 700;
-  text-transform: capitalize;
-  margin-bottom: 25px; 
-} 
 .paragraph{
   color: #222222;
   font-weight: 500;
@@ -370,10 +376,12 @@ a:hover{
   background: #F8F9FA;
 }
 /* Custom Arrow Style */
+.swiper-button-next:empty, .swiper-button-prev:empty{
+  display: none;
+}
 .swiper-button-next,
 .swiper-button-prev {
-  width: 47px;
-  height: 47px;
+  --swiper-navigation-size: 44px;
   background: #fff;
   border-radius: 50%;
   border: 1px solid #E9E9E9;
@@ -413,6 +421,38 @@ a:hover{
 :is(.swiper-button-prev, .swiper-button-next).swiper-button-disabled{
   pointer-events: inherit !important;
   cursor: not-allowed !important;
+}
+[class*="swiper-nav-button-"]{
+  --size: 48px;
+  flex-shrink: 0;
+  width: var(--size);
+  height: var(--size);
+  background: #ffffff;
+  border: 1px solid #E9E9E9;
+  border-radius: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: 1px 14px 37px 0px #0000001C;
+  cursor: pointer;
+  -moz-transition: all 300ms ease-in-out;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+.swiper-nav-button-prev{
+  left: calc(-.5 * var(--size));
+}
+.swiper-nav-button-next{
+  right: calc(-.5 * var(--size));
+}
+[class*="swiper-nav-button-"]:hover{
+  background: #2B316E;
+  border-color: #2B316E;
+  color: #ffffff;
+}
+[class*="swiper-nav-button-"][disabled]{
+  opacity: .5;
+  cursor: not-allowed;
 }
 /**TESTIMONIAL_SECTION_ENDS**/ 
 
@@ -519,4 +559,63 @@ a:hover{
   list-style: auto;
   display: grid;
   row-gap: 20px;
+}
+
+/* 1400px */
+@media only screen and (max-width: 1600px){
+  .cmn_white_heading.big, .cmn_black_heading.big {
+    font-size: 48px;
+  }
+  p{
+    font-size: 16px;
+  }
+}
+/* 1200px */
+@media only screen and (max-width: 1399px){
+  body{
+    font-size: 16px;
+  }
+  .cmn_black_heading, .cmn_white_heading{
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+  .cmn_white_heading.big, .cmn_black_heading.big{
+    font-size: 42px;
+  }
+}
+/* 992px */
+@media only screen and (max-width: 1199px){
+  .swiper-button-next, .swiper-button-prev{
+    --swiper-navigation-size: 36px;
+  }
+  [class*="swiper-nav-button-"]{
+    --size: 36px;
+  }
+  .swiper-button-next svg.swiper-navigation-icon, .swiper-button-prev svg.swiper-navigation-icon {
+    width: 6px;
+  }
+}
+/* 768px */
+@media only screen and (max-width: 991px){
+  .cmn_white_heading.big, .cmn_black_heading.big{
+    font-size: 36px;
+    margin-bottom: 16px;
+  }
+}
+/* 576px */
+@media only screen and (max-width: 767px){
+  .cmn_white_heading.big, .cmn_black_heading.big{
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+  p {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+}
+/* 360px */
+@media only screen and (max-width: 450px){
+  .cmn_white_heading.big, .cmn_black_heading.big{
+    font-size: 30px;
+  }
 }

@@ -55,26 +55,8 @@
     margin-bottom: -20px;
 }
 .controls button{
-    --size: 48px;
-    width: var(--size);
-    height: var(--size);
-    background: #ffffff;
-    border: 1px solid #E9E9E9;
-    border-radius: 100%;
-    box-shadow: 1px 14px 37px 0px #0000001C;
-    cursor: pointer;
-    -moz-transition: all 300ms ease-in-out;
-    -webkit-transition: all 300ms ease-in-out;
-    transition: all 300ms ease-in-out;
-}
-.controls button[disabled]{
-    opacity: .5;
-    cursor: not-allowed;
-}
-.controls button:hover{
-    background: #2B316E;
-    border-color: #2B316E;
-    color: #ffffff;
+    position: static;
+    transform: none;
 }
 .card{
     overflow: hidden;
@@ -143,4 +125,19 @@
     font: inherit;
     margin: inherit;
     margin-bottom: 16px;
+}
+/* 1200px */
+@media only screen and (max-width: 1399px){
+    .section_stack{
+        padding-block: 60px;
+    }
+    .heading{
+        font-size: 36px;
+    }
+    .description{
+        font-size: 18px;
+    }
+    .childEmpower_slider{
+        margin-top: 48px;
+    }
 }

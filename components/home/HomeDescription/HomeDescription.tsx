@@ -33,13 +33,11 @@ export default function HomeDescription({ aboutSection }: AboutInfo) {
         <section className={Styles.posterAd}>
             <Container fluid className='px-0'>
                 <Row className="g-0 align-items-stretch">
-
-                    {/* LEFT SIDE */}
                     <Col lg={6} className={Styles.left}>
                         {!hasLoading ? (
                             <>
                                 <div className={Styles.leftContent}>
-                                    <h4 className={`wow animate__lightSpeedInRight ${Styles.smallTitle}`}>{aboutSection.about_subtitle}</h4>
+                                    <div className={`wow animate__lightSpeedInRight ${Styles.smallTitle}`}>{aboutSection.about_subtitle}</div>
 
                                     <h1 className={`wow animate__fadeInUp ${Styles.mainTitle}`}
                                         dangerouslySetInnerHTML={{
@@ -68,8 +66,7 @@ export default function HomeDescription({ aboutSection }: AboutInfo) {
                         )}
 
                     </Col>
-
-                    {/* RIGHT SIDE */}
+                    
                     <Col lg={6} className={Styles.right}>
                         <div className={Styles.rightContent}>
                             <div

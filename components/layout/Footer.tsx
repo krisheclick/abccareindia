@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import Uploadform from './form/Uploadform';
 import Link from 'next/link';
+import FooterAccordion from './FooterAccordion';
 
 interface MenuItem {
     url?: string;
@@ -22,6 +23,7 @@ const Footer = () => {
     const { setHasLoading, commonData } = useGlobalContext();
     const [quickMenu, setQuickMenu] = useState<MenuItem[] | null>(null);
     const [relativeMenu, setRelativeMenu] = useState<MenuItem[] | null>(null);
+
     const fetchData = async () => {
         try {
             setHasLoading(true);
@@ -40,8 +42,8 @@ const Footer = () => {
         }
     }
 
+    // Scroll to Top
     useEffect(() => {
-
         const handleScroll = () => {
             setVisible(window.scrollY > 200);
         };
@@ -57,8 +59,7 @@ const Footer = () => {
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
-
-
+    
     const pathName = usePathname();
     const innerLocation = (pathName === '/');
     return (
@@ -66,7 +67,7 @@ const Footer = () => {
             {!innerLocation && <Donation />}
             <footer role="contentinfo" className='footer_sec'>
                 <Container>
-                    <Row>
+                    <Row className='rowGap'>
                         <Col xl={3} lg={4}>
                             <div className='ftr_cmnbx'>
                                 <div className='ftrcmnheading'>Contact Info</div>
@@ -82,37 +83,27 @@ const Footer = () => {
                                 </ul>
                             </div>
                         </Col>
-                        <Col xl={2} lg={4}>
-                            <div className='ftr_cmnbx'>
-                                <div className='ftrcmnheading'>Quick Links</div>
-                                {quickMenu && quickMenu.length > 0 && (
-                                    <ul className='ftr_linkscmn'>
-                                        {quickMenu.map((item, index) => (
-                                            <li key={index}>
-                                                <Link href={`${appLink}/${item.url}` || ''}>
-                                                    {item.label}
-                                                </Link>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                )}
-                            </div>
+                        <Col xl={2} lg={4} sm={6}>
+                            <FooterAccordion title="Quick Links">
+                                {quickMenu?.map((item, index) => (
+                                    <li key={index}>
+                                        <Link href={`${appLink}/${item.url}`}>
+                                            {item.label}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </FooterAccordion>
                         </Col>
-                        <Col xl={2} lg={4}>
-                            <div className='ftr_cmnbx'>
-                                <div className='ftrcmnheading'>Related Links</div>
-                                {relativeMenu && relativeMenu.length > 0 && (
-                                    <ul className='ftr_linkscmn'>
-                                        {relativeMenu.map((menu, index) => (
-                                            <li key={index}>
-                                                <Link href={`${appLink}/${menu.url}` || ''}>
-                                                    {menu.label}
-                                                </Link>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                )}
-                            </div>
+                        <Col xl={2} lg={4} sm={6}>
+                            <FooterAccordion title="Related Links">
+                                {relativeMenu?.map((item, index) => (
+                                    <li key={index}>
+                                        <Link href={`${appLink}/${item.url}`}>
+                                            {item.label}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </FooterAccordion>
                         </Col>
                         <Col xl={5} lg={12}>
                             <div className='ftr_cmnbx'>
@@ -130,10 +121,7 @@ const Footer = () => {
                             {commonData?.site_footer_copy_right}
                         </div>
                         <Social className='ftrcopylink' />
-
-                        <div className='footer_copytext'>
-                            <div dangerouslySetInnerHTML={{ __html: commonData?.site_footer_design_developed_by || '', }} />
-                        </div>
+                        <div className='footer_copytext' dangerouslySetInnerHTML={{ __html: commonData?.site_footer_design_developed_by || '', }} />
                     </div>
 
                 </Container>

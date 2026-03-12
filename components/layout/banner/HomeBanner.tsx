@@ -6,7 +6,6 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import { normalizeYouTubeUrl } from '@/utlis/videoUrl';
 import { useGlobalContext } from '@/context/global_context';
-import Image from 'next/image';
 import { useWOW } from "@moondev/next-wow";
 import Styles from "./style.module.css";
 
@@ -36,12 +35,7 @@ const HomeBanner = ({ banner }: { banner?: BannerItem | null }) => {
     };
 
     useWOW({ animateClass: "animate__animated" });
-    // let bannerPoster = "/assets/images/home_banner.webp";
-    // { hasLoading ? (
-    //         bannerPoster = `${mediaUrl}${banner?.banner_link}`;
-    // ) : (
-    // bannerPoster = "/assets/images/home_banner.webp";
-    // )}
+    
     const bannerImage =  banner?.banner_link && !hasLoading ? `${mediaUrl}${banner.banner_link}` : "/assets/images/home_banner.webp";
     return (
         <>
@@ -53,7 +47,7 @@ const HomeBanner = ({ banner }: { banner?: BannerItem | null }) => {
             >
                 {!hasLoading ? (
                     <>
-                        <div className={Styles.bannertext}>
+                        <Stack className={Styles.bannertext}>
                             <Container>
                                 <div className="wow animate__fadeInRight" data-wow-delay="1s">
                                     <div className={`${Styles.inrbnrhead} ${Styles.homebnrhead}`}>
@@ -61,20 +55,20 @@ const HomeBanner = ({ banner }: { banner?: BannerItem | null }) => {
                                             dangerouslySetInnerHTML={{ __html: banner?.banner_name ?? "" }}
                                             style={{ fontStyle: "normal" }}
                                         />  {banner?.banner_file_link && (
-                                            <button
-                                                type="button"
+                                            <span
+                                                role="button"
                                                 onClick={() => handleOpenVideo(banner.banner_file_link ?? '')}
                                                 className={`wow animate__heartBeat ${Styles.playBtn}`}
                                                 data-wow-delay="2.5s"
                                                 aria-label="Video Play Button"
                                             >
                                                 <FontAwesomeIcon icon={faPlay} />
-                                            </button>
+                                            </span>
                                         )}
                                     </div>
                                 </div>
                             </Container>
-                        </div>
+                        </Stack>
                     </>
 
                 ) : (
