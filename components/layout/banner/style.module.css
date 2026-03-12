@@ -1,11 +1,21 @@
+.home_banner_sec{
+    --height: clamp(830px, 100vh, 950px);
+    height: var(--height);
+    position: relative;
+    z-index: 1;
+    display: grid;
+    align-content: center;
+}
+.bannertext{
+    position: relative;
+    z-index: 2;
+    margin-top: 5%;
+}
 .innerbanner_sec{
     height: 700px;
     width: 100%;
     position: relative;
     overflow: hidden;
-}
-.innerbanner_sec.home_banner_sec{
-    height: clamp(830px, 100vh, 950px);
 }
 .inerbnrimg{
     width: 100%;
@@ -14,7 +24,7 @@
     position: relative;
     z-index: 1;
 }
-.inerbnrimg::before{
+.inerbnrimg::before, .home_banner_sec::before{
     content: '';
     position: absolute;
     inset: 0;
