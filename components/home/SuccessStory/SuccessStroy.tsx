@@ -54,10 +54,7 @@ const SuccessStory = ({ data }: { data?: SuccessStoryItem[] | null; }) => {
     const mediaItems = safeParse<MediaData[]>(sectionData?.success_story_media_file);
 
     if (!sectionData) return null;
-
-    const totalSlides = mediaItems?.length || 0;
-    const slidesView = Math.min(totalSlides, 3);
-
+    
     return (
         <>
             <Stack as="section" className={Styles.giftImpact}>
@@ -106,7 +103,7 @@ const SuccessStory = ({ data }: { data?: SuccessStoryItem[] | null; }) => {
                                     slidesPerView={Math.min(mediaItems?.length || 0, 3)}
                                     loop={false}
                                     // loop={(mediaItems?.length || 0) > 3}
-                                    spaceBetween={20}
+                                    spaceBetween={12}
                                     modules={[FreeMode, Navigation]}
                                     onSwiper={(swiper) => {
                                         swiperRef.current = swiper;
@@ -123,7 +120,7 @@ const SuccessStory = ({ data }: { data?: SuccessStoryItem[] | null; }) => {
                                         0: {
                                             slidesPerView: Math.min(mediaItems?.length || 0, 1)
                                         },
-                                        575: {
+                                        480: {
                                             slidesPerView: Math.min(mediaItems?.length || 0, 2)
                                         },
                                         992: {
@@ -131,6 +128,7 @@ const SuccessStory = ({ data }: { data?: SuccessStoryItem[] | null; }) => {
                                         },
                                         1200: {
                                             slidesPerView: Math.min(mediaItems?.length || 0, 3),
+                                            spaceBetween: 20,
                                             navigation: false
                                         }
                                     }}

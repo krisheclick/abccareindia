@@ -35,9 +35,9 @@ const Counter = ({ className = '', poster = false }: { className?: string; poste
                 >
                     <Container>
                         <div className={Styles.counterList} ref={ref}>
-                            <Row>
+                            <Row className='rowGap gx-2 gx-sm-3 gx-xl-4'>
                                 {counters.map((counter, index) => (
-                                    <Col lg={3} sm={6} key={index}>
+                                    <Col md={3} sm={6} key={index} className={Styles.cardItem}>
                                         <div className={Styles.counterBox}>
                                             <h3 className={Styles.counter_number}>
                                                 {inView ? (
@@ -51,7 +51,7 @@ const Counter = ({ className = '', poster = false }: { className?: string; poste
                                                     0
                                                 )}
                                             </h3>
-                                            <p className={Styles.counter_title}>{counter.site_counter_title}</p>
+                                            <div className={Styles.counter_title}>{counter.site_counter_title}</div>
                                         </div>
                                     </Col>
                                 ))}

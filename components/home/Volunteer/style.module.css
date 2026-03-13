@@ -19,3 +19,27 @@
         min-height: 360px;
     }
 }
+/* 768px */
+@media only screen and (max-width: 991px){
+    .volunteer{
+        min-height: 300px;
+    }
+}
+/* 360px */
+@media only screen and (max-width: 450px){
+    .volunteer{
+        min-height: 300px;
+    }
+    .volunteer .volunteer_title{
+        font-size: 28px;
+    }
+}
+/* 320px */
+@media only screen and (max-width: 359px){
+    .volunteer{
+        min-height: 240px;
+    }
+    .volunteer .volunteer_title{
+        font-size: 24px;
+    }
+}

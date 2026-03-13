@@ -74,9 +74,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 24px;
 }
 .rightContent {
-  max-width: 480px;
   z-index: 2;
   padding: 20px 0px 20px 50px;
 }
@@ -116,6 +116,10 @@
 .imageWrap{
   background: transparent;
   padding-top: 0;
+  width: 100%;
+  max-width: 360px;
+  flex-shrink: 0;
+  margin-top: auto;
 }
 .imageWrap img {
 	position: static !important;
@@ -154,6 +158,9 @@
   .right h2{
     font-size: 36px;
   }
+  .imageWrap{
+    max-width: 220px;
+  }
 }
 /* 992 */
 @media only screen and (min-width: 992px) and (max-width: 1199px){
@@ -164,7 +171,6 @@
     font-size: 24px;
   }
   .rightContent{
-    max-width: 250px;
     padding-left: 20px;
   }
   .right h2{
@@ -176,5 +182,70 @@
   .left{
     justify-content: space-between;
     padding-block: 30px;
+  }
+  .imageWrap{
+    max-width: 320px;
+  }
+}
+/* 576px */
+@media only screen and (max-width: 767px){
+  .left{
+    padding: 20px 16px;
+  }
+  .smallTitle{
+    font-size: 24px;
+  }
+  .mainTitle{
+    font-size: 24px;
+  }
+  .right{
+    min-height: auto;
+  }
+  .rightContent{
+    padding-left: 16px;
+  }
+  .right h2{
+    font-size: 30px;
+  }
+  .imageWrap{
+    max-width: 250px;
+  }
+}
+/* 480px */
+@media only screen and (max-width: 575px){ 
+  .qrBox{
+    width: 150px;
+  }
+  .imageWrap{
+    max-width: 180px;
+  }
+}
+/* 360px */
+@media only screen and (max-width: 450px){
+  .left{
+    flex-direction: column;
+  }
+  .leftContent{
+    width: 100%;
+  }
+  .qrBox{
+    width: auto;
+    max-width: 200px;
+  }
+  .rightContent {
+    padding-inline: 16px;
+    position: relative;
+  }
+  .imageWrap {
+    max-width: 220px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    opacity: 0.25;
+  }
+  .donateBtn, .secondaryBtn {
+    margin-top: 10px;
+    padding: 8px 20px;
+    font-size: 14px;
   }
 }

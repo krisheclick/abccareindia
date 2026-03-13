@@ -1,6 +1,5 @@
 "use client";
 import Counter from "@/components/common/Counter";
-import TestimonialSection from "@/components/common/Testimonial";
 import Donation from "@/components/donation/Donation";
 import Brand from "@/components/home/Brand/Brand";
 import ChildEmpower from "@/components/home/CharitableMessage/ChildEmpower";
@@ -16,6 +15,7 @@ import { useGlobalContext } from "@/context/global_context";
 import { safeParse } from "@/utlis/safe_parse";
 import { useEffect, useState } from "react";
 import { Stack } from "react-bootstrap";
+import TestimonialSection from "@/components/testmonial/Testimonial";
 
 interface BannerItem {
     banner_name?: string;
@@ -214,7 +214,6 @@ const Homeclintpage = () => {
             <TestimonialSection
                 data={customFields?.group_name['testimonial-section']}
                 testimonials={data?.testimonial}
-                className="event-testimonials"
             />
 
             <Brand brands={data?.donor_brand} />

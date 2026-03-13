@@ -1,16 +1,9 @@
 .urgentNeeds_section {
     width: 100%;
-    padding: 100px 0px;
-}
-.urgentNeeds_wrapper {
-    display: flex;
-    align-items: center;
-    position: relative;
-    gap: 0;
+    padding: 100px 0px 20px;
 }
 .urgentNeeds_image {
     position: relative;
-    flex: 0 0 60%;
     border-radius: 16px;
     overflow: hidden;
     z-index: 1;
@@ -54,6 +47,7 @@
     gap: 8px;
     font-weight: 400;
     font-size: 16px;
+    line-height: 1.6;
     margin-bottom: 16px;
     padding-bottom: 16px;
     border-bottom: 1px solid #D9D9D9;
@@ -98,7 +92,7 @@
 /* 1200px */
 @media only screen and (max-width: 1399px){
     .urgentNeeds_section{
-        padding-block: 70px;
+        padding-top: 70px;
     }
     .urgentNeeds_content{
         padding: 36px;
@@ -106,5 +100,42 @@
     .button{
         padding: 10px 24px;
         font-size: 14px;
+    }
+}
+/* 768px */
+@media only screen and (max-width: 991px){
+    .urgentNeeds_section{
+        padding-top: 50px;
+    }
+    .urgentNeeds_content{
+        margin-left: 0;
+    }
+    .urgentNeeds_content h2, .urgentNeeds_content h3 {
+        font-size: 30px;
+    }
+}
+/* 576px */
+@media only screen and (max-width: 767px){
+    .urgentNeeds_content {
+        padding: 24px;
+    }
+    .button {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+}
+/* 360px */
+@media only screen and (max-width: 450px){
+    .urgentNeeds_content h2, .urgentNeeds_content h3 {
+        font-size: 26px;
+    }
+    .urgentNeeds_section{
+        padding-top: 30px;
+    }
+    .urgentNeeds_content{
+        padding: 24px 20px;
+    }
+    .urgentNeeds_content li{
+        font-size: 15px;
     }
 }

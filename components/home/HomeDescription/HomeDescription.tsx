@@ -48,7 +48,7 @@ export default function HomeDescription({ aboutSection }: AboutInfo) {
                                         <Link
                                             href={aboutSection.about_left_button_url ?? ''}
                                             className={`wow animate__backInUp ${Styles.donateBtn}`}
-                                            data-wow-delay="4s"
+                                            data-wow-delay="1s"
                                         >
                                             {aboutSection.about_left_button_text}
                                         </Link>

@@ -89,7 +89,7 @@ const Header = () => {
                 <Container>
                     <Stack
                         direction="horizontal"
-                        gap={3}
+                        gap={1}
                         className="top_header_ds justify-content-between"
                     >
                         <div className="top_header_donate wow animate__fadeInDown"

@@ -97,7 +97,7 @@ const HomeProject = ({ sectionData, projects }: HomeProjectProps) => {
                                         <CardBody className={Styles.cardBody}>
                                             <div 
                                                 className={Styles.subtitle}
-                                                dangerouslySetInnerHTML={{ __html: item.project_subtitle || '' }}
+                                                dangerouslySetInnerHTML={{ __html: item.project_subtitle || 'Asha Bhavan Centre' }}
                                             />
                                             <CardTitle 
                                                 className={Styles.cardTitle}

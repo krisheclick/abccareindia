@@ -8,6 +8,8 @@ import { normalizeYouTubeUrl } from '@/utlis/videoUrl';
 import { useGlobalContext } from '@/context/global_context';
 import { useWOW } from "@moondev/next-wow";
 import Styles from "./style.module.css";
+import CustomImage from '@/utlis/imagefunction';
+import Image from 'next/image';
 
 interface BannerItem {
     banner_name?: string;
@@ -47,6 +49,13 @@ const HomeBanner = ({ banner }: { banner?: BannerItem | null }) => {
             >
                 {!hasLoading ? (
                     <>
+                        <figure className={`${Styles.bannerPoster}`}>
+                            <Image
+                                src={bannerImage}
+                                alt={banner?.banner_name ?? ""}
+                                fill
+                            />
+                        </figure>
                         <Stack className={Styles.bannertext}>
                             <Container>
                                 <div className="wow animate__fadeInRight" data-wow-delay="1s">

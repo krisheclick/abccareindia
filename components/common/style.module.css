@@ -33,6 +33,7 @@
     text-transform: uppercase;
     color: inherit;
     font-size: 16px;
+    line-height: normal;
     font-weight: 600;
 }
 
@@ -137,5 +138,51 @@
 @media only screen and (max-width: 1399px){
     .home_counter{
         min-height: 280px;
+    }
+}
+/* 992px */
+@media only screen and (max-width: 1199px){
+    .home_counter .counterList{
+        max-width: 100%;
+    }
+}
+/* 768px */
+@media only screen and (max-width: 991px){
+    .counter_number{
+        font-size: 36px;
+        font-weight: 600;
+    }
+    .counter_title{
+        font-size: 14px;
+        letter-spacing: normal;
+    }
+}
+/* 576px */
+@media only screen and (max-width: 767px){
+    .home_counter {
+        min-height: 280px;
+        padding: 40px 0;
+    }
+    .counterBox{
+        background: #ffffff4f;
+        padding: 20px 10px;
+        min-height: 100%;
+        display: grid;
+        align-content: center;
+    }
+}
+/* 480px */
+@media only screen and (max-width: 575px){
+    .cardItem{
+        width: 50%;
+    }
+}
+/* 360px */
+@media only screen and (max-width: 450px){
+    .counter_number{
+        font-size: 30px;
+    }
+    .counter_title{
+        font-size: 13px;
     }
 }

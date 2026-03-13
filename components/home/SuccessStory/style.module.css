@@ -132,7 +132,22 @@
 }
 /* 576px */
 @media only screen and (max-width: 767px){
+    .giftImpact{
+        padding-top: 50px;
+    }
     .title *{
         display: initial;
+    }
+}
+/* 480px */
+@media only screen and (max-width: 575px){
+    .giftImpact{
+        padding-top: 40px;
+    }
+}
+/* 360px */
+@media only screen and (max-width: 450px){
+    .small_title{
+        font-size: 18px;
     }
 }

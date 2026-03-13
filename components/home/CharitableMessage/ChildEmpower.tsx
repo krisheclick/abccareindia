@@ -108,9 +108,9 @@ const ChildEmpower = ({ sectionData, messages }: CharitableMessageProps) => {
                 <Swiper
                     className={`childEmpower_slider ${Styles.childEmpower_slider}`}
                     loop={(messages.length || 0) > 3}
-                    spaceBetween={20}
+                    spaceBetween={12}
                     slidesPerView={Math.min(messages.length || 1, 3)}
-                    navigation={false}
+                    navigation
                     modules={[Autoplay, Navigation, FreeMode]}
                     onSwiper={(swiper) => {
                         swiperRef.current = swiper;
@@ -122,6 +122,27 @@ const ChildEmpower = ({ sectionData, messages }: CharitableMessageProps) => {
                             setIsBeginning(swiper.isBeginning);
                             setIsEnd(swiper.isEnd);
                         });
+                    }}
+                    breakpoints={{
+                        0: {
+                            slidesPerView: Math.min(messages?.length || 0, 1)
+                        },
+                        576: {
+                            slidesPerView: Math.min(messages?.length || 0, 2),
+                            navigation: true
+                        },
+                        768: {
+                            slidesPerView: Math.min(messages?.length || 0, 2)
+                        },
+                        992: {
+                            slidesPerView: Math.min(messages?.length || 0, 3),
+                            navigation: false
+                        },
+                        1200: {
+                            slidesPerView: Math.min(messages?.length || 0, 3),
+                            spaceBetween: 20,
+                            navigation: false
+                        }
                     }}
                 >
                     {messages.map((value, index) => (

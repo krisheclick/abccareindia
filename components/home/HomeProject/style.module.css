@@ -56,6 +56,7 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 4;
     overflow: hidden;
+    height: 4.9lh;
 }
 .cardDescription *:first-child{
     font-weight: 300;
@@ -169,23 +170,76 @@
     }
 }
 
+/* 992px */
+@media only screen and (max-width: 1199px){
+    .project_slider{
+        margin-top: 40px;
+    }
+}
 /* 768px */
 @media only screen and (max-width: 991px){
+    .projects {
+        padding-block: 40px;
+    }
     .row{
         flex-direction: column-reverse;
     }
     .card {
         max-width: 100%;
         margin: 0 auto;
-        padding: 0 48px;
+        padding: 0 30px;
     }
     .controls .prev{
-        left: 10px;
+        left: 2px;
     }
     .controls .next{
-        right: 10px;
+        right: 2px;
     }
     .videoPoster{
         margin: 0;
+    }
+    .buttonWrap{
+        margin-top: 30px;
+    }
+}
+/* 576px */
+@media only screen and (max-width: 767px){
+    .card_button {
+        margin-top: 12px;
+        padding: 8px 20px;
+        font-size: 13px;
+        border-radius: 4px;
+    }
+}
+/* 480px */
+@media only screen and (max-width: 575px){
+    .subtitle{
+        font-size: 14px;
+    }
+    .cardTitle {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    .cardDescription :first-child{
+        font-size: 15px;
+    }
+    .project_slider{
+        margin-top: 30px;
+    }
+    .project_button {
+        padding: 10px 20px;
+        font-size: 15px;
+    }
+}
+/* 360px */
+@media only screen and (max-width: 450px){
+    .card{
+        padding: 0;
+    }
+    .controls :is(.prev, .next){
+        top: 0;
+    }
+    .videoIcon {
+        --size: 48px;
     }
 }

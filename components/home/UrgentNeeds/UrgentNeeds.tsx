@@ -1,6 +1,6 @@
 'use client';
 import Styles from "./style.module.css";
-import { Container } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import CustomImage from '@/utlis/imagefunction';
 import Link from "next/link";
 import { useGlobalContext } from "@/context/global_context";
@@ -26,43 +26,47 @@ const UrgentNeeds = ({ sectionData }: UrgentNeedsProps) => {
     return (
         <div className={Styles.urgentNeeds_section}>
             <Container>
-                <div className={Styles.urgentNeeds_wrapper}>
-                    {sectionData.urgent_needs_image && (
-                        <CustomImage
-                            src={`${mediaBaseURL}/uploads/page_image/${sectionData.urgent_needs_image}`}
-                            alt="Urgent Needs"
-                            width={600}
-                            height={400}
-                            style={{ objectFit: 'cover' }}
-                            className={Styles.urgentNeeds_image}
-                        />
-                    )}
-                    <div className={Styles.urgentNeeds_content}>
-                        {sectionData.urgent_title && (
-                            <h2 
-                                dangerouslySetInnerHTML={{
-                                    __html: sectionData.urgent_title,
-                                }}
+                <Row className="align-items-center gx-lg-0 rowGap">
+                    <Col lg={7}>
+                        {sectionData.urgent_needs_image && (
+                            <CustomImage
+                                src={`${mediaBaseURL}/uploads/page_image/${sectionData.urgent_needs_image}`}
+                                alt="Urgent Needs"
+                                width={600}
+                                height={400}
+                                style={{ objectFit: 'cover' }}
+                                className={Styles.urgentNeeds_image}
                             />
                         )}
-                        {sectionData.urgent_needs_description && (
-                            <div 
-                                dangerouslySetInnerHTML={{
-                                    __html: sectionData.urgent_needs_description,
-                                }}
-                            />
-                        )}
-                        {sectionData.urgent_button && (
-                            <Link 
-                                href={sectionData.urgent_button_link ?? ''} 
-                                className={Styles.button}
-                                aria-label="About Page Button"
-                            >
-                                {sectionData.urgent_button} <span className='screen-reader-text'>{commonData?.site_title || "ABC India"}</span>
-                            </Link>
-                        )}
-                    </div>
-                </div>
+                    </Col>
+                    <Col lg={5} className="align-self-center">
+                        <div className={Styles.urgentNeeds_content}>
+                            {sectionData.urgent_title && (
+                                <h2 
+                                    dangerouslySetInnerHTML={{
+                                        __html: sectionData.urgent_title,
+                                    }}
+                                />
+                            )}
+                            {sectionData.urgent_needs_description && (
+                                <div 
+                                    dangerouslySetInnerHTML={{
+                                        __html: sectionData.urgent_needs_description,
+                                    }}
+                                />
+                            )}
+                            {sectionData.urgent_button && (
+                                <Link 
+                                    href={sectionData.urgent_button_link ?? ''} 
+                                    className={Styles.button}
+                                    aria-label="About Page Button"
+                                >
+                                    {sectionData.urgent_button} <span className='screen-reader-text'>{commonData?.site_title || "ABC India"}</span>
+                                </Link>
+                            )}
+                        </div>
+                    </Col>
+                </Row>
             </Container>
         </div>
     );

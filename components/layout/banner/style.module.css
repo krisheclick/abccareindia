@@ -2,12 +2,15 @@
     --height: clamp(830px, 100vh, 950px);
     background-size: cover;
     background-repeat: no-repeat;
-    height: var(--height);
+    min-height: var(--height);
     position: relative;
     z-index: 1;
     display: grid;
     align-content: center;
     padding-top: 120px;
+}
+.bannerPoster{
+    display: none;
 }
 .bannertext{
     position: relative;
@@ -151,5 +154,47 @@
     .playBtn {
         --size: 48px;
         top: -16px;
+    }
+}
+/* 480px */
+@media only screen and (max-width: 575px){
+    .home_banner_sec {
+        --height: 360px;
+        background: #000 !important;
+        padding-top: 0;
+    }
+    .bannerPoster{
+        display: block;
+        position: relative;
+        height: 270px;
+    }
+    .bannertext{
+        padding: 24px 0px;
+    }
+    .inrbnrhead.homebnrhead{
+        font-size: 40px;
+    }
+    .playBtn {
+        --size: 40px;
+        top: -7px;
+    }
+}
+/* 360px */
+@media only screen and (max-width: 450px){
+    .inrbnrhead.homebnrhead{
+        font-size: 36px;
+    }
+}
+/* 320px */
+@media only screen and (max-width: 359px){
+    .bannerPoster{
+        height: 220px;
+    }
+    .inrbnrhead.homebnrhead{
+        font-size: 30px;
+    }
+    .playBtn{
+        --size: 36px;
+        top: -4px;
     }
 }

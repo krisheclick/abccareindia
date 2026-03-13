@@ -1,14 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import Styles from "./style.module.css";
-import { Container, Modal, ModalBody, ModalHeader, ModalTitle, Stack, } from "react-bootstrap";
+import { Col, Container, Modal, ModalBody, ModalHeader, ModalTitle, Row, Stack, } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { safeParse } from "@/utlis/safe_parse";
 import { useEffect, useState } from "react";
 import { useGlobalContext } from "@/context/global_context";
 import Link from "next/link";
+import Styles from "./style.module.css";
 
 interface CounterData {
     our_reach_counter_number?: number;
@@ -44,7 +44,7 @@ const Ourreach = ({ sectionData }: SectionDataProps) => {
     const [data, setData] = useState<ProjectProps | null>(null);
     const { setHasLoading, mediaUrl } = useGlobalContext();
 
-    
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -77,7 +77,7 @@ const Ourreach = ({ sectionData }: SectionDataProps) => {
     return (
         <>
             <Stack as="section" className={Styles.ourReachSection}>
-                <Container className={Styles.container}>
+                <Container>
                     <Stack className={Styles.ourReachHeader}>
                         {sectionData?.our_reach_title && (
                             <h2>
@@ -88,57 +88,60 @@ const Ourreach = ({ sectionData }: SectionDataProps) => {
                             <p>{sectionData.our_reach_description}</p>
                         )}
                     </Stack>
-                    <Stack className={Styles.ourReach_wrapper}>
-                        <Stack direction="horizontal" className={Styles.ourReachImage ?? ''}>
-                            {reachItem?.our_reach_feature_image && (
-                                <div className={Styles.ourReachImage}>
-                                    <Image
-                                        src={`${mediaUrl}${reachItem.our_reach_feature_image}`}
-                                        alt={sectionData?.our_reach_title || "Our Reach"}
-                                        width={100}
-                                        height={100}
-                                        style={{ objectFit: "cover" }}
-                                    />
-                                </div>
-                            )}
-                            {projects && projects.length > 0 && (
-                                <div className={Styles.ourReachDescription}>
-                                    <ul>
-                                        {projects.slice(0, 10).map((value, index) => (
-                                            <li key={index} data-color={value.data_color}>
-                                                <Link href={`${appLink}/our-projects/${value.project_slug}`}>{value.project_title}</Link>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                    {button?.text && (
-                                        <span
-                                            className={Styles.ourReachBtn}
-                                            onClick={() => handleOpenPopup()}
-                                            role="button"
-                                        >
-                                            <FontAwesomeIcon icon={faChevronRight} /> {button.text}
-                                        </span>
-                                    )}
-                                </div>
-                            )}
-                        </Stack>
-
-                        {counters?.length > 0 && (
-                            <Stack direction="horizontal" className={Styles.ourReachRightCard ?? ''}>
-                                <div className={Styles.ourReachCounters}>
-                                    {counters?.map((counter, index) => (
-                                        <div key={index} className={Styles.ourReachCounter}>
-                                            <div className={Styles.counterCircle}>
-                                                {counter.our_reach_counter_number}
-                                                {counter.our_reach_counter_icon}
-                                            </div>
-                                            <p>{counter.our_reach_counter_title}</p>
-                                        </div>
-                                    ))}
-                                </div>
+                    <Row className={`rowGap gx-xxl-5 ${Styles.ourReach_wrapper}`}>
+                        <Col xl={7} xxl={6}>
+                            <Stack direction="horizontal" className={Styles.ourReachImage ?? ''}>
+                                {reachItem?.our_reach_feature_image && (
+                                    <div className={Styles.ourReachImage}>
+                                        <Image
+                                            src={`${mediaUrl}${reachItem.our_reach_feature_image}`}
+                                            alt={sectionData?.our_reach_title || "Our Reach"}
+                                            width={100}
+                                            height={100}
+                                            style={{ objectFit: "cover" }}
+                                        />
+                                    </div>
+                                )}
+                                {projects && projects.length > 0 && (
+                                    <div className={Styles.ourReachDescription}>
+                                        <ul>
+                                            {projects.slice(0, 10).map((value, index) => (
+                                                <li key={index} data-color={value.data_color}>
+                                                    <Link href={`${appLink}/our-projects/${value.project_slug}`}>{value.project_title}</Link>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                        {button?.text && (
+                                            <span
+                                                className={Styles.ourReachBtn}
+                                                onClick={() => handleOpenPopup()}
+                                                role="button"
+                                            >
+                                                <FontAwesomeIcon icon={faChevronRight} /> {button.text}
+                                            </span>
+                                        )}
+                                    </div>
+                                )}
                             </Stack>
+                        </Col>
+                        {counters?.length > 0 && (
+                            <Col xl={5} xxl={6}>
+                                <Stack direction="horizontal" className={Styles.ourReachRightCard ?? ''}>
+                                    <div className={Styles.ourReachCounters}>
+                                        {counters?.map((counter, index) => (
+                                            <div key={index} className={Styles.ourReachCounter}>
+                                                <div className={Styles.counterCircle}>
+                                                    {counter.our_reach_counter_number}
+                                                    {counter.our_reach_counter_icon}
+                                                </div>
+                                                <p>{counter.our_reach_counter_title}</p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </Stack>
+                            </Col>
                         )}
-                    </Stack>
+                    </Row>
                 </Container>
             </Stack>
 

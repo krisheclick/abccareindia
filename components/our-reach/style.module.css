@@ -3,10 +3,6 @@
     width: 100%;
     padding: 100px 0;
 }
-.ourReachSection .container {
-    width: 80%;
-    margin: 0 auto;
-}
 .ourReachHeader {
     text-align: center;
     margin-bottom: 72px;
@@ -39,14 +35,6 @@
     line-height: 1.8;
     font-weight: 600;
 }
-
-.ourReach_wrapper {
-    grid-template-columns: 1.2fr 1fr;
-    align-items: stretch;
-    gap: 50px;
-    display: grid;
-}
-
 .ourReachImageLeftCard {
     background: #f9f9f9;
     border-radius: 16px;
@@ -122,8 +110,8 @@
     color: #ffffff;
 }
 .ourReachCounters {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 24px;
     width: 100%;
     display: grid;
 }
@@ -132,13 +120,14 @@
     color: #fff;
 }
 .counterCircle {
+    --size: 150px;
     color: #000;
     background: #F2F2F2;
     border-radius: 50%;
     justify-content: center;
     align-items: center;
-    width: 150px;
-    height: 150px;
+    width: var(--size);
+    height: var(--size);
     margin: 0 auto 15px;
     font-size: 28px;
     font-weight: 700;
@@ -154,4 +143,77 @@
     line-height: normal;
     font-weight: 600;
     text-wrap: balance;
+}
+/* 1200px */
+@media only screen and (max-width: 1399px){
+    .ourReachSection{
+        padding-block: 70px;
+    }
+}
+/* 768px */
+@media only screen and (max-width: 991px){
+    .ourReachHeader{
+        margin-bottom: 20px;
+    }
+    .ourReachHeader h2{
+        font-size: 36px;
+    }
+    .ourReachHeader p{
+        font-size: 18px;
+    }
+}
+/* 576px */
+@media only screen and (max-width: 767px){
+    .ourReachSection {
+        padding-block: 50px;
+    }
+    .ourReachImage{
+        flex-direction: column;
+    }
+    .ourReachDescription {
+        max-width: 100%;
+        padding: 24px 0px;
+    }
+    .ourReachCounters {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 16px;
+    }
+    .counterCircle{
+        --size: 120px;
+        font-size: 22px;
+    }
+    .ourReachCounter p{
+        font-size: 15px;
+    }
+}
+/* 360px */
+@media only screen and (max-width: 450px){
+    .ourReachSection {
+        padding-block: 30px 40px;
+    }
+    .ourReachHeader h2 {
+        font-size: 30px;
+        margin-bottom: 4px;
+        gap: 8px;
+    }
+    .ourReachHeader p{
+        font-size: 16px;
+    }
+    .ourReachDescription ul li{
+        font-size: 15px;
+    }
+}
+/* 320px */
+@media only screen and (max-width: 359px){
+    .counterCircle {
+        --size: 100px;
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    .ourReachCounter p{
+        font-size: 14px;
+    }
+    .ourReachCounters{
+        gap: 16px 8px;
+    }
 }

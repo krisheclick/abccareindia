@@ -354,6 +354,9 @@
 }
 /* 992px */
 @media only screen and (max-width: 1199px){
+	.menuheader {
+		font-size: 13px;
+	}
 	.footer_copytext{
 		font-size: 13px;
 		line-height: 1.5;
@@ -453,6 +456,12 @@
 }
 /* 360px */
 @media only screen and (max-width: 450px){
+	.top_header{
+		min-height: 50px;
+	}
+	.headerLogo {
+		max-width: 150px;
+	}
 	.footer_sec {
 		padding-top: 30px;
 	}
@@ -464,5 +473,17 @@
 	}
 	.scrollup {
 		--area: 36px;
+	}
+	.ftr_cntcts li span{
+		font-size: 15px;
+	}
+}
+/* 320px */
+@media only screen and (max-width: 359px){
+	.top_header{
+		min-height: 65px;
+	}
+	.top_header_ds{
+		flex-direction: column;
 	}
 }
