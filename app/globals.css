@@ -48,12 +48,8 @@ html, body{
   overflow-x: hidden;
 }
 body{
-  width: 100%;
-  font-family: "Open Sans", sans-serif;
   color: #222222;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 28px; 
+  font: 400 18px / 1.25 "Open Sans", sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -76,12 +72,12 @@ img, video {
   row-gap: var(--bs-gutter-x);
 }
 p{
-  color: #282828;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 28px;
-  margin-bottom: 10px;
-} 
+  line-height: 1.75;
+  margin-bottom: 16px;
+}
+p:last-child{
+  margin-bottom: 0;
+}
 h1, h2, h3, h4, h5, h6{ 
   color: #222222; 
   font-weight: 600;
@@ -109,14 +105,14 @@ h1, h2, h3, h4, h5, h6{
   color: #222222;
   font-weight: 500;
   font-size: 17px;
-  line-height: 27px;  
+  line-height: 1.7;  
   margin-bottom: 15px;
 } 
 .paragraph_white{
   color: #ffffff;
-  font-weight: 350;
+  font-weight: 300;
   font-size: 18px;
-  line-height: 28px;  
+  line-height: 1.7;  
   margin-bottom: 10px;
 } 
 figure{
@@ -217,7 +213,7 @@ a:hover{
   margin-bottom: 0 !important;
 }
 
-.ftr {
+/* .ftr {
 	
 	background-color: #000;
 	justify-content: center;
@@ -245,7 +241,7 @@ a:hover{
   flex-direction: row;
   align-items: center;
   padding: 2rem 0;
-} 
+}  */
 
 /* button */
 .btn {
@@ -325,18 +321,6 @@ a:hover{
 .swiper-button-prev:hover svg.swiper-navigation-icon{
   color: #ffffff;
 }
-.testimonialslidebx{
-  width: 99%;
-  margin: auto;
-}
-.brandslider :is(.swiper-button-prev, .swiper-button-next) {
-	--swiper-navigation-size: 36px !important;
-	box-shadow: none;
-	border-color: #C9C9C9;
-}
-.brandslider :is(.swiper-button-prev, .swiper-button-next) svg.swiper-navigation-icon{
-	width: 6px !important;
-}
 :is(.swiper-button-prev, .swiper-button-next).swiper-button-disabled{
   pointer-events: inherit !important;
   cursor: not-allowed !important;
@@ -374,7 +358,6 @@ a:hover{
   opacity: .5;
   cursor: not-allowed;
 }
-/**TESTIMONIAL_SECTION_ENDS**/ 
 
 .customBackdrop {
   background-color: rgba(0,0,0,0.8);
@@ -410,12 +393,12 @@ a:hover{
 	padding-top: 56.25%;
 }
 .custom-image {
-    opacity: 0;
-    transform: scale(1.02);
+  opacity: 0;
+  transform: scale(1.02);
 }
 .custom-image.loaded {
-    opacity: 1;
-    transform: scale(1);
+  opacity: 1;
+  transform: scale(1);
 }
 .form-error{
   font-size: 14px;
@@ -443,8 +426,8 @@ a:hover{
 	content: "\f058";
 	font-weight: 600;
 	color: #2c3070;
-    display: block;
-    flex-shrink: 0;
+  display: block;
+  flex-shrink: 0;
 	font-size: 18px;
 }
 .alert {
@@ -481,13 +464,21 @@ a:hover{
   row-gap: 20px;
 }
 
+.inner_mdlprheading{
+  text-align: center;
+  width: 80%;
+  margin: 0 auto 70px;
+  border-bottom: 1px solid #ededed;
+  padding-bottom: 40px;
+}
+
 /* 1400px */
 @media only screen and (max-width: 1600px){
   .cmn_white_heading.big, .cmn_black_heading.big {
     font-size: 48px;
   }
-  p{
-    font-size: 16px;
+  body{
+    font-size: 17px;
   }
 }
 /* 1200px */
@@ -496,11 +487,15 @@ a:hover{
     font-size: 16px;
   }
   .cmn_black_heading, .cmn_white_heading{
-    font-size: 32px;
+    font-size: 36px;
     margin-bottom: 20px;
   }
   .cmn_white_heading.big, .cmn_black_heading.big{
     font-size: 42px;
+  }
+  .inner_mdlprheading{
+    margin-bottom: 56px;
+    padding-bottom: 36px;
   }
 }
 /* 992px */
@@ -514,12 +509,21 @@ a:hover{
   .swiper-button-next svg.swiper-navigation-icon, .swiper-button-prev svg.swiper-navigation-icon {
     width: 6px;
   }
+  .cmn_black_heading, .cmn_white_heading{
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
 }
 /* 768px */
 @media only screen and (max-width: 991px){
   .cmn_white_heading.big, .cmn_black_heading.big{
     font-size: 36px;
     margin-bottom: 16px;
+  }
+  .inner_mdlprheading {
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    width: 100%;
   }
 }
 /* 576px */
@@ -528,9 +532,8 @@ a:hover{
     font-size: 32px;
     margin-bottom: 12px;
   }
-  p {
+  body {
     font-size: 15px;
-    line-height: 1.7;
   }
   .btn-primary {
     margin-top: 1.5rem;
@@ -545,15 +548,22 @@ a:hover{
   .swiper-nav-button-next{
     right: -10px;
   }
+  .cmn_black_heading, .cmn_white_heading{
+    font-size: 30px;
+  }
 }
 /* 360px */
 @media only screen and (max-width: 450px){
   .cmn_white_heading.big, .cmn_black_heading.big{
     font-size: 30px;
   }
+  .cmn_black_heading, .cmn_white_heading{
+    font-size: 28px;
+  }
 }
 /* 320px */
 @media only screen and (max-width: 359px){
+  .cmn_black_heading, .cmn_white_heading,
   .cmn_white_heading.big, .cmn_black_heading.big{
     font-size: 26px;
   }

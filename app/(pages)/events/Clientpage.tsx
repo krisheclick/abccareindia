@@ -67,9 +67,9 @@ const Clientpage = ({ page }: Props) => {
     return (
         <div className="event-page">
             <InnerBanner />
-            <Stack className={`pt_80 pb_100 ${Styles.inrmdl_upcomsecds ?? ""}`}>
+            <Stack className={Styles.section}>
                 <Container>
-                    <div className={Styles.inner_mdlprheading}>
+                    <div className={`inner_mdlprheading ${Styles.section_content ?? ''}`}>
                         <h1
                             className={`cmn_black_heading ${Styles.cmn_black_heading ?? ""}`}
                             dangerouslySetInnerHTML={{

@@ -1,104 +1,41 @@
 .contact_inner_page{
-    padding-top: 80px;
-    padding-bottom: 80px;
+    padding-block: 80px;
 }
-.inner_mdlprheading{
-    text-align: center;
-    width: 80%;
-    margin: 0 auto 70px;
-    border-bottom: 1px solid #ededed;
-    padding-bottom: 40px;
-}
-
-.cmn_black_heading {
-    color: #222222;
-    font-size: 40px;
-    line-height: 48px;
-    font-weight: 700;
-    text-transform: capitalize;
-    margin-bottom: 25px;
-}
-.cmn_black_heading span{
-    color: #2c3070;
-}
-.cmn_black_heading.big{
-    font-size: 55px;
-    line-height: 65px;
-}
-.paragraph{
-    color: #222222;
+.page_content{
     font-weight: 500;
-    font-size: 17px;
-    line-height: 27px;  
-    margin-bottom: 15px;
 }
 .contact_box{
     text-align: center;
     background: #ffffff;
+    color: #000000;
+    font: 500 18px / 1.75em "Open Sans", sans-serif;
+    border-radius: 4px;
     box-shadow: 0 0 12px 0 rgba(112,112,112,0.1);
-    padding: 50px 25px;
+    padding: 48px 24px;
     height: 100%;
 }
-.img_icon figure{
-    background: transparent;
-    padding-top: 0;
-    margin-bottom: 12px;
-}
 .img_icon img{
-    width: auto !important;
-    height: auto !important;
-    position: static !important;
-    border: 2px dotted #000000;
+    border: 2px dotted #000;
     border-radius: 100%;
-    padding: 5px;
-    margin: auto;
+    margin: 0 auto 16px;
+    padding: 8px;
 }
 .contact_sub_text{
-    font-size: 23px; 
-    line-height: 30px;
+    font-size: 22px; 
+    line-height: 1.25em;
     text-transform: capitalize;
     font-weight: 700;
     margin-bottom: 5px;
 }
-.link_contact_text a{
-    font-size: 18px;
-    color: #000000;
-    text-transform: math-auto;
+.contact_box a{
+    color: inherit;
 }
-.link_contact_text a:hover{
-    color: #1788c1;   
-}
-
-.abtrcountmb{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-    width: 100%;
-    margin-top: 35px;
-}
-.abtrcountsb{
-    background: #2c3070;
-    border-radius: 13px;
-    padding: 20px 15px;
-}
-.abtrcounnum{
-    font-size: 30px;
-    line-height: 40px;
-    color: #ffffff;
-    font-weight: 700;
-    margin-bottom: 3px;
-}
-.abtrcounnumtext{
-    color: #ffffff;
-    font-weight: 500;
-    text-transform: uppercase;
-    font-size: 14px;
-    line-height: 23px;
+.contact_box a:hover{
+    color: #2c3070;   
 }
 .contact_form_map_section {
 	position: relative;
-	padding-top: 70px;
-	padding-bottom: 90px;
+	padding-block: 70px 90px;
 }
 .contact_form_map_section::before {
 	position: absolute;
@@ -121,24 +58,15 @@
 	border-radius: 10px;
 	box-shadow: 0 0 11px 0 rgba(110,110,110,0.3);
 }
-.contact_form input {
-	width: 100%;
-	border: 1px solid #d5d5d5;
+.form_control {
+	border-color: #d5d5d5;
 	height: 40px;
-	border-radius: 5px;
-	font-size: 14px;
-	margin-top: 4px;
-	margin-bottom: 4px;
-	padding-left: 10px;
-}
-.contact_form textarea {
-	width: 100%;
 	font-size: 15px;
+	margin-block: 4px;
+}
+textarea.form_control {
 	height: 180px;
-	border-radius: 5px;
-	padding-left: 10px;
-	border: 1px solid #d5d5d5;
-	margin-top: 5px;
+    margin-bottom: 0;
 }
 .button_contact {
 	color: #fff !important;
@@ -158,4 +86,68 @@
 .maps iframe{
 	width: 100%;
 	height: 100%;
+}
+/* 1200px */
+@media only screen and (max-width: 1399px){
+    .contact_inner_page{
+        padding-block: 50px;
+    }
+    .contact_box{
+        font-size: 17px;
+    }
+    .contact_sub_text{
+        font-size: 20px;
+    } 
+    .contact_form_map_section {
+        padding-block: 50px 60px;
+    }
+}
+/* 992px */
+@media only screen and (max-width: 1199px){
+    .contact_box{
+        padding: 36px 20px;
+        font-size: 16px;
+    }
+}
+/* 768px */
+@media only screen and (max-width: 991px){
+    .contact_us_heading{
+        margin-bottom: 30px;
+    }
+    .formArea {
+        padding: 0px;
+        box-shadow: none;
+    }
+    .contact_form{
+        padding: 30px 24px;
+        box-shadow: 0 0 11px 0 rgba(110,110,110,0.3);
+    }
+    .maps{
+        height: 360px;
+    }
+}
+/* 480px */
+@media only screen and (max-width: 575px){
+    .contact_form_map_section {
+        padding-block: 40px;
+    }
+}
+/* 360px */
+@media only screen and (max-width: 450px){
+    .contact_inner_page {
+        padding-block: 40px;
+    }
+    .img_icon img {
+        max-width: 72px;
+    }
+    .contact_sub_text{
+        font-size: 18px;
+    }
+    .contact_box {
+        padding: 30px 20px;
+        font-size: 15px;
+    }
+    .contact_form_map_section{
+        font-size: 26px;
+    }
 }

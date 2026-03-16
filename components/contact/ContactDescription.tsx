@@ -2,8 +2,8 @@
 
 import { useGlobalContext } from "@/context/global_context";
 import styles from "./style.module.css";
-import CustomImage from "@/utlis/imagefunction";
 import { Col, Container, Row, Stack } from "react-bootstrap";
+import Image from "next/image";
 
 interface ContactDescriptionProps {
     page_short_description?: string;
@@ -26,9 +26,9 @@ export default function ContactDescription({ page_short_description, page_conten
 
         <Stack className={styles.contact_inner_page}>
             <Container>
-                <div className={styles.inner_mdlprheading}>
+                <div className={`inner_mdlprheading ${styles.page_content ?? ''}`}>
                     <h1
-                        className={styles.cmn_black_heading}
+                        className={`cmn_black_heading ${styles.heading ?? ''}`}
                         dangerouslySetInnerHTML={{ __html: page_short_description || ''}}
                     />
 
@@ -39,15 +39,17 @@ export default function ContactDescription({ page_short_description, page_conten
 
                 </div>
 
-                <Row>
-                    <Col lg={4}>
-                        <div className={styles.contact_box}>
-                            <div className={styles.img_icon}>
-                                <CustomImage
+                <Row className="rowGap">
+                    <Col lg={4} md={6}>
+                        <Stack className={styles.contact_box}>
+                            <figure className={styles.img_icon}>
+                                <Image
                                     src="/assets/images/contact_call.webp"
                                     alt="Phone"
+                                    width={80}
+                                    height={80}
                                 />
-                            </div>
+                            </figure>
 
                             <div className={styles.contact_sub_text}>Call us at</div>
 
@@ -66,19 +68,19 @@ export default function ContactDescription({ page_short_description, page_conten
                                     </>
                                 )}
                             </div>
-                        </div>
+                        </Stack>
                     </Col>
-                    <Col lg={4}>
-                        <div className={styles.contact_box}>
-                            <div className={styles.img_icon}>
-                                <CustomImage
+                    <Col lg={4} md={6}>
+                        <Stack className={styles.contact_box}>
+                            <figure className={styles.img_icon}>
+                                <Image
                                     src="/assets/images/contact_mail.webp"
                                     alt="Email"
+                                    width={80}
+                                    height={80}
                                 />
-                            </div>
-
+                            </figure>
                             <div className={styles.contact_sub_text}>Email us</div>
-
                             <div className={styles.link_contact_text}>
                                 {email && (
                                     <a href={`mailto:${email.trim()}`}>
@@ -86,17 +88,18 @@ export default function ContactDescription({ page_short_description, page_conten
                                     </a>
                                 )}
                             </div>
-                        </div>
+                        </Stack>
                     </Col>
                     <Col lg={4}>
-                        <div className={styles.contact_box}>
-                            <div className={styles.img_icon}>
-                                <CustomImage
+                        <Stack className={styles.contact_box}>
+                            <figure className={styles.img_icon}>
+                                <Image
                                     src="/assets/images/contact_map.webp"
                                     alt="Map Location"
+                                    width={80}
+                                    height={80}
                                 />
-                            </div>
-
+                            </figure>
                             <div className={styles.contact_sub_text}>We are here</div>
 
                             <div className={styles.link_contact_text}>
@@ -107,7 +110,7 @@ export default function ContactDescription({ page_short_description, page_conten
                                     />
                                 )}
                             </div>
-                        </div>
+                        </Stack>
                     </Col>
                 </Row>
             </Container>

@@ -105,9 +105,9 @@ const SingleProject = ({ permalink }: { permalink: string }) => {
                         "breadcrumb_slug": `${process.env.NEXT_PUBLIC_ENV_URL}/our-projects`,
                     }]}
                 />
-                <Stack className={Styles.inrmdl_pdetails}>
+                <Stack className={`pb-0 ${Styles.section}`}>
                     <Container>
-                        <Stack className={Styles.inner_mdlprheading}>
+                        <Stack className={`inner_mdlprheading ${Styles.section_content ?? ''}`}>
                             <h1 className={`cmn_black_heading ${Styles.details_title ?? ''}`}>{pageData?.project_title}</h1>
                             <div
                                 className={`paragraph ${Styles.paragraph ?? ''}`}
@@ -140,15 +140,14 @@ const SingleProject = ({ permalink }: { permalink: string }) => {
                                             if (!value.thumb_name) return null;
                                             return (
                                                 <SwiperSlide key={index} className={Styles.swiperItem}>
-                                                    <Stack as="figure" className={Styles.pdbslideimg}>
+                                                    <Stack as="figure" className={Styles.poster}>
                                                         <Image
                                                             src={`${mediaUrl}${value?.thumb_name}`}
                                                             alt={`${pageData?.project_title ?? "Project"} ${index}`}
-                                                            width={1440}
-                                                            height={650}
+                                                            fill
                                                         />
                                                         {(value.file_name || value.media_link) && (
-                                                            <div className={Styles.pdwvbx}
+                                                            <div className={Styles.watchBtn}
                                                                 onClick={() => {
                                                                     if (value.upload_type === "file" && value.file_name) {
                                                                         setVideoType("file");

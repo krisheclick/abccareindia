@@ -80,9 +80,9 @@ const SingleClientpage = ({ permalink }: { permalink: string }) => {
                     "breadcrumb_slug": `${process.env.NEXT_PUBLIC_ENV_URL}/events`,
                 }]}
             />
-            <Stack className={`pt_80 ${Styles.inrmdl_upcomsecds ?? ""}`}>
+            <Stack className={`pb-0 ${Styles.section}`}>
                 <Container>
-                    <div className={Styles.inner_mdlprheading}>
+                    <div className={`inner_mdlprheading ${Styles.section_content ?? ''}`}>
                         <h1
                             className={`cmn_black_heading ${Styles.cmn_black_heading ?? ""}`}
                             dangerouslySetInnerHTML={{
@@ -90,7 +90,7 @@ const SingleClientpage = ({ permalink }: { permalink: string }) => {
                             }}
                         />
                         <div
-                            className={`paragraph ${Styles.paragraph ?? ""}`}
+                            className={Styles.section_paragraph}
                             dangerouslySetInnerHTML={{
                                 __html: pageData?.event_description ?? "",
                             }}

@@ -25,12 +25,10 @@ const Projects = ({ relatedProjects }: ProjectProps) => {
 
     const allProjects = relatedProjects ?? projectData ?? [];
 
-    console.log('allProjects', allProjects)
-
     return (
-        <Stack className={Styles.inrmdl_upcomsec}>
+        <Stack className={Styles.section}>
             <Container>
-                <div className={Styles.inner_mdlprheading}>
+                <div className={`inner_mdlprheading ${Styles.section_content ?? ''}`}>
                     <div className="cmn_black_heading"
                         dangerouslySetInnerHTML={{ __html: commonData?.site_project_title ?? '' }}
                     />
@@ -39,33 +37,34 @@ const Projects = ({ relatedProjects }: ProjectProps) => {
                     />
                 </div>
                 {allProjects.length > 0 ? (
-                    <Row>
+                    <Row className="rowGap">
                         {allProjects.slice(0, 3).map((value, index) => (
-                            <Col lg={4} key={index}>
-                                <div className={Styles.upcomsbx}>
+                            <Col lg={4} md={6} key={index}>
+                                <div className={Styles.card}>
                                     <CustomImage
                                         src={`${process.env.NEXT_PUBLIC_MEDIA_URL}${value.project_feature_image}`}
-                                        className={Styles.upcmsimg}
+                                        alt={value?.project_title}
+                                        className={Styles.card_img}
                                     />
-                                    <div className={`${Styles.upgoal} d-flex align-items-center`}>
+                                    {value?.project_subtitle && (
                                         <div
-                                            className={Styles.upgoaltext}
+                                            className={Styles.card_subtitle}
                                             dangerouslySetInnerHTML={{ __html: value?.project_subtitle ?? '' }}
                                         />
-                                    </div>
-                                    <div className={Styles.upcpheadbx}>
+                                    )}
+                                    <Stack className={Styles.card_content}>
                                         <div
-                                            className={Styles.upcphead}
+                                            className={Styles.title}
                                             dangerouslySetInnerHTML={{ __html: value?.project_title ?? '' }}
                                         />
                                         <div
-                                            className={Styles.paragraph}
+                                            className={Styles.card_text}
                                             dangerouslySetInnerHTML={{ __html: value?.project_short_description ?? '' }}
                                         />
-                                        <Link href={`/our-projects/${value.project_slug}`} className={Styles.donatenowup}>
+                                        <Link href={`/our-projects/${value.project_slug}`} className={`btn btn-primary my-0 ${Styles.card_btn}`}>
                                             Learn More
                                         </Link>
-                                    </div>
+                                    </Stack>
                                 </div>
                             </Col>
                         ))}

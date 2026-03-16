@@ -20,11 +20,12 @@
     transform: translateY(-5px);
 }
 .iconCircle {
-    width: 90px;
-    height: 90px;
+    --size: 90px;
+    width: var(--size);
+    height: var(--size);
     background: #28a745;
     color: #fff;
-    font-size: 40px;
+    font-size: calc(var(--size) / 2.2);
     font-weight: bold;
     border-radius: 50%;
     display: flex;
@@ -35,6 +36,7 @@
 }
 .title {
     font-size: 32px;
+    line-height: 1.25;
     font-weight: 700;
     margin-bottom: 20px;
     color: #222;
@@ -59,4 +61,28 @@
 .homeBtn:hover{
     background-color: #d8b01f;
     color: #000000 !important;
+}
+@media only screen and (max-width: 767px){
+    .cardBox{
+        padding: 36px 24px;
+    }
+    .iconCircle {
+        --size: 70px;
+        margin-bottom: 16px;
+    }
+    .title{
+        font-size: 28px;
+    }
+    .message{
+        font-size: 15px;
+        margin-bottom: 32px;
+    }
+    .homeBtn{
+        padding: 10px 30px;
+    }
+}
+@media only screen and (max-width: 450px){
+    .thankWrapper{
+        padding-block: 60px;
+    }
 }

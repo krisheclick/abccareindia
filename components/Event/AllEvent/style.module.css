@@ -1,5 +1,12 @@
-.gllist {
-	gap: 13px;
+.tabSection{
+	position: relative;
+	padding-block: 80px;
+}
+.tabList {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 12px;
 	margin-bottom: 45px;
 }
 .tabLink {
@@ -19,7 +26,7 @@
 .active .tabLink {
 	background: #d8af1f;
 }
-.glsimg {
+.poster {
 	width: 100%;
 	display: block;
 	height: 300px;
@@ -27,7 +34,7 @@
 	border-radius: 10px;
 	position: relative;
 }
-.glsimg img {
+.poster img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
@@ -53,7 +60,50 @@
 	transform: translate(-50%, -50%);
 	box-shadow: 1px 14px 37px #0000001c;
 }
-.glsimg:hover .videoIcon {
+.poster:hover .videoIcon {
 	color: #fff;
 	background: red;
+}
+/* 1200px */
+@media only screen and (max-width: 1399px){
+	.tabSection{
+		padding-block: 60px;
+	}
+}
+/* 992px */
+@media only screen and (max-width: 1199px){
+	.tabList{
+		margin-bottom: 36px;
+	}
+	.poster{
+		height: 240px;
+	}
+}
+/* 768px */
+@media only screen and (max-width: 991px){
+	.section{
+		padding-block: 50px;
+	}
+}
+/* 480px */
+@media only screen and (max-width: 575px){
+	.section{
+		padding-block: 40px;
+	}
+	.item{
+		width: 50%;
+	}
+}
+/* 360px */
+@media only screen and (max-width: 450px){
+	.poster{
+		height: 160px;
+		border-radius: 4px;
+	}
+}
+/* 320px */
+@media only screen and (max-width: 359px){
+	.poster{
+		height: 120px;
+	}
 }

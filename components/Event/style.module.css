@@ -1,17 +1,14 @@
-.inner_mdlprheading {
-	text-align: center;
-	width: 80%;
-	margin: 0 auto 70px;
-	border-bottom: 1px solid #ededed;
-	padding-bottom: 40px;
+
+.card {
+	background: #2222220d;
+	border-radius: 10px;
+	border-right: 2px solid #ebc436;
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	font-size: 17px;
 }
-.evlsbxdetails {
-    background: #2222220d;
-}
-.rowevesblist{
-	row-gap: 24px;
-}
-.evlsimg {
+.card_image {
 	background: transparent;
 	width: 45%;
 	height: 270px;
@@ -20,68 +17,49 @@
 	border-radius: 8px;
 	padding-top: 0;
 	position: relative;
+	flex-shrink: 0;
 }
-.evlsbxdetails .evlsimg {
-	width: 100%;
-	height: 600px;
-	margin-bottom: 20px;
-}
-.evlsimg img {
+.card_image img, .poster img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 }
-.evlsdate {
-	font-size: 18px;
+.date {
+	font-size: 1.1em;
 	font-weight: 700;
-	line-height: 27px;
 	color: #2a2f6e;
 	margin-bottom: 6px;
 }
-.evlshead {
+.title {
 	font-size: 30px;
-	line-height: 36px;
 	font-weight: 600;
 	text-transform: capitalize;
-	margin-bottom: 13px;
+	margin-bottom: 12px;
 }
-.evlspara {
-	font-size: 17px;
-	line-height: 25px;
-	margin-bottom: 15px;
-	height: 53px;
+.card_content {
+	height: 3lh;
 	overflow: hidden;
+	margin-bottom: 16px;
 }
-.evlspara p{
-    font: inherit;
-    color: inherit;
+.card_btn{
+	border-radius: 48px;
+	margin-top: 0;
+	padding: 8px 24px;
+	font-size: .85em;
 }
-.evlsbx {
-	background: #2222220d;
-	border-radius: 10px;
-	border-right: 2px solid #ebc436;
-	display: flex;
-	align-items: center;
-	gap: 20px;
+.section{
+	padding-block: 80px;
 }
-.evlstbx {
-	padding: 0;
-	width: 50%;
+.eventBoxdetails {
+	padding-block: 80px 50px;
+    background: #2222220d;
 }
-.donatenowup {
-	background: #ebc436;
-	border-radius: 100px;
-	color: #000000;
-	text-transform: uppercase;
-	font-weight: 600;
-	font-size: 15px;
-	line-height: 25px;
-	display: inline-block;
-	padding: 7px 19px;
-}
-.donatenowup:hover {
-	background: #000000;
-	color: #ebc436;
+.poster {
+	width: 100%;
+	height: 600px;
+	border-radius: 8px;
+	margin-bottom: 20px;
+	overflow: hidden;
 }
 .skeletonBtn{
 	width: 140px;
@@ -90,7 +68,72 @@
 .skeletonTitle{
 	height: 30px;
 }
-.paragraph p{
-	font: inherit;
-	color: inherit;
+
+/* 1200px */
+@media only screen and (max-width: 1599px){
+	.section{
+		padding-block: 60px;
+	}
+	.eventBoxdetails{
+		padding-block: 60px 40px;
+	}
+	.card{
+		font-size: 16px;
+	}
+	.card .title{
+		font-size: 24px;
+	}
+}
+/* 992px */
+@media only screen and (max-width: 1199px){
+	.poster{
+		height: 480px;
+	}
+	.card .date{
+		font-size: .9em;
+	}
+	.card .title{
+		font-size: 20px;
+	}
+}
+/* 768px */
+@media only screen and (max-width: 991px){
+	.section{
+		padding-block: 50px;
+	}
+	.eventBoxdetails{
+		padding-block: 50px 40px;
+	}
+	.title{
+		font-size: 28px;
+		margin-bottom: 8px;
+	}
+	.card{
+		flex-direction: column;
+	}
+	.card_image{
+		width: 100%;
+		height: auto;
+		aspect-ratio: 16/9;
+	}
+	.event_content{
+		padding: 0 12px 16px;
+		width: 100%;
+	}
+}
+/* 576px */
+@media only screen and (max-width: 767px){
+	.poster{
+		height: 360px;
+	}
+}
+/* 480px */
+@media only screen and (max-width: 575px){
+	.section,
+	.eventBoxdetails{
+		padding-block: 40px;
+	}
+	.title{
+		font-size: 26px;
+	}
 }

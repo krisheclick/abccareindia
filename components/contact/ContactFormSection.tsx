@@ -23,7 +23,7 @@ const ContactFormSection = ({ formData }: { formData?: Props }) => {
             <Container>
                 <h2 className={`cmn_white_heading text-center ${Styles.contact_us_heading ?? ''}`}>{data?.form_title}</h2>
                 <div className={Styles.formArea}>
-                    <Row>
+                    <Row className="rowGap">
                         <Col lg={6}>
                             <div className={Styles.contact_form}>
                                 <ContactForm />

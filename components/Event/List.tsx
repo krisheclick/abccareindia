@@ -96,7 +96,7 @@ const EventList = ({ page }: Props) => {
         };
 
         fetchData();
-    }, [page]);
+    }, [page, setHasLoading]);
 
     const handlePageChange = (newPage: number) => {
         router.push(`/events?page=${newPage}`, { scroll: false });
@@ -104,7 +104,7 @@ const EventList = ({ page }: Props) => {
 
     return (
         <Stack ref={eventListRef} className={Styles.eventList}>
-            <Row className={Styles.rowevesblist}>
+            <Row className="rowGap">
                 {hasLoading ? (
                     [...Array(8)].map((_, index) => (
                         <Col lg={6} sm={6} key={index}>

@@ -106,7 +106,7 @@ export default function Brand({ brands }: BrandProps) {
 
                         <div className={Styles.controls}>
                             <button
-                                className={`swiper-nav-button-prev ${Styles.prev ?? ''} ${isEnd ? Styles.disabled ?? '' : ""}`}
+                                className={`swiper-nav-button-prev ${Styles.prev ?? ''}`}
                                 onClick={() => swiperRef.current?.slidePrev()}
                                 disabled={isBeginning}
                                 aria-label="Previous Button"
@@ -115,7 +115,7 @@ export default function Brand({ brands }: BrandProps) {
                             </button>
 
                             <button
-                                className={`swiper-nav-button-next ${Styles.next ?? ''} ${isEnd ? Styles.disabled ?? '' : ""}`}
+                                className={`swiper-nav-button-next ${Styles.next ?? ''}`}
                                 onClick={() => swiperRef.current?.slideNext()}
                                 disabled={isEnd}
                                 aria-label="Next Button"

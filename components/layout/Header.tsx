@@ -170,7 +170,7 @@ const Header = () => {
                                     </Stack>
                                 </nav>
                             )}
-                            <span className='responsive_btn' onClick={handleShow}>
+                            <span className='responsive_btn d-lg-none' onClick={handleShow}>
                                 <em></em>
                             </span>
                         </Stack>

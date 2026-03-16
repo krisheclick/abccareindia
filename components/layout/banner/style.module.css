@@ -125,6 +125,13 @@
     .home_banner_sec{
         --height: clamp(600px, 100vh, 680px)
     }
+    .innerbanner_sec{
+        height: 570px;
+    }
+    .inrbnrhead{
+        font-size: 65px;
+        margin-bottom: 20px;
+    }
     .inrbnrhead.homebnrhead{
         font-size: 80px;
         max-width: 700px;
@@ -139,6 +146,15 @@
     .inrbnrhead.homebnrhead{
         font-size: 72px;
     }
+    .innerbanner_sec{
+        height: 480px;
+    }
+    .inrbnrhead{
+        font-size: 56px;
+    }
+    .brdcminr li{
+        font-size: 15px;
+    }
 
 }
 /* 768px */
@@ -151,9 +167,22 @@
         line-height: 1.2;
         text-wrap: balance;
     }
+    .inrbnrhead{
+        width: 100%;
+    }
     .playBtn {
         --size: 48px;
         top: -16px;
+    }
+}
+/* 576px */
+@media only screen and (max-width: 767px){
+    .inrbnrhead{
+        font-size: 48px;
+        margin-bottom: 10px;
+    }
+    .brdcminr li{
+        font-size: 14px;
     }
 }
 /* 480px */
@@ -168,9 +197,11 @@
         position: relative;
         height: 270px;
     }
-    .bannertext{
+    .bannertext, .innerbannertxtbx{
         padding: 24px 0px;
+        position: static;
     }
+    .inrbnrhead,
     .inrbnrhead.homebnrhead{
         font-size: 40px;
     }
@@ -178,14 +209,25 @@
         --size: 40px;
         top: -7px;
     }
+    .innerbanner_sec {
+        height: auto;
+        background: #000000;
+    }
+    .inerbnrimg img{
+        min-height: 220px;
+    }
 }
 /* 360px */
 @media only screen and (max-width: 450px){
     .bannerPoster{
         height: 220px;
     }
+    .inrbnrhead,
     .inrbnrhead.homebnrhead{
         font-size: 36px;
+    }
+    .brdcminr li{
+        font-size: 13px;
     }
 }
 /* 320px */

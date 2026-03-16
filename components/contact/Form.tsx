@@ -131,6 +131,7 @@ const ContactForm = () => {
                     type="text"
                     name="contact_name"
                     id="contact_name"
+                    className={Styles.form_control}
                     ref={nameRef}
                     value={formData.contact_name}
                     placeholder="Your Name"
@@ -141,6 +142,7 @@ const ContactForm = () => {
                     type="email"
                     name="contact_email"
                     id="contact_email"
+                    className={Styles.form_control}
                     ref={emailRef}
                     value={formData.contact_email}
                     placeholder="Your Email"
@@ -152,6 +154,7 @@ const ContactForm = () => {
                     type="tel"
                     name="contact_phone"
                     id="contact_phone"
+                    className={Styles.form_control}
                     ref={phoneRef}
                     value={formData.contact_phone}
                     placeholder="Phone Number"
@@ -162,6 +165,7 @@ const ContactForm = () => {
                 <Form.Control as="textarea"
                     name="contact_msg"
                     id="contact_msg"
+                    className={Styles.form_control}
                     ref={messageRef}
                     value={formData.contact_msg}
                     placeholder="Your Message"

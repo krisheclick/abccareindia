@@ -17,6 +17,7 @@
 	background: linear-gradient(215deg, #3d3f82 40%, #ebc436 65%, #000 100%);
 	-webkit-border-radius: 4px;
 	border-radius: 4px;
+	border: 1px solid #ccc;
 }
 .responsive_btn em {
 	--space: -7px;

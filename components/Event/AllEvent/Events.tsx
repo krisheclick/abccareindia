@@ -34,9 +34,9 @@ const Events = ({ data }: { data?: EventsData | null }) => {
     const activeTab: "images" | "videos" = tabParam === "videos" ? "videos" : "images";
 
     return (
-        <Stack className={`pt_80 pb_100 ${Styles.inrmdl_upcomsecds ?? ''}`}>
+        <Stack className={Styles.tabSection}>
             <Container>
-                <ul className={`d-flex align-items-center justify-content-center ${Styles.gllist}`}>
+                <ul className={Styles.tabList}>
                     <li className={activeTab === "images" ? Styles.active : ""}>
                         <span
                             className={Styles.tabLink}
@@ -59,16 +59,16 @@ const Events = ({ data }: { data?: EventsData | null }) => {
                         </span>
                     </li>
                 </ul>
-                <div className={Styles.glimages}>
+                <div className={Styles.tabContent}>
                     {activeTab === "images" && (
                         <Stack className={Styles.galleryRow ?? ''}>
                             {Array.isArray(gallery) && gallery.length > 0 ? (
                                 <FancyboxWrapper>
-                                    <Row className="g-4">
+                                    <Row className="gx-xl-4 gx-sm-3 gx-2 rowGap">
                                         {gallery.map((value, index) => (
-                                            <Col lg={4} key={index}>
+                                            <Col lg={4} sm={6} key={index} className={Styles.item}>
                                                 <Link
-                                                    className={Styles.glsimg}
+                                                    className={Styles.poster}
                                                     href={`${mediaUrl}${value}`}
                                                     data-fancybox="gallery"
                                                 >

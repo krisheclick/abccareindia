@@ -17,9 +17,9 @@ const EventPoster = ({poster, title, date, description}: Props) => {
         year: "numeric",
     });
     return (
-        <Stack className={`pt_80 pb_50 ${Styles.evlsbxdetails ?? ''}`}>
+        <Stack className={Styles.eventBoxdetails}>
             <Container>
-                <Stack as="figure" className={Styles.evlsimg}>
+                <Stack as="figure" className={Styles.poster}>
                     <Image
                         src={`${process.env.NEXT_PUBLIC_MEDIA_URL}${poster}` || ''}
                         alt="Events Poster"
@@ -27,14 +27,14 @@ const EventPoster = ({poster, title, date, description}: Props) => {
                         height={720}
                     />
                 </Stack>
-                <Stack className={Styles.evlstbx}>
-                    <div className={Styles.evlsdate}>{formttedDate}</div>
+                <Stack className={Styles.detailsCard}>
+                    <div className={Styles.date}>{formttedDate}</div>
                     <div
-                        className={Styles.evlshead}
+                        className={Styles.title}
                         dangerouslySetInnerHTML={{ __html:title ?? '' }}
                     />
                     <div
-                        className={Styles.evlspara}
+                        className={Styles.paragraph}
                         dangerouslySetInnerHTML={{ __html: description ?? '' }}
                     />
                 </Stack>
