@@ -42,7 +42,7 @@ const Ourreach = ({ sectionData }: SectionDataProps) => {
     const appLink = process.env.NEXT_PUBLIC_ENV_URL;
     const [showContent, setShowContent] = useState<boolean>(false);
     const [data, setData] = useState<ProjectProps | null>(null);
-    const { setHasLoading, mediaUrl } = useGlobalContext();
+    const { setHasLoading, hasLoading, mediaUrl } = useGlobalContext();
 
 
     useEffect(() => {
@@ -91,18 +91,22 @@ const Ourreach = ({ sectionData }: SectionDataProps) => {
                     <Row className={`rowGap gx-xxl-5 ${Styles.ourReach_wrapper}`}>
                         <Col xl={7} xxl={6}>
                             <Stack direction="horizontal" className={Styles.ourReachImage ?? ''}>
-                                {reachItem?.our_reach_feature_image && (
+                                {!hasLoading && reachItem?.our_reach_feature_image ? (
                                     <div className={Styles.ourReachImage}>
                                         <Image
                                             src={`${mediaUrl}${reachItem.our_reach_feature_image}`}
                                             alt={sectionData?.our_reach_title || "Our Reach"}
-                                            width={100}
-                                            height={100}
+                                            width={580}
+                                            height={720}
                                             style={{ objectFit: "cover" }}
                                         />
                                     </div>
+                                ) : (
+                                    <div className={Styles.ourReachImageSkeleton}>
+                                        <div className="skeleton skeletonFill"></div>
+                                    </div>
                                 )}
-                                {projects && projects.length > 0 && (
+                                {!hasLoading && projects && projects.length > 0 ? (
                                     <div className={Styles.ourReachDescription}>
                                         <ul>
                                             {projects.slice(0, 10).map((value, index) => (
@@ -120,6 +124,16 @@ const Ourreach = ({ sectionData }: SectionDataProps) => {
                                                 <FontAwesomeIcon icon={faChevronRight} /> {button.text}
                                             </span>
                                         )}
+                                    </div>
+                                ) : (
+                                    <div className={`w-100 ${Styles.ourReachDescription}`}>
+                                        <ul>
+                                            {Array.from({ length: 16 }).map((_, index) => (
+                                                <li key={index}>
+                                                    <div className="w-100 skeleton skeletonText"></div>
+                                                </li>
+                                            ))}
+                                        </ul>
                                     </div>
                                 )}
                             </Stack>

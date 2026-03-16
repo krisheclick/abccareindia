@@ -144,6 +144,11 @@
     font-weight: 600;
     text-wrap: balance;
 }
+.ourReachImageSkeleton{
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1/1.5;
+}
 /* 1200px */
 @media only screen and (max-width: 1399px){
     .ourReachSection{
