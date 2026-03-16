@@ -138,6 +138,9 @@
     .title *{
         display: initial;
     }
+    .small_title{
+        font-size: 18px;
+    }
 }
 /* 480px */
 @media only screen and (max-width: 575px){
@@ -149,5 +152,8 @@
 @media only screen and (max-width: 450px){
     .small_title{
         font-size: 18px;
+    }
+    .small_title{
+        font-size: 16px;
     }
 }

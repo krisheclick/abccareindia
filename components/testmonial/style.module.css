@@ -1,13 +1,13 @@
 .testimonials{
     background: #f8f9fa;
-    padding-block: 80px;
+    padding-block: 80px 60px;
 }
 .slider{
     position: relative;
     padding-inline: 30px;
 }
 .testimonialslider{
-    padding-block: 24px;
+    padding-block: 16px;
 }
 
 .card{
@@ -70,6 +70,25 @@
     font: inherit;
     color: inherit;
 }
-.testimonial-description p:last-child{
-    margin-bottom: 0;
+/* 1200px */
+@media only screen and (max-width: 1399px){
+    .testimonials{
+        padding-block: 60px 40px;
+    }
+}
+/* 480px */
+@media only screen and (max-width: 575px){
+    .testimonials{
+        padding-block: 40px 30px;
+    }
+    .slider{
+        position: relative;
+        padding-inline: 10px;
+    }
+    .controls .prev{
+        left: -8px;
+    }
+    .controls .next{
+        right: -8px;
+    }
 }

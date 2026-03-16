@@ -181,6 +181,9 @@
 }
 /* 360px */
 @media only screen and (max-width: 450px){
+    .bannerPoster{
+        height: 220px;
+    }
     .inrbnrhead.homebnrhead{
         font-size: 36px;
     }

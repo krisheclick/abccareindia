@@ -2,8 +2,9 @@
     background: #ffffff;
     padding: 2.25rem 0rem;
 }
-.brandslider {
+.brandsWrapper {
     padding: 0px 40px;
+    position: relative;
 }
 .brandItem a {
     display: grid;

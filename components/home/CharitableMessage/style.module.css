@@ -167,6 +167,10 @@
     .controls{
         display: none;
     }
+    .btn{
+        color: #000;
+        background: #d4af37;
+    }
 
 }
 /* 576px */
@@ -189,6 +193,9 @@
 }
 /* 480px */
 @media only screen and (max-width: 575px){
+    .heading{
+        font-size: 28px;
+    }
     .card_title {
         font-size: 24px;
     }
@@ -200,9 +207,6 @@
 @media only screen and (max-width: 450px){
     .section_stack {
         padding-block: 40px;
-    }
-    .heading{
-        font-size: 28px;
     }
     .description {
         font-size: 16px;

@@ -124,6 +124,12 @@
         font-size: 13px;
     }
 }
+/* 480px */
+@media only screen and (max-width: 575px){
+    .button{
+        padding-block: 6px;
+    }
+}
 /* 360px */
 @media only screen and (max-width: 450px){
     .urgentNeeds_content h2, .urgentNeeds_content h3 {

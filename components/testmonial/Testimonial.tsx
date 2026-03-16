@@ -11,7 +11,7 @@ import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRightLong, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { Autoplay, FreeMode, Navigation } from 'swiper/modules';
 import { useRef, useState } from 'react';
 import type { Swiper as SwiperType } from 'swiper';
@@ -127,10 +127,9 @@ export default function TestimonialSection({ data, testimonials }: TestimonialSe
                         ))}
                     </Swiper>
 
-
                     <div className={Styles.controls}>
                         <button
-                            className={`swiper-nav-button-prev ${Styles.next ?? ''} ${isEnd ? Styles.disabled ?? '' : ""}`}
+                            className={`swiper-nav-button-prev ${Styles.prev ?? ''} ${isEnd ? Styles.disabled ?? '' : ""}`}
                             onClick={() => swiperRef.current?.slidePrev()}
                             disabled={isBeginning}
                             aria-label="Previous Button"

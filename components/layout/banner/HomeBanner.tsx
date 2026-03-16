@@ -8,7 +8,6 @@ import { normalizeYouTubeUrl } from '@/utlis/videoUrl';
 import { useGlobalContext } from '@/context/global_context';
 import { useWOW } from "@moondev/next-wow";
 import Styles from "./style.module.css";
-import CustomImage from '@/utlis/imagefunction';
 import Image from 'next/image';
 
 interface BannerItem {

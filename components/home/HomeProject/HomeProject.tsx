@@ -76,6 +76,7 @@ const HomeProject = ({ sectionData, projects }: HomeProjectProps) => {
                 <Swiper
                     className={`project_slider ${Styles.project_slider}`}
                     navigation={false}
+                    autoHeight={true}
                     modules={[FreeMode, Navigation]}
                     onSwiper={(swiper) => {
                         swiperRef.current = swiper;

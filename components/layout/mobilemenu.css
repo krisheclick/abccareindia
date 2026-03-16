@@ -1,0 +1,108 @@
+.responsiveBody{
+    --height: 90px;
+    --space: 16px;
+    padding: 0px 1px;
+	background: linear-gradient(215deg, #3d3f82 40%,65%, #000 100%);
+    position: relative;
+    z-index: 1;
+}
+.responsive_btn {
+	cursor: pointer;
+	text-align: center;
+	width: 40px;
+	height: 40px;
+	margin: -2px 0;
+	position: relative;
+	z-index: 20;
+	background: linear-gradient(215deg, #3d3f82 40%, #ebc436 65%, #000 100%);
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+}
+.responsive_btn em {
+	--space: -7px;
+	display: block;
+	height: 2px;
+	width: 20px;
+	position: relative;
+	top: 50%;
+	margin: -1px auto;
+}
+.responsive_btn em::before,
+.responsive_btn em::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+.responsive_btn em,
+.responsive_btn em::before,
+.responsive_btn em::after{
+	background: #ffffff;
+	-webkit-border-radius: 1px;
+	border-radius: 1px;
+}
+.responsive_btn em:before { top: var(--space); }
+.responsive_btn em:after { bottom: var(--space); }
+.responsiveLogo {
+	max-width: 150px;
+}
+.responsiveMenu li {
+    display: block;
+    border-bottom: 1px solid #ccc;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 400;
+    position: relative;
+    z-index: 1;
+    --toggleMenu: 36px;
+}
+.responsiveMenu .responsive-children-item {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr var(--toggleMenu));
+}
+.responsiveMenu ul > li:last-child {
+	border-bottom: none;
+}
+.responsive-menuItem a {
+    display: block;
+    padding: 10px var(--space);
+    color: inherit;
+}
+.submenuToggle {
+	width: var(--toggleMenu);
+	height: var(--toggleMenu);
+	display: grid;
+	place-items: center;
+	background: #000;
+	border-radius: 3px;
+    cursor: pointer;
+    margin-top: 4px;
+    -moz-transition: all 300ms ease-in-out;
+    -webkit-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
+}
+.showSubmenu .submenuToggle svg{
+    transform: rotate(-180deg);
+}
+.responsive-submenu{
+    grid-column:1/-1;
+    background:#000;
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .35s ease;
+}
+.responsive-submenu.open{
+    max-height:500px;
+}
+.responsive_social {
+	gap: 8px;
+	flex-wrap: wrap;
+	font-weight: 600;
+	font-size: 18px;
+}
+.responsive_social .top_header_social li a {
+	color: #202143;
+	font-size: 18px;
+}

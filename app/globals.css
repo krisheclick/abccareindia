@@ -350,6 +350,7 @@ a:hover{
   border: 1px solid #E9E9E9;
   border-radius: 100%;
   position: absolute;
+  z-index: 2;
   top: 50%;
   transform: translateY(-50%);
   box-shadow: 1px 14px 37px 0px #0000001C;
@@ -534,6 +535,15 @@ a:hover{
   .btn-primary {
     margin-top: 1.5rem;
     padding: 0.5rem 1.5rem;
+  }
+}
+/* 480px */
+@media only screen and (max-width: 575px){
+  .swiper-nav-button-prev{
+    left: -10px;
+  }
+  .swiper-nav-button-next{
+    right: -10px;
   }
 }
 /* 360px */
