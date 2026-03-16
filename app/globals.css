@@ -1,5 +1,19 @@
 /* @import "tailwindcss"; */
 @import "./skeleton.css";
+/* @font-face {
+  font-family: "Font Awesome 7 Free";
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Font Awesome 7 Brands";
+  font-display: swap;
+} */
+@font-face {
+  font-family: "Font Awesome 7 Free";
+  src: url("/webfonts/fa-solid-900.woff2") format("woff2");
+  font-display: swap;
+}
 
 /* ===============================
    ROOT + BASE
