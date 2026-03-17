@@ -13,9 +13,9 @@ interface ContentProps {
 }
 const Awards = ({ title, content, awards }: ContentProps) => {
     return (
-        <Stack className={`pt_80 ${Styles.inrmdl_upcomsecourrecog ?? ''}`}>
+        <Stack className={Styles.section}>
             <Container>
-                <div className={Styles.inner_mdlprheading}>
+                <Stack className={`inner_mdlprheading ${Styles.section_content ?? ''}`}>
                     <h1
                         className={`cmn_black_heading ${Styles.cmn_black_heading ?? ''}`}
                         dangerouslySetInnerHTML={{ __html: title ?? '' }}
@@ -24,10 +24,10 @@ const Awards = ({ title, content, awards }: ContentProps) => {
                         className={`paragraph ${Styles.paragraph ?? ''}`}
                         dangerouslySetInnerHTML={{ __html: content ?? '' }}
                     />
-                </div>
+                </Stack>
             </Container>
             {awards?.length && (
-                <Stack className={Styles.reog_alltextimg}>
+                <Stack className={Styles.awardList}>
                     {awards?.map((value, index) => (
                         <AwardCard
                             key={index}

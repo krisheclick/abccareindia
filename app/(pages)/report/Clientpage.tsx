@@ -60,9 +60,9 @@ const Clientpage = () => {
                 <Container>
                     {data?.all_reports && data?.all_reports.length > 0 ? (
                         <Stack className={Styles.reportList}>
-                            <Row className="gy-4 justify-content-center">
+                            <Row className="rowGap justify-content-center">
                                 {data?.all_reports.map((item, index) => (
-                                    <Col lg={4} sm={6} key={index}>
+                                    <Col lg={4} md={6} key={index}>
                                         <Stack as="a" href={`${process.env.NEXT_PUBLIC_ENV_URL}/report/${item.report_slug}`} className={Styles.reportCard}>
                                             <div className={Styles.report_title}>{item.report_title}</div>
                                         </Stack>

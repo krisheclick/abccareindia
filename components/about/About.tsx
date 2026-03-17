@@ -31,9 +31,9 @@ const About = ({ posterPart, content }: PageProps) => {
         setShowVideo(false);
     }
     return (
-        <div className={`pt_80 pb_100 ${Styles.abtinr}`}>
+        <div className={Styles.section}>
             <Container>
-                <Row className="align-items-center gx-xl-5">
+                <Row className="align-items-center gx-xxl-5 rowGap">
                     <Col lg={5}>
                         <figure
                             className={Styles.multiPoster}

@@ -9,17 +9,16 @@ interface Props {
 const AwardCard = ({poster, content}: Props) => {
     return (
         <Row className={`g-0 align-items-center ${Styles.row}`}>
-            <Col lg={6}>
-                <Stack className={Styles.recogparan}
+            <Col xl={6}>
+                <Stack className={Styles.description}
                     dangerouslySetInnerHTML={{__html: content ?? ''}}
                 />
             </Col>
-            <Col lg={6}>
-                <Stack as="figure" className={Styles.recogimgn}>
-                    <CustomImage
-                        src={`${process.env.NEXT_PUBLIC_MEDIA_URL}${poster}`}
-                    />
-                </Stack>
+            <Col xl={6}>
+                <CustomImage
+                    src={`${process.env.NEXT_PUBLIC_MEDIA_URL}${poster}`}
+                    className={Styles.poster}
+                />
             </Col>
         </Row>
     )

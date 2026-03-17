@@ -86,9 +86,9 @@ const SingleReport = ({ permalink }: { permalink: string }) => {
                         </Stack>
                         {report && report.length > 0 ? (
                             <Stack className={Styles.reportList}>
-                                <Row className="gy-4 justify-content-center">
+                                <Row className="rowGap gx-3 gx-xl-4 justify-content-center">
                                     {report.map((item, index) => (
-                                        <Col xl={3} lg={4} sm={6} key={index}>
+                                        <Col xxl={3} lg={4} sm={6} key={index}>
                                             <Card className={Styles.cardItem}>
                                                 <CardBody className={Styles.cardBody ?? ''}>
                                                     <figure>

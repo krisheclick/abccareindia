@@ -1,6 +1,7 @@
-.inrmdl_upcomsecourrecog{
+.section{
 	max-width: 1920px;
 	margin: auto;
+	padding-block: 80px;
 }
 .inner_mdlprheading {
 	text-align: center;
@@ -9,17 +10,29 @@
 	border-bottom: 1px solid #ededed;
 	padding-bottom: 40px;
 }
-.reog_alltextimg .row:nth-child(2n+1) {
+.row:nth-child(2n+1) {
 	flex-direction: row-reverse;
 }
-.recogparan {
-	max-width: 730px;
-	padding-left: 100px;
+.description {
+	max-width: 780px;
+	padding: 30px;
+	margin: auto;
 }
-.recogparan p{
-    font: inherit;
+@media only screen and (max-width: 1399px){
+	.description {
+		max-width: 650px;
+	}
 }
-.recogimgn {
-	height: 500px;
-	overflow: hidden;
+@media only screen and (max-width: 1199px){
+	.row{
+		flex-direction: column-reverse !important;
+	}
+	.description {
+		max-width: 100%;
+	}
+}
+@media only screen and (max-width: 575px){
+	.description {
+		padding: 24px 16px;
+	}
 }

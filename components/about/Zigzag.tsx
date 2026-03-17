@@ -16,14 +16,11 @@ const ZigzagContent = ({ data, reverse = false, background }: DataProps) => {
     const poster = `${process.env.NEXT_PUBLIC_MEDIA_URL}/uploads/page_image/${data?.poster}`
     const poster2 = `${process.env.NEXT_PUBLIC_MEDIA_URL}/uploads/page_image/${data?.poster2}`
     return (
-        <div className={Styles.inrmdl_upcomsec} style={{ background: background }}>
+        <div className={Styles.section} style={{ background: background }}>
             <Container>
-                <Row className={`align-items-center gx-5 ${reverse ? `flex-row-reverse ${Styles.reverseRow}` : ''}`}>
+                <Row className={`align-items-center gx-xl-5 rowGap ${reverse ? `flex-row-reverse ${Styles.reverseRow}` : ''}`}>
                     <Col lg={7}>
-                        <div className={Styles.inner_mdlprheadindg}>
-                            <h2 className="cmn_black_heading"
-                                dangerouslySetInnerHTML={{ __html: data?.title ?? '' }}
-                            />
+                        <div className={Styles.box_content}>
                             <div className="paragraph"
                                 dangerouslySetInnerHTML={{ __html: data?.description ?? '' }}
                             />

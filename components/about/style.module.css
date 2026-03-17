@@ -1,9 +1,5 @@
-.inrmdl_upcomsec{
+.section{
     padding: 80px 0px;
-}
-.paragraph p {
-	color: inherit;
-	font: inherit;
 }
 .whatwedoimg {
 	position: relative;
@@ -46,8 +42,9 @@
 	top: -20px;
 	left: -52px;
 	background: var(--poster-bg);
-	width: 200px;
-	height: 200px;
+	--size: 200px;
+	width: var(--size);
+	height: var(--size);
 }
 .multiPoster img {
 	border-radius: 20px;
@@ -99,4 +96,45 @@
   100% {
     box-shadow: 0 0 0 0 rgba(255, 59, 59, 0);
   }
+}
+
+@media only screen and (max-width: 1399px){
+	.section{
+		padding: 60px 0px;
+	}
+	.player{
+		--size: 60px;
+	}
+}
+@media only screen and (max-width: 991px){
+	.section{
+		padding: 50px 0px;
+	}
+	.multiPoster::before {
+		--size: 150px;
+		left: -36px;
+	}
+}
+@media only screen and (max-width: 767px){
+	.bigThumb{
+		height: 400px;
+	}
+}
+@media only screen and (max-width: 575px){
+	.section{
+		padding: 40px 0px;
+	}
+	.multiPoster::before{
+		--size: 120px;
+		top: -16px;
+		left: -30px;
+	}
+}
+@media only screen and (max-width: 450px){
+	.bigThumb{
+		height: 320px;
+	}
+	.player{
+		--size: 48px;
+	}
 }

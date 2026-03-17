@@ -48,7 +48,7 @@ html, body{
   overflow-x: hidden;
 }
 body{
-  color: #222222;
+  color: #222222;  
   font: 400 18px / 1.25 "Open Sans", sans-serif;
   margin: 0;
   padding: 0;
@@ -102,11 +102,7 @@ h1, h2, h3, h4, h5, h6{
   font-size: 55px;
 }
 .paragraph{
-  color: #222222;
   font-weight: 500;
-  font-size: 17px;
-  line-height: 1.7;  
-  margin-bottom: 15px;
 } 
 .paragraph_white{
   color: #ffffff;
@@ -497,6 +493,13 @@ a:hover{
     margin-bottom: 56px;
     padding-bottom: 36px;
   }
+  .abtintrighttbx h2.cmn_black_heading{
+    font-size: 28px;
+    margin-bottom: 4px;
+  }
+  .whatwedo {
+    margin-top: 16px;
+  }
 }
 /* 992px */
 @media only screen and (max-width: 1199px){
@@ -550,6 +553,9 @@ a:hover{
   }
   .cmn_black_heading, .cmn_white_heading{
     font-size: 30px;
+  }
+  .abtintrighttbx h2.cmn_black_heading{
+    font-size: 24px;
   }
 }
 /* 360px */

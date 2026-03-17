@@ -28,35 +28,35 @@ const ThankYouComponent = ({title, content, sessionItem} : Props) => {
         return () => staticHeaderSet("");
     }, [staticHeaderSet]);
 
-    // useEffect(() => {
+    useEffect(() => {
 
-    //     const allowed = sessionStorage.getItem(sessionItem);
+        const allowed = sessionStorage.getItem(sessionItem);
 
-    //     if (!allowed) {
-    //         router.replace("/");
-    //         return;
-    //     }
+        if (!allowed) {
+            router.replace("/");
+            return;
+        }
 
-    //     // countdown timer
-    //     const countdown = setInterval(() => {
-    //         setCounter((prev) => prev - 1);
-    //     }, 1000);
+        // countdown timer
+        const countdown = setInterval(() => {
+            setCounter((prev) => prev - 1);
+        }, 1000);
 
-    //     // redirect after 30 seconds
-    //     const redirectTimer = setTimeout(() => {
-    //         sessionStorage.removeItem(sessionItem); // remove only when redirecting
-    //         router.replace("/");
-    //     }, 30000);
+        // redirect after 30 seconds
+        const redirectTimer = setTimeout(() => {
+            sessionStorage.removeItem(sessionItem); // remove only when redirecting
+            router.replace("/");
+        }, 30000);
 
-    //     return () => {
-    //         clearInterval(countdown);
-    //         clearTimeout(redirectTimer);
-    //     };
-    // }, [router]);
+        return () => {
+            clearInterval(countdown);
+            clearTimeout(redirectTimer);
+        };
+    }, [router]);
 
-    // useEffect(() => {
-    //     window.scrollTo(0, 0);
-    // }, [pathname]);
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
     return (
         <Stack className={`thank-you-page ${Styles.thankWrapper}`}>
             <Container>

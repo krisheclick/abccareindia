@@ -46,3 +46,35 @@
     flex-shrink: 0;
     border-radius: 3px;
 }
+@media only screen and (max-width: 1399px){
+    .reports_section{
+        padding-block: 60px;
+    }
+    .report_title{
+        font-size: 24px;
+    }
+    .section_content{
+        margin-bottom: 30px;
+    }
+}
+@media only screen and (max-width: 991px){
+    .reports_section{
+        padding-block: 50px;
+    }
+    .report_title{
+        font-size: 24px;
+    }
+}
+@media only screen and (max-width: 575px){
+    .reports_section{
+        padding-block: 40px;
+    }
+}
+@media only screen and (max-width: 575px){
+    .reportCard {
+        padding: 40px 24px;
+    }
+    .report_title{
+        font-size: 22px;
+    }
+}
