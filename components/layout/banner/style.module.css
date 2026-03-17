@@ -216,6 +216,9 @@
     .inerbnrimg img{
         min-height: 220px;
     }
+    .brdcminr{
+        display: none !important;
+    }
 }
 /* 360px */
 @media only screen and (max-width: 450px){

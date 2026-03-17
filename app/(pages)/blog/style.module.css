@@ -2,14 +2,21 @@
     padding: 80px 0px;
     background: #fdfdfd;
 }
-.page_content{
-    text-align: center;
-    border-bottom: 1px solid #ededed;
-    width: 80%;
-    margin: 0 auto 70px;
-    padding-bottom: 40px;
-}
-
 .single_page{
     padding: 80px 0px;
+}
+@media only screen and (max-width: 1599px){
+    .blog_page, .single_page{
+        padding-block: 60px;
+    }
+}
+@media only screen and (max-width: 991px){
+    .blog_page, .single_page{
+        padding-block: 50px;
+    }
+}
+@media only screen and (max-width: 575px){
+    .blog_page, .single_page{
+        padding-block: 40px;
+    }
 }

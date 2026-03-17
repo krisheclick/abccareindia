@@ -1,21 +1,17 @@
-.gllist{
-    gap: 13px;
-    margin-bottom: 45px;
+.tabs{
+    margin-bottom: 48px;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-}
-.glsimg img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    gap: 12px;
 }
 .tabButton{
     display: flex;
     align-items: center;
     gap: 6px;
     background: #2a2e6d;
-    padding: 11px 40px;
+    padding: 12px 36px;
     color: #ffffff;
     text-transform: uppercase;
     font-size: 16px;
@@ -44,122 +40,17 @@
     display: block;
     color: #d8af1f;
 }
-
-.gllist .nav-link.active::after {
-  content: "";
-  position: absolute;
-  bottom: -8px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-top: 8px solid #d4aa1f;
+.projectList {
+    display: grid;
+    row-gap: 48px;
 }
-
-.inner_mdlbxsin{
+.project_wrapper{
     background-color: #ffffff;
     border-radius: 20px;
-    padding: 5px;
-    margin-bottom: 90px;
+    padding: 4px;
     box-shadow: 0px 0px 8px 8px rgb(244 244 244);
-}
-.inner_mdlbxsin:last-child{
-    margin-bottom: 0;
-}
-.inrplsbl {
-    width: 50%;
-}
-.inrplsblcm {
-    margin-bottom: 50px;
-    display: inline-block;
-    position: relative;
-    left: -5px;
-}
-.inrplsblcm span {
-    background-color: #3C44A7;
-    font-family: "Oswald", sans-serif;
-    text-transform: uppercase;
-    padding: 12px 35px;
-    color: #ffffff;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 28px;
-    letter-spacing: 0.5px;
-    border-radius: 0px 50px 50px 0px;
-}
-.inrplsblaltxt {
-    padding: 0 30px;
-}
-.inrplsblaltxth {
-    font-weight: 700;
-    font-size: 35px;
-    line-height: 42px;
-    margin-bottom: 15px;
-    color: #111111;
-}
-.inrplsblaltxtp {
-    margin-bottom: 17px; 
-    height: 145px;
     overflow: hidden;
-    font-size: 17px;
-    line-height: 25px;
-}
-.inrplsbldbx {  
-    margin-bottom: 33px;
-}
-.lmwv {
-    gap: 10px;
-}
-.lmwv a {
-    background: #ebc436;
-    border-radius: 100px;
-    color: #000;
-    text-transform: capitalize;
-    font-weight: 600;
-    font-size: 17px;
-    display: inline-block;
-    padding: 5px 20px;
-    border: 1px solid #ebc436;
-}
-.lmwv a.lmwvwov {
-    background: transparent;
-    color: #3c44a7;
-    border: 1px solid #3c44a7;
-}
-.inrplsbr {
-    width: 50%;
-}
-.plimg {
-    width: 100%;
-    height: 480px;
-    border-radius: 0 20px 20px 0;
-    overflow: hidden;
-}
-.plimg img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-.inrplsbldbxs{
-    gap: 7px;
-    display: block;
-}
-.inrplsbldbxstick{
-    background: #ebc436;
-    width: 30px;
-    height: 30px;
-    border-radius: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #000;
-    font-size: 16px;
-}
-.inrplsbldbxsad{
-    font-size: 25px;
-    line-height: 33px;
-    color: #222222;
-    font-weight: 700;
+    --section-space: 30px;
 }
 .contentWrap{
     padding-block: 36px;
@@ -167,4 +58,167 @@
 .notfound{
 	text-align: center;
 	font-weight: 500;
+}
+.tags{
+    display: inline-block;
+    background: #3C44A7;
+    font-family: "Oswald", sans-serif;
+    text-transform: uppercase;
+    padding: 12px 36px;
+    margin: 0px 0px 42px -4px;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 20px;
+    letter-spacing: 0.5px;
+    border-radius: 0px 50px 50px 0px;
+}
+.project_content {
+    padding: 0 30px;
+}
+.title {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    color: #111111;
+}
+.description {
+    height: 8lh;
+    overflow: hidden;
+    margin-bottom: var(--section-space);
+}
+.locationBox{
+    display: flex;
+    align-items: start;
+    gap: 8px;
+    --size: 32px;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: var(--section-space);
+}
+.locationBox span {
+    display: grid;
+    place-items: center;
+    width: var(--size);
+    height: var(--size);
+    font-size: calc(var(--size) / 2);
+    color: #000;
+    background: #ebc436;
+    border-radius: 100%;
+}
+.buttonWrap{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+}
+.buttonWrap :is(.button, .watchBtn){
+    border-radius: 30px;
+    padding: 12px 28px;
+}
+.poster {
+    border-radius: 0 20px 20px 0;
+    min-height: 100%;
+}
+@media only screen and (max-width: 1399px){
+    .title{
+        font-size: 32px;
+    }
+}
+@media only screen and (max-width: 1199px){
+    .tabButton {
+        padding: 12px 30px;
+        font-size: 15px;
+    }
+    .projectList{
+        row-gap: 36px;
+    }
+    .contentWrap{
+        padding-block: 24px;
+    }
+    .tags{
+        font-size: 18px;
+        margin-bottom: 24px;
+    }
+    .project_content{
+        padding-inline: 16px;
+    }
+    .title{
+        font-size: 28px;
+    }
+    .locationBox {
+        font-size: 22px;
+    }
+    .buttonWrap :is(.button, .watchBtn){
+        border-radius: 30px;
+        padding: 8px 20px;
+        font-size: 15px;
+    }
+}
+@media only screen and (max-width: 991px){
+    .row{
+        flex-direction: column-reverse;
+    }
+    .contentWrap{
+        padding-top: 0;
+    }
+    .description{
+        height: auto;
+    }
+    .poster{
+        border-radius: 20px 20px 0px 0px;
+    }
+}
+@media only screen and (max-width: 767px){
+    .tabs{
+        margin-bottom: 36px;
+    }
+    .projectList{
+        row-gap: 24px;
+    }
+    .project_wrapper{
+        --section-space: 20px;
+    }
+    .tags {
+        margin-bottom: 16px;
+        font-size: 16px;
+        padding: 12px 24px;
+    }
+    .title{
+        font-size: 24px;
+    }
+    .locationBox{
+        --size: 28px;
+        font-size: 20px;
+    }
+    .buttonWrap{
+        column-gap: 10px;
+    }
+}
+@media only screen and (max-width: 575px){
+    .section{
+        padding-block: 40px;
+    }
+    .contentWrap{
+        padding-bottom: 20px;
+    }
+    .project_content{
+        padding-inline: 8px;
+    }
+    .title{
+        font-size: 22px;
+        margin-bottom: 8px;
+    }
+    .tabs{
+        gap: 12px 8px;
+    }
+    .tabButton{
+        font-size: 13px;
+    }
+    .buttonWrap :is(.button, .watchBtn){
+        font-size: 14px;
+    }
+    .poster{
+        padding-top: 70%;
+    }
 }

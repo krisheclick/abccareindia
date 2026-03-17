@@ -62,7 +62,7 @@ const ClientPage = ({page}: PageProps) => {
             <InnerBanner />
             <Stack className={Styles.blog_page}>
                 <Container>
-                    <Stack className={Styles.page_content}>
+                    <Stack className={`inner_mdlprheading ${Styles.page_content ?? ''}`}>
                         <h1 
                             className="cmn_black_heading"
                             dangerouslySetInnerHTML={{__html: data?.page?.page_name || ''}}

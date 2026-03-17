@@ -98,7 +98,7 @@ const BlogDetailsClient = ({ permalink }: { permalink: string }) => {
                                 dangerouslySetInnerHTML={{
                                     __html: data.blog.blog_title ?? "",
                                 }}
-                                className={`cmn_black_heading ${Styles.details_title}`}
+                                className={`cmn_black_heading ${Styles.details_title ?? ''}`}
                             />
 
                             <div
