@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
+import AccessibilityTool from "@/components/AccessibilityTool";
 config.autoAddCss = false;
 import { Open_Sans, Oswald } from 'next/font/google';
 const openSans = Open_Sans({
@@ -39,6 +40,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang="en">
             <body className={`${openSans.variable} ${oswald.variable}`}>
+                <AccessibilityTool />
+                <img src="/assets/images/accessibility.webp" alt="Accessibility Tool" />
                 <GlobalContextProvider>
                     <Header />
                     <main role="main">
