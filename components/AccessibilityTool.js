@@ -51,7 +51,7 @@ export default function AccessibilityTool() {
     };
 
     return (
-        <Stack className="body_side_panel">
+        <Stack direction="horizontal" className="body_side_panel">
             <div className="accessibility_icon" onClick={() => setOpen(!open)} title="Accessibility">
                 <Image 
                     src="/assets/images/accessibility.webp"
@@ -61,7 +61,7 @@ export default function AccessibilityTool() {
                 />
             </div>
 
-            {open && (
+            {/* {open && (
                 <div className="accessibility sidebar">
                     <div className="input-group">
                         <button onClick={decreaseText}>Decrease Text</button>
@@ -77,7 +77,7 @@ export default function AccessibilityTool() {
                         <button onClick={resetAll}>Reset</button>
                     </div>
                 </div>
-            )}
+            )} */}
         </Stack>
     );
 }
