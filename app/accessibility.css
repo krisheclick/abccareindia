@@ -1,0 +1,15 @@
+.accessibility_icon{
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 9;
+    background: #fff;
+    padding: 12px;
+    --size: 40px;
+    cursor: pointer;
+    border-radius: 0px 8px 8px 0px;
+}
+.accessibility_icon img{
+    width: var(--size);
+    height: var(--size);
+}
