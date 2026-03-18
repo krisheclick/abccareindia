@@ -268,6 +268,9 @@ a:hover{
   border-radius: 4px;
   width: fit-content;
 }
+.btn-primary.btn-sm{
+  padding: 0.6rem 1.2rem;
+}
 .btn-blue {
   background-color: #3c44a7;
   border-color: #3c44a7;
@@ -583,6 +586,9 @@ a:hover{
   }
   .paragraph :is(h2, h3, h4){
     font-size: 22px;
+  }
+  .btn-primary.btn-sm {
+    padding: 0.45rem 0.9rem;
   }
 }
 /* 360px */

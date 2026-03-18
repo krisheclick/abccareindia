@@ -1,11 +1,41 @@
-.volunteerForm{
-    margin-top: 40px;
+.section{
+    padding-block: 80px;
+}
+.section_content ol{
+    list-style-position: inside;
+    padding: 0;
+}
+.section_content ol{
+    list-style-position: inside;
+    padding: 0;
+}
+.section_title {
+	color: #222;
+	text-transform: capitalize;
+	margin-bottom: 24px;
+	font-size: 32px;
+	font-weight: 700;
+	line-height: 1.25;
+}
+.volunteerForm {
+    margin-top: 12px;
 }
 .form_group label {
     display: block;
     margin-bottom: 6px;
     font-weight: 600;
     font-size: 16px;
+}
+.checkbox_row {
+    padding-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2px 8px;
+}
+.checkbox_row label{
+    margin-bottom: 0;
 }
 .form_controller{
     height: 48px;
@@ -31,6 +61,7 @@ label.form_check_label{
 .volunteerForm h5 {
 	font-size: 22px;
     font-weight: 600;
+    margin-bottom: 20px;
 }
 .volunteerForm ol {
     list-style: auto;
@@ -52,16 +83,24 @@ label.form_check_label{
 	color: #fff !important;
 	border-color: #3d3f82;
 }
-.form_group input[type="file"]::file-selector-button {
-  
+.form_group input[type="file"]::file-selector-button,
+.form_group input[type="file"]::-webkit-file-upload-button {
   color: #ffffff;
   background: #3d3f82;
   outline: none;
   margin: -6px 16px -6px -16px;
   padding: 12px 24px;
   font-weight: 600;
-  transition: all .2s ease-in-out;
-  border: none !important;
+  border: none;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+/* Hover on the button itself */
+.form_group input[type="file"]::file-selector-button:hover,
+.form_group input[type="file"]::-webkit-file-upload-button:hover {
+  background: #5a5ccf;
+  color: #ffffff;
 }
 .openBtn{
     padding: 8px 12px;
@@ -72,4 +111,77 @@ label.form_check_label{
     line-height: 1;
     border-radius: 3px;
     margin-top: 4px;
+}
+.modal_button {
+	font-size: .9em;
+	color: #3d3f82;
+	font-weight: 700;
+	padding: 4px;
+}
+.volunteerForm table{
+    width: max(100%, 900px);
+}
+
+@media only screen and (max-width: 1599px){
+    .section{
+        padding-block: 60px;
+    }
+    .volunteerForm h5{
+        font-size: 20px;
+    }
+}
+@media only screen and (max-width: 991px){
+    .section{
+        padding-block: 50px;
+    }
+    .donation_section{
+        padding-block: 60px;
+        margin-top: 40px;
+    }
+    .section_title{
+        font-size: 30px;
+    }
+    .form_group label{
+        font-size: 15px;
+    }
+    .form_controller{
+        height: 44px;
+        font-size: 15px;
+    }
+    textarea.form_controller{
+        height: 90px;
+    }
+    .form_group input[type="file"]::file-selector-button, .form_group input[type="file"]::-webkit-file-upload-button{
+        padding: 10px 24px;
+    }
+    .buttonWrap button{
+        margin-top: 32px;
+        padding: .75rem 2rem;
+    }
+    .addButton{
+        margin-top: 0;
+    }
+}
+@media only screen and (max-width: 575px){
+    .section{
+        padding-block: 40px;
+    }
+    .donation_section{
+        padding-block: 50px;
+    }
+    .volunteerForm h5{
+        margin-block: 12px !important;
+    }
+}
+@media only screen and (max-width: 450px){
+    .section_title{
+        font-size: 24px;
+    }
+    .form_group label{
+        font-size: 14px;
+    }
+    .form_controller{
+        height: 40px;
+        font-size: 14px;
+    }
 }

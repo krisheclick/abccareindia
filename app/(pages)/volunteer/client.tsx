@@ -52,7 +52,7 @@ const VolunteerClient = () => {
             <InnerBanner />
             <Stack className={Styles.section}>
                 <Container>
-                    <div className={Styles.section_content}>
+                    <div className={`inner_mdlprheading ${Styles.section_content}`}>
                         <h1
                             className={`cmn_black_heading ${Styles.cmn_black_heading ?? ""}`}
                             dangerouslySetInnerHTML={{
@@ -67,7 +67,7 @@ const VolunteerClient = () => {
                         />
                     </div>
                     <Stack className={Styles.volunteerForm}>
-                        <h2 className="text-center">Volunteer Information Record</h2>
+                        <h2 className={Styles.section_title}>Volunteer Information Record</h2>
                         <VolunteerForm />
                     </Stack>
                 </Container>

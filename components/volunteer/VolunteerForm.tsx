@@ -783,7 +783,7 @@ const VolunteerForm = () => {
                             <Form.Control.Feedback type="invalid">{errors.visa_duration}</Form.Control.Feedback>
                         </FormGroup>
                     </Col>
-                    <Col xl={6} sm={6}>
+                    <Col lg={6}>
                         <FormGroup className={Styles.form_group}>
                             <label htmlFor="document_file">Enclosed Copy</label>
                             <FormControl
@@ -808,7 +808,7 @@ const VolunteerForm = () => {
                             )}
                         </FormGroup>
                     </Col>
-                    <Col xl={6} sm={6}>
+                    <Col lg={6}>
                         <FormGroup className={Styles.form_group}>
                             <label htmlFor="emergency_contact">In case of emergency, please give immediate contact number</label>
                             <FormControl
@@ -826,7 +826,7 @@ const VolunteerForm = () => {
                 </Row>
                 <div className="d-flex align-items-center justify-content-between mt-4">
                     <h5 className="mb-0">Educational Details</h5>
-                    <Button className={Styles.addButton} type="button" onClick={addEducationRow}>
+                    <Button className={`btn-sm ${Styles.addButton}`} type="button" onClick={addEducationRow}>
                         Add Row
                     </Button>
                 </div>
@@ -903,7 +903,7 @@ const VolunteerForm = () => {
                         </FormGroup>
                     </Col>
                 </Row>
-                <h5 className="mt-4">Working Experience</h5>
+                <h5 className="mt-3 mt-md-4">Working Experience</h5>
                 <Row className='g-3'>
                     <Col lg={12}>
                         <FormGroup className={Styles.form_group}>
@@ -1261,7 +1261,7 @@ const VolunteerForm = () => {
                             <Form.Control.Feedback type="invalid">{errors.special_skill}</Form.Control.Feedback>
                         </FormGroup>
                     </Col>
-                    <Col xl={6} sm={6}>
+                    <Col md={6}>
                         <FormGroup className={Styles.form_group}>
                             <label htmlFor="proposed_duration">What is the proposed duration of your volunteering?</label>
                             <FormControl
@@ -1276,7 +1276,7 @@ const VolunteerForm = () => {
                             <Form.Control.Feedback type="invalid">{errors.proposed_duration}</Form.Control.Feedback>
                         </FormGroup>
                     </Col>
-                    <Col xl={6} sm={6}>
+                    <Col md={6}>
                         <FormGroup className={Styles.form_group}>
                             <label htmlFor="proposed_start_date">Probable start date of your volunteering</label>
                             <FormControl
@@ -1344,8 +1344,8 @@ const VolunteerForm = () => {
                 </FormCheck>
                 {errors.declaration && <div className="invalid-feedback d-block">{errors.declaration}</div>}
 
-                <Row className='g-3 mt-3'>
-                    <Col xl={6} sm={6}>
+                <Row className='g-3 mt-1 mt-md-3'>
+                    <Col lg={6}>
                         <FormGroup className={Styles.form_group}>
                             <label htmlFor="photo">Photo (Image size less than 2MB)</label>
                             <FormControl
@@ -1370,7 +1370,7 @@ const VolunteerForm = () => {
                             )}
                         </FormGroup>
                     </Col>
-                    <Col xl={6} sm={6}>
+                    <Col lg={6}>
                         <FormGroup className={Styles.form_group}>
                             <label htmlFor="signature">Signature (Image size less than 2MB)</label>
                             <FormControl
