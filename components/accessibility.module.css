@@ -1,13 +1,13 @@
 .body_side_panel {
 	z-index: 9;
 	position: fixed;
-	top: 50%;
-	transform: translateY(-50%);
+    top: 28%;
+    transform: translateY(-50%);
+    --size: 66px;
 }
 .accessibility_icon{
     background: linear-gradient(215deg, #3d3f82 40%, #ebc436 65%, #000 100%);
     padding: 6px;
-    --size: 66px;
     cursor: pointer;
     border-radius: 0px 4px 4px 0px;
     width: var(--size);
@@ -24,7 +24,8 @@
 	background: #e9e9ed;
 	border: 1px solid #ebc436;
 	padding: 8px 0px;
-	position: relative;
+	position: absolute;
+    top: var(--size);
 	left: -100%;
 	-moz-transition: all 300ms ease-in-out;
 	-webkit-transition: all 300ms ease-in-out;
