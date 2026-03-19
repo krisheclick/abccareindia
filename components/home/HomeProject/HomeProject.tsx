@@ -64,7 +64,7 @@ const HomeProject = ({ sectionData, projects }: HomeProjectProps) => {
 
     if (!sectionData || !projects || projects.length === 0) return null;
     return (
-        <Stack className={`d-block ${Styles.projects}`}>
+        <Stack as="section" className={`d-block ${Styles.projects}`}>
             <Container fluid className='p-0'>
                 <Stack className={`d-block text-center ${Styles.projects_header}`}>
                     <h2 className={`cmn_black_heading big ${Styles.heading}`}>{sectionData.project_title}</h2>

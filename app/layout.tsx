@@ -16,7 +16,6 @@ const oswald = Oswald({
     weight: ['200', '300', '400', '500', '600', '700'],
 });
 import "@/app/globals.css";
-import "@/app/accessibility.css";
 import "animate.css/animate.min.css";
 import { GlobalContextProvider } from '@/context/global_context';
 import { Metadata } from 'next';
@@ -43,11 +42,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <body className={`${openSans.variable} ${oswald.variable}`}>
                 <AccessibilityTool />
                 <GlobalContextProvider>
-                    <Header />
-                    <main role="main">
-                        {children}
-                    </main>
-                    <Footer />
+                    <div className="rj_web">
+                        <Header />
+                        <main role="main">
+                            {children}
+                        </main>
+                        <Footer />
+                    </div>
                 </GlobalContextProvider>
             </body>
         </html>

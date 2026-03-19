@@ -45,16 +45,6 @@
   font-size: 30px;
   margin-bottom: 12px;
 }
-.card_content{
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.7;
-}
-.card_content p{
-  font-size: inherit;
-  line-height: inherit;
-  color: inherit;
-}
 
 /* 1400px */
 @media only screen and (max-width: 1399px){

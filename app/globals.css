@@ -1,6 +1,5 @@
 /* @import "tailwindcss"; */
 @import "./skeleton.css";
-@import "./accessibility.css";
 /* @font-face {
   font-family: "Font Awesome 7 Free";
   font-display: swap;
@@ -486,6 +485,18 @@ a:hover{
 .invalid-feedback{
   font-size: 15px;
 }
+
+/* accessibility.module.css */
+.filter-grayscale .rj_web{
+  filter: grayscale(100%);
+}
+.filter-invert .rj_web *{
+  filter: invert(100%);
+}
+.filter-bright .rj_web{
+  filter: brightness(120%);
+}
+
 /* 1400px */
 @media only screen and (max-width: 1600px){
   .cmn_white_heading.big, .cmn_black_heading.big {

@@ -1,0 +1,45 @@
+.body_side_panel {
+	z-index: 9;
+	position: fixed;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.accessibility_icon{
+    background: linear-gradient(215deg, #3d3f82 40%, #ebc436 65%, #000 100%);
+    padding: 6px;
+    --size: 66px;
+    cursor: pointer;
+    border-radius: 0px 4px 4px 0px;
+    width: var(--size);
+    height: var(--size);
+    display: grid;
+    place-items: center;
+    border: 1px solid #fff;
+    border-left-color: transparent;
+}
+.accessibility_icon img{
+    filter: brightness(0) invert(1);
+}
+.accessibility_panel {
+	background: #e9e9ed;
+	border: 1px solid #ebc436;
+	padding: 8px 0px;
+	position: relative;
+	left: -100%;
+	-moz-transition: all 300ms ease-in-out;
+	-webkit-transition: all 300ms ease-in-out;
+	transition: all 300ms ease-in-out;
+}
+.open .accessibility_panel{
+    left: 0;
+}
+.accessibility_panel button {
+  display: block;
+  border: none;
+  outline: none;
+  padding: 6px 12px;
+  text-align: left;
+  font-size: 16px;
+  line-height: 1.5;
+  min-width: 200px;
+}
