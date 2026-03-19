@@ -1,5 +1,5 @@
 "use client"
-import { Col, Container, Row, Stack } from "react-bootstrap";
+import { Container, Stack } from "react-bootstrap";
 import Styles from "../style.module.css";
 import { useGlobalContext } from "@/context/global_context";
 import InnerBanner from "@/components/layout/banner/InnerBanner";
@@ -61,28 +61,22 @@ const KidsSingleClient = ({ permalink }: { permalink: string }) => {
             />
             <Stack className={Styles.mainSection}>
                 <Container>
-                    <Row className="gx-xxl-5">
-                        <Col lg={6}>
-                            {!hasLoading && (
-                                <CustomImage
-                                    className={`stickyPoster ${Styles.poster ?? ''}`}
-                                    src={`${mediaUrl}${data?.amazing_kids?.ak_feature_image}`}
-                                    alt={data?.amazing_kids?.ak_title}
-                                    width={720}
-                                    height={520}
-                                />
-                            )}
-                        </Col>
-                        <Col lg={6}>
-                            <Stack className={Styles.details_content}>
-                                <h1 className={`cmn_black_heading ${Styles.page_title ?? ''}`}>{commonData?.site_amazing_kids_page_title}</h1>
-                                <div
-                                    className={Styles.description}
-                                    dangerouslySetInnerHTML={{ __html: data?.amazing_kids?.ak_description || '' }}
-                                />
-                            </Stack>
-                        </Col>
-                    </Row>
+                    {!hasLoading && (
+                        <CustomImage
+                            className={`stickyPoster ${Styles.poster ?? ''}`}
+                            src={`${mediaUrl}${data?.amazing_kids?.ak_feature_image}`}
+                            alt={data?.amazing_kids?.ak_title}
+                            width={720}
+                            height={520}
+                        />
+                    )}
+                    <div className={Styles.details_content}>
+                        <h1 className={`cmn_black_heading ${Styles.page_title ?? ''}`}>{commonData?.site_amazing_kids_page_title}</h1>
+                        <div
+                            className={Styles.description}
+                            dangerouslySetInnerHTML={{ __html: data?.amazing_kids?.ak_description || '' }}
+                        />
+                    </div>
                 </Container>
             </Stack>
             <Projects />

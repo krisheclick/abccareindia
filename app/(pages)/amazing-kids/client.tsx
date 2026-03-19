@@ -62,7 +62,7 @@ const AmazingKidsClient = () => {
                         <Stack className={Styles.kidsList ?? ''}>
                             {data?.amazing_kids.map((item, index) => (
                                 <Stack className={Styles.rowWrap} key={index}>
-                                    <Row className={`${Styles.row} gy-3 ${(index % 2 == 1) ? 'flex-lg-row-reverse':''}`}>
+                                    <Row className={`${Styles.row} align-items-center gy-3 ${(index % 2 == 1) ? 'flex-lg-row-reverse':''}`}>
                                         <Col lg={6}>
                                             <Stack className={Styles.content}>
                                                 <div className={Styles.subHeading}>{item.ak_title}</div>

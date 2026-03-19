@@ -54,20 +54,18 @@ body{
   padding: 0;
 }
 img, svg, video, canvas, audio, iframe, embed, object {
-	vertical-align: middle;
 	display: block;
 }
 img, video {
 	max-width: 100%;
 	height: auto;
 }
-/* .stickyPoster{
-  position: sticky;
-  top: 10px;
+.stickyPoster {
+  float: left;
+  --right: 36px;
+  width: min(calc(50% - var(--right)), 720px);
+  margin: 0 var(--right) 20px 0px;
 }
-.sticky .stickyPoster{
-  top: 110px;
-} */
 .rowGap{
   row-gap: var(--bs-gutter-x);
 }
@@ -82,6 +80,12 @@ h1, h2, h3, h4, h5, h6{
   color: #222222; 
   font-weight: 600;
   text-transform: capitalize;
+}
+.h2, .h3, .h4, h2, h3, h4 {
+  font-size: 1.5em;
+}
+.h5, .h6, h5, h6{
+  font-size: 1.25em;
 }
 .cmn_black_heading, .cmn_white_heading{
   color: #222222;
@@ -171,76 +175,6 @@ a:hover{
   color: #ffffff;
   transition: .35s;
 }
-
-.pt_50{
-  padding-top: 50px !important;
-}
-.pb_50{
-  padding-bottom: 50px !important;
-}
-.pt_60{
-  padding-top: 60px !important;
-}
-.pb_60{
-  padding-bottom: 60px !important;
-}
-.pt_70{
-  padding-top: 70px !important;
-}
-.pb_70{
-  padding-bottom: 70px !important;
-}
-.pt_80{
-  padding-top: 80px !important;
-}
-.pb_80{
-  padding-bottom: 80px !important;
-}
-.pt_90{
-  padding-top: 90px !important;
-}
-.pb_90{
-  padding-bottom: 90px !important;
-}
-.pt_100{
-  padding-top: 100px !important;
-}
-.pb_100{
-  padding-bottom: 100px !important;
-}
-.mb_0{
-  margin-bottom: 0 !important;
-}
-
-/* .ftr {
-	
-	background-color: #000;
-	justify-content: center;
-	display: flex;
-  color: white;
-}
-
-.ftr-div {
-  width: 70%;
-}
-
-
-.ftr-first-sect {
-	grid-column-gap: 3px;
-	grid-row-gap: 0px;
-	grid-template-rows: 1fr;
-	grid-template-columns: 2fr repeat(2, 3fr) 5fr;
-	display: grid;
-	padding: 2rem 0;
-}
-
-.ftr-second-sect {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  align-items: center;
-  padding: 2rem 0;
-}  */
 
 /* button */
 .btn {
@@ -563,6 +497,10 @@ a:hover{
   .invalid-feedback{
     font-size: 14px;
   }
+  .stickyPoster{
+    float: none;
+    width: 100%;
+  }
 }
 /* 576px */
 @media only screen and (max-width: 767px){
@@ -601,6 +539,12 @@ a:hover{
   }
   .btn-primary.btn-sm {
     padding: 0.45rem 0.9rem;
+  }
+  .h2, .h3, .h4, h2, h3, h4 {
+    font-size: 1.3em;
+  }
+  .h5, .h6, h5, h6 {
+    font-size: 1.15em;
   }
 }
 /* 360px */
