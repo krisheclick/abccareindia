@@ -8,6 +8,7 @@
     display: grid;
     align-content: center;
     padding-top: 120px;
+    filter: invert(0) !important;
 }
 .bannerPoster{
     display: none;

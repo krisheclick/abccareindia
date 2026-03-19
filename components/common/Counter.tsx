@@ -39,7 +39,7 @@ const Counter = ({ className = '', poster = false }: { className?: string; poste
                                 {counters.map((counter, index) => (
                                     <Col md={3} sm={6} key={index} className={Styles.cardItem}>
                                         <div className={Styles.counterBox}>
-                                            <h3 className={Styles.counter_number}>
+                                            <div className={Styles.counter_number}>
                                                 {inView ? (
                                                     <CountUp
                                                         start={0}
@@ -50,7 +50,7 @@ const Counter = ({ className = '', poster = false }: { className?: string; poste
                                                 ) : (
                                                     0
                                                 )}
-                                            </h3>
+                                            </div>
                                             <div className={Styles.counter_title}>{counter.site_counter_title}</div>
                                         </div>
                                     </Col>
@@ -65,7 +65,7 @@ const Counter = ({ className = '', poster = false }: { className?: string; poste
                         {counters.map((counter, index) => (
                             <Col xl={3} lg={6} md={3} sm={6} key={index} className={Styles.cardItem}>
                                 <div className={Styles.counterBox}>
-                                    <h3 className={Styles.counter_number}>
+                                    <div className={Styles.counter_number}>
                                         {inView ? (
                                             <CountUp
                                                 start={0}
@@ -76,7 +76,7 @@ const Counter = ({ className = '', poster = false }: { className?: string; poste
                                         ) : (
                                             0
                                         )}
-                                    </h3>
+                                    </div>
                                     <div>{counter.site_counter_title}</div>
                                 </div>
                             </Col>

@@ -31,7 +31,7 @@
 .video_poster{
     padding-top: 110%;
     border-radius: var(--round);
-    background: transparent;
+    filter: invert(0) !important;
 }
 .video_poster::before{
     content: '';

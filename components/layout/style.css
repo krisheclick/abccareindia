@@ -8,13 +8,15 @@
 	background: #000;
 	min-height: 45px;
 	padding: 8px 0;
+    color: #ffffff;
+}
+.filter-invert .top_header{
+	color: #000;
 }
 .top_header_donate{
     text-transform: uppercase;
     font-weight: 700;
     font-size: 15px;
-    line-height: 25px;
-    color: #ffffff;
 }
 .top_header_donate *{
     color: #FFE071;

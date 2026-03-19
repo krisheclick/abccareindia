@@ -8,6 +8,7 @@
     display: grid;
     align-content: center;
     color: #ffffff;
+    filter: invert(0) !important;
 }
 .home_counter::after{
     content: '';
@@ -25,7 +26,6 @@
 	font-size: 48px;
 	font-weight: 700;
 	line-height: 1;
-    color: inherit;
     font-family: "Oswald";
 }
 .counter_title {
