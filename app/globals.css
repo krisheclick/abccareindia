@@ -61,13 +61,13 @@ img, video {
 	max-width: 100%;
 	height: auto;
 }
-.stickyPoster{
+/* .stickyPoster{
   position: sticky;
   top: 10px;
 }
 .sticky .stickyPoster{
   top: 110px;
-}
+} */
 .rowGap{
   row-gap: var(--bs-gutter-x);
 }
