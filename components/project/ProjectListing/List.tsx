@@ -6,7 +6,6 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useGlobalContext } from '@/context/global_context';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot, faPlay } from '@fortawesome/free-solid-svg-icons';
-import { safeParse } from '@/utlis/safe_parse';
 import Link from 'next/link';
 import { normalizeYouTubeUrl } from '@/utlis/videoUrl';
 import PaginationBar from '@/components/pagination/Pagination';
@@ -143,6 +142,25 @@ const ProjectList = () => {
     if (!isClient) {
         // Render a loading placeholder or nothing on the server
         return null;
+    }
+
+    const safeParse = <T extends object>(value: unknown): T | null => {
+        try {
+            if (!value) return null;
+
+            // First parse if string
+            let parsed = typeof value === "string" ? JSON.parse(value) : value;
+
+            // If after parsing, result is still a string, parse again
+            if (typeof parsed === "string") {
+                parsed = JSON.parse(parsed);
+            }
+
+            return parsed as T;
+        } catch (parseErr: unknown) {
+            console.log('Data Parse error:', (parseErr as Error).message);
+            return null;
+        }
     }
 
     return (
