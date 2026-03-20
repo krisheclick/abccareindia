@@ -54,8 +54,6 @@ const ProjectList = () => {
     const activeTab = searchParams.get("category") || "all";
     const currentPage = Number(searchParams.get("page") || 1);
 
-    /* -------- SCROLL FUNCTION -------- */
-
     const scrollToSection = () => {
         ListRef.current?.scrollIntoView({
             behavior: "smooth",
@@ -102,7 +100,10 @@ const ProjectList = () => {
             const { response_data } = await res.json();
 
             setProjects(response_data?.projects ?? []);
-            setPagination(response_data?.pagination ?? null);
+            setPagination({
+                'totalPages':response_data.pagination.total_pages??response_data.pagination.totalPages,
+                'currentPage':response_data.pagination.currentPage,
+            });
 
         } catch (error) {
             console.log("Project error:", error);
@@ -148,10 +149,8 @@ const ProjectList = () => {
         try {
             if (!value) return null;
 
-            // First parse if string
             let parsed = typeof value === "string" ? JSON.parse(value) : value;
 
-            // If after parsing, result is still a string, parse again
             if (typeof parsed === "string") {
                 parsed = JSON.parse(parsed);
             }
@@ -162,6 +161,7 @@ const ProjectList = () => {
             return null;
         }
     }
+
 
     return (
         <>
