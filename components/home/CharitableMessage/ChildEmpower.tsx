@@ -174,7 +174,7 @@ const ChildEmpower = ({ sectionData, messages }: CharitableMessageProps) => {
                 </Swiper>
             </Container>
 
-            <Modal className="customBackdrop" show={showContent} onHide={handleClosePopup} size="xl" centered backdrop={false} scrollable>
+            <Modal className="customBackdrop" show={showContent} onHide={handleClosePopup} size="xl" centered backdrop="static" scrollable>
                 <ModalHeader closeButton>
                     <ModalTitle className="fw-bold">
                         {popupData?.title}

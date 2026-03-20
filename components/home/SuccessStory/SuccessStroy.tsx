@@ -179,7 +179,7 @@ const SuccessStory = ({ data }: { data?: SuccessStoryItem[] | null; }) => {
                     </Row>
                 </Container>
             </Stack>
-            <Modal className="customBackdrop" show={showVideo} onHide={handleCloseVideo} size="xl" centered backdrop={false}>
+            <Modal className="customBackdrop" show={showVideo} onHide={handleCloseVideo} size="xl" centered backdrop="static">
                 <Modal.Header closeButton>
                     <Modal.Title className="fw-semibold"></Modal.Title>
                 </Modal.Header>

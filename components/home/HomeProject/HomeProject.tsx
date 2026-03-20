@@ -170,7 +170,7 @@ const HomeProject = ({ sectionData, projects }: HomeProjectProps) => {
                     </Stack>
                 )}
             </Container>
-            <Modal className="customBackdrop" show={showVideo} onHide={handleCloseVideo} size="xl" centered backdrop={false}>
+            <Modal className="customBackdrop" show={showVideo} onHide={handleCloseVideo} size="xl" centered backdrop="static">
                 <Modal.Header closeButton>
                     <Modal.Title className="fw-semibold"></Modal.Title>
                 </Modal.Header>

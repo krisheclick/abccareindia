@@ -165,7 +165,7 @@ const Ourreach = ({ sectionData }: SectionDataProps) => {
                 onHide={handleClosePopup}
                 size="xl"
                 centered
-                backdrop={false}
+                backdrop="static"
                 scrollable
             >
                 <ModalHeader closeButton>

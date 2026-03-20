@@ -142,8 +142,6 @@ const BlogList = ({ page }: BlogListProps) => {
                 ))}
             </ul>
 
-            {/* -------- BLOG LIST -------- */}
-
             {blogs.length ? (
                 <Stack className={Styles.blogList}>
                     {blogs.map((item, index) => (
@@ -175,13 +173,14 @@ const BlogList = ({ page }: BlogListProps) => {
                                 </Col>
 
                                 <Col lg={6}>
-                                    {item.blog_feature_image && (
-                                        <CustomImage
+                                    <figure className={`custom_image fixedImage ${Styles.poster}`}>
+                                        <Image
                                             src={`${mediaUrl}${item.blog_feature_image}`}
                                             alt={item.blog_title || ""}
-                                            className={Styles.poster}
+                                            className="custom-image loaded"
+                                            fill
                                         />
-                                    )}
+                                    </figure>
                                 </Col>
                             </Row>
                         </Stack>

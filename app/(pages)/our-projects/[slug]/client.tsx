@@ -192,7 +192,7 @@ const SingleProject = ({ permalink }: { permalink: string }) => {
                 />
             </div>
 
-            <Modal className="customBackdrop" show={showVideo} onHide={handleClose} size="xl" centered backdrop={false}>
+            <Modal className="customBackdrop" show={showVideo} onHide={handleClose} size="xl" centered backdrop="static">
                 <Modal.Header closeButton>
                     <Modal.Title className="fw-semibold"></Modal.Title>
                 </Modal.Header>

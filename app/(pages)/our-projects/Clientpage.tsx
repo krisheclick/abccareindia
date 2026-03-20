@@ -1,7 +1,7 @@
 "use client";
 import InnerBanner from "@/components/layout/banner/InnerBanner";
 import { useGlobalContext } from "@/context/global_context";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Container, Stack } from "react-bootstrap";
 import Styles from "@/components/project/style.module.css";
 import ProjectList from "@/components/project/ProjectListing/List";
@@ -35,8 +35,11 @@ interface PageData {
     }
     projects?: ProjectItem[] | null;
 }
-const Clientpage = () => {
-    const { setHasLoading, setInnerBanner} = useGlobalContext();
+interface PageProps {
+    page?: number;
+}
+const Clientpage = ({ page }: PageProps) => {
+    const { setHasLoading, setInnerBanner } = useGlobalContext();
     const [data, setData] = useState<PageData | null>(null);
 
     useEffect(() => {
@@ -88,7 +91,10 @@ const Clientpage = () => {
                             }}
                         />
                     </div>
-                    <ProjectList />
+                    <Suspense fallback={<p>Loading projects...</p>}>
+                        <ProjectList />
+                    </Suspense>
+                    {/* <ProjectList /> */}
                 </Container>
             </Stack>
             <Counter className="home_counter" poster={true} />
