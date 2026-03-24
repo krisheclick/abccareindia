@@ -109,7 +109,7 @@ export default function AccessibilityTool() {
             document.body.classList.add(Styles['filter-bright']);
         } */
 
-        document.body.classList.remove(
+        /* document.body.classList.remove(
             'filter-grayscale',
             'filter-invert',
             'filter-bright',
@@ -121,6 +121,24 @@ export default function AccessibilityTool() {
             document.body.classList.add('filter-invert');
         } else if (filterType === 'bright') {
             document.body.classList.add('filter-bright');
+        } */
+
+        const filters = ['grayscale', 'negetive', 'bright'];
+
+        // Remove all classes (both module + normal)
+        filters.forEach((f) => {
+            document.body.classList.remove(
+                `filter-${f}`,              // normal class
+                Styles[`filter-${f}`]       // module class
+            );
+        });
+
+        // Add selected class
+        if (filters.includes(filterType)) {
+            document.body.classList.add(
+                `filter-${filterType}`,            // normal
+                Styles[`filter-${filterType}`]     // module
+            );
         }
     };
 
@@ -140,11 +158,21 @@ export default function AccessibilityTool() {
             Styles['filter-bright']
         ); */
 
-        document.body.classList.remove(
-            'filter-grayscale',
-            'filter-invert',
-            'filter-bright',
-        );
+        // document.body.classList.remove(
+        //     'filter-grayscale',
+        //     'filter-invert',
+        //     'filter-bright',
+        // );
+
+        const filters = ['grayscale', 'negetive', 'bright'];
+
+        // Remove all classes (both module + normal)
+        filters.forEach((f) => {
+            document.body.classList.remove(
+                `filter-${f}`,              // normal class
+                Styles[`filter-${f}`]       // module class
+            );
+        });
 
         document.querySelectorAll<HTMLAnchorElement>("a").forEach((el) => {
             el.style.textDecoration = "none";
@@ -163,6 +191,7 @@ export default function AccessibilityTool() {
                     alt="Accessibility Tool"
                     width={36}
                     height={36}
+                    loading="eager"
                 />
             </div>
 
@@ -171,7 +200,7 @@ export default function AccessibilityTool() {
                 <button onClick={increaseText}><FontAwesomeIcon icon={faMagnifyingGlassMinus} /> Increase Text</button>
                 <button onClick={normalText}><FontAwesomeIcon icon={faFont} /> Normal Text</button>
                 <button onClick={() => applyFilter('grayscale')}><FontAwesomeIcon icon={faBarcode} /> Gray Scale</button>
-                <button onClick={() => applyFilter('invert')}><FontAwesomeIcon icon={faEye} /> Negative Mode</button>
+                <button onClick={() => applyFilter('negetive')}><FontAwesomeIcon icon={faEye} /> Negative Mode</button>
                 <button onClick={() => applyFilter('bright')}><FontAwesomeIcon icon={faLightbulb} /> Light Mode</button>
                 <button onClick={() => applyFilter('')}><FontAwesomeIcon icon={faImage} /> Normal Mode</button>
                 <button onClick={underlineLinks}><FontAwesomeIcon icon={faLink} /> Underline Links</button>

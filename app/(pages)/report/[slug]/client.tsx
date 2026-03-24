@@ -80,7 +80,7 @@ const SingleReport = ({ permalink }: { permalink: string }) => {
                     <Container>
                         <Stack className={Styles.section_content}>
                             <h1
-                                className="black_heading"
+                                className="cmn_black_heading mb-0"
                                 dangerouslySetInnerHTML={{ __html: data?.report_data?.report_title || '' }}
                             />
                         </Stack>

@@ -24,7 +24,7 @@ const Header = () => {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     const pathName = usePathname();
 
-    const { setHasLoading, setMediaUrl, mediaUrl, setCommonData, commonData, setProjectData, staticHeader } = useGlobalContext();
+    const { setHasLoading, hasLoading, setMediaUrl, mediaUrl, setCommonData, commonData, setProjectData, staticHeader } = useGlobalContext();
     const [menuData, setMenuData] = useState<MenuItem[] | null>(null);
     const fetchData = async () => {
         try {
@@ -114,68 +114,72 @@ const Header = () => {
                         </Stack>
                     </Container>
                 </Stack>
-                <Stack className="nav_wrapper">
-                    <Container>
-                        <Stack direction="horizontal" gap={3} className="tmlbox justify-content-between">
-                            <Link href="/" className="wow animate__zoomInDown headerLogo" data-wow-delay="0.2s">
-                                <Image
-                                    src={`${mediaUrl}${commonData?.site_logo}`}
-                                    alt={commonData?.site_title || "ABC India Logo"}
-                                    width={218} height={84}
-                                    loading="eager"
-                                />
-                            </Link>
-                            {menuData && menuData?.length > 0 && (
-                                <nav role="navigation" className="wow animate__fadeInUp navMenu" data-wow-delay="0.2s">
-                                    <Stack as="ul" direction="horizontal" className="menuheader">
-                                        {menuData.map((item, index) => {
-                                            const itemPath = item.url?.startsWith("/")
-                                                ? item.url
-                                                : `/${item.url}`;
+                {!hasLoading ? (
+                    <Stack className="nav_wrapper">
+                        <Container>
+                            <Stack direction="horizontal" gap={3} className="tmlbox justify-content-between">
+                                <Link href="/" className="wow animate__zoomInDown headerLogo" data-wow-delay="0.2s">
+                                    <Image
+                                        src={`${mediaUrl}${commonData?.site_logo}`}
+                                        alt={commonData?.site_title || "ABC India Logo"}
+                                        width={218} height={84}
+                                        loading="eager"
+                                    />
+                                </Link>
+                                {menuData && menuData?.length > 0 && (
+                                    <nav role="navigation" className="wow animate__fadeInUp navMenu" data-wow-delay="0.2s">
+                                        <Stack as="ul" direction="horizontal" className="menuheader">
+                                            {menuData.map((item, index) => {
+                                                const itemPath = item.url?.startsWith("/")
+                                                    ? item.url
+                                                    : `/${item.url}`;
 
-                                            return (
-                                                <li
-                                                    key={index}
-                                                    className={`menuItem ${item.children ? "children-item" : ""}
-                                                    ${pathName === itemPath ? "active" : ""} 
-                                                    ${openMenu === index ? "showSubmenu" : ""}`}
-                                                    onMouseEnter={() => setOpenMenu(index)}
-                                                    onMouseLeave={() => setOpenMenu(null)}
-                                                >
-                                                    <MenuLink href={`${appLink}${itemPath}`}>
-                                                        {item.label}
-                                                        {item.children && <FontAwesomeIcon icon={faChevronDown} />}
-                                                    </MenuLink>
+                                                return (
+                                                    <li
+                                                        key={index}
+                                                        className={`menuItem ${item.children ? "children-item" : ""}
+                                                        ${pathName === itemPath ? "active" : ""} 
+                                                        ${openMenu === index ? "showSubmenu" : ""}`}
+                                                        onMouseEnter={() => setOpenMenu(index)}
+                                                        onMouseLeave={() => setOpenMenu(null)}
+                                                    >
+                                                        <MenuLink href={`${appLink}${itemPath}`}>
+                                                            {item.label}
+                                                            {item.children && <FontAwesomeIcon icon={faChevronDown} />}
+                                                        </MenuLink>
 
-                                                    {item.children && item.children.length > 0 && (
-                                                        <ul className="submenu">
-                                                            {item.children.map((child, childIndex) => {
-                                                                const childPath = child.url?.startsWith("/")
-                                                                    ? child.url
-                                                                    : `/${child.url}`;
+                                                        {item.children && item.children.length > 0 && (
+                                                            <ul className="submenu">
+                                                                {item.children.map((child, childIndex) => {
+                                                                    const childPath = child.url?.startsWith("/")
+                                                                        ? child.url
+                                                                        : `/${child.url}`;
 
-                                                                return (
-                                                                    <li className='menuItem' key={childIndex}>
-                                                                        <MenuLink href={`${appLink}${childPath}`}>
-                                                                            {child.label}
-                                                                        </MenuLink>
-                                                                    </li>
-                                                                );
-                                                            })}
-                                                        </ul>
-                                                    )}
-                                                </li>
-                                            );
-                                        })}
-                                    </Stack>
-                                </nav>
-                            )}
-                            <span className='responsive_btn d-lg-none' onClick={handleShow}>
-                                <em></em>
-                            </span>
-                        </Stack>
-                    </Container>
-                </Stack>
+                                                                    return (
+                                                                        <li className='menuItem' key={childIndex}>
+                                                                            <MenuLink href={`${appLink}${childPath}`}>
+                                                                                {child.label}
+                                                                            </MenuLink>
+                                                                        </li>
+                                                                    );
+                                                                })}
+                                                            </ul>
+                                                        )}
+                                                    </li>
+                                                );
+                                            })}
+                                        </Stack>
+                                    </nav>
+                                )}
+                                <span className='responsive_btn d-lg-none' onClick={handleShow}>
+                                    <em></em>
+                                </span>
+                            </Stack>
+                        </Container>
+                    </Stack>
+                ): (
+                    <></>
+                )}
             </header>
         </>
     )

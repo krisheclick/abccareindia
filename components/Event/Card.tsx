@@ -15,14 +15,14 @@ const EventCard = ({poster, date, title, slug, description}: EventItem) => {
         month: "long",
     }) + dateObj.getFullYear();
     return (
-        <div className={Styles.card}>
+        <div className={`event_card ${Styles.card}`}>
             <CustomImage
                 className={Styles.card_image}
                 src={poster}
                 alt={title}
             />
             <div className={Styles.event_content}>
-                <div className={Styles.date}>{formattedDate}</div>
+                <div className={`event_date ${Styles.date}`}>{formattedDate}</div>
                 <div className={Styles.title}>{title}</div>
                 <div className={Styles.card_content}
                     dangerouslySetInnerHTML={{__html: description || ''}}

@@ -28,7 +28,7 @@ const EventPoster = ({poster, title, date, description}: Props) => {
                     />
                 </Stack>
                 <Stack className={Styles.detailsCard}>
-                    <div className={Styles.date}>{formttedDate}</div>
+                    <div className={`event_date ${Styles.date}`}>{formttedDate}</div>
                     <div
                         className={Styles.title}
                         dangerouslySetInnerHTML={{ __html:title ?? '' }}

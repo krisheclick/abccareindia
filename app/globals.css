@@ -419,18 +419,56 @@ a:hover{
 .invalid-feedback{
   font-size: 15px;
 }
+label{
+  color: #222;
+}
 
 /* accessibility.module.css */
 .filter-grayscale .rj_web{
   filter: grayscale(100%);
 }
-.filter-invert .rj_web *{
+.filter-negetive .rj_web{
   filter: invert(100%);
+}
+/* .filter-negetive .rj_web main > :is(section, div) > div, 
+.filter-negetive .donation_section{
+  background: #000000;
+  color: #ffffff;
+}
+.filter-negetive .donation_section{
+  border-top: 1px solid #2d2d2d;
+}
+.filter-negetive .cmn_black_heading {
+  color: #ffffff;
+}
+.filter-negetive :is(
+  .smallsubhead,
+  .cmn_black_heading span,
+  .event_date
+){
+	color: #d4af37;
+}
+.filter-negetive .event_card{
+  border-width: 2px;
 }
 .filter-bright .rj_web{
   filter: brightness(120%);
 }
-
+.filter-bright :is(
+  .form-control,
+  .form-select,
+  textarea,
+  .form-check-input[type="checkbox"],
+  .page-link
+) {
+  border-color: #8f8f8f;
+}
+.filter-negetive .paragraph :is(h2, h3, h4){
+  color: inherit;
+} */
+.filter-bright .info_box{
+  background: #cdcdcd;
+}
 /* 1400px */
 @media only screen and (max-width: 1600px){
   .cmn_white_heading.big, .cmn_black_heading.big {

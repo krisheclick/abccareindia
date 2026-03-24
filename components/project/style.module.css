@@ -5,6 +5,7 @@
 .card {
 	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 	background: #ffffff;
+	color: #6d6d6d;
 	border-radius: 12px;
 	overflow: hidden;
 	border: 1px solid #ebc436;
@@ -42,6 +43,7 @@
 }
 .title {
 	font-size: 24px;
+	color: #000000;
 	text-transform: capitalize;
 	font-weight: 600;
 	margin-bottom: 10px;
