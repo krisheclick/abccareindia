@@ -196,8 +196,8 @@ export default function AccessibilityTool() {
             </div>
 
             <Stack className={Styles.accessibility_panel}>
-                <button onClick={decreaseText}><FontAwesomeIcon icon={faMagnifyingGlassPlus} /> Decrease Text</button>
-                <button onClick={increaseText}><FontAwesomeIcon icon={faMagnifyingGlassMinus} /> Increase Text</button>
+                <button onClick={decreaseText}><FontAwesomeIcon icon={faMagnifyingGlassMinus} /> Decrease Text</button>
+                <button onClick={increaseText}><FontAwesomeIcon icon={faMagnifyingGlassPlus} /> Increase Text</button>
                 <button onClick={normalText}><FontAwesomeIcon icon={faFont} /> Normal Text</button>
                 <button className="filter-btn-grey" onClick={() => applyFilter('grayscale')}><FontAwesomeIcon icon={faBarcode} /> Gray Scale</button>
                 <button className="filter-btn-negetive" onClick={() => applyFilter('negetive')}><FontAwesomeIcon icon={faEye} /> Negative Mode</button>
