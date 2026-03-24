@@ -65,7 +65,7 @@ const SuccessStory = ({ data }: { data?: SuccessStoryItem[] | null; }) => {
                             {!hasLoading && sectionData ? (
                                 <Stack className={Styles.content}>
                                     <div
-                                        className={Styles.small_title}
+                                        className={`smallsubhead ${Styles.small_title}`}
                                         dangerouslySetInnerHTML={{
                                             __html: sectionData.success_story_subtitle ?? ''
                                         }}

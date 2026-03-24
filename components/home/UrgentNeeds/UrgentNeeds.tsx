@@ -40,7 +40,7 @@ const UrgentNeeds = ({ sectionData }: UrgentNeedsProps) => {
                         )}
                     </Col>
                     <Col lg={5} className="align-self-center">
-                        <div className={Styles.urgentNeeds_content}>
+                        <div className={`urgentNeeds_content ${Styles.urgentNeeds_content}`}>
                             {sectionData.urgent_title && (
                                 <h2 
                                     dangerouslySetInnerHTML={{

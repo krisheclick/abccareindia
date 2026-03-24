@@ -427,10 +427,14 @@ label{
 .filter-grayscale .rj_web{
   filter: grayscale(100%);
 }
-/* .filter-negetive .rj_web{
+.filter-negetive .rj_web{
   filter: invert(100%);
-} */
-.filter-negetive .rj_web main > :is(section, div) > :is(section, div), 
+}
+.filter-bright .rj_web{
+  filter: brightness(120%);
+}
+/* negetive */
+/* .filter-negetive .rj_web main > :is(section, div) > :is(section, div), 
 .filter-negetive .donation_section{
   background-color: #000000 !important;
   color: #ffffff;
@@ -454,9 +458,6 @@ label{
 .filter-negetive .event_card{
   border-width: 2px;
 }
-.filter-bright .rj_web{
-  filter: brightness(120%);
-}
 .filter-bright :is(
   .form-control,
   .form-select,
@@ -466,14 +467,15 @@ label{
 ) {
   border-color: #8f8f8f;
 }
-.filter-negetive .reach_short_desc,
+.filter-negetive .short_desc_inherit,
 .filter-negetive .paragraph :is(h2, h3, h4){
   color: inherit;
 }
 .filter-negetive .ourReachBtn{
 	color: #d4af37;
-}
-.filter-bright .info_box{
+} */
+/* bright */
+/* .filter-bright .info_box{
   background: #cdcdcd;
 }
 .filter-bright .ourReachBtn{
@@ -500,6 +502,12 @@ label{
   background: #f8f6ee;
   color: #3d3f82;
 }
+.filter-bright .urgentNeeds_content li{
+  border-color: #cdc7c7;
+}
+.filter-bright .testimonialslider .card{
+  background: #cfcfcf;
+} */
 /* 1400px */
 @media only screen and (max-width: 1600px){
   .cmn_white_heading.big, .cmn_black_heading.big {

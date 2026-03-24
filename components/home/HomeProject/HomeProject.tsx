@@ -69,7 +69,7 @@ const HomeProject = ({ sectionData, projects }: HomeProjectProps) => {
                 <Stack className={`d-block text-center ${Styles.projects_header}`}>
                     <h2 className={`cmn_black_heading big ${Styles.heading}`}>{sectionData.project_title}</h2>
                     <div
-                        className={Styles.headDescription}
+                        className={`short_desc_inherit ${Styles.headDescription}`}
                         dangerouslySetInnerHTML={{ __html: sectionData.project_subtitle || '' }}
                     />
                 </Stack>

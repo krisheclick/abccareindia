@@ -85,7 +85,7 @@ const Ourreach = ({ sectionData }: SectionDataProps) => {
                             </h2>
                         )}
                         {sectionData?.our_reach_description && (
-                            <p className="reach_short_desc">{sectionData.our_reach_description}</p>
+                            <p className="short_desc_inherit">{sectionData.our_reach_description}</p>
                         )}
                     </Stack>
                     <Row className={`rowGap gx-xxl-5 ${Styles.ourReach_wrapper}`}>

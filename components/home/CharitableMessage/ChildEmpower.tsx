@@ -70,10 +70,12 @@ const ChildEmpower = ({ sectionData, messages }: CharitableMessageProps) => {
             <Container>
                 <Stack direction='horizontal' className={Styles.stack_wrapper}>
                     <article className={Styles.content}>
-                        <h2 className={Styles.heading}
+                        <h2 
+                            className={`cmn_black_heading ${Styles.heading}`}
                             dangerouslySetInnerHTML={{ __html: sectionData.empower_title || '' }}
                         />
-                        <div className={Styles.description}
+                        <div
+                            className={`short_desc_inherit ${Styles.description}`}
                             dangerouslySetInnerHTML={{ __html: sectionData.empower_description || '' }}
                         />
                     </article>
@@ -184,10 +186,10 @@ const ChildEmpower = ({ sectionData, messages }: CharitableMessageProps) => {
                 <ModalBody>
                     <CustomImage
                         className={Styles.modelPoster}
-                        src={ popupData?.poster}
+                        src={popupData?.poster}
                         alt={popupData?.title}
                     />
-                    <div dangerouslySetInnerHTML={{ __html: popupData?.description || "" }} className={Styles.paragraph}/>
+                    <div dangerouslySetInnerHTML={{ __html: popupData?.description || "" }} className={Styles.paragraph} />
                 </ModalBody>
             </Modal>
         </Stack>
