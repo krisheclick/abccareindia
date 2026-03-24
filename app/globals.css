@@ -427,14 +427,14 @@ label{
 .filter-grayscale .rj_web{
   filter: grayscale(100%);
 }
-.filter-negetive .rj_web{
+/* .filter-negetive .rj_web{
   filter: invert(100%);
-}
+} */
 .filter-bright .rj_web{
   filter: brightness(120%);
 }
 /* negetive */
-/* .filter-negetive .rj_web main > :is(section, div) > :is(section, div), 
+.filter-negetive .rj_web main > :is(section, div) > :is(section, div), 
 .filter-negetive .donation_section{
   background-color: #000000 !important;
   color: #ffffff;
@@ -473,9 +473,9 @@ label{
 }
 .filter-negetive .ourReachBtn{
 	color: #d4af37;
-} */
+}
 /* bright */
-/* .filter-bright .info_box{
+.filter-bright .info_box{
   background: #cdcdcd;
 }
 .filter-bright .ourReachBtn{
@@ -507,7 +507,7 @@ label{
 }
 .filter-bright .testimonialslider .card{
   background: #cfcfcf;
-} */
+}
 /* 1400px */
 @media only screen and (max-width: 1600px){
   .cmn_white_heading.big, .cmn_black_heading.big {
