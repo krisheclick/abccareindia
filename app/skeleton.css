@@ -58,6 +58,18 @@
 .skeletonText:last-child{
 	margin-bottom: 0;
 }
+.skeletonBtn{
+  width: max(80px, 160px);
+  line-height: 1;
+}
+.skeletonNormal{
+  width: 100%;
+  line-height: 1.6;
+}
+.skeletonHeightText{
+  line-height: 1;
+  width: 100%;
+}
 @keyframes loading {
   0% {
     left: -150px;

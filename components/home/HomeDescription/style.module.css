@@ -126,6 +126,9 @@
 	transform: scaleX(-1) !important;
   max-height: 426px;
 }
+.qrBoxSkeleton{
+  aspect-ratio: 3/4;
+}
 /* 1400px */
 @media only screen and (max-width: 1600px){
   .mainTitle{
