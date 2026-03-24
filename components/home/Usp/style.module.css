@@ -37,7 +37,7 @@
   height: var(--size);
 }
 .cardImage img {
-  position: static !important;
+  object-fit: contain;
   mix-blend-mode: multiply;
 }
 .card h3 {
