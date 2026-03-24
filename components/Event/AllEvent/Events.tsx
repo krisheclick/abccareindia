@@ -105,7 +105,7 @@ const Events = ({ data }: { data?: EventsData | null }) => {
                                                 <Col lg={4} key={index}>
                                                     <Link
                                                         href={videoPath}
-                                                        className={Styles.glsimg}
+                                                        className={Styles.poster}
                                                         data-fancybox="video_gallery"
                                                     >
                                                         <Image

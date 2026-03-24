@@ -427,13 +427,16 @@ label{
 .filter-grayscale .rj_web{
   filter: grayscale(100%);
 }
-.filter-negetive .rj_web{
+/* .filter-negetive .rj_web{
   filter: invert(100%);
-}
-/* .filter-negetive .rj_web main > :is(section, div) > div, 
+} */
+.filter-negetive .rj_web main > :is(section, div) > :is(section, div), 
 .filter-negetive .donation_section{
-  background: #000000;
+  background-color: #000000 !important;
   color: #ffffff;
+}
+.filter-negetive .thank-you-page{
+  background: #000000;  
 }
 .filter-negetive .donation_section{
   border-top: 1px solid #2d2d2d;
@@ -463,11 +466,39 @@ label{
 ) {
   border-color: #8f8f8f;
 }
+.filter-negetive .reach_short_desc,
 .filter-negetive .paragraph :is(h2, h3, h4){
   color: inherit;
-} */
+}
+.filter-negetive .ourReachBtn{
+	color: #d4af37;
+}
 .filter-bright .info_box{
   background: #cdcdcd;
+}
+.filter-bright .ourReachBtn{
+	border-color: currentColor;
+}
+.filter-bright .counterCircle{
+	background: #cdcdcd;
+}
+.filter-bright .inner_mdlprheading{
+	border-color: #cbc6c6;
+}
+.filter-bright .thank-you-page{
+  background: #d0d0d0;  
+}
+.filter-grayscale .filter-btn-grey{
+  background: #5b5b5b;
+  color: #ffffff;
+}
+.filter-negetive .filter-btn-negetive{
+  background: #d4af37;
+  color: #000000;
+}
+.filter-bright .filter-btn-bright{
+  background: #f8f6ee;
+  color: #3d3f82;
 }
 /* 1400px */
 @media only screen and (max-width: 1600px){

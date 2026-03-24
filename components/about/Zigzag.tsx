@@ -16,7 +16,7 @@ const ZigzagContent = ({ data, reverse = false, background }: DataProps) => {
     const poster = `${process.env.NEXT_PUBLIC_MEDIA_URL}/uploads/page_image/${data?.poster}`
     const poster2 = `${process.env.NEXT_PUBLIC_MEDIA_URL}/uploads/page_image/${data?.poster2}`
     return (
-        <div className={Styles.section} style={{ background: background }}>
+        <div className={Styles.section} style={{ backgroundColor: background }}>
             <Container>
                 <Row className={`align-items-center gx-xl-5 rowGap ${reverse ? `flex-row-reverse ${Styles.reverseRow}` : ''}`}>
                     <Col lg={7}>

@@ -201,9 +201,9 @@ const Homeclintpage = () => {
             <UrgentNeeds
                 sectionData={customFields?.group_name['urgent-needs-section']}
             />
-            <Ourreach
+            {/* <Ourreach
                 sectionData={customFields?.group_name['our-reach-section']}
-            />
+            /> */}
 
             <Counter 
                 className='home_counter'

@@ -80,12 +80,12 @@ const Ourreach = ({ sectionData }: SectionDataProps) => {
                 <Container>
                     <Stack className={Styles.ourReachHeader}>
                         {sectionData?.our_reach_title && (
-                            <h2>
+                            <h2 className={`cmn_black_heading ${Styles.title}`}>
                                 <span>{sectionData.our_reach_title}</span>
                             </h2>
                         )}
                         {sectionData?.our_reach_description && (
-                            <p>{sectionData.our_reach_description}</p>
+                            <p className="reach_short_desc">{sectionData.our_reach_description}</p>
                         )}
                     </Stack>
                     <Row className={`rowGap gx-xxl-5 ${Styles.ourReach_wrapper}`}>
@@ -117,7 +117,7 @@ const Ourreach = ({ sectionData }: SectionDataProps) => {
                                         </ul>
                                         {button?.text && (
                                             <span
-                                                className={Styles.ourReachBtn}
+                                                className={`ourReachBtn ${Styles.ourReachBtn}`}
                                                 onClick={() => handleOpenPopup()}
                                                 role="button"
                                             >
@@ -144,7 +144,7 @@ const Ourreach = ({ sectionData }: SectionDataProps) => {
                                     <div className={Styles.ourReachCounters}>
                                         {counters?.map((counter, index) => (
                                             <div key={index} className={Styles.ourReachCounter}>
-                                                <div className={Styles.counterCircle}>
+                                                <div className={`counterCircle ${Styles.counterCircle}`}>
                                                     {counter.our_reach_counter_number}
                                                     {counter.our_reach_counter_icon}
                                                 </div>
