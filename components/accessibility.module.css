@@ -20,6 +20,7 @@
 }
 .accessibility_icon img{
     filter: brightness(0) invert(1);
+    max-width: calc(var(--size) / 2);
 }
 .accessibility_panel {
 	background: #e9e9ed;
@@ -44,4 +45,26 @@
   text-align: left;
   font-size: 16px;
   line-height: 1.5;
+}
+@media only screen and (max-width: 1199px){
+    .body_side_panel{
+        --size: 60px;
+    }
+}
+@media only screen and (max-width: 767px){
+    .body_side_panel{
+        --size: 54px;
+    }
+    .accessibility_panel button{
+        font-size: 15px;
+    }
+}
+@media only screen and (max-width: 479px){
+    .body_side_panel{
+        --size: 48px;
+    }
+    .accessibility_panel button{
+        font-size: 15px;
+        padding: 5px 10px;
+    }
 }
