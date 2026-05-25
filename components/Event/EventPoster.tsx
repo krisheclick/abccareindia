@@ -9,13 +9,27 @@ interface Props{
     description?: string;
 }
 const EventPoster = ({poster, title, date, description}: Props) => {
-    const dateObj = new Date(date || '');
+    const dateObj = new Date(date ?? '');
+    function getOrdinal(day: number): string {
+        if (day > 3 && day < 21) return "th";
 
-    const formttedDate =  dateObj.toLocaleDateString("en-GB", {
-        day: "2-digit",
-        month: "short",
-        year: "numeric",
-    });
+        switch (day % 10) {
+            case 1: return "st";
+            case 2: return "nd";
+            case 3: return "rd";
+            default: return "th";
+        }
+    }
+
+    const day = dateObj.getDate();
+
+    const formattedDate =
+        `${day}${getOrdinal(day)} ` +
+        dateObj.toLocaleDateString("en-GB", {
+            month: "long",
+        }) +
+        ` ${dateObj.getFullYear()}`;
+    
     return (
         <Stack className={Styles.eventBoxdetails}>
             <Container>
@@ -28,7 +42,7 @@ const EventPoster = ({poster, title, date, description}: Props) => {
                     />
                 </Stack>
                 <Stack className={Styles.detailsCard}>
-                    <div className={`event_date ${Styles.date}`}>{formttedDate}</div>
+                    <div className={`event_date ${Styles.date}`}>{formattedDate}</div>
                     <div
                         className={Styles.title}
                         dangerouslySetInnerHTML={{ __html:title ?? '' }}
