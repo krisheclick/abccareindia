@@ -8,12 +8,27 @@ interface EventItem {
     slug?: string;
     description?: string;
 }
-const EventCard = ({poster, date, title, slug, description}: EventItem) => {
+const EventCard = ({ poster, date, title, slug, description }: EventItem) => {
     const dateObj = new Date(date ?? '');
-    const formattedDate = dateObj.toLocaleDateString("en-GB", {
-        day: "2-digit",
-        month: "long",
-    }) + dateObj.getFullYear();
+    function getOrdinal(day: number): string {
+        if (day > 3 && day < 21) return "th";
+
+        switch (day % 10) {
+            case 1: return "st";
+            case 2: return "nd";
+            case 3: return "rd";
+            default: return "th";
+        }
+    }
+
+    const day = dateObj.getDate();
+
+    const formattedDate =
+        `${day}${getOrdinal(day)} ` +
+        dateObj.toLocaleDateString("en-GB", {
+            month: "long",
+        }) +
+        ` ${dateObj.getFullYear()}`;
     return (
         <div className={`event_card ${Styles.card}`}>
             <CustomImage
@@ -25,7 +40,7 @@ const EventCard = ({poster, date, title, slug, description}: EventItem) => {
                 <div className={`event_date ${Styles.date}`}>{formattedDate}</div>
                 <div className={Styles.title}>{title}</div>
                 <div className={Styles.card_content}
-                    dangerouslySetInnerHTML={{__html: description || ''}}
+                    dangerouslySetInnerHTML={{ __html: description || '' }}
                 />
                 <div className={Styles.card_btn_wrap}>
                     <Link href={`${process.env.NEXT_PUBLIC_ENV_URL}/events/${slug}`} className={`btn btn-primary ${Styles.card_btn}`}>View More</Link>

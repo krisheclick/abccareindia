@@ -424,13 +424,13 @@ label{
 }
 
 /* accessibility.module.css */
-.filter-grayscale .rj_web{
+.filter-grayscale .rj_web > main{
   filter: grayscale(100%);
 }
 /* .filter-negetive .rj_web{
   filter: invert(100%);
 } */
-.filter-bright .rj_web{
+.filter-bright .rj_web > main{
   filter: brightness(120%);
 }
 /* negetive */

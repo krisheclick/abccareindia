@@ -182,6 +182,7 @@ const Homeclintpage = () => {
 
     return (
         <Stack className="home_page">
+            
             <HomeBanner banner={data?.banner} />
             <HomeDescription aboutSection={aboutSection ?? undefined} />
             <USP usp={data?.usp ?? []} />

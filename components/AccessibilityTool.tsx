@@ -203,7 +203,7 @@ export default function AccessibilityTool() {
                 <button className="filter-btn-negetive" onClick={() => applyFilter('negetive')}><FontAwesomeIcon icon={faEye} /> Negative Mode</button>
                 <button className="filter-btn-bright" onClick={() => applyFilter('bright')}><FontAwesomeIcon icon={faLightbulb} /> Light Mode</button>
                 <button onClick={() => applyFilter('')}><FontAwesomeIcon icon={faImage} /> Normal Mode</button>
-                <button onClick={underlineLinks}><FontAwesomeIcon icon={faLink} /> Underline Links</button>
+                <button onClick={underlineLinks} className="text-decoration-underline"><FontAwesomeIcon icon={faLink} /> Underline Links</button>
                 <button onClick={resetAll}><FontAwesomeIcon icon={faArrowRotateLeft} /> Reset</button>
             </Stack>
         </Stack>

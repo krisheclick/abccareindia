@@ -50,7 +50,7 @@ const SingleClientpage = ({ permalink }: { permalink: string }) => {
                 setData(response_data ?? null);
                 setInnerBanner({
                     page_name: response_data?.event?.event_title,
-                    page_feature_image: response_data?.event?.event_feature_image,
+                    page_feature_image: response_data?.event?.event_banner_image,
                 });
     
                 window.scrollTo({ top: 0, behavior: "smooth" });
