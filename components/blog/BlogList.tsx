@@ -173,14 +173,14 @@ const BlogList = ({ page }: BlogListProps) => {
                                 </Col>
 
                                 <Col lg={6}>
-                                    <figure className={`custom_image fixedImage ${Styles.poster}`}>
+                                    <Link href={`${process.env.NEXT_PUBLIC_ENV_URL}/blog/${item?.blog_slug}`} className={`custom_image fixedImage ${Styles.poster}`}>
                                         <Image
                                             src={`${mediaUrl}${item.blog_feature_image}`}
                                             alt={item.blog_title || ""}
                                             className="custom-image loaded"
                                             fill
                                         />
-                                    </figure>
+                                    </Link>
                                 </Col>
                             </Row>
                         </Stack>

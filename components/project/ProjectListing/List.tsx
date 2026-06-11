@@ -48,7 +48,7 @@ const ProjectList = () => {
 
     const ListRef = useRef<HTMLDivElement | null>(null);
 
-    const itemsPerPage = 4;
+    const itemsPerPage = 10;
     const searchParams = useSearchParams();
 
     const activeTab = searchParams.get("category") || "all";
@@ -225,14 +225,14 @@ const ProjectList = () => {
                                         </Col>
                                         <Col lg={6}>
                                             {project.project_feature_image && (
-                                                <figure className={`custom_image fixedImage ${Styles.poster}`}>
+                                                <Link href={`${process.env.NEXT_PUBLIC_ENV_URL}/our-projects/${project?.project_slug}`} className={`custom_image fixedImage ${Styles.poster}`}>
                                                     <Image
                                                         src={`${mediaUrl}${project.project_feature_image}`}
                                                         alt={project.project_title || ""}
                                                         className="custom-image loaded"
                                                         fill
                                                     />
-                                                </figure>
+                                                </Link>
                                             )}
                                         </Col>
                                     </Row>

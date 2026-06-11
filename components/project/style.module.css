@@ -94,6 +94,25 @@
 .poster img {
 	object-fit: cover;
 }
+.locationBox {
+	--size: 32px;
+	align-items: start;
+	gap: 8px;
+	font-size: 24px;
+	font-weight: 700;
+	display: inline-flex;
+	justify-content: center;
+}
+.locationBox span {
+	width: var(--size);
+	height: var(--size);
+	font-size: calc(var(--size) / 2);
+	color: #000;
+	background: #ebc436;
+	border-radius: 100%;
+	place-items: center;
+	display: grid;
+}
 .watchBtn {
 	position: absolute;
 	bottom: 0;

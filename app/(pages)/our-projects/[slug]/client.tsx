@@ -15,15 +15,20 @@ import "swiper/css/navigation";
 import "swiper/css/free-mode";
 import Styles from "@/components/project/style.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlay } from "@fortawesome/free-solid-svg-icons";
+import { faLocationDot, faPlay } from "@fortawesome/free-solid-svg-icons";
 import { normalizeYouTubeUrl } from "@/utlis/videoUrl";
 import Link from "next/link";
+
 interface Gallery {
     upload_type?: string;
     file_name?: string;
     media_link?: string;
     thumb_name?: string;
     video_duration?: string;
+}
+interface LinkObject {
+    text?: string;
+    url?: string;
 }
 interface ProjectDataType {
     project_title?: string;
@@ -33,6 +38,7 @@ interface ProjectDataType {
     project_feature_image?: string;
     project_description?: string;
     project_video_link?: string;
+    project_location?: string | null;
     project_gallery?: Gallery[] | null;
 }
 interface ProjectData {
@@ -95,7 +101,9 @@ const SingleProject = ({ permalink }: { permalink: string }) => {
     }
     const pageData = data?.project;
     const gallery = safeParse<Gallery[]>(pageData?.project_gallery);
-    
+    // const location = JSON.parse(JSON.parse(pageData?.project_location??null));
+    const location: LinkObject | null = pageData?.project_location ? JSON.parse(JSON.parse(pageData.project_location)) : null;
+
     return (
         <>
             <div className="single-project-page">
@@ -109,11 +117,17 @@ const SingleProject = ({ permalink }: { permalink: string }) => {
                     <Container>
                         <Stack className={`inner_mdlprheading ${Styles.section_content ?? ''}`}>
                             <h1 className={`cmn_black_heading ${Styles.details_title ?? ''}`}>{pageData?.project_title}</h1>
-                            <div
+                            {/* <div
                                 className={`paragraph ${Styles.paragraph ?? ''}`}
                                 dangerouslySetInnerHTML={{ __html: pageData?.project_short_description || '' }}
 
-                            />
+                            /> */}
+                            {location &&(
+                                <div className={Styles.locationBox}>
+                                    <span><FontAwesomeIcon icon={faLocationDot} /></span>
+                                    <div>{location?.text || "No location available"}</div>
+                                </div>
+                            )}
                         </Stack>
                         {gallery && gallery?.length > 0 && (
                             <Stack className={Styles.pdetailsslideforvid}>
