@@ -3,6 +3,7 @@ import Styles from './style.module.css'
 import AwardCard from './Card'
 
 interface AwardItem {
+    "recognition_award_title"?: string;
     "recognition_award_description"?: string;
     "recognition_award_feature_image"?: string;
 }
@@ -21,7 +22,7 @@ const Awards = ({ title, content, awards }: ContentProps) => {
                         dangerouslySetInnerHTML={{ __html: title ?? '' }}
                     />
                     <div
-                        className={`paragraph ${Styles.paragraph ?? ''}`}
+                        className={`paragraph rj_editor_text ${Styles.paragraph ?? ''}`}
                         dangerouslySetInnerHTML={{ __html: content ?? '' }}
                     />
                 </Stack>
@@ -32,6 +33,7 @@ const Awards = ({ title, content, awards }: ContentProps) => {
                         <AwardCard
                             key={index}
                             poster={value?.recognition_award_feature_image}
+                            title ={value?.recognition_award_title}
                             content={value?.recognition_award_description}
                         />
                     ))}

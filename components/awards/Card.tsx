@@ -4,15 +4,21 @@ import CustomImage from '@/utlis/imagefunction';
 
 interface Props {
     poster?: string;
+    title?: string;
     content?: string;
 }
-const AwardCard = ({poster, content}: Props) => {
+const AwardCard = ({poster, title, content}: Props) => {
     return (
         <Row className={`g-0 align-items-center ${Styles.row}`}>
             <Col xl={6}>
-                <Stack className={Styles.description}
-                    dangerouslySetInnerHTML={{__html: content ?? ''}}
-                />
+                <Stack className={Styles.description}>
+                    {title && (
+                        <div className="cmn_black_heading">{title}</div>
+                    )}
+                    <div className="rj_editor_text"
+                        dangerouslySetInnerHTML={{__html: content ?? ''}}
+                    />
+                </Stack>
             </Col>
             <Col xl={6}>
                 <CustomImage

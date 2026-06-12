@@ -47,8 +47,6 @@ const EventList = ({ page }: Props) => {
             try {
                 setHasLoading(true);
 
-                console.log("Fetching page:", page);
-
                 const response = await fetch(
                     `${process.env.NEXT_PUBLIC_API_URL}/event?page=${page}&size=${itemsPerPage}`,
                     { cache: "no-store" }

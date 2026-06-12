@@ -21,7 +21,7 @@ const ZigzagContent = ({ data, reverse = false, background }: DataProps) => {
                 <Row className={`align-items-center gx-xl-5 rowGap ${reverse ? `flex-row-reverse ${Styles.reverseRow}` : ''}`}>
                     <Col lg={7}>
                         <div className={Styles.box_content}>
-                            <div className="paragraph"
+                            <div className="paragraph rj_editor_text"
                                 dangerouslySetInnerHTML={{ __html: data?.description ?? '' }}
                             />
                         </div>

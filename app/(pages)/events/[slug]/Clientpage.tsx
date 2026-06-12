@@ -19,6 +19,7 @@ interface EventsData {
     event_short_description?: string;
     event_description?: string;
     event_date?: string;
+    event_location?: string;
     event_gallery?: string;
 };
 interface PageData {
@@ -69,6 +70,7 @@ const SingleClientpage = ({ permalink }: { permalink: string }) => {
     }
 
     const pageData = data?.event;
+    const page_title = pageData?.event_page_title ? pageData?.event_page_title : pageData?.event_title;
     // const customFields = safeParse<PageCustomField>(pageData?.pages_custom_field);
     // const projectsData = customFields?.group_name?.["event-project-section"];
 
@@ -86,13 +88,13 @@ const SingleClientpage = ({ permalink }: { permalink: string }) => {
                         <h1
                             className={`cmn_black_heading ${Styles.cmn_black_heading ?? ""}`}
                             dangerouslySetInnerHTML={{
-                                __html: pageData?.event_page_title ?? "",
+                                __html: page_title ?? ""
                             }}
                         />
                         <div
                             className={Styles.section_paragraph}
                             dangerouslySetInnerHTML={{
-                                __html: pageData?.event_description ?? "",
+                                __html: pageData?.event_short_description ?? "",
                             }}
                         />
                     </div>
@@ -102,7 +104,8 @@ const SingleClientpage = ({ permalink }: { permalink: string }) => {
                 poster={pageData?.event_feature_image}
                 title={pageData?.event_title}
                 date={pageData?.event_date}
-                description={pageData?.event_short_description}
+                description={pageData?.event_description}
+                location = {pageData?.event_location}
 
             />
             <Events data={data?.event} />

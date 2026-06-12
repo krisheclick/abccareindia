@@ -363,6 +363,22 @@ a:hover{
 	gap: 8px;
 	margin-bottom: 10px;
 }
+.rj_editor_text ul{
+  padding-left: 16px;
+  margin-block: 20px;
+}
+.rj_editor_text li{
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+  display: flex;
+	align-items: start;
+  gap: 8px;
+}
+.rj_editor_text li:last-child{
+  margin-bottom: 0;
+}
+.rj_editor_text li::before,
 .whatwedlist li::before {
 	font-family: "Font Awesome 7 Free";
 	content: "\f058";
@@ -370,7 +386,10 @@ a:hover{
 	color: #2c3070;
   display: block;
   flex-shrink: 0;
-	font-size: 18px;
+	font-size: 1.1em;
+}
+.rj_editor_text li::before{
+  margin-top: 5px;
 }
 .alert {
 	padding: 8px 12px;

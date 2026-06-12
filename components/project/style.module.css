@@ -234,9 +234,18 @@
 		aspect-ratio: 16/12;
 	}
 }
+@media only screen and (max-width: 767px){
+    .locationBox{
+        --size: 28px;
+        font-size: 20px;
+    }
+}
 /* 360px */
 @media only screen and (max-width: 450px){
 	.section{
 		padding-block: 40px;
 	}
+    .locationBox{
+        font-size: 18px;
+    }
 }

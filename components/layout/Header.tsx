@@ -118,7 +118,7 @@ const Header = () => {
                     <Stack className="nav_wrapper">
                         <Container>
                             <Stack direction="horizontal" gap={3} className="tmlbox justify-content-between">
-                                <Link href="/" className="wow animate__zoomInDown headerLogo" data-wow-delay="0.2s">
+                                <Link href="/" className="headerLogo">
                                     <Image
                                         src={`${mediaUrl}${commonData?.site_logo}`}
                                         alt={commonData?.site_title || "ABC India Logo"}
@@ -127,7 +127,7 @@ const Header = () => {
                                     />
                                 </Link>
                                 {menuData && menuData?.length > 0 && (
-                                    <nav role="navigation" className="wow animate__fadeInUp navMenu" data-wow-delay="0.2s">
+                                    <nav role="navigation" className="navMenu">
                                         <Stack as="ul" direction="horizontal" className="menuheader">
                                             {menuData.map((item, index) => {
                                                 const itemPath = item.url?.startsWith("/")

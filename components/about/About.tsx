@@ -65,7 +65,7 @@ const About = ({ posterPart, content }: PageProps) => {
                         </figure>
                     </Col>
                     <Col lg={7}>
-                        <div className={`abtintrighttbx ${Styles.abtintrighttbx ?? ''}`}>
+                        <div className={`abtintrighttbx rj_editor_text ${Styles.abtintrighttbx ?? ''}`}>
                             <div dangerouslySetInnerHTML={{ __html: fixedContent ?? '' }} />
                             <Counter />
                         </div>

@@ -189,7 +189,7 @@ const ChildEmpower = ({ sectionData, messages }: CharitableMessageProps) => {
                         src={popupData?.poster}
                         alt={popupData?.title}
                     />
-                    <div dangerouslySetInnerHTML={{ __html: popupData?.description || "" }} className={Styles.paragraph} />
+                    <div dangerouslySetInnerHTML={{ __html: popupData?.description || "" }} className={`rj_editor_text ${Styles.paragraph ?? ''}`} />
                 </ModalBody>
             </Modal>
         </Stack>

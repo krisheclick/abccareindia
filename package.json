@@ -19,6 +19,7 @@
     "@moondev/next-wow": "^2.0.3",
     "boostrap": "^2.0.0",
     "bootstrap": "^5.3.8",
+    "dompurify": "^3.4.9",
     "jquery": "^4.0.0",
     "next": "^16.1.7",
     "react": "19.2.3",

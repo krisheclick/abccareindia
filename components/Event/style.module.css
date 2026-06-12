@@ -68,7 +68,25 @@
 .skeletonTitle{
 	height: 30px;
 }
-
+.locationBox {
+	--size: 32px;
+	margin-bottom: var(--section-space);
+	align-items: start;
+	gap: 8px;
+	font-size: 24px;
+	font-weight: 700;
+	display: flex;
+}
+.locationBox span {
+	width: var(--size);
+	height: var(--size);
+	font-size: calc(var(--size) / 2);
+	color: #000;
+	background: #ebc436;
+	border-radius: 100%;
+	place-items: center;
+	display: grid;
+}
 /* 1200px */
 @media only screen and (max-width: 1599px){
 	.section{
@@ -95,6 +113,9 @@
 	.card .title{
 		font-size: 20px;
 	}
+	.locationBox {
+        font-size: 22px;
+    }
 }
 /* 768px */
 @media only screen and (max-width: 991px){
@@ -126,6 +147,10 @@
 	.poster{
 		height: 360px;
 	}
+    .locationBox{
+        --size: 28px;
+        font-size: 20px;
+    }
 }
 /* 480px */
 @media only screen and (max-width: 575px){
@@ -136,4 +161,7 @@
 	.title{
 		font-size: 26px;
 	}
+    .locationBox{
+        font-size: 18px;
+    }
 }

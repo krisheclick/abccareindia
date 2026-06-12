@@ -1,14 +1,17 @@
 import { Container, Stack } from 'react-bootstrap'
 import Styles from './style.module.css'
 import Image from 'next/image';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 
 interface Props{
     poster?: string;
     title?: string;
     date?: string;
     description?: string;
+    location?: string;
 }
-const EventPoster = ({poster, title, date, description}: Props) => {
+const EventPoster = ({poster, title, date, description, location}: Props) => {
     const dateObj = new Date(date ?? '');
     function getOrdinal(day: number): string {
         if (day > 3 && day < 21) return "th";
@@ -42,7 +45,15 @@ const EventPoster = ({poster, title, date, description}: Props) => {
                     />
                 </Stack>
                 <Stack className={Styles.detailsCard}>
-                    <div className={`event_date ${Styles.date}`}>{formattedDate}</div>
+                    <Stack direction="horizontal" className='align-items-center gap-3 mb-2'>
+                        <div className={`event_date mb-0 ${Styles.date}`}>{formattedDate}</div>
+                        {location &&(
+                            <div className={Styles.locationBox}>
+                                <span><FontAwesomeIcon icon={faLocationDot} /></span>
+                                <div>{location}</div>
+                            </div>
+                        )}
+                    </Stack>
                     <div
                         className={Styles.title}
                         dangerouslySetInnerHTML={{ __html:title ?? '' }}
