@@ -4,12 +4,19 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { Modal } from 'react-bootstrap';
 // import imageMapResize from 'image-map-resizer';
-import ImageMapper from 'react-img-mapper';
+import ImageMapper, { MapArea } from 'react-img-mapper';
 
 type Project = {
     project_title: string;
     data_color: string;
     project_slug: string;
+};
+type Area = MapArea & {
+    id: string;
+    name: string;
+    title: string;
+    alt: string;
+    coords: number[];
 };
 
 export default function WestBengalMap() {
@@ -22,7 +29,7 @@ export default function WestBengalMap() {
 
     const url = 'https://www.abcindia.org/templates/images/westbengal_map.png';
     const name = 'westbengal';
-    const areas = [
+    const areas :Area[] = [
         {
             "id": "1",
             "shape": "poly",
@@ -185,7 +192,7 @@ export default function WestBengalMap() {
         }
     ];
 
-    const handleClick = async (area) => {
+    const handleClick = async (area:Area) => {
         console.log(area);
         const district = area.name;
         setSelectedDistrict(district);
@@ -226,9 +233,15 @@ export default function WestBengalMap() {
                     strokeWidth: 3
                 }))}
                 responsive
-                onMouseEnter={(area) => setHovered(area.name)}
+                onMouseEnter={(area) => {
+                    const customArea = area as Area;
+                    setHovered(customArea.name || '');
+                }}
                 onMouseLeave={() => setHovered('')}
-                onClick={handleClick}
+                onClick={(area) => {
+                    const customArea = area as Area;
+                    handleClick(customArea);
+                }}
                 parentWidth={350} />
 
             <div style={{ marginTop: 20 }}>

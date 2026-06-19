@@ -16,8 +16,8 @@ import { safeParse } from "@/utlis/safe_parse";
 import { useEffect, useState } from "react";
 import { Stack } from "react-bootstrap";
 import TestimonialSection from "@/components/testmonial/Testimonial";
-import InteractiveMap from "@/components/map/map";
-import IndiaMap from "@/components/map/map";
+// import InteractiveMap from "@/components/map/map";
+// import IndiaMap from "@/components/map/map";
 
 interface BannerItem {
     banner_name?: string;
@@ -60,7 +60,8 @@ interface Success_story {
     success_story_title?: string;
     success_story_subtitle?: string;
     success_story_description?: string;
-    success_story_media_file?: MediaData[];
+    // success_story_media_file?: MediaData[];
+    success_story_media_file?: string;
 }
 interface ProjectItem {
     project_title?: string;
@@ -226,7 +227,7 @@ const Homeclintpage = () => {
             /> */}
 
             <Brand brands={data?.donor_brand} />
-            <IndiaMap />
+            {/* <IndiaMap /> */}
         </Stack>
     )
 }

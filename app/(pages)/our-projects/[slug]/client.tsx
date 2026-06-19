@@ -27,8 +27,9 @@ interface Gallery {
     video_duration?: string;
 }
 interface LinkObject {
-    text?: string;
-    url?: string;
+    address_line_1?: string;
+    address_line_2?: string;
+    district?: string;
 }
 interface ProjectDataType {
     project_title?: string;
@@ -38,7 +39,7 @@ interface ProjectDataType {
     project_feature_image?: string;
     project_description?: string;
     project_video_link?: string;
-    project_location?: string | null;
+    project_location?: LinkObject | null;
     project_gallery?: Gallery[] | null;
 }
 interface ProjectData {
@@ -102,7 +103,8 @@ const SingleProject = ({ permalink }: { permalink: string }) => {
     const pageData = data?.project;
     const gallery = safeParse<Gallery[]>(pageData?.project_gallery);
     // const location = JSON.parse(JSON.parse(pageData?.project_location??null));
-    const location: LinkObject | null = pageData?.project_location ? JSON.parse(JSON.parse(pageData.project_location)) : null;
+    const location: LinkObject | null = pageData?.project_location || null;
+    console.log(pageData?.project_location);
 
     return (
         <>
@@ -125,7 +127,7 @@ const SingleProject = ({ permalink }: { permalink: string }) => {
                             {location &&(
                                 <div className={Styles.locationBox}>
                                     <span><FontAwesomeIcon icon={faLocationDot} /></span>
-                                    <div>{location?.text || "No location available"}</div>
+                                    <div>{location?.address_line_1 || "No location available"}</div>
                                 </div>
                             )}
                         </Stack>
