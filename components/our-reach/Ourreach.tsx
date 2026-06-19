@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { useGlobalContext } from "@/context/global_context";
 import Link from "next/link";
 import Styles from "./style.module.css";
+import WestBengalMap from "@/components/WestBengalMap";
 
 interface CounterData {
     our_reach_counter_number?: number;
@@ -93,13 +94,14 @@ const Ourreach = ({ sectionData }: SectionDataProps) => {
                             <Stack direction="horizontal" className={Styles.ourReachImage ?? ''}>
                                 {!hasLoading && reachItem?.our_reach_feature_image ? (
                                     <div className={Styles.ourReachImage}>
-                                        <Image
+                                        <WestBengalMap/>
+                                        {/* <Image
                                             src={`${mediaUrl}${reachItem.our_reach_feature_image}`}
                                             alt={sectionData?.our_reach_title || "Our Reach"}
                                             width={580}
                                             height={720}
                                             style={{ objectFit: "cover" }}
-                                        />
+                                        /> */}
                                     </div>
                                 ) : (
                                     <div className={Styles.ourReachImageSkeleton}>
