@@ -16,6 +16,8 @@ import { safeParse } from "@/utlis/safe_parse";
 import { useEffect, useState } from "react";
 import { Stack } from "react-bootstrap";
 import TestimonialSection from "@/components/testmonial/Testimonial";
+import InteractiveMap from "@/components/map/map";
+import IndiaMap from "@/components/map/map";
 
 interface BannerItem {
     banner_name?: string;
@@ -36,6 +38,11 @@ interface AboutInfo {
     about_right_image?: string;
     about_subtitle?: string;
     about_title?: string;
+}
+interface SuccessStoryInfo {
+    success_story_subtitle?: string;
+    success_story_title?: string;
+    success_story_description?: string;
 }
 interface USPItem {
     usp_title?: string;
@@ -116,7 +123,7 @@ interface OurReachSectionData {
 interface PageCustomField {
     group_name: {
         "about-section"?: AboutInfo;
-        "success-stroy-section"?: AboutInfo;
+        "success-stroy-section"?: SuccessStoryInfo;
         "project-section"?: ProjectSection;
         "volunteer-section"?: VolunteerSectionData;
         "empower-section"?: EmpowerSectionData;
@@ -179,6 +186,7 @@ const Homeclintpage = () => {
     const customFields = safeParse<PageCustomField>(data?.pages_custom_field);
     const aboutSection = customFields?.group_name?.["about-section"] ?? null;
     const projectSection = customFields?.group_name?.["project-section"] ?? null;
+    const success_stroys_section = customFields?.group_name?.["success-stroy-section"] ?? null;
 
     return (
         <Stack className="home_page">
@@ -186,7 +194,7 @@ const Homeclintpage = () => {
             <HomeBanner banner={data?.banner} />
             <HomeDescription aboutSection={aboutSection ?? undefined} />
             <USP usp={data?.usp ?? []} />
-            <SuccessStory data={data?.success_story ?? []} />
+            <SuccessStory pageData={success_stroys_section} data={data?.success_story ?? []} />
             <HomeProject
                 sectionData={projectSection}
                 projects={data?.projects ?? []}
@@ -218,6 +226,7 @@ const Homeclintpage = () => {
             /> */}
 
             <Brand brands={data?.donor_brand} />
+            <IndiaMap />
         </Stack>
     )
 }

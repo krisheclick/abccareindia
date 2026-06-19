@@ -22,22 +22,47 @@ interface MediaData {
     thumb_name?: string;
     upload_type?: string;
     video_duration?: string;
+    title?: string;
+    description?: string;
 }
 
 interface SuccessStoryItem {
     success_story_title?: string;
     success_story_subtitle?: string;
     success_story_description?: string;
-    success_story_media_file?: MediaData[];
+    success_story_media_file?: string;
+}
+interface PageData {
+    success_story_subtitle?: string;
+    success_story_title?: string;
+    success_story_description?: string;
+}
+interface Success_story_Data {
+    pageData?: PageData | null;
+    data?: SuccessStoryItem[] | null;
 }
 
-const SuccessStory = ({ data }: { data?: SuccessStoryItem[] | null; }) => {
+const truncateText = (html?: string, wordLimit = 10) => {
+    if (!html) return "";
+
+    const text = html.replace(/<[^>]*>/g, "");
+    const words = text.trim().split(/\s+/);
+
+    return words.length > wordLimit
+        ? `${words.slice(0, wordLimit).join(" ")}...`
+        : text;
+};
+
+const SuccessStory = ({ pageData, data }: Success_story_Data) => {
     const { mediaUrl, hasLoading } = useGlobalContext();
     const [isBeginning, setIsBeginning] = useState(true);
     const [isEnd, setIsEnd] = useState(false);
     const swiperRef = useRef<SwiperType | null>(null);
     const [showVideo, setShowVideo] = useState<boolean>(false);
     const [videoUrl, setVideoUrl] = useState<string>("");
+    const [storyModal,setStoryModal] = useState<boolean>(false);
+    const [viewStory, setViewStory] = useState<MediaData|null>(null);
+
 
     const handleOpenVideo = (url: string) => {
         setVideoUrl(normalizeYouTubeUrl(url));
@@ -50,8 +75,28 @@ const SuccessStory = ({ data }: { data?: SuccessStoryItem[] | null; }) => {
             setVideoUrl("");
         }, 300);
     };
-    const sectionData = data?.[0];
-    const mediaItems = safeParse<MediaData[]>(sectionData?.success_story_media_file);
+    const sectionData = data;
+    // const mediaItems = null;
+    // const mediaItems = safeParse<MediaData[]>(data);
+    // const mediaItems = safeParse<MediaData[]>(sectionData?.success_story_media_file);
+    // console.log(data);
+    const mediaItems =
+        data?.flatMap((item) => {
+            try {
+            const media = JSON.parse(item.success_story_media_file || "[]");
+
+            return media.map((mediaItem: MediaData) => ({
+                ...mediaItem,
+                title: item.success_story_title,
+                description: item.success_story_description,
+            }));
+            } catch (error) {
+            console.error("Invalid JSON:", error);
+            return [];
+            }
+        }) ?? [];
+    
+    // console.log('mediaItems', mediaItems)
 
     if (!sectionData) return null;
     
@@ -62,24 +107,24 @@ const SuccessStory = ({ data }: { data?: SuccessStoryItem[] | null; }) => {
                     <Row className={`gy-4 ${Styles.row ?? ''}`}>
                         <Col xl={4}>
 
-                            {!hasLoading && sectionData ? (
+                            {!hasLoading && pageData ? (
                                 <Stack className={Styles.content}>
                                     <div
                                         className={`smallsubhead ${Styles.small_title}`}
                                         dangerouslySetInnerHTML={{
-                                            __html: sectionData.success_story_subtitle ?? ''
+                                            __html: pageData?.success_story_subtitle ?? ''
                                         }}
                                     />
                                     <div
                                         className={`cmn_black_heading big ${Styles.title}`}
                                         dangerouslySetInnerHTML={{
-                                            __html: sectionData.success_story_title ?? ''
+                                            __html: pageData?.success_story_title ?? ''
                                         }}
                                     />
-                                    <div
+                                    <p
                                         className={Styles.description}
                                         dangerouslySetInnerHTML={{
-                                            __html: sectionData.success_story_description ?? ''
+                                            __html: pageData?.success_story_description ?? ''
                                         }}
                                     />
                                 </Stack>
@@ -100,7 +145,8 @@ const SuccessStory = ({ data }: { data?: SuccessStoryItem[] | null; }) => {
                                 <Swiper
                                     className={`gift_slider ${Styles.gift_slider}`}
                                     navigation
-                                    slidesPerView={Math.min(mediaItems?.length || 0, 3)}
+                                    // slidesPerView={Math.min(mediaItems?.length || 0, 3)}
+                                    slidesPerView={3}
                                     loop={false}
                                     // loop={(mediaItems?.length || 0) > 3}
                                     spaceBetween={12}
@@ -118,16 +164,17 @@ const SuccessStory = ({ data }: { data?: SuccessStoryItem[] | null; }) => {
                                     }}
                                     breakpoints={{
                                         0: {
-                                            slidesPerView: Math.min(mediaItems?.length || 0, 1)
+                                            // slidesPerView: Math.min(mediaItems?.length || 0, 1)
+                                            slidesPerView: 1
                                         },
                                         480: {
-                                            slidesPerView: Math.min(mediaItems?.length || 0, 2)
+                                            slidesPerView: 2
                                         },
                                         992: {
-                                            slidesPerView: Math.min(mediaItems?.length || 0, 3)
+                                            slidesPerView: 3
                                         },
                                         1200: {
-                                            slidesPerView: Math.min(mediaItems?.length || 0, 3),
+                                            slidesPerView: 3,
                                             spaceBetween: 20,
                                             navigation: false
                                         }
@@ -136,19 +183,27 @@ const SuccessStory = ({ data }: { data?: SuccessStoryItem[] | null; }) => {
                                     {mediaItems?.map((item, index) => (
                                         <SwiperSlide key={index} className={Styles.slide_item}>
                                             {item.thumb_name && (
+                                                
                                                 <Stack className='position-relative'>
                                                     <CustomImage
-                                                        src={`${mediaUrl}${item.thumb_name}`}
+                                                        src={`${mediaUrl}${item?.thumb_name}`}
                                                         alt={`Success Story ${index + 1}`}
                                                         className={Styles.video_poster}
                                                     />
-                                                    <span
+                                                    {item?.media_link && <><span
                                                         className={Styles.videoIcon}
                                                         onClick={() => handleOpenVideo(item?.media_link || '')}
                                                     >
-                                                        <FontAwesomeIcon icon={faPlay} />
+                                                         <FontAwesomeIcon icon={faPlay} />
                                                     </span>
-                                                    <em className={Styles.video_duration}>{item.video_duration}</em>
+                                                    <em className={Styles.video_duration}>{item.video_duration}</em></>
+                                                    }
+                                                    <h4>{item.title}</h4>
+                                                    <p>{truncateText(item.description, 10)}</p>
+                                                    <a href="#" className="btn btn-success" onClick={() => {
+                                                        setViewStory(item);
+                                                        setStoryModal(true)
+                                                        }}>View Story</a>
                                                 </Stack>
                                             )}
 
@@ -179,7 +234,7 @@ const SuccessStory = ({ data }: { data?: SuccessStoryItem[] | null; }) => {
                     </Row>
                 </Container>
             </Stack>
-            <Modal className="customBackdrop" show={showVideo} onHide={handleCloseVideo} size="xl" centered backdrop="static">
+            <Modal key="0" className="customBackdrop" show={showVideo} onHide={handleCloseVideo} size="xl" centered backdrop="static">
                 <Modal.Header closeButton>
                     <Modal.Title className="fw-semibold"></Modal.Title>
                 </Modal.Header>
@@ -188,6 +243,33 @@ const SuccessStory = ({ data }: { data?: SuccessStoryItem[] | null; }) => {
                         <iframe width="100%" height="100%" src={videoUrl} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen
                             style={{ position: "absolute", top: 0, left: 0 }}></iframe>
                     </div>
+                </Modal.Body>
+            </Modal>
+
+            <Modal key="1" show={storyModal} onHide={() => setStoryModal(false)} size="xl" centered backdrop="static">
+                <Modal.Header closeButton>
+                    <Modal.Title>Success Story</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {viewStory && (
+                    <Row className="align-items-center">
+                        {/* Left Image */}
+                        <Col md={5}>
+                        {viewStory.thumb_name && (
+                            <CustomImage
+                            src={`${mediaUrl}${viewStory.thumb_name}`}
+                            alt={viewStory.title || "Success Story"}
+                            className={Styles.video_poster}
+                            />
+                        )}
+                        </Col>
+                        {/* Right Content */}
+                        <Col md={7}>
+                        <h3>{viewStory.title}</h3>
+                        <div dangerouslySetInnerHTML={{ __html: viewStory.description || "" }} />
+                        </Col>
+                    </Row>
+                    )}
                 </Modal.Body>
             </Modal>
         </>
