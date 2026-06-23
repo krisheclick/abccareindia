@@ -221,10 +221,10 @@ const Homeclintpage = () => {
             />
             <Donation />
 
-            {/* <TestimonialSection
+            <TestimonialSection
                 data={customFields?.group_name['testimonial-section']}
                 testimonials={data?.testimonial}
-            /> */}
+            />
 
             <Brand brands={data?.donor_brand} />
             {/* <IndiaMap /> */}
