@@ -61,7 +61,7 @@ export default function HomeDescription({ aboutSection }: AboutInfo) {
                             </>
                         ) : (
                             <>
-                                <div className={`py-4 ${Styles.leftContent}`}>
+                                <div className={`py-4 w-75 ${Styles.leftContent}`}>
                                     <div className={`skeleton skeletonHeightText w-25 ${Styles.smallTitle}`}>&nbsp;</div>
                                     <br />
                                     <p className="skeleton mb-2">&nbsp;</p>
