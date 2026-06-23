@@ -256,26 +256,29 @@ export default function WestBengalMap() {
                 show={showModal}
                 onHide={handleClose}
                 centered
+                size='xl'
             >
                 <Modal.Header closeButton>
-                    <Modal.Title> Project List For {selectedDistrict || 'None'}</Modal.Title>
+                    <Modal.Title as="h4" className='mb-0 fw-semibold'> Project List For {selectedDistrict || 'None'}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     {
                         loading ? (
                             <p>Loading...</p>
                         ) : ProjectData && ProjectData?.length > 0 ? (
-                            <ul>
-                                {ProjectData.map((project) => (
-                                    <li key={project.project_slug}>
-                                        <Link href={`/our-projects/${project.project_slug}`}>
-                                            {project.project_title}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
+                            <div className="rj_editor_text">
+                                <ul>
+                                    {ProjectData.map((project) => (
+                                        <li key={project.project_slug}>
+                                            <Link href={`/our-projects/${project.project_slug}`}>
+                                                {project.project_title}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
                         ) : (
-                            <h1>No project found!</h1>
+                            <p className='fw-medium'>No project found!</p>
                         )
                     }
                 </Modal.Body>

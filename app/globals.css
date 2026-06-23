@@ -391,6 +391,9 @@ a:hover{
 .rj_editor_text li::before{
   margin-top: 5px;
 }
+.modal-body .rj_editor_text li::before{
+  margin-top: 0;
+}
 .alert {
 	padding: 8px 12px;
 	font-size: .9em;

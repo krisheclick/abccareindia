@@ -16,9 +16,14 @@ interface ProjectCategory {
     project_category_title?: string;
     project_category_slug?: string;
 }
+// interface LinkObject {
+//     text?: string;
+//     url?: string;
+// }
 interface LinkObject {
-    text?: string;
-    url?: string;
+    address_line_1?: string;
+    address_line_2?: string;
+    district?: string;
 }
 interface ProjectItem {
     project_title?: string;
@@ -162,7 +167,6 @@ const ProjectList = () => {
         }
     }
 
-
     return (
         <>
             <Stack className={Styles.projectData} ref={ListRef}>
@@ -188,7 +192,9 @@ const ProjectList = () => {
                 {projectsData && projectsData.length > 0 ? (
                     <Stack className={Styles.projectList}>
                         {projectsData.map((project, index) => {
-                            const location = safeParse<LinkObject>(project.project_location);
+                            console.log('project', project.project_location?.address_line_1)
+                            const location = project.project_location;
+                            // const location = safeParse<LinkObject>(project.project_location);
                             return (
                                 <Stack key={index} className={Styles.project_wrapper}>
                                     <Row className={`gx-lg-0 rowGap ${Styles.row}`}>
@@ -209,7 +215,17 @@ const ProjectList = () => {
 
                                                     <div className={Styles.locationBox}>
                                                         <span><FontAwesomeIcon icon={faLocationDot} /></span>
-                                                        <div>{location?.text || "No location available"}</div>
+                                                        <div>
+                                                            {location ? [
+                                                                location.address_line_1,
+                                                                location.address_line_2,
+                                                                location.district,
+                                                            ]
+                                                                .filter(Boolean)
+                                                                .join(", ")
+                                                            : "No location available"}
+                                                        </div>
+                                                        {/* <div>{location?.text || "No location available"}</div> */}
                                                     </div>
                                                     <div className={Styles.buttonWrap}>
                                                         <Link href={`${process.env.NEXT_PUBLIC_ENV_URL}/our-projects/${project?.project_slug}`} className={`btn btn-primary mt-0 ${Styles.button}`}>Learn More</Link>

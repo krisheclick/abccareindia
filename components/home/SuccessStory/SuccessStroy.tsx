@@ -200,7 +200,7 @@ const SuccessStory = ({ pageData, data }: Success_story_Data) => {
                                                     }
                                                     <h4>{item.title}</h4>
                                                     <p>{truncateText(item.description, 10)}</p>
-                                                    <a href="#" className="btn btn-success" onClick={(e) => {
+                                                    <a href="#" className="btn btn-primary btn-sm mt-0" onClick={(e) => {
                                                         e.preventDefault();
                                                         setViewStory(item);
                                                         setStoryModal(true)
