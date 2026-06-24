@@ -29,7 +29,7 @@ interface Gallery {
 interface LinkObject {
     address_line_1?: string;
     address_line_2?: string;
-    district?: string;
+    district?: string[];
 }
 interface ProjectDataType {
     project_title?: string;
@@ -104,7 +104,7 @@ const SingleProject = ({ permalink }: { permalink: string }) => {
     const gallery = safeParse<Gallery[]>(pageData?.project_gallery);
     // const location = JSON.parse(JSON.parse(pageData?.project_location??null));
     const location: LinkObject | null = pageData?.project_location || null;
-    console.log(pageData?.project_location);
+    const districts = Array.isArray(location?.district) ? location.district : location?.district ? [location.district] : [];
 
     return (
         <>
@@ -124,10 +124,29 @@ const SingleProject = ({ permalink }: { permalink: string }) => {
                                 dangerouslySetInnerHTML={{ __html: pageData?.project_short_description || '' }}
 
                             /> */}
-                            {location &&(
+                            {/* {location &&(
                                 <div className={Styles.locationBox}>
                                     <span><FontAwesomeIcon icon={faLocationDot} /></span>
                                     <div>{location?.address_line_1 || "No location available"}</div>
+                                </div>
+                            )} */}
+                            {districts.length > 0 ? (
+                                <div className="locationBoxWrapper justify-content-center mt-xl-2">
+                                    {districts.map((value, index) => (
+                                            <div className={Styles.locationBox} key={index}>
+                                                <span>
+                                                    <FontAwesomeIcon icon={faLocationDot} />
+                                                </span>
+                                                <div>{value}</div>
+                                            </div>
+                                        ))}
+                                </div>
+                            ) : (
+                                <div className={Styles.locationBox}>
+                                    <span>
+                                        <FontAwesomeIcon icon={faLocationDot} />
+                                    </span>
+                                    <div>No location available</div>
                                 </div>
                             )}
                         </Stack>
@@ -189,7 +208,7 @@ const SingleProject = ({ permalink }: { permalink: string }) => {
                         )}
                         <Stack>
                             <div
-                                className={Styles.paragraph}
+                                className={`rj_editor_text ${Styles.paragraph ?? ''}`}
                                 dangerouslySetInnerHTML={{__html: pageData?.project_description || ''}}
                             />
                             <div className={Styles.btn_wrap}>

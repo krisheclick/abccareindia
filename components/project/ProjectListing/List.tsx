@@ -23,7 +23,7 @@ interface ProjectCategory {
 interface LinkObject {
     address_line_1?: string;
     address_line_2?: string;
-    district?: string;
+    district?: string[];
 }
 interface ProjectItem {
     project_title?: string;
@@ -106,8 +106,8 @@ const ProjectList = () => {
 
             setProjects(response_data?.projects ?? []);
             setPagination({
-                'totalPages':response_data.pagination.total_pages??response_data.pagination.totalPages,
-                'currentPage':response_data.pagination.currentPage,
+                'totalPages': response_data.pagination.total_pages ?? response_data.pagination.totalPages,
+                'currentPage': response_data.pagination.currentPage,
             });
 
         } catch (error) {
@@ -192,8 +192,8 @@ const ProjectList = () => {
                 {projectsData && projectsData.length > 0 ? (
                     <Stack className={Styles.projectList}>
                         {projectsData.map((project, index) => {
-                            console.log('project', project.project_location?.address_line_1)
                             const location = project.project_location;
+                            const districts = Array.isArray(location?.district) ? location.district : location?.district ? [location.district] : [];
                             // const location = safeParse<LinkObject>(project.project_location);
                             return (
                                 <Stack key={index} className={Styles.project_wrapper}>
@@ -213,7 +213,7 @@ const ProjectList = () => {
                                                         dangerouslySetInnerHTML={{ __html: project.project_short_description ?? '' }}
                                                     />
 
-                                                    <div className={Styles.locationBox}>
+                                                    {/* <div className={Styles.locationBox}>
                                                         <span><FontAwesomeIcon icon={faLocationDot} /></span>
                                                         <div>
                                                             {location ? [
@@ -225,7 +225,29 @@ const ProjectList = () => {
                                                                 .join(", ")
                                                             : "No location available"}
                                                         </div>
-                                                        {/* <div>{location?.text || "No location available"}</div> */}
+                                                        <div>{location?.text || "No location available"}</div>
+                                                    </div> */}
+                                                    {districts.length > 0 ? (
+                                                        <div className="locationBoxWrapper">
+                                                            {districts.map((value, index) => (
+                                                                 <div className={Styles.locationBox} key={index}>
+                                                                     <span>
+                                                                         <FontAwesomeIcon icon={faLocationDot} />
+                                                                     </span>
+                                                                     <div>{value}</div>
+                                                                 </div>
+                                                             ))}
+                                                        </div>
+                                                    ) : (
+                                                        <div className={Styles.locationBox}>
+                                                            <span>
+                                                                <FontAwesomeIcon icon={faLocationDot} />
+                                                            </span>
+                                                            <div>No location available</div>
+                                                        </div>
+                                                    )}
+                                                    <div className={Styles.locationBoxWrap}>
+                                                        <div className={Styles.locationBox}></div>
                                                     </div>
                                                     <div className={Styles.buttonWrap}>
                                                         <Link href={`${process.env.NEXT_PUBLIC_ENV_URL}/our-projects/${project?.project_slug}`} className={`btn btn-primary mt-0 ${Styles.button}`}>Learn More</Link>

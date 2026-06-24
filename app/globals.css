@@ -374,12 +374,17 @@ a:hover{
   display: flex;
 	align-items: start;
   gap: 8px;
+  line-height: 1.5;
 }
+ol li{
+  margin-bottom: 12px;
+}
+ol li:last-child,
 .rj_editor_text li:last-child{
   margin-bottom: 0;
 }
-.rj_editor_text li::before,
-.whatwedlist li::before {
+.rj_editor_text ul li::before,
+.whatwedlist ul li::before {
 	font-family: "Font Awesome 7 Free";
 	content: "\f058";
 	font-weight: 600;
@@ -389,7 +394,7 @@ a:hover{
 	font-size: 1.1em;
 }
 .rj_editor_text li::before{
-  margin-top: 5px;
+  margin-top: 1px;
 }
 .modal-body .rj_editor_text li::before{
   margin-top: 0;
@@ -529,6 +534,18 @@ label{
 }
 .filter-bright .testimonialslider .card{
   background: #cfcfcf;
+}
+.projectlider .swiper-wrapper {
+	align-items: initial;
+	margin-bottom: 10px;
+}
+.projectlider .swiper-wrapper .swiper-slide{
+  height: auto;
+}
+.locationBoxWrapper{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
 }
 /* 1400px */
 @media only screen and (max-width: 1600px){

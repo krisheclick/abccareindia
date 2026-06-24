@@ -14,7 +14,6 @@ import { FreeMode, Navigation } from 'swiper/modules';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight, faPlay } from '@fortawesome/free-solid-svg-icons';
 import { useGlobalContext } from '@/context/global_context';
-import { safeParse } from '@/utlis/safe_parse';
 
 interface MediaData {
     file_name?: string;
@@ -147,7 +146,7 @@ const SuccessStory = ({ pageData, data }: Success_story_Data) => {
                                     navigation
                                     // slidesPerView={Math.min(mediaItems?.length || 0, 3)}
                                     slidesPerView={3}
-                                    loop={false}
+                                    loop={true}
                                     // loop={(mediaItems?.length || 0) > 3}
                                     spaceBetween={12}
                                     modules={[FreeMode, Navigation]}
@@ -190,21 +189,29 @@ const SuccessStory = ({ pageData, data }: Success_story_Data) => {
                                                         alt={`Success Story ${index + 1}`}
                                                         className={Styles.video_poster}
                                                     />
-                                                    {item?.media_link && <><span
-                                                        className={Styles.videoIcon}
-                                                        onClick={() => handleOpenVideo(item?.media_link || '')}
-                                                    >
-                                                         <FontAwesomeIcon icon={faPlay} />
-                                                    </span>
-                                                    <em className={Styles.video_duration}>{item.video_duration}</em></>
-                                                    }
-                                                    <h4>{item.title}</h4>
-                                                    <p>{truncateText(item.description, 10)}</p>
-                                                    <a href="#" className="btn btn-primary btn-sm mt-0" onClick={(e) => {
-                                                        e.preventDefault();
-                                                        setViewStory(item);
-                                                        setStoryModal(true)
-                                                        }}>View Story</a>
+                                                    {item?.media_link ?(
+                                                        <>
+                                                            <span
+                                                                className={Styles.videoIcon}
+                                                                onClick={() => handleOpenVideo(item?.media_link || '')}
+                                                            >
+                                                                <FontAwesomeIcon icon={faPlay} />
+                                                            </span>
+                                                            <em className={Styles.video_duration}>{item.video_duration}</em>
+                                                        </>
+                                                    ) : (
+                                                        <div className={Styles.card_text}  onClick={(e) => {
+                                                            e.preventDefault();
+                                                            setViewStory(item);
+                                                            setStoryModal(true)
+                                                            }}
+                                                        >
+                                                            <div className={Styles.card_text_in}>
+                                                                <div className={Styles.card_title} title={item.title}>{item.title}</div>
+                                                                <p>{truncateText(item.description, 10)}</p>
+                                                            </div>
+                                                        </div>
+                                                    )}
                                                 </Stack>
                                             )}
 
@@ -247,14 +254,13 @@ const SuccessStory = ({ pageData, data }: Success_story_Data) => {
                 </Modal.Body>
             </Modal>
 
-            <Modal key="1" show={storyModal} onHide={() => setStoryModal(false)} size="xl" centered backdrop="static">
+            <Modal key="1" className="customBackdrop" show={storyModal} onHide={() => setStoryModal(false)} size="xl" centered backdrop="static">
                 <Modal.Header closeButton>
-                    <Modal.Title>Success Story</Modal.Title>
+                    <Modal.Title className="fw-semibold">Success Story</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     {viewStory && (
-                    <Row className="align-items-center">
-                        {/* Left Image */}
+                    <Row className="rowGap align-items-center">
                         <Col md={5}>
                         {viewStory.thumb_name && (
                             <CustomImage
@@ -264,10 +270,9 @@ const SuccessStory = ({ pageData, data }: Success_story_Data) => {
                             />
                         )}
                         </Col>
-                        {/* Right Content */}
                         <Col md={7}>
-                        <h3>{viewStory.title}</h3>
-                        <div dangerouslySetInnerHTML={{ __html: viewStory.description || "" }} />
+                            <h3 className="cmn_black_heading">{viewStory.title}</h3>
+                            <p dangerouslySetInnerHTML={{ __html: viewStory.description || "" }} />
                         </Col>
                     </Row>
                     )}

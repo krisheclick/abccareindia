@@ -1,0 +1,37 @@
+.objectivesOrganization{
+    --gap: 48px;
+  background: linear-gradient(90deg, #fff 50%, #e3e3e3 50%);
+  padding: 100px 20px 30px 20px;
+}
+.objectivesOrganization ul{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px var( --gap);
+    display: grid;
+    padding: 0;
+}
+.targetImage img{
+    margin: 40px auto -90px;
+}
+@media only screen and (max-width: 991px){
+    .targetImage img {
+        margin: 30px auto -70px;
+        width: 150px;
+    }
+    .objectivesOrganization {
+        --gap: 40px;
+        background: linear-gradient(90deg, #fff 50%, #e3e3e3 50%);
+        padding: 70px 12px 20px;
+    }
+}
+@media only screen and (max-width: 767px){
+    .objectivesOrganization{
+        background: transparent;
+        padding: 0;
+    }
+    .objectivesOrganization ul{
+        display: block;
+    }
+    .targetImage img{
+        margin-bottom: 16px;
+    }
+}

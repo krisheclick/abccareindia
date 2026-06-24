@@ -37,7 +37,7 @@ const HomeBanner = ({ banner }: { banner?: BannerItem | null }) => {
 
     useWOW({ animateClass: "animate__animated" });
     
-    const bannerImage =  banner?.banner_link && !hasLoading ? `${mediaUrl}${banner.banner_link}` : "/assets/images/home_banner.webp";
+    const bannerImage =  banner?.banner_link && !hasLoading ? `${mediaUrl}${banner.banner_link}` : "/";
     return (
         <>
             <div
@@ -53,6 +53,7 @@ const HomeBanner = ({ banner }: { banner?: BannerItem | null }) => {
                                 src={bannerImage}
                                 alt={banner?.banner_name ?? ""}
                                 fill
+                                fetchPriority='high'
                             />
                         </figure>
                         <Stack className={Styles.bannertext}>

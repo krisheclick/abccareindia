@@ -1,4 +1,9 @@
 'use client';
+
+
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/navigation';
 import CustomImage from '@/utlis/imagefunction';
 import { Card, Container, Stack } from 'react-bootstrap';
 import 'swiper/css';
@@ -50,10 +55,9 @@ export default function TestimonialSection({ data, testimonials }: TestimonialSe
                 <div className={Styles.slider}>
                     <Swiper
                         className={`testimonialslider ${Styles.testimonialslider ?? ''}`}
-                        loop={(testimonials.length || 0) > 2}
+                        loop={(testimonials.length || 0) > 3}
                         spaceBetween={12}
-                        slidesPerView={2}
-                        // slidesPerView={Math.min(testimonials.length || 1, 3)}
+                        slidesPerView={Math.min(testimonials.length || 1, 3)}
                         modules={[Autoplay, Navigation, FreeMode]}
                         onSwiper={(swiper) => {
                             swiperRef.current = swiper;
@@ -68,10 +72,13 @@ export default function TestimonialSection({ data, testimonials }: TestimonialSe
                         }}
                         breakpoints={{
                             0: {
-                                slidesPerView: 1
+                                slidesPerView: Math.min(testimonials?.length || 0, 1)
                             },
-                            992: {
-                                slidesPerView: 2,
+                            768: {
+                                slidesPerView: Math.min(testimonials?.length || 0, 2)
+                            },
+                            1200: {
+                                slidesPerView: Math.min(testimonials?.length || 0, 3),
                                 spaceBetween: 20,
                             }
                         }}
@@ -79,13 +86,42 @@ export default function TestimonialSection({ data, testimonials }: TestimonialSe
                         {testimonials.map((testimonial, index) => (
                             <SwiperSlide key={index}>
                                 <Card className={Styles.card}>
-                                    {testimonial.testimonial_feature_image && (
-                                        <CustomImage
-                                            src={`${mediaBaseURL}${testimonial.testimonial_feature_image}`}
-                                            alt={testimonial.testimonial_name}
-                                            className={Styles.card_poster}
-                                        />
+                                    <Stack direction="horizontal" className={Styles.card_top}>
+                                        {testimonial.testimonial_feature_image && (
+                                            <CustomImage
+                                                src={`${mediaBaseURL}${testimonial.testimonial_feature_image}`}
+                                                alt={testimonial.testimonial_name}
+                                                width={50} height={50}
+                                                className={Styles.card_img}
+                                            />
+                                        )}
+                                        <Stack className={Styles.card_content_top}>
+                                            <div className={Styles.title}>
+                                                {testimonial.testimonial_name}
+                                            </div>
+
+                                            {testimonial.testimonial_designation && (
+                                                <span className={Styles.designation}>
+                                                    {testimonial.testimonial_designation}
+                                                </span>
+                                            )}
+                                        </Stack>
+                                    </Stack>
+                                    {testimonial.testimonial_rating && (
+                                        <Stack direction="horizontal" className={Styles.rating}>
+                                            {Array.from({
+                                                length: testimonial.testimonial_rating,
+                                            }).map((_, i) => (
+                                                <span key={i}>&#9733;</span>
+                                            ))}
+                                        </Stack>
                                     )}
+                                    <div
+                                        className={Styles.card_content}
+                                        dangerouslySetInnerHTML={{
+                                            __html: testimonial.testimonial_description,
+                                        }}
+                                    />
                                 </Card>
                             </SwiperSlide>
                         ))}

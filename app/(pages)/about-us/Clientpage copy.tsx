@@ -8,10 +8,6 @@ import Projects from "@/components/project/Projects";
 import { useGlobalContext } from "@/context/global_context";
 import { safeParse } from "@/utlis/safe_parse";
 import { useEffect, useState } from "react";
-import { Container } from "react-bootstrap";
-import Styles from "./style.module.css";
-import CustomImage from "@/utlis/imagefunction";
-import Image from "next/image";
 
 interface CounterData {
     our_reach_counter_number?: number;
@@ -43,11 +39,6 @@ interface UnderBanner {
     upload_video_file?: string;
     upload_feature_image?: string;
 }
-interface OrganizationData {
-    objectives_title?: string;
-    organization_description?: string;
-    feature_image_1?: string;
-}
 interface SecretaryMessage {
     "secretary's_message_description"?: string;
     "secretary's_feature_image_1"?: string;
@@ -68,7 +59,6 @@ interface AboutProject {
 interface PageCustomField {
     group_name: {
         "under-banner-section"?: UnderBanner;
-        "objectives-of-the-organization"?: OrganizationData;
         "secretarys-message"?: SecretaryMessage;
         "what-we-do"?: WhatWeDo;
         "success-story-of-about-us-section"?: Successstory;
@@ -124,8 +114,7 @@ const Clientpage = () => {
 
     const pageData = data?.page;
     const customFields = safeParse<PageCustomField>(pageData?.pages_custom_field);
-    const objectivesOrganization = customFields?.group_name['objectives-of-the-organization'];
-    // const secretarysMessage = customFields?.group_name['secretarys-message'];
+    const secretarysMessage = customFields?.group_name['secretarys-message'];
     const whatwedo = customFields?.group_name['what-we-do'];
     const success_story = customFields?.group_name['success-story-of-about-us-section'];
 
@@ -136,31 +125,14 @@ const Clientpage = () => {
                 posterPart={customFields?.group_name['under-banner-section']}
                 content={pageData?.page_content}
             />
-            {objectivesOrganization && (
-                <div className={Styles.section}>
-                    <Container>
-                        <div className={`cmn_black_heading text-center ${Styles.heading }`}>{objectivesOrganization?.objectives_title}</div>
-                        <figure className={Styles.targetImage}>
-                            <Image
-                                src={`${process.env.NEXT_PUBLIC_MEDIA_URL}/uploads/page_image/${objectivesOrganization?.feature_image_1}` || ''}
-                                alt={objectivesOrganization?.objectives_title || ''}
-                                width={194} height={193}
-                            />
-                        </figure>
-                        <div className={`rj_editor_text ${Styles.objectivesOrganization}`}
-                            dangerouslySetInnerHTML={{__html: objectivesOrganization.organization_description || ''}}
-                        />
-                    </Container>
-                </div>
-            )}
-            {/* <ZigzagContent
+            <ZigzagContent
                 background="#f7f7f7"
                 data={{
                     poster: secretarysMessage?.["secretary's_feature_image_1"],
                     poster2: secretarysMessage?.["secretary's_feature_image_2"],
                     description: secretarysMessage?.["secretary's_message_description"],
                 }}
-            /> */}
+            />
             <ZigzagContent
                 reverse={true}
                 data={{

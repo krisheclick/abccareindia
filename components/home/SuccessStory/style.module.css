@@ -21,6 +21,10 @@
     border-radius: var(--round);
     padding: 12px;
 }
+.slide_item > div{
+    border-radius: var(--round);
+    overflow: hidden;    
+}
 .video_poster{
     padding-top: 110%;
     border-radius: var(--round);
@@ -89,6 +93,34 @@
 .controls button{
     position: static;
     transform: none;
+}
+.card_text{
+    position: absolute;
+    inset: 0;
+    display: grid;
+    align-content: end;
+    z-index: 1;
+    font-size: 14px;
+    color: #ffffff;
+    letter-spacing: .3px;
+    cursor: pointer;
+}
+.card_text_in{
+    padding: 12px 16px 16px;
+    position: relative;
+    background: rgba(0, 0, 0, .75);
+}
+.card_title{
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.card_text p{
+    line-height: 1.5;
+    font-size: 1em !important;
 }
 /* Skeleton */
 .skeleton_small_title{

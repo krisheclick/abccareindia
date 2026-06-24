@@ -14,7 +14,7 @@
 .card{
     background: #fff;
     border-radius: 16px;
-    padding: 30px;
+    padding: 16px;
     border: none;
     transition: all .3s ease-in-out;
     box-shadow: 2px 2px 14px 6px #95959517;
@@ -92,5 +92,8 @@
     }
     .controls .next{
         right: -8px;
+    }
+    .card{
+        border-radius: 8px;
     }
 }
