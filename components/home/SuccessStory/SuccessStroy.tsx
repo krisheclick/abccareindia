@@ -214,7 +214,7 @@ const SuccessStory = ({ pageData, data }: Success_story_Data) => {
                                                         >
                                                             <div className={Styles.card_text_in}>
                                                                 <div className={Styles.card_title} title={item.title}>{item.title}</div>
-                                                                <p>{truncateText(item.description, 10)}</p>
+                                                                <p>{truncateText(item.description, 8)}</p>
                                                             </div>
                                                         </div>
                                                     )}
