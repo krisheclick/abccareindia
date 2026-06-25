@@ -92,7 +92,7 @@ const Clientpage = () => {
                     <Container>
                         <Stack className={`legal-status ${Styles.section_content ?? ''}`}>
                             <h1
-                                className={`cmn_black_heading big ${Styles.cmn_black_heading ?? ''}`}
+                                className={`cmn_black_heading ${Styles.cmn_black_heading ?? ''}`}
                                 dangerouslySetInnerHTML={{ __html: legalStatusData?.title ?? '' }}
                             />
                             <div
