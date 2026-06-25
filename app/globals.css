@@ -367,6 +367,9 @@ a:hover{
   padding-left: 16px;
   margin-block: 20px;
 }
+.rj_editor_text ul:last-child{
+  margin-bottom: 0;
+}
 .rj_editor_text li{
   margin-bottom: 12px;
   position: relative;

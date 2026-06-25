@@ -5,6 +5,8 @@ import Projects from "@/components/project/Projects";
 import { useGlobalContext } from "@/context/global_context";
 import { safeParse } from "@/utlis/safe_parse";
 import { useEffect, useState } from "react";
+import { Container, Stack } from "react-bootstrap";
+import Styles from "@/components/awards/style.module.css";
 interface ProjectItem {
     project_title?: string;
     project_subtitle?: string;
@@ -20,6 +22,10 @@ interface ProjectContent {
     project_description?: string;
     award_title?: string;
 }
+interface LegalStatusContent {
+    title?: string;
+    description?: string;
+}
 interface AwardItem {
     "recognition_award_description"?: string;
     "recognition_award_feature_image"?: string;
@@ -27,6 +33,7 @@ interface AwardItem {
 interface PageCustomField {
     group_name: {
         "legal-status-project-section"?: ProjectContent;
+        "legal-status-section"?: LegalStatusContent;
     }
 }
 interface PageData {
@@ -75,10 +82,27 @@ const Clientpage = () => {
     const pageData = data?.page;
     const customFields = safeParse<PageCustomField>(pageData?.pages_custom_field);
     const projectsData = customFields?.group_name['legal-status-project-section'];
+    const legalStatusData = customFields?.group_name['legal-status-section'];
 
     return (
         <div className="legal-page">            
             <InnerBanner />
+            {legalStatusData && (
+                <Stack className={Styles.section} style={{background: "#f7f7f7"}}>
+                    <Container>
+                        <Stack className={`legal-status ${Styles.section_content ?? ''}`}>
+                            <h1
+                                className={`cmn_black_heading big ${Styles.cmn_black_heading ?? ''}`}
+                                dangerouslySetInnerHTML={{ __html: legalStatusData?.title ?? '' }}
+                            />
+                            <div
+                                className={`paragraph rj_editor_text ${Styles.paragraph ?? ''}`}
+                                dangerouslySetInnerHTML={{ __html: legalStatusData?.description ?? '' }}
+                            />
+                        </Stack>
+                    </Container>
+                </Stack>
+            )}
             <Awards 
                 title={projectsData?.award_title}
                 content={pageData?.page_content}

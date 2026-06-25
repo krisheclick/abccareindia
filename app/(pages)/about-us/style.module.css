@@ -1,3 +1,7 @@
+.section {
+    padding-block: 80px;
+    background: #f7f7f7;
+}
 .objectivesOrganization{
     --gap: 48px;
   background: linear-gradient(90deg, #fff 50%, #e3e3e3 50%);
@@ -12,7 +16,15 @@
 .targetImage img{
     margin: 40px auto -90px;
 }
+@media only screen and (max-width: 1399px){
+    .section {
+        padding: 60px 0;
+    }
+}
 @media only screen and (max-width: 991px){
+    .section {
+        padding: 50px 0;
+    }
     .targetImage img {
         margin: 30px auto -70px;
         width: 150px;
@@ -33,5 +45,10 @@
     }
     .targetImage img{
         margin-bottom: 16px;
+    }
+}
+@media only screen and (max-width: 575px){
+    .section {
+        padding: 40px 0;
     }
 }

@@ -10,7 +10,6 @@ import { safeParse } from "@/utlis/safe_parse";
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import Styles from "./style.module.css";
-import CustomImage from "@/utlis/imagefunction";
 import Image from "next/image";
 
 interface CounterData {

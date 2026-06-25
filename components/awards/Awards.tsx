@@ -17,7 +17,7 @@ const Awards = ({ title, content, awards }: ContentProps) => {
         <Stack className={Styles.section}>
             <Container>
                 <Stack className={`inner_mdlprheading ${Styles.section_content ?? ''}`}>
-                    <h1
+                    <h2
                         className={`cmn_black_heading ${Styles.cmn_black_heading ?? ''}`}
                         dangerouslySetInnerHTML={{ __html: title ?? '' }}
                     />
