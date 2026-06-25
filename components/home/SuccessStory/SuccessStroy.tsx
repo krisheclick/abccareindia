@@ -198,6 +198,12 @@ const SuccessStory = ({ pageData, data }: Success_story_Data) => {
                                                                 <FontAwesomeIcon icon={faPlay} />
                                                             </span>
                                                             <em className={Styles.video_duration}>{item.video_duration}</em>
+                                                            <div className={Styles.card_text}>
+                                                                <div className={Styles.card_text_in}>
+                                                                    <div className={Styles.card_title} title={item.title}>{item.title}</div>
+                                                                    <p>{truncateText(item.description, 8)}</p>
+                                                                </div>
+                                                            </div>
                                                         </>
                                                     ) : (
                                                         <div className={Styles.card_text}  onClick={(e) => {
