@@ -27,8 +27,9 @@ interface Pages {
         };
     },
     QrCode: {
-        about_left_image: string;
+        qr_code: string;
     }
+    bank_details?: string;
 }
 const DonationClient = () => {
     const { setHasLoading, setInnerBanner, mediaUrl } = useGlobalContext();
@@ -56,6 +57,7 @@ const DonationClient = () => {
     const QRData = data?.QrCode;
 
     const pageCustomFields = safeParse<{group_name?: CustomFields;}>(pageData?.pages_custom_field);
+    console.log('pageCustomFields', data)
 
     const group_data = pageCustomFields?.group_name?.["donation-page-fields"];
 
@@ -89,8 +91,8 @@ const DonationClient = () => {
                 >
                     <Container>
                         <DonationForm 
-                            qrcode={QRData?.about_left_image ?? ""} 
-                            bankInfo ={group_data?.bank_details}
+                            qrcode={QRData?.qr_code ?? ""} 
+                            bankInfo ={data?.bank_details}
                         />
                     </Container>
                 </Stack>

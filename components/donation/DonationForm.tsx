@@ -4,6 +4,7 @@ import { Button, Col, Form, FormControl, FormGroup, Modal, Row } from "react-boo
 import Styles from "@/app/(pages)/donation/style.module.css";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useGlobalContext } from "@/context/global_context";
 
 interface DonationFormState {
     name: string;
@@ -27,6 +28,7 @@ interface InformationProps {
 }
 const DonationForm = ({qrcode, bankInfo}: InformationProps) => {
     const router = useRouter();
+    const {locationWiseData} = useGlobalContext();
     const [formState, setFormState] = useState<DonationFormState>({
         name: "",
         phone: "",
@@ -42,7 +44,6 @@ const DonationForm = ({qrcode, bankInfo}: InformationProps) => {
         bank_transfer: false,
         qrcode_transfer: false,
     });
-    const [submitted, setSubmitted] = useState(false);
     const [showBankModal, setShowBankModal] = useState(false);
     const [showQRcodeModal, setShowQRcodeModal] = useState(false);
     const [errors, setErrors] = useState<Record<string, string>>({});
@@ -65,6 +66,21 @@ const DonationForm = ({qrcode, bankInfo}: InformationProps) => {
                     ...prev,
                     qrcode_transfer: value as boolean,
                     bank_transfer: false,
+                };
+            }
+
+            if (field === "country") {
+                const selectedCountry = locationWiseData?.countries?.find(
+                    (country) => country.iso2 === value || country.name === value
+                );
+                const matchedCurrency = selectedCountry?.currency
+                    ? locationWiseData?.currencies?.find((currency) => currency.currency === selectedCountry.currency)?.currency
+                    : undefined;
+
+                return {
+                    ...prev,
+                    country: value as string,
+                    currency: matchedCurrency || prev.currency,
                 };
             }
 
@@ -136,7 +152,6 @@ const DonationForm = ({qrcode, bankInfo}: InformationProps) => {
             const data = await res.json();
 
             if (res.ok) {
-                setSubmitted(true);
                 setSubmitStatus("success");
                 sessionStorage.setItem("donation-form", "true");
                 setSubmitMessage("Thank you. Your donation request has been submitted.");
@@ -187,6 +202,17 @@ const DonationForm = ({qrcode, bankInfo}: InformationProps) => {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
+
+    const defaultCountry = locationWiseData?.countries?.find(
+        (country) => country.iso2 === locationWiseData.country_code
+    ) ?? locationWiseData?.countries?.[0];
+
+    const defaultCurrency = locationWiseData?.currencies?.find(
+        (currency) => currency.currency === defaultCountry?.currency
+    ) ?? locationWiseData?.currencies?.[0];
+
+    const selectedCountryValue = formState.country || defaultCountry?.name || "";
+    const selectedCurrencyValue = formState.currency || defaultCurrency?.currency || "";
 
     return (
         <>
@@ -301,272 +327,28 @@ const DonationForm = ({qrcode, bankInfo}: InformationProps) => {
                     <Col lg={6} sm={6}>
                         <FormGroup className={Styles.form_group}>
                             <label htmlFor="donation_country">Country *</label>
-                            <Form.Select
+                            <FormControl
+                                type="text"
                                 id="donation_country"
-                                value={formState.country}
-                                onChange={(e) => updateField("country", e.target.value)}
+                                value={selectedCountryValue}
                                 className={Styles.input}
-                                isInvalid={!!errors.country}
-                            >
-                                <option value="">Select</option>
-                                <option>Afghanistan</option>
-                                <option>Albania</option>
-                                <option>Algeria</option>
-                                <option>American Samoa</option>
-                                <option>Andorra</option>
-                                <option>Angola</option>
-                                <option>Anguilla</option>
-                                <option>Antarctica</option>
-                                <option>Antigua And Barbuda</option>
-                                <option>Argentina</option>
-                                <option>Armenia</option>
-                                <option>Aruba</option>
-                                <option>Australia</option>
-                                <option>Austria</option>
-                                <option>Azerbaijan</option>
-                                <option>Bahamas</option>
-                                <option>Bahrain</option>
-                                <option>Bangladesh</option>
-                                <option>Barbados</option>
-                                <option>Belarus</option>
-                                <option>Belgium</option>
-                                <option>Belize</option>
-                                <option>Benin</option>
-                                <option>Bermuda</option>
-                                <option>Bhutan</option>
-                                <option>Bolivia</option>
-                                <option>Bosnia And Herzegovina</option>
-                                <option>Botswana</option>
-                                <option>Bouvet Island</option>
-                                <option>Brazil</option>
-                                <option>British Indian Ocean Territory</option>
-                                <option>Brunei</option>
-                                <option>Bulgaria</option>
-                                <option>Burkina Faso</option>
-                                <option>Burundi</option>
-                                <option>Cambodia</option>
-                                <option>Cameroon</option>
-                                <option>Canada</option>
-                                <option>Cape Verde</option>
-                                <option>Cayman Islands</option>
-                                <option>Central African Republic</option>
-                                <option>Chad</option>
-                                <option>Chile</option>
-                                <option>China</option>
-                                <option>Christmas Island</option>
-                                <option>Cocos (Keeling) Islands</option>
-                                <option>Columbia</option>
-                                <option>Comoros</option>
-                                <option>Congo</option>
-                                <option>Cook Islands</option>
-                                <option>Costa Rica</option>
-                                <option>{`Cote D'Ivorie (Ivory Coast)`}</option>
-                                <option>Croatia (Hrvatska)</option>
-                                <option>Cuba</option>
-                                <option>Cyprus</option>
-                                <option>Czech Republic</option>
-                                <option>Democratic Republic Of Congo (Zaire)</option>
-                                <option>Denmark</option>
-                                <option>Djibouti</option>
-                                <option>Dominica</option>
-                                <option>Dominican Republic</option>
-                                <option>East Timor</option>
-                                <option>Ecuador</option>
-                                <option>Egypt</option>
-                                <option>El Salvador</option>
-                                <option>Equatorial Guinea</option>
-                                <option>Eritrea</option>
-                                <option>Estonia</option>
-                                <option>Ethiopia</option>
-                                <option>Falkland Islands (Malvinas)</option>
-                                <option>Faroe Islands</option>
-                                <option>Fiji</option>
-                                <option>Finland</option>
-                                <option>France</option>
-                                <option>France, Metropolitan</option>
-                                <option>French Guinea</option>
-                                <option>French Polynesia</option>
-                                <option>French Southern Territories</option>
-                                <option>Gabon</option>
-                                <option>Gambia</option>
-                                <option>Georgia</option>
-                                <option>Germany</option>
-                                <option>Ghana</option>
-                                <option>Gibraltar</option>
-                                <option>Greece</option>
-                                <option>Greenland</option>
-                                <option>Grenada</option>
-                                <option>Guadeloupe</option>
-                                <option>Guam</option>
-                                <option>Guatemala</option>
-                                <option>Guinea</option>
-                                <option>Guinea-Bissau</option>
-                                <option>Guyana</option>
-                                <option>Haiti</option>
-                                <option>Heard And McDonald Islands</option>
-                                <option>Honduras</option>
-                                <option>Hong Kong</option>
-                                <option>Hungary</option>
-                                <option>Iceland</option>
-                                <option>India</option>
-                                <option>Indonesia</option>
-                                <option>Iran</option>
-                                <option>Iraq</option>
-                                <option>Ireland</option>
-                                <option>Israel</option>
-                                <option>Italy</option>
-                                <option>Jamaica</option>
-                                <option>Japan</option>
-                                <option>Jordan</option>
-                                <option>Kazakhstan</option>
-                                <option>Kenya</option>
-                                <option>Kiribati</option>
-                                <option>Kuwait</option>
-                                <option>Kyrgyzstan</option>
-                                <option>Laos</option>
-                                <option>Latvia</option>
-                                <option>Lebanon</option>
-                                <option>Lesotho</option>
-                                <option>Liberia</option>
-                                <option>Libya</option>
-                                <option>Liechtenstein</option>
-                                <option>Lithuania</option>
-                                <option>Luxembourg</option>
-                                <option>Macau</option>
-                                <option>Macedonia</option>
-                                <option>Madagascar</option>
-                                <option>Malawi</option>
-                                <option>Malaysia</option>
-                                <option>Maldives</option>
-                                <option>Mali</option>
-                                <option>Malta</option>
-                                <option>Marshall Islands</option>
-                                <option>Martinique</option>
-                                <option>Mauritania</option>
-                                <option>Mauritius</option>
-                                <option>Mayotte</option>
-                                <option>Mexico</option>
-                                <option>Micronesia</option>
-                                <option>Moldova</option>
-                                <option>Monaco</option>
-                                <option>Mongolia</option>
-                                <option>Montserrat</option>
-                                <option>Morocco</option>
-                                <option>Mozambique</option>
-                                <option>Myanmar (Burma)</option>
-                                <option>Namibia</option>
-                                <option>Nauru</option>
-                                <option>Nepal</option>
-                                <option>Netherlands</option>
-                                <option>Netherlands Antilles</option>
-                                <option>New Caledonia</option>
-                                <option>New Zealand</option>
-                                <option>Nicaragua</option>
-                                <option>Niger</option>
-                                <option>Nigeria</option>
-                                <option>Niue</option>
-                                <option>Norfolk Island</option>
-                                <option>North Korea</option>
-                                <option>Northern Mariana Islands</option>
-                                <option>Norway</option>
-                                <option>Oman</option>
-                                <option>Pakistan</option>
-                                <option>Palau</option>
-                                <option>Panama</option>
-                                <option>Papua New Guinea</option>
-                                <option>Paraguay</option>
-                                <option>Peru</option>
-                                <option>Philippines</option>
-                                <option>Pitcairn</option>
-                                <option>Poland</option>
-                                <option>Portugal</option>
-                                <option>Puerto Rico</option>
-                                <option>Qatar</option>
-                                <option>Reunion</option>
-                                <option>Romania</option>
-                                <option>Russia</option>
-                                <option>Rwanda</option>
-                                <option>Saint Helena</option>
-                                <option>Saint Kitts And Nevis</option>
-                                <option>Saint Lucia</option>
-                                <option>Saint Pierre And Miquelon</option>
-                                <option>Saint Vincent And The Grenadines</option>
-                                <option>San Marino</option>
-                                <option>Sao Tome And Principe</option>
-                                <option>Saudi Arabia</option>
-                                <option>Senegal</option>
-                                <option>Seychelles</option>
-                                <option>Sierra Leone</option>
-                                <option>Singapore</option>
-                                <option>Slovak Republic</option>
-                                <option>Slovenia</option>
-                                <option>Solomon Islands</option>
-                                <option>Somalia</option>
-                                <option>South Africa</option>
-                                <option>South Georgia And South Sandwich Islands</option>
-                                <option>South Korea</option>
-                                <option>Spain</option>
-                                <option>Sri Lanka</option>
-                                <option>Sudan</option>
-                                <option>Suriname</option>
-                                <option>Svalbard And Jan Mayen</option>
-                                <option>Swaziland</option>
-                                <option>Sweden</option>
-                                <option>Switzerland</option>
-                                <option>Syria</option>
-                                <option>Taiwan</option>
-                                <option>Tajikistan</option>
-                                <option>Tanzania</option>
-                                <option>Thailand</option>
-                                <option>Togo</option>
-                                <option>Tokelau</option>
-                                <option>Tonga</option>
-                                <option>Trinidad And Tobago</option>
-                                <option>Tunisia</option>
-                                <option>Turkey</option>
-                                <option>Turkmenistan</option>
-                                <option>Turks And Caicos Islands</option>
-                                <option>Tuvalu</option>
-                                <option>Uganda</option>
-                                <option>Ukraine</option>
-                                <option>United Arab Emirates</option>
-                                <option>United Kingdom</option>
-                                <option>United States</option>
-                                <option>United States Minor Outlying Islands</option>
-                                <option>Uruguay</option>
-                                <option>Uzbekistan</option>
-                                <option>Vanuatu</option>
-                                <option>Vatican City (Holy See)</option>
-                                <option>Venezuela</option>
-                                <option>Vietnam</option>
-                                <option>Virgin Islands (British)</option>
-                                <option>Virgin Islands (US)</option>
-                                <option>Wallis And Futuna Islands</option>
-                                <option>Western Sahara</option>
-                                <option>Western Samoa</option>
-                                <option>Yemen</option>
-                                <option>Yugoslavia</option>
-                                <option>Zambia</option>
-                                <option>Zimbabwe</option>
-                            </Form.Select>
+                                readOnly
+                                disabled
+                            />
                             <Form.Control.Feedback type="invalid" className={Styles.feedBackError}>{errors.country}</Form.Control.Feedback>
                         </FormGroup>
                     </Col>
                     <Col lg={6} sm={6}>
                         <FormGroup className={Styles.form_group}>
                             <label htmlFor="donation_currency">Currency *</label>
-                            <Form.Select
+                            <FormControl
+                                type="text"
                                 id="donation_currency"
-                                value={formState.currency}
-                                onChange={(e) => updateField("currency", e.target.value)}
+                                value={selectedCurrencyValue}
                                 className={Styles.input}
-                                isInvalid={!!errors.currency}
-                            >
-                                <option value="">Select</option>
-                                <option>INR</option>
-                                <option>AUD</option>
-                                <option>USD</option>
-                            </Form.Select>
+                                readOnly
+                                disabled
+                            />
                             <Form.Control.Feedback type="invalid" className={Styles.feedBackError}>{errors.currency}</Form.Control.Feedback>
                         </FormGroup>
                     </Col>

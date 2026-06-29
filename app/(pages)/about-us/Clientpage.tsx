@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import Styles from "./style.module.css";
 import Image from "next/image";
+import ProjectCategoryUSP from "@/components/home/CategoryUsp/Category";
 
 interface CounterData {
     our_reach_counter_number?: number;
@@ -152,6 +153,8 @@ const Clientpage = () => {
                     </Container>
                 </div>
             )}
+            
+            <ProjectCategoryUSP />
             {/* <ZigzagContent
                 background="#f7f7f7"
                 data={{
@@ -160,13 +163,13 @@ const Clientpage = () => {
                     description: secretarysMessage?.["secretary's_message_description"],
                 }}
             /> */}
-            <ZigzagContent
+            {/* <ZigzagContent
                 reverse={true}
                 data={{
                     poster: whatwedo?.["what_we_do_feature_image"],
                     description: whatwedo?.["what_we_do_description"],
                 }}
-            />
+            /> */}
             {/* <ZigzagContent
                 background="#f7f7f7"
                 data={{

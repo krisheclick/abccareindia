@@ -24,7 +24,7 @@ const Header = () => {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     const pathName = usePathname();
 
-    const { setHasLoading, hasLoading, setMediaUrl, mediaUrl, setCommonData, commonData, setProjectData, staticHeader } = useGlobalContext();
+    const { setHasLoading, hasLoading, setMediaUrl, mediaUrl, setCommonData, commonData, setProjectData, staticHeader, setLocationWiseData} = useGlobalContext();
     const [menuData, setMenuData] = useState<MenuItem[] | null>(null);
     const fetchData = async () => {
         try {
@@ -39,6 +39,10 @@ const Header = () => {
             const menuResponse = await fetch(`${apiUrl}/menu/e3d5ab2ac0ed686cef5a`, { cache: "no-cache" });
             const { response_data: menuData } = await menuResponse.json();
             setMenuData(Object.values(menuData ?? {}));
+
+            const locationResponse =  await fetch(`${apiUrl}/donation-dropdowns`, { cache: "no-cache" });
+            const { response_data: locationResponseData } = await locationResponse.json();
+            setLocationWiseData(locationResponseData ?? null);
 
         } catch (err: unknown) {
             console.log('Site Settings api is something: ', (err as Error).message)

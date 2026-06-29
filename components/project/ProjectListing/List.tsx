@@ -81,7 +81,7 @@ const ProjectList = () => {
 
     const apiBase = process.env.NEXT_PUBLIC_API_URL;
 
-    const fetchCategories = async () => {
+    const fetchCategories = useCallback(async () => {
         try {
             const res = await fetch(`${apiBase}/get-projects-category`);
             const { response_data } = await res.json();
@@ -89,7 +89,7 @@ const ProjectList = () => {
         } catch (error) {
             console.log("Category error:", error);
         }
-    };
+    }, [apiBase]);
 
     const fetchProjects = useCallback(async (slug?: string) => {
         try {
@@ -119,7 +119,7 @@ const ProjectList = () => {
 
     useEffect(() => {
         fetchCategories();
-    }, []);
+    }, [fetchCategories]);
 
     const handlePageChange = (newPage: number) => {
         scrollToSection();
@@ -145,31 +145,26 @@ const ProjectList = () => {
         setIsClient(true);
     }, []);
 
+    useEffect(() => {
+        if (typeof window === "undefined" || window.location.hash !== "#project-categories") {
+            return;
+        }
+
+        const timer = window.setTimeout(() => {
+            ListRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 200);
+
+        return () => window.clearTimeout(timer);
+    }, []);
+
     if (!isClient) {
         // Render a loading placeholder or nothing on the server
         return null;
     }
 
-    const safeParse = <T extends object>(value: unknown): T | null => {
-        try {
-            if (!value) return null;
-
-            let parsed = typeof value === "string" ? JSON.parse(value) : value;
-
-            if (typeof parsed === "string") {
-                parsed = JSON.parse(parsed);
-            }
-
-            return parsed as T;
-        } catch (parseErr: unknown) {
-            console.log('Data Parse error:', (parseErr as Error).message);
-            return null;
-        }
-    }
-
     return (
         <>
-            <Stack className={Styles.projectData} ref={ListRef}>
+            <Stack className={Styles.projectData} ref={ListRef} id="project-categories">
                 <ul className={Styles.tabs}>
                     <li
                         className={`${Styles.tabButton} ${activeTab === "all" ? Styles.active : ""}`}

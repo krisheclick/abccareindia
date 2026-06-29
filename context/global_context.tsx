@@ -55,6 +55,20 @@ interface BannerData {
     page_slug?: string;
     page_feature_image?: string;
 }
+interface Country {
+    name?: string;
+    iso2?: string;
+    currency?: string;
+}
+interface CurrencyItem {
+    currency?: string;
+    currency_name?: string;
+}
+interface CountryData {
+    country_code?: string;
+    countries?: Country[] | null;
+    currencies?: CurrencyItem[] | null;
+}
 interface GlobalDataVariable {
     hasLoading: boolean;
     setHasLoading: (hasLoading: boolean) => void;
@@ -71,6 +85,9 @@ interface GlobalDataVariable {
 
     innerBanner: BannerData | null;
     setInnerBanner: (innerBanner: BannerData) => void;
+
+    locationWiseData: CountryData | null;
+    setLocationWiseData: (locationWiseData: CountryData) => void;
 }
 const GlobalWebContext = createContext<GlobalDataVariable | undefined>(undefined);
 export const GlobalContextProvider = ({ children }: { children: ReactNode }) => {
@@ -80,6 +97,7 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
     const [commonData, setCommonData] = useState<setCommonDataType | null>(null);
     const [projectData, setProjectData] = useState<ProjectItem[] | null>(null);
     const [innerBanner, setInnerBanner] = useState<BannerData | null>(null);
+    const [locationWiseData, setLocationWiseData] = useState<CountryData | null>(null);
     return (
         <GlobalWebContext.Provider
             value={{
@@ -88,7 +106,8 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
                 mediaUrl, setMediaUrl,
                 commonData, setCommonData,
                 projectData, setProjectData,
-                innerBanner, setInnerBanner
+                innerBanner, setInnerBanner,
+                locationWiseData, setLocationWiseData
             }}
         >
             {children}

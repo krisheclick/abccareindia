@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-, "components/AccessibilityTool.js"  ],
+, "components/AccessibilityTool.js", "utlis/location/route.js"  ],
   "exclude": ["node_modules"]
 }

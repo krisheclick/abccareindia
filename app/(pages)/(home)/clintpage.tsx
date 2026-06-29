@@ -16,6 +16,7 @@ import { safeParse } from "@/utlis/safe_parse";
 import { useEffect, useState } from "react";
 import { Stack } from "react-bootstrap";
 import TestimonialSection from "@/components/testmonial/Testimonial";
+import ProjectCategoryUSP from "@/components/home/CategoryUsp/Category";
 // import InteractiveMap from "@/components/map/map";
 // import IndiaMap from "@/components/map/map";
 
@@ -194,7 +195,8 @@ const Homeclintpage = () => {
             
             <HomeBanner banner={data?.banner} />
             <HomeDescription aboutSection={aboutSection ?? undefined} />
-            <USP usp={data?.usp ?? []} />
+            {/* <USP usp={data?.usp ?? []} /> */}
+            <ProjectCategoryUSP />
             <SuccessStory pageData={success_stroys_section} data={data?.success_story ?? []} />
             <HomeProject
                 sectionData={projectSection}
