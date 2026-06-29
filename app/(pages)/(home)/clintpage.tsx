@@ -200,9 +200,9 @@ const Homeclintpage = () => {
                 sectionData={projectSection}
                 projects={data?.projects ?? []}
             />
-            <Volunteer
+            {/* <Volunteer
                 sectionData={customFields?.group_name?.['volunteer-section']}
-            />
+            /> */}
             <ChildEmpower
                 sectionData={customFields?.group_name?.['empower-section']}
                 messages={data?.charitable_message}

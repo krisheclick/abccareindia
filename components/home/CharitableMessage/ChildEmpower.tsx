@@ -80,11 +80,11 @@ const ChildEmpower = ({ sectionData, messages }: CharitableMessageProps) => {
                         />
                     </article>
                     <Stack as="aside" className={Styles.button_wrap}>
-                        {sectionData.empower_button_text && (
+                        {/* {sectionData.empower_button_text && (
                             <Link href={sectionData.empower_button_url || '#'} className={Styles.btn}>
                                 {sectionData.empower_button_text} <FontAwesomeIcon icon={faArrowRightLong} />
                             </Link>
-                        )}
+                        )} */}
 
                         <div className={Styles.controls}>
                             <button

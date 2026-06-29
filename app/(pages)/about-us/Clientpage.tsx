@@ -167,7 +167,7 @@ const Clientpage = () => {
                     description: whatwedo?.["what_we_do_description"],
                 }}
             />
-            <ZigzagContent
+            {/* <ZigzagContent
                 background="#f7f7f7"
                 data={{
                     poster: success_story?.["success_story_feature_image"],
@@ -179,7 +179,7 @@ const Clientpage = () => {
                     our_reach_title: "Our Reach",
                     our_reach_description: "Asha Bhavan Center Project Area"
                 }}
-            />
+            /> */}
             <Projects />
         </div>
     )
