@@ -456,22 +456,13 @@ const DonationForm = ({qrcode, bankInfo}: InformationProps) => {
                         dangerouslySetInnerHTML={{__html: bankInfo || ''}}
                     />
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="primary" onClick={() => setShowBankModal(false)}>
-                        Close
-                    </Button>
-                </Modal.Footer>
             </Modal>
 
             <Modal show={showQRcodeModal} onHide={() => setShowQRcodeModal(false)} centered size="sm" scrollable>
+                <Modal.Header closeButton></Modal.Header>
                 <Modal.Body>
                     <Image src={`${process.env.NEXT_PUBLIC_MEDIA_URL}${qrcode}`} alt="" width={300} height={300} />
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="primary" onClick={() => setShowQRcodeModal(false)}>
-                        Close
-                    </Button>
-                </Modal.Footer>
             </Modal>
         </>
     );

@@ -37,10 +37,10 @@ const ProjectCategoryUSP = () => {
     return (
         <div className={Styles.usp_section}>
             <Container>
-                <Row className={`g-4 ${Styles.row ?? ''}`}>
+                <Row className={`g-3 gx-xl-4 ${Styles.row ?? ''}`}>
                     {!hasLoading ? (
                         categoryData?.map((item, index) => (
-                            <Col lg={3} sm={6} key={`${item.project_category_slug || 'category'}-${index}`} className={Styles.cardItem}>
+                            <Col xl={3} lg={4} sm={6} key={`${item.project_category_slug || 'category'}-${index}`} className={Styles.cardItem}>
                                 <Link
                                     href={`/our-projects?page=1&category=${item.project_category_slug || 'all'}#project-categories`}
                                     className={Styles.card}
@@ -63,7 +63,7 @@ const ProjectCategoryUSP = () => {
                             </Col>
                         ))) : (
                         [...Array(4)].map((_, index) => (
-                            <Col lg={3} sm={6} key={index} className={Styles.cardItem}>
+                            <Col xl={3} lg={4} sm={6} key={index} className={Styles.cardItem}>
                                 <div className={Styles.card}>
                                     {/* <div className={`skeleton ${Styles.cardImage}`}></div> */}
                                     <h3 className="skeleton w-75">&nbsp;</h3>

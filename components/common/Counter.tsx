@@ -1,6 +1,6 @@
 "use client";
 import { useGlobalContext } from '@/context/global_context'
-import { Button, Col, Container, Modal, Row } from 'react-bootstrap';
+import { Col, Container, Modal, Row } from 'react-bootstrap';
 import { parseToArray } from '@/utlis/array_prase';
 import counterPoster from "@/public/assets/images/couter_poster.webp";
 import Styles from './style.module.css';
@@ -40,11 +40,6 @@ const Counter = ({ className = '', poster = false }: { className?: string; poste
                     dangerouslySetInnerHTML={{__html: activeCounter?.site_counter_description || ''}}
                 />
             </Modal.Body>
-            <Modal.Footer>
-                <Button variant="primary" onClick={() => setShowModal(false)}>
-                    Close
-                </Button>
-            </Modal.Footer>
         </Modal>
     );
 

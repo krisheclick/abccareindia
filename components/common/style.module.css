@@ -42,6 +42,14 @@
 .innerCounterList {
 	margin-top: 36px;
 }
+.counterBox{
+    -moz-transition: all 300ms ease-in-out;
+    -webkit-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
+}
+.counterBox:hover{
+    color: #d8b01f;
+}
 .innerCounterList .counterBox{
     background: #2c3070;
     color: #ffffff;
@@ -50,6 +58,10 @@
     font-size: 14px;
     min-height: 100%;
     text-transform: uppercase;
+}
+.innerCounterList .counterBox:hover{
+    background: #d8b01f;
+    color: #000000;
 }
 .innerCounterList .counter_number{
     font-size: 32px;
