@@ -72,14 +72,14 @@ const Footer = () => {
                             <div className='ftr_cmnbx'>
                                 <div className='ftrcmnheading'>Contact Info</div>
                                 <ul className='ftr_cntcts'>
-                                    <li><a href=""><span>Stores:</span><div dangerouslySetInnerHTML={{ __html: commonData?.site_footer_address || '', }} /></a></li>
+                                    <li><span>Stores:</span><div dangerouslySetInnerHTML={{ __html: commonData?.site_footer_address || '', }} /></li>
                                     <li>
                                         <span>Phone:</span>
                                         <div className="d-flex gap-1">
-                                            <a href={`tel:${commonData?.site_footer_phone_1}`}>{commonData?.site_footer_phone_1}</a> / <a href={`tel:${commonData?.site_footer_phone_2}`}>{commonData?.site_footer_phone_2}</a>
+                                            <Link href={`tel:${commonData?.site_footer_phone_1}`}>{commonData?.site_footer_phone_1}</Link> / <a href={`tel:${commonData?.site_footer_phone_2}`}>{commonData?.site_footer_phone_2}</a>
                                         </div>
                                     </li>
-                                    <li><a href={`mailto:${commonData?.site_footer_email}`}><span>Email:</span>{commonData?.site_footer_email}</a></li>
+                                    <li><Link href={`mailto:${commonData?.site_footer_email}`}><span>Email:</span>{commonData?.site_footer_email}</Link></li>
                                 </ul>
                             </div>
                         </Col>

@@ -185,6 +185,7 @@ const Header = () => {
                     <></>
                 )}
             </header>
+            <Link href={`${process.env.NEXT_PUBLIC_ENV_URL}/donation`} className="fixedDonate">Donate Now</Link>
         </>
     )
 }

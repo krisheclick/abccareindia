@@ -21,6 +21,9 @@
     max-width: 80%;
     margin: auto;
 }
+.counterList .row{
+    justify-content: center;
+}
 .counter_number {
 	margin-bottom: 15px;
 	font-size: 48px;

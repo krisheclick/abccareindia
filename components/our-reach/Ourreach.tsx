@@ -39,11 +39,17 @@ interface ProjectProps {
     result?: Result[] | null;
     projects?: Projects[] | null;
 }
+interface USPItem {
+    category_counter?: string;
+    project_category_title?: string;
+    project_category_slug?: string;
+}
 const Ourreach = ({ sectionData }: SectionDataProps) => {
     const appLink = process.env.NEXT_PUBLIC_ENV_URL;
     const [showContent, setShowContent] = useState<boolean>(false);
     const [data, setData] = useState<ProjectProps | null>(null);
     const { setHasLoading, hasLoading, mediaUrl } = useGlobalContext();
+    const [categoryData, setCategoryData] = useState<USPItem[] | null>(null);
 
 
     useEffect(() => {
@@ -53,6 +59,10 @@ const Ourreach = ({ sectionData }: SectionDataProps) => {
                 const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/our-reach`, { cache: "no-store" });
                 const { response_data } = await response.json();
                 setData(response_data);
+
+                const categoryResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/get-projects-category/`);
+                const { response_data: categoryResponseData } = await categoryResponse.json();
+                setCategoryData(categoryResponseData?.get_all_category ?? []);
             } catch (err: unknown) {
                 console.log('Projects Report fetch is something wrong: ', (err as Error).message)
             } finally {
@@ -140,17 +150,17 @@ const Ourreach = ({ sectionData }: SectionDataProps) => {
                                 )}
                             </Stack>
                         </Col>
-                        {counters?.length > 0 && (
+                        {categoryData?.length && (
                             <Col xl={5} xxl={6}>
                                 <Stack direction="horizontal" className={Styles.ourReachRightCard ?? ''}>
                                     <div className={Styles.ourReachCounters}>
-                                        {counters?.map((counter, index) => (
+                                        {categoryData?.map((item, index) => (
                                             <div key={index} className={Styles.ourReachCounter}>
                                                 <div className={`counterCircle ${Styles.counterCircle}`}>
-                                                    {counter.our_reach_counter_number}
-                                                    {counter.our_reach_counter_icon}
+                                                    {item.category_counter}
+                                                    {/* {counter.our_reach_counter_icon} */}
                                                 </div>
-                                                <p>{counter.our_reach_counter_title}</p>
+                                                <p>{item.project_category_title}</p>
                                             </div>
                                         ))}
                                     </div>

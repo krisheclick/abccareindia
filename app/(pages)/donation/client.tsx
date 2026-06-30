@@ -57,7 +57,6 @@ const DonationClient = () => {
     const QRData = data?.QrCode;
 
     const pageCustomFields = safeParse<{group_name?: CustomFields;}>(pageData?.pages_custom_field);
-    console.log('pageCustomFields', data)
 
     const group_data = pageCustomFields?.group_name?.["donation-page-fields"];
 

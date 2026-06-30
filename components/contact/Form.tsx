@@ -1,5 +1,5 @@
 "use client";
-import { Alert, Button, Form, Spinner } from "react-bootstrap";
+import { Alert, Button, Col, Form, FormControl, FormGroup, Row, Spinner } from "react-bootstrap";
 import Styles from "./style.module.css";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -127,7 +127,77 @@ const ContactForm = () => {
     return (
         <div className={Styles.form_wrap}>
             <Form method="POST" onSubmit={handleSubmit}>
-                <Form.Control
+                <Row className="g-3">
+                    <Col lg={6} sm={6}>
+                        <FormGroup className={Styles.form_group}>
+                            <label htmlFor="contact_name">Name <span className="text-danger">*</span></label>
+                            <FormControl
+                                type="text"
+                                name="contact_name"
+                                id="contact_name"
+                                className={Styles.form_control}
+                                ref={nameRef}
+                                value={formData.contact_name}
+                                placeholder="Your Name"
+                                onChange={handleDataChange}
+                                isInvalid={!!formError.name}
+                            />
+                            <Form.Control.Feedback type="invalid" className={Styles.feedBackError}>{formError.contact_name}</Form.Control.Feedback>
+                        </FormGroup>
+                    </Col>
+                    <Col lg={6} sm={6}>
+                        <FormGroup className={Styles.form_group}>
+                            <label htmlFor="contact_email">Your Email <span className="text-danger">*</span></label>
+                            <FormControl
+                                type="email"
+                                name="contact_email"
+                                id="contact_email"
+                                className={Styles.form_control}
+                                ref={emailRef}
+                                value={formData.contact_email}
+                                placeholder="Your Email"
+                                onChange={handleDataChange}
+                                isInvalid={!!formError.contact_email}
+                            />
+                            <Form.Control.Feedback type="invalid" className={Styles.feedBackError}>{formError.contact_email}</Form.Control.Feedback>
+                        </FormGroup>
+                    </Col>
+                    <Col lg={12}>
+                        <FormGroup className={Styles.form_group}>
+                            <label htmlFor="contact_email">Phone Number <span className="text-danger">*</span></label>
+                            <FormControl
+                                type="tel"
+                                name="contact_phone"
+                                id="contact_phone"
+                                className={Styles.form_control}
+                                ref={phoneRef}
+                                value={formData.contact_phone}
+                                placeholder="Phone Number"
+                                onChange={handleDataChange}
+                                isInvalid={!!formError.contact_phone}
+                            />
+                            <Form.Control.Feedback type="invalid" className={Styles.feedBackError}>{formError.contact_phone}</Form.Control.Feedback>
+                        </FormGroup>
+                    </Col>
+                    <Col lg={12}>
+                        <FormGroup className={Styles.form_group}>
+                            <label htmlFor="contact_email">Your Message <span className="text-danger">*</span></label>
+                            <FormControl
+                                as="textarea"
+                                name="contact_msg"
+                                id="contact_msg"
+                                className={Styles.form_control}
+                                ref={messageRef}
+                                value={formData.contact_msg}
+                                placeholder="Your Message"
+                                onChange={handleDataChange}
+                                isInvalid={!!formError.contact_msg}
+                            />
+                            <Form.Control.Feedback type="invalid" className={Styles.feedBackError}>{formError.contact_msg}</Form.Control.Feedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                {/* <Form.Control
                     type="text"
                     name="contact_name"
                     id="contact_name"
@@ -162,7 +232,8 @@ const ContactForm = () => {
                 />
                 {formError.contact_phone && <div className="form-error text-danger">{formError.contact_phone}</div>}
 
-                <Form.Control as="textarea"
+                <Form.Control 
+                    as="textarea"
                     name="contact_msg"
                     id="contact_msg"
                     className={Styles.form_control}
@@ -171,7 +242,7 @@ const ContactForm = () => {
                     placeholder="Your Message"
                     onChange={handleDataChange}
                 />
-                {formError.contact_msg && <div className="form-error text-danger">{formError.contact_msg}</div>}
+                {formError.contact_msg && <div className="form-error text-danger">{formError.contact_msg}</div>} */}
 
                 <Button type="submit" className={Styles.button_contact} disabled={isSubmit}>
                     {isSubmit ? (

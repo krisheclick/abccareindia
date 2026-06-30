@@ -11,6 +11,7 @@ interface AboutInfo {
         about_left_button_text?: string;
         about_left_button_url?: string;
         about_left_image?: string;
+        international_qr_code?: string;
         about_left_image_text?: string;
         about_right_button_text?: string;
         about_right_button_url?: string;
@@ -19,13 +20,17 @@ interface AboutInfo {
         about_subtitle?: string;
         about_title?: string;
     }
+    country_code?: string;
 }
 
 const mediaBaseURL = process.env.NEXT_PUBLIC_MEDIA_URL;
 
-export default function HomeDescription({ aboutSection }: AboutInfo) {
+export default function HomeDescription({ aboutSection, country_code}: AboutInfo) {
     const { hasLoading } = useGlobalContext();
     useWOW({ animateClass: "animate__animated" });
+
+    console.log('country_code', country_code)
+    const qrCode = (country_code == "IN") ? aboutSection?.about_left_image : aboutSection?.international_qr_code;
 
     return (
         <section className={Styles.posterAd}>
@@ -53,7 +58,7 @@ export default function HomeDescription({ aboutSection }: AboutInfo) {
                                     )}
                                 </div>
                                 <CustomImage
-                                    src={`${mediaBaseURL}/uploads/page_image/${aboutSection?.about_left_image}`}
+                                    src={`${mediaBaseURL}/uploads/page_image/${qrCode}`}
                                     alt="QR Code"
                                     className={`wow animate__pulse ${Styles.qrBox}`}
                                     data-wow-delay="1.5s"

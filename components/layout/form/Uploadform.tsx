@@ -7,6 +7,14 @@ interface FormDataType {
     cv_path: File | null;
 }
 
+const ALLOWED_CV_MIME_TYPES = [
+    "application/pdf",
+    "application/msword",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+];
+
+const ALLOWED_CV_EXTENSIONS = [".pdf", ".doc", ".docx"];
+
 const Uploadform = () => {
     const router = useRouter();
     const [uploadData, setUploadData] = useState<FormDataType>({
@@ -39,9 +47,16 @@ const Uploadform = () => {
         const file = files[0];
 
         // ✅ Check file type
-        if (file.type !== "application/pdf") {
+        const fileName = file.name.toLowerCase();
+        const hasAllowedMimeType = ALLOWED_CV_MIME_TYPES.includes(file.type);
+        const hasAllowedExtension = ALLOWED_CV_EXTENSIONS.some((extension) => fileName.endsWith(extension));
+
+        if (!hasAllowedMimeType && !hasAllowedExtension) {
             setFormErrors({ cv_path: ".pdf, .doc, .docx files are allowed." });
             setUploadData({ cv_path: null });
+            if (cv_path.current) {
+                cv_path.current.value = "";
+            }
             return;
         }
 
@@ -49,6 +64,9 @@ const Uploadform = () => {
         if (file.size > 2 * 1024 * 1024) {
             setFormErrors({ cv_path: "File must be less than 2MB." });
             setUploadData({ cv_path: null });
+            if (cv_path.current) {
+                cv_path.current.value = "";
+            }
             return;
         }
 

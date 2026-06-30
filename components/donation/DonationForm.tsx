@@ -86,6 +86,15 @@ const DonationForm = ({qrcode, bankInfo}: InformationProps) => {
 
             return { ...prev, [field]: value };
         });
+        
+        // Clear error for this field when user starts typing/fixing
+        if (errors[field]) {
+            setErrors((prev) => {
+                const newErrors = { ...prev };
+                delete newErrors[field];
+                return newErrors;
+            });
+        }
     };
 
     const validateForm = () => {
@@ -103,8 +112,8 @@ const DonationForm = ({qrcode, bankInfo}: InformationProps) => {
         if (!formState.city.trim()) nextErrors.city = "City is required.";
         if (!formState.state.trim()) nextErrors.state = "State is required.";
         if (!formState.zip.trim()) nextErrors.zip = "Zip is required.";
-        if (!formState.country) nextErrors.country = "Country is required.";
-        if (!formState.currency) nextErrors.currency = "Currency is required.";
+        if (!selectedCountryValue.trim()) nextErrors.country = "Country is required.";
+        if (!selectedCurrencyValue.trim()) nextErrors.currency = "Currency is required.";
         if (!formState.amount.trim()) nextErrors.amount = "Amount is required.";
         if (formState.amount && Number(formState.amount) <= 0) {
             nextErrors.amount = "Amount must be greater than 0.";
@@ -131,8 +140,8 @@ const DonationForm = ({qrcode, bankInfo}: InformationProps) => {
             city: formState.city,
             state: formState.state,
             zip: formState.zip,
-            country: formState.country,
-            currency: formState.currency,
+            country: selectedCountryValue,
+            currency: selectedCurrencyValue,
             donation_amount: formState.amount,
             donation_description: formState.comment,
             payment_status: "Pending",
@@ -221,7 +230,7 @@ const DonationForm = ({qrcode, bankInfo}: InformationProps) => {
                 <Row className="g-3">
                     <Col lg={6} sm={6}>
                         <FormGroup className={Styles.form_group}>
-                            <label htmlFor="donation_name">Name *</label>
+                            <label htmlFor="donation_name">Name <span className="text-danger">*</span></label>
                             <FormControl
                                 type="text"
                                 id="donation_name"
@@ -236,7 +245,7 @@ const DonationForm = ({qrcode, bankInfo}: InformationProps) => {
                     </Col>
                     <Col lg={6} sm={6}>
                         <FormGroup className={Styles.form_group}>
-                            <label htmlFor="donation_phone">Phone *</label>
+                            <label htmlFor="donation_phone">Phone <span className="text-danger">*</span></label>
                             <FormControl
                                 type="text"
                                 id="donation_phone"
@@ -251,7 +260,7 @@ const DonationForm = ({qrcode, bankInfo}: InformationProps) => {
                     </Col>
                     <Col lg={6} sm={6}>
                         <FormGroup className={Styles.form_group}>
-                            <label htmlFor="donation_email">Email *</label>
+                            <label htmlFor="donation_email">Email <span className="text-danger">*</span></label>
                             <FormControl
                                 type="email"
                                 id="donation_email"
@@ -266,7 +275,7 @@ const DonationForm = ({qrcode, bankInfo}: InformationProps) => {
                     </Col>
                     <Col lg={6} sm={6}>
                         <FormGroup className={Styles.form_group}>
-                            <label htmlFor="donation_address">Address *</label>
+                            <label htmlFor="donation_address">Address <span className="text-danger">*</span></label>
                             <FormControl
                                 type="text"
                                 id="donation_address"
@@ -281,7 +290,7 @@ const DonationForm = ({qrcode, bankInfo}: InformationProps) => {
                     </Col>
                     <Col lg={6} sm={6}>
                         <FormGroup className={Styles.form_group}>
-                            <label htmlFor="donation_city">City *</label>
+                            <label htmlFor="donation_city">City <span className="text-danger">*</span></label>
                             <FormControl
                                 type="text"
                                 id="donation_city"
@@ -296,7 +305,7 @@ const DonationForm = ({qrcode, bankInfo}: InformationProps) => {
                     </Col>
                     <Col lg={6} sm={6}>
                         <FormGroup className={Styles.form_group}>
-                            <label htmlFor="donation_state">State *</label>
+                            <label htmlFor="donation_state">State <span className="text-danger">*</span></label>
                             <FormControl
                                 type="text"
                                 id="donation_state"
@@ -311,7 +320,7 @@ const DonationForm = ({qrcode, bankInfo}: InformationProps) => {
                     </Col>
                     <Col lg={6} sm={6}>
                         <FormGroup className={Styles.form_group}>
-                            <label htmlFor="donation_zip">Zip *</label>
+                            <label htmlFor="donation_zip">Zip <span className="text-danger">*</span></label>
                             <FormControl
                                 type="text"
                                 id="donation_zip"
@@ -326,35 +335,35 @@ const DonationForm = ({qrcode, bankInfo}: InformationProps) => {
                     </Col>
                     <Col lg={6} sm={6}>
                         <FormGroup className={Styles.form_group}>
-                            <label htmlFor="donation_country">Country *</label>
+                            <label htmlFor="donation_country">Country <span className="text-danger">*</span></label>
                             <FormControl
                                 type="text"
                                 id="donation_country"
                                 value={selectedCountryValue}
                                 className={Styles.input}
                                 readOnly
-                                disabled
+                                isInvalid={!!errors.country}
                             />
                             <Form.Control.Feedback type="invalid" className={Styles.feedBackError}>{errors.country}</Form.Control.Feedback>
                         </FormGroup>
                     </Col>
                     <Col lg={6} sm={6}>
                         <FormGroup className={Styles.form_group}>
-                            <label htmlFor="donation_currency">Currency *</label>
+                            <label htmlFor="donation_currency">Currency <span className="text-danger">*</span></label>
                             <FormControl
                                 type="text"
                                 id="donation_currency"
                                 value={selectedCurrencyValue}
                                 className={Styles.input}
                                 readOnly
-                                disabled
+                                isInvalid={!!errors.currency}
                             />
                             <Form.Control.Feedback type="invalid" className={Styles.feedBackError}>{errors.currency}</Form.Control.Feedback>
                         </FormGroup>
                     </Col>
                     <Col lg={6} sm={6}>
                         <FormGroup className={Styles.form_group}>
-                            <label htmlFor="donation_amount">Amount *</label>
+                            <label htmlFor="donation_amount">Amount <span className="text-danger">*</span></label>
                             <FormControl
                                 type="number"
                                 id="donation_amount"

@@ -32,6 +32,7 @@ interface AboutInfo {
     about_left_button_text?: string;
     about_left_button_url?: string;
     about_left_image?: string;
+    international_qr_code?: string;
     about_left_image_text?: string;
     about_right_button_text?: string;
     about_right_button_url?: string;
@@ -158,6 +159,7 @@ interface PageData {
     our_reach?: OurReachItem[];
     testimonial?: Testimonial[];
     donor_brand?: DonorBrand[];
+    country_code?: string;
 }
 
 const Homeclintpage = () => {
@@ -194,7 +196,7 @@ const Homeclintpage = () => {
         <Stack className="home_page">
             
             <HomeBanner banner={data?.banner} />
-            <HomeDescription aboutSection={aboutSection ?? undefined} />
+            <HomeDescription aboutSection={aboutSection ?? undefined} country_code={data?.country_code} />
             {/* <USP usp={data?.usp ?? []} /> */}
             <ProjectCategoryUSP />
             <SuccessStory pageData={success_stroys_section} data={data?.success_story ?? []} />

@@ -25,6 +25,28 @@ const Counter = ({ className = '', poster = false }: { className?: string; poste
         threshold: 0.3,
     });
     const duration = 3;
+    const openCounterModal = (counter: CounterItem) => {
+        setActiveCounter(counter);
+        setShowModal(true);
+    };
+
+    const counterModal = (
+        <Modal show={showModal} onHide={() => setShowModal(false)} centered size="xl" scrollable>
+            <Modal.Header closeButton>
+                <Modal.Title className='fw-semibold'>{activeCounter?.site_counter_title || 'Counter Details'}</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <div className="donation_data"
+                    dangerouslySetInnerHTML={{__html: activeCounter?.site_counter_description || ''}}
+                />
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="primary" onClick={() => setShowModal(false)}>
+                    Close
+                </Button>
+            </Modal.Footer>
+        </Modal>
+    );
 
     return (
         counters && counters.length > 0 && (
@@ -40,15 +62,13 @@ const Counter = ({ className = '', poster = false }: { className?: string; poste
                     >
                         <Container>
                             <div className={Styles.counterList} ref={ref}>
-                                <Row className='rowGap gx-2 gx-sm-3 gx-xl-4'>
+                                <Row className={`rowGap gx-2 gx-sm-3 gx-xl-4 ${Styles.row ?? ''}`}>
                                     {counters.map((counter, index) => (
                                         <Col md={3} sm={6} key={index} className={Styles.cardItem}>
                                             <div
                                                 className={Styles.counterBox}
-                                                onClick={() => {
-                                                    setActiveCounter(counter);
-                                                    setShowModal(true);
-                                                }}
+                                                onClick={() => openCounterModal(counter)}
+                                                role="button"
                                             >
                                                 <div className={Styles.counter_number}>
                                                     {inView ? (
@@ -70,46 +90,39 @@ const Counter = ({ className = '', poster = false }: { className?: string; poste
                             </div>
                         </Container>
                     </div>
-                    <Modal show={showModal} onHide={() => setShowModal(false)} centered size="xl" scrollable>
-                        <Modal.Header closeButton>
-                            <Modal.Title>{activeCounter?.site_counter_title || 'Counter Details'}</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                            <div className="donation_data"
-                                dangerouslySetInnerHTML={{__html: activeCounter?.site_counter_description || ''}}
-                            />
-                        </Modal.Body>
-                        <Modal.Footer>
-                            <Button variant="primary" onClick={() => setShowModal(false)}>
-                                Close
-                            </Button>
-                        </Modal.Footer>
-                    </Modal>
+                    {counterModal}
                 </>
             ) : (
-                <div className={Styles.innerCounterList} ref={ref}>
-                    <Row className='rowGap gx-2 gx-xxl-4'>
-                        {counters.map((counter, index) => (
-                            <Col xl={3} lg={6} md={3} sm={6} key={index} className={Styles.cardItem}>
-                                <div className={Styles.counterBox}>
-                                    <div className={Styles.counter_number}>
-                                        {inView ? (
-                                            <CountUp
-                                                start={0}
-                                                end={counter?.site_counter_number || 0}
-                                                duration={duration}
-                                                useEasing={false} // linear speed
-                                            />
-                                        ) : (
-                                            0
-                                        )}
+                <>
+                    <div className={Styles.innerCounterList} ref={ref}>
+                        <Row className='rowGap gx-2 gx-xxl-4'>
+                            {counters.map((counter, index) => (
+                                <Col xl={3} lg={6} md={3} sm={6} key={index} className={Styles.cardItem}>
+                                    <div
+                                        className={Styles.counterBox}
+                                        onClick={() => openCounterModal(counter)}
+                                        role="button"
+                                    >
+                                        <div className={Styles.counter_number}>
+                                            {inView ? (
+                                                <CountUp
+                                                    start={0}
+                                                    end={counter?.site_counter_number || 0}
+                                                    duration={duration}
+                                                    useEasing={false} // linear speed
+                                                />
+                                            ) : (
+                                                0
+                                            )}
+                                        </div>
+                                        <div>{counter.site_counter_title}</div>
                                     </div>
-                                    <div>{counter.site_counter_title}</div>
-                                </div>
-                            </Col>
-                        ))}
-                    </Row>
-                </div>
+                                </Col>
+                            ))}
+                        </Row>
+                    </div>
+                    {counterModal}
+                </>
             )
         )
     )

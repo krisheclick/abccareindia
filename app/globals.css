@@ -430,11 +430,11 @@ ol li:last-child,
   display: grid;
   row-gap: 20px;
 }
-.donation_data ol{
+/* .donation_data ol{
   list-style: auto;
   display: grid;
   row-gap: 20px;
-}
+} */
 
 .inner_mdlprheading{
   text-align: center;
@@ -550,6 +550,9 @@ label{
   flex-wrap: wrap;
   gap: 8px 16px;
   text-transform: capitalize;
+}
+.form-control[readonly] {
+  cursor: not-allowed;
 }
 /* 1400px */
 @media only screen and (max-width: 1600px){
