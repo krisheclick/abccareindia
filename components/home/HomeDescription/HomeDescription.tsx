@@ -129,14 +129,14 @@ export default function HomeDescription({ aboutSection, country_code}: AboutInfo
                                         }}
                                         className='wow animate__slideInDown'
                                     />
-                                    {/* {aboutSection?.about_right_button_text && (
+                                    {aboutSection?.about_right_button_text && (
                                         <Link
                                             href={aboutSection?.about_right_button_url ?? ''}
                                             className={`wow animate__slideInUp ${Styles.secondaryBtn}`}
                                         >
                                             {aboutSection?.about_right_button_text}
                                         </Link>
-                                    )} */}
+                                    )}
                                 </div>
                                 {aboutSection?.about_right_image && (
                                     <CustomImage
