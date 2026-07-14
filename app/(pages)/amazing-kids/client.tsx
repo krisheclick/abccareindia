@@ -29,7 +29,7 @@ interface PageData {
 const AmazingKidsClient = () => {
     const [data, setData] = useState<PageData | null>(null);
     const { setHasLoading, setInnerBanner, commonData } = useGlobalContext();
-    const [notFound, setNotFound] = useState<boolean>(false);
+    const [notFound, setNotFound] = useState<boolean>(false);   
 
     
     useEffect(() => {
