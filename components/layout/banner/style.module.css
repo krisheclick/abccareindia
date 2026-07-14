@@ -108,13 +108,18 @@
     height: 50%;
     margin: auto;
     bottom: 0;
-    left: -10px;
+    right: -10px;
     background: #EBC436;
     top: 0;
     content: "";
 }
-.brdcminr li:first-child::before{
+.brdcminr li:last-child::before{
     display: none;
+}
+.brdcminr li:last-child{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .brdcminr li a{
     display: block;

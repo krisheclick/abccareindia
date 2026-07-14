@@ -5,6 +5,56 @@
 .single_page{
     padding: 80px 0px;
 }
+.sidebarBlog{
+    background: #f3f3f3;
+    padding: 20px;
+    border-radius: 4px;
+}
+.sideTitle{
+    color: #3d3f82;
+    margin-bottom: 16px;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2em;
+}
+.sideBlog{
+    display: grid;
+    font-size: 16px;
+	grid-template-columns: repeat(1, 110px 1fr);
+	gap: 12px;
+	color: #000;
+	font-size: 14px;
+	font-weight: 500;
+	align-items: center;
+}
+.sideBlog:hover{
+    color: #3d3f82;
+}
+.sideBlog:not(:last-child){
+    border-bottom: 1px solid #d4d4d4;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+}
+.sideBlog figure{
+    position: relative;
+    aspect-ratio: 4/3;
+}
+.subtitle{
+    margin-bottom: 8px;
+    font-size: 1.15em;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.postDate{
+    margin-bottom: 12px;
+    font-weight: 700;
+    color: #3d3f82;
+}
+.date{
+    color: #775900;
+}
 @media only screen and (max-width: 1599px){
     .blog_page, .single_page{
         padding-block: 60px;
@@ -14,9 +64,18 @@
     .blog_page, .single_page{
         padding-block: 50px;
     }
+    .sideBlog{
+        font-size: 13px;
+    }
+    .sideTitle{
+        font-size: 24px;
+    }
 }
 @media only screen and (max-width: 575px){
     .blog_page, .single_page{
         padding-block: 40px;
+    }
+    .sideBlog{
+        font-size: 12px;
     }
 }

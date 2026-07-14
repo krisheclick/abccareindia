@@ -1,9 +1,7 @@
 "use client";
 
 import About from "@/components/about/About";
-import ZigzagContent from "@/components/about/Zigzag";
 import InnerBanner from "@/components/layout/banner/InnerBanner";
-import Ourreach from "@/components/our-reach/Ourreach";
 import Projects from "@/components/project/Projects";
 import { useGlobalContext } from "@/context/global_context";
 import { safeParse } from "@/utlis/safe_parse";

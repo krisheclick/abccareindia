@@ -8,7 +8,9 @@ import Link from "next/link";
 import Styles from "./style.module.css";
 import PaginationBar from "../pagination/Pagination";
 import Image from "next/image";
-import CustomImage from "@/utlis/imagefunction";
+import { trimWords } from "@/utlis/trimwords";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalendar } from "@fortawesome/free-solid-svg-icons";
 
 interface Category {
     blog_category_id?: string;
@@ -20,7 +22,9 @@ interface BlogItem {
     blog_title?: string;
     blog_slug?: string;
     blog_short_description?: string;
+    blog_description?: string;
     blog_feature_image?: string;
+    blog_publish_at?: string;
     Category?: Category;
 }
 
@@ -144,7 +148,20 @@ const BlogList = ({ page }: BlogListProps) => {
 
             {blogs.length ? (
                 <Stack className={Styles.blogList}>
-                    {blogs.map((item, index) => (
+                    {blogs.map((item, index) => {
+                        const description = item.blog_short_description ? item.blog_short_description : trimWords(item.blog_description, 80);
+                        const dateObj = new Date(item.blog_publish_at ?? '');
+                        const formattedDate = dateObj.toLocaleDateString("en-GB", {
+                            day: "2-digit",
+                            month: "long",
+                        }) + ' ' + dateObj.getFullYear();
+
+                        // const formattedTime = dateObj.toLocaleTimeString("en-US", {
+                        //     hour: "2-digit",
+                        //     minute: "2-digit",
+                        //     hour12: true
+                        // });
+                        return(
                         <Stack key={index} className={Styles.blog_wrapper}>
                             <Row className={`gx-lg-0 rowGap ${Styles.row}`}>
                                 <Col lg={6}>
@@ -159,10 +176,11 @@ const BlogList = ({ page }: BlogListProps) => {
                                                     __html: item.blog_title ?? "",
                                                 }}
                                             />
+                                            <span className={Styles.date}><FontAwesomeIcon icon={faCalendar} /> {formattedDate}</span>
                                             <p
                                                 className={Styles.description}
                                                 dangerouslySetInnerHTML={{
-                                                    __html: item.blog_short_description ?? "",
+                                                    __html: description ?? "",
                                                 }}
                                             />
                                             <div className={Styles.buttonWrap}>
@@ -184,7 +202,7 @@ const BlogList = ({ page }: BlogListProps) => {
                                 </Col>
                             </Row>
                         </Stack>
-                    ))}
+                    )})}
                 </Stack>
             ) : (
                 <p className={Styles.notfound}>Blogs not found!</p>

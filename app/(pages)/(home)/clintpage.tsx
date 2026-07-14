@@ -8,8 +8,6 @@ import HomeDescription from "@/components/home/HomeDescription/HomeDescription";
 import HomeProject from "@/components/home/HomeProject/HomeProject";
 import SuccessStory from "@/components/home/SuccessStory/SuccessStroy";
 import UrgentNeeds from "@/components/home/UrgentNeeds/UrgentNeeds";
-import USP from "@/components/home/Usp/Usp";
-import Volunteer from "@/components/home/Volunteer/Volunteer";
 import Ourreach from "@/components/our-reach/Ourreach";
 import { useGlobalContext } from "@/context/global_context";
 import { safeParse } from "@/utlis/safe_parse";

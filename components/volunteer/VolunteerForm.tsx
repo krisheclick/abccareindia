@@ -5,7 +5,6 @@ import { useEffect, useRef, useState } from 'react';
 import FormCheckInput from 'react-bootstrap/esm/FormCheckInput';
 import FormCheckLabel from 'react-bootstrap/esm/FormCheckLabel';
 import { useRouter } from 'next/navigation';
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 interface EducationDetail {
@@ -1365,7 +1364,7 @@ const VolunteerForm = () => {
                             {photoPreviewUrl && (
                                 <div className="mt-2">
                                     <div>{photoRef.current?.files?.[0]?.name}</div>
-                                    <a href={photoPreviewUrl} target="_blank" rel="noreferrer" className={Styles.openBtn}>Open</a>
+                                    <Link href={photoPreviewUrl} target="_blank" rel="noreferrer" className={Styles.openBtn}>Open</Link>
                                 </div>
                             )}
                         </FormGroup>
@@ -1390,7 +1389,7 @@ const VolunteerForm = () => {
                             {signaturePreviewUrl && (
                                 <div className="mt-2">
                                     <div>{signatureRef.current?.files?.[0]?.name}</div>
-                                    <a href={signaturePreviewUrl} target="_blank" rel="noreferrer" className={Styles.openBtn}>Open</a>
+                                    <Link href={signaturePreviewUrl} target="_blank" rel="noreferrer" className={Styles.openBtn}>Open</Link>
                                 </div>
                             )}
                         </FormGroup>

@@ -69,7 +69,7 @@ img, video {
 .rowGap{
   row-gap: var(--bs-gutter-x);
 }
-p{
+p, .rj_editor_text div:not([class]){
   line-height: 1.75;
   margin-bottom: 16px;
 }

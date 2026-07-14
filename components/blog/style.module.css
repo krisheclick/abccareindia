@@ -123,6 +123,13 @@
 .poster img{
     object-fit: contain;
 }
+.date{
+    margin-bottom: 16px;
+    font-size: 1.1em;
+    display: inline-block;
+    color: #3d3f82;
+    font-weight: 600;
+}
 @media only screen and (max-width: 1399px){
     .title{
         font-size: 32px;

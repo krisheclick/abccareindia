@@ -23,7 +23,7 @@ interface PageData {
     all_reports?: Report[] | null;
 }
 const Clientpage = () => {
-    const { setHasLoading, setInnerBanner, mediaUrl } = useGlobalContext();
+    const { setHasLoading, setInnerBanner } = useGlobalContext();
     const [data, setData] = useState<PageData | null>(null);
 
     useEffect(() => {

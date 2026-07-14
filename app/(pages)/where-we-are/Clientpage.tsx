@@ -45,7 +45,8 @@ const Clientpage = () => {
                 const { response_data } = await response.json();
                 setData(response_data ?? null);
                 setInnerBanner({
-                    page_name: 'Where We Are'
+                    page_name: data?.page?.page_name ?? "Where We Are",
+                    page_feature_image: data?.page?.page_feature_image ?? "",
                 })
 
             } catch (err: unknown) {
@@ -59,7 +60,7 @@ const Clientpage = () => {
         };
 
         fetchData();
-    }, [setHasLoading]);
+    }, [setHasLoading, setInnerBanner, setData]);
     
     return (
         <div className="where-page">
