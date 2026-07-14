@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import FormCheckInput from 'react-bootstrap/esm/FormCheckInput';
 import FormCheckLabel from 'react-bootstrap/esm/FormCheckLabel';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import "react-datepicker/dist/react-datepicker.css";
 
 interface EducationDetail {
@@ -134,6 +135,9 @@ const VolunteerForm = () => {
     const [documentPreviewUrl, setDocumentPreviewUrl] = useState<string | null>(null);
     const [photoPreviewUrl, setPhotoPreviewUrl] = useState<string | null>(null);
     const [signaturePreviewUrl, setSignaturePreviewUrl] = useState<string | null>(null);
+    const [documentFileName, setDocumentFileName] = useState<string | null>(null);
+    const [photoFileName, setPhotoFileName] = useState<string | null>(null);
+    const [signatureFileName, setSignatureFileName] = useState<string | null>(null);
 
     const volunteeringAreaOptions = [
         "Residential care and cure service",
@@ -202,6 +206,9 @@ const VolunteerForm = () => {
         setDocumentPreviewUrl(null);
         setPhotoPreviewUrl(null);
         setSignaturePreviewUrl(null);
+        setDocumentFileName(null);
+        setPhotoFileName(null);
+        setSignatureFileName(null);
     };
 
     const updateEducationDetail = (index: number, field: keyof EducationDetail, value: string) => {
@@ -794,6 +801,7 @@ const VolunteerForm = () => {
                                 onChange={(e) => {
                                     onChangeValue(e);
                                     const file = (e.currentTarget as HTMLInputElement).files?.[0] || null;
+                                    setDocumentFileName(file?.name ?? null);
                                     updatePreview(file, documentPreviewUrl, setDocumentPreviewUrl);
                                 }}
                                 isInvalid={!!errors.document_file}
@@ -801,7 +809,7 @@ const VolunteerForm = () => {
                             <Form.Control.Feedback type="invalid">{errors.document_file}</Form.Control.Feedback>
                             {documentPreviewUrl && (
                                 <div className="mt-2">
-                                    <div>{document_file.current?.files?.[0]?.name}</div>
+                                    <div>{documentFileName}</div>
                                     <a href={documentPreviewUrl} target="_blank" rel="noreferrer" className={Styles.openBtn}>Open</a>
                                 </div>
                             )}
@@ -1355,7 +1363,8 @@ const VolunteerForm = () => {
                                 ref={photoRef}
                                 onChange={(e) => {
                                     onChangeValue(e);
-                                    const file = (e.currentTarget as HTMLInputElement).files?.[0] || null;;
+                                    const file = (e.currentTarget as HTMLInputElement).files?.[0] || null;
+                                    setPhotoFileName(file?.name ?? null);
                                     updatePreview(file, photoPreviewUrl, setPhotoPreviewUrl);
                                 }}
                                 isInvalid={!!errors.photo}
@@ -1363,7 +1372,7 @@ const VolunteerForm = () => {
                             <Form.Control.Feedback type="invalid">{errors.photo}</Form.Control.Feedback>
                             {photoPreviewUrl && (
                                 <div className="mt-2">
-                                    <div>{photoRef.current?.files?.[0]?.name}</div>
+                                    <div>{photoFileName}</div>
                                     <Link href={photoPreviewUrl} target="_blank" rel="noreferrer" className={Styles.openBtn}>Open</Link>
                                 </div>
                             )}
@@ -1381,6 +1390,7 @@ const VolunteerForm = () => {
                                 onChange={(e) => {
                                     onChangeValue(e);
                                     const file = (e.currentTarget as HTMLInputElement).files?.[0] || null;
+                                    setSignatureFileName(file?.name ?? null);
                                     updatePreview(file, signaturePreviewUrl, setSignaturePreviewUrl);
                                 }}
                                 isInvalid={!!errors.signature}
@@ -1388,7 +1398,7 @@ const VolunteerForm = () => {
                             <Form.Control.Feedback type="invalid">{errors.signature}</Form.Control.Feedback>
                             {signaturePreviewUrl && (
                                 <div className="mt-2">
-                                    <div>{signatureRef.current?.files?.[0]?.name}</div>
+                                    <div>{signatureFileName}</div>
                                     <Link href={signaturePreviewUrl} target="_blank" rel="noreferrer" className={Styles.openBtn}>Open</Link>
                                 </div>
                             )}
