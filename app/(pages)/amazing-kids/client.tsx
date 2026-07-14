@@ -8,6 +8,7 @@ import CustomImage from "@/utlis/imagefunction";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
+import NotFound from "@/app/not-found";
 
 interface Amazing_kids {
     ak_title?: string;
@@ -28,6 +29,7 @@ interface PageData {
 const AmazingKidsClient = () => {
     const [data, setData] = useState<PageData | null>(null);
     const { setHasLoading, setInnerBanner, commonData } = useGlobalContext();
+    const [notFound, setNotFound] = useState<boolean>(false);
 
     
     useEffect(() => {
@@ -38,7 +40,10 @@ const AmazingKidsClient = () => {
                     `${process.env.NEXT_PUBLIC_API_URL}/page/amazing-kids`,
                     { cache: "no-cache" }
                 );
-                const { response_data } = await response.json();
+                const {response_code, response_data } = await response.json();
+                if(!response_code){
+                    setNotFound(true);
+                }
                 setData(response_data);
                 setInnerBanner(response_data.page)
             } catch (err: unknown) {
@@ -49,7 +54,9 @@ const AmazingKidsClient = () => {
         }
         fetchData();
     }, [setHasLoading, setInnerBanner]);
-
+    if(notFound){
+        return <NotFound />
+    }
     return (
         <Stack as="section" className="amazing-kids-page">
             <InnerBanner />
