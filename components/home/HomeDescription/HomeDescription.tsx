@@ -29,8 +29,8 @@ export default function HomeDescription({ aboutSection, country_code}: AboutInfo
     const { hasLoading } = useGlobalContext();
     useWOW({ animateClass: "animate__animated" });
 
-    console.log('country_code', country_code)
-    const qrCode = (country_code == "IN") ? aboutSection?.about_left_image : aboutSection?.international_qr_code;
+    // console.log('country_code', country_code)
+    // const qrCode = (country_code == "IN") ? aboutSection?.about_left_image : aboutSection?.international_qr_code;
 
     return (
         <section className={Styles.posterAd}>
@@ -57,12 +57,44 @@ export default function HomeDescription({ aboutSection, country_code}: AboutInfo
                                         </Link>
                                     )}
                                 </div>
-                                <CustomImage
-                                    src={`${mediaBaseURL}/uploads/page_image/${qrCode}`}
-                                    alt="QR Code"
-                                    className={`wow animate__pulse ${Styles.qrBox}`}
-                                    data-wow-delay="1.5s"
-                                />
+                                {(country_code == "IN") ? (
+                                    <CustomImage
+                                        // src={`${mediaBaseURL}/uploads/page_image/${qrCode}`}
+                                        src={`${mediaBaseURL}/uploads/page_image/${aboutSection?.about_left_image}`}
+                                        alt="QR Code"
+                                        className={`wow animate__pulse ${Styles.qrBox}`}
+                                        data-wow-delay="1.5s"
+                                    />
+                                ) : (
+                                    <table className={`table table-bordered ${Styles.qrTable}`}>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <strong>Organization Name</strong>
+                                                    <p>Asha Bhavan Centre</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <strong>Organization A/C No</strong>
+                                                    <p>40099009078 (FCRA Savings Account)</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <strong>Bank Name</strong>
+                                                    <p>State Bank of India</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <strong>IFSC Code</strong>
+                                                    <p>SBIN000691</p>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                )}
                             </>
                         ) : (
                             <>
