@@ -55,6 +55,10 @@
 .date{
     color: #775900;
 }
+.blog_feature_image{
+    padding-top: 36%;
+    margin-bottom: 16px;
+}
 @media only screen and (max-width: 1599px){
     .blog_page, .single_page{
         padding-block: 60px;

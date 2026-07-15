@@ -19,6 +19,13 @@ interface Amazing_kids {
     ak_status?: string;
 }
 interface PageData {
+    page?: {
+        page_name?: string;
+        page_slug?: string;
+        page_feature_image?: string;
+        page_short_description?: string;
+        page_content?: string;
+    };
     page_name?: string;
     page_slug?: string;
     page_feature_image?: string;
@@ -40,14 +47,18 @@ const AmazingKidsClient = () => {
                     `${process.env.NEXT_PUBLIC_API_URL}/page/amazing-kids`,
                     { cache: "no-cache" }
                 );
-                const {response_code, response_data } = await response.json();
-                if(!response_code){
+                const { response_code, response_data } = await response.json();
+
+                if (!response.ok || !response_code || !response_data) {
                     setNotFound(true);
+                    return;
                 }
+
                 setData(response_data);
-                setInnerBanner(response_data.page)
+                setInnerBanner(response_data.page);
             } catch (err: unknown) {
                 console.log('amazon kids page data fetch is something wrong: ', (err as Error).message)
+                setNotFound(true);
             } finally {
                 setHasLoading(false);
             }

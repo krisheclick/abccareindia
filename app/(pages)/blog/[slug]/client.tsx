@@ -115,6 +115,13 @@ const BlogDetailsClient = ({ permalink }: { permalink: string }) => {
                                         }}
                                         className={`cmn_black_heading ${Styles.details_title ?? ''}`}
                                     />
+                                    <figure className={`custom_image fixedImage ${Styles.blog_feature_image}`}>
+                                        <Image
+                                            src={`${mediaUrl}${data.blog.blog_feature_image}`}
+                                            alt={data.blog.blog_title || ''}
+                                            fill
+                                        />
+                                    </figure>
                                     <div
                                         dangerouslySetInnerHTML={{
                                             __html: data.blog.blog_description ?? "",
