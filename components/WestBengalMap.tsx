@@ -258,7 +258,8 @@ export default function WestBengalMap() {
                 areas={areas.map(area => ({
                     ...area,
                     stroke: true,
-                    fillColor: 'rgba(122, 174, 19, .5)',
+                    // fillColor: 'rgba(122, 174, 19, .5)',
+                    fillColor: 'rgba(122, 174, 19, .2)',
                     strokeColor: '#ff0000',
                     strokeWidth: 3
                 }))}
