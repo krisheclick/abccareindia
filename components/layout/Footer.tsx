@@ -8,6 +8,7 @@ import { usePathname } from 'next/navigation';
 import Donation from "@/components/donation/Donation";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import Uploadform from './form/Uploadform';
 import Link from 'next/link';
 import FooterAccordion from './FooterAccordion';
@@ -62,6 +63,9 @@ const Footer = () => {
     
     const pathName = usePathname();
     const innerLocation = (pathName === '/');
+    const whatsappNumber = commonData?.site_contact_whatsapp_number ?? commonData?.site_contact_phone_1;
+    const whatsappHref = whatsappNumber ? `https://wa.me/${whatsappNumber.replace(/\D/g, '')}` : '';
+
     return (
         <>
             {!innerLocation && <Donation />}
@@ -133,6 +137,17 @@ const Footer = () => {
             >
                 <FontAwesomeIcon icon={faArrowUp} />
             </span>
+            {whatsappHref && (
+                <Link
+                    href={whatsappHref}
+                    className="fixedWhatsapp"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Chat on WhatsApp"
+                >
+                    <FontAwesomeIcon icon={faWhatsapp} />
+                </Link>
+            )}
         </>
     );
 };

@@ -19,6 +19,7 @@ interface CounterData {
 interface OurReachSectionData {
     our_reach_title?: string;
     our_reach_description?: string;
+    beneficiaries_report_title?: string;
 }
 interface SectionDataProps {
     sectionData: OurReachSectionData | undefined;
@@ -165,6 +166,7 @@ const Ourreach = ({ sectionData }: SectionDataProps) => {
                                         ))}
                                     </div>
                                 </Stack>
+                                {sectionData?.beneficiaries_report_title && (<div className={Styles.beneficiaries_report_title}>{sectionData?.beneficiaries_report_title}</div>)}
                             </Col>
                         )}
                     </Row>

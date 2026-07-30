@@ -13,9 +13,12 @@ interface ContactDescriptionProps {
 export default function ContactDescription({ page_short_description, page_content, }: ContactDescriptionProps) {
 
     const { commonData } = useGlobalContext();
+    console.log('commonData', commonData)
 
-    const phone1 = commonData?.site_footer_phone_1;
-    const phone2 = commonData?.site_footer_phone_2;
+    const land_number_1 = commonData?.site_contact_land_number_1;
+    const land_number_2 = commonData?.site_contact_land_number_2;
+    const phone1 = commonData?.site_contact_phone_1;
+    const phone2 = commonData?.site_contact_phone_2;
     const email = commonData?.site_footer_email;
     const address = commonData?.site_footer_address;
     const address_link = commonData?.site_footer_address_link;
@@ -40,7 +43,37 @@ export default function ContactDescription({ page_short_description, page_conten
                 </div>
 
                 <Row className="rowGap">
-                    <Col lg={4} md={6}>
+                    <Col lg={3} md={6}>
+                        <Stack className={styles.contact_box}>
+                            <figure className={styles.img_icon}>
+                                <Image
+                                    src="/assets/images/contact_call.webp"
+                                    alt="Phone"
+                                    width={80}
+                                    height={80}
+                                />
+                            </figure>
+
+                            <div className={styles.contact_sub_text}>Landline Number</div>
+
+                            <div className={styles.link_contact_text}>
+                                {land_number_1 && (
+                                    <a href={`tel:${land_number_1.replace(/\s+/g, "")}`}>
+                                        {land_number_1}
+                                    </a>
+                                )}
+                                {land_number_2 && (
+                                    <>
+                                        {" / "}
+                                        <a href={`tel:${land_number_2.replace(/\s+/g, "")}`}>
+                                            {land_number_2}
+                                        </a>
+                                    </>
+                                )}
+                            </div>
+                        </Stack>
+                    </Col>
+                    <Col lg={3} md={6}>
                         <Stack className={styles.contact_box}>
                             <figure className={styles.img_icon}>
                                 <Image
@@ -70,7 +103,7 @@ export default function ContactDescription({ page_short_description, page_conten
                             </div>
                         </Stack>
                     </Col>
-                    <Col lg={4} md={6}>
+                    <Col lg={3} md={6}>
                         <Stack className={styles.contact_box}>
                             <figure className={styles.img_icon}>
                                 <Image
@@ -90,7 +123,7 @@ export default function ContactDescription({ page_short_description, page_conten
                             </div>
                         </Stack>
                     </Col>
-                    <Col lg={4}>
+                    <Col lg={3}>
                         <Stack className={styles.contact_box}>
                             <figure className={styles.img_icon}>
                                 <Image

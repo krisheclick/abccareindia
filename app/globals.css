@@ -38,6 +38,13 @@
     max-width: 1440px;
   }
 } 
+@-moz-document url-prefix(){
+  *{
+    scrollbar-width: thin;
+    scroll-behavior: smooth;
+    scrollbar-color: #2c3070 #f6f6f6;
+  }
+}
 *, ::after, ::before, ::backdrop {
 	box-sizing: border-box;
 	border: 0 solid;

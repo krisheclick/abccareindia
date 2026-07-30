@@ -124,6 +124,7 @@ interface OurReachItem {
 interface OurReachSectionData {
     our_reach_title?: string;
     our_reach_description?: string;
+    beneficiaries_report_title?: string;
 }
 interface PageCustomField {
     group_name: {
@@ -153,6 +154,7 @@ interface DonorBrand {
 }
 interface PageData {
     banner: BannerItem | null;
+    project_category_counter_total?: string;
     pages_custom_field?: PageCustomField;
     usp?: USPItem[];
     success_story?: Success_story[] | null;
@@ -199,9 +201,9 @@ const Homeclintpage = () => {
         <Stack className="home_page">
             
             <HomeBanner banner={data?.banner} />
-            <HomeDescription aboutSection={aboutSection ?? undefined} country_code={data?.country_code} />
+            <HomeDescription aboutSection={aboutSection ?? undefined} country_code={data?.country_code} projectNumber={data?.project_category_counter_total} />
             {/* <USP usp={data?.usp ?? []} /> */}
-            <ProjectCategoryUSP />
+            <ProjectCategoryUSP sectionData={customFields?.group_name?.['our-reach-section']} />
             <SuccessStory pageData={success_stroys_section} data={data?.success_story ?? []} />
             <HomeProject
                 sectionData={projectSection}

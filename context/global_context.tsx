@@ -21,6 +21,11 @@ interface ProjectItem {
 }
 interface setCommonDataType {
     site_title?: string;
+    site_contact_whatsapp_number?: string;
+    site_contact_land_number_1?: string;
+    site_contact_land_number_2?: string;
+    site_contact_phone_1?: string;
+    site_contact_phone_2?: string;
     site_footer_phone_1?: string;
     site_footer_phone_2?: string;
     site_footer_email?: string;

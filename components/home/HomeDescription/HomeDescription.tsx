@@ -21,13 +21,16 @@ interface AboutInfo {
         about_title?: string;
     }
     country_code?: string;
+    projectNumber?: string;
 }
 
 const mediaBaseURL = process.env.NEXT_PUBLIC_MEDIA_URL;
 
-export default function HomeDescription({ aboutSection, country_code}: AboutInfo) {
+export default function HomeDescription({ aboutSection, country_code, projectNumber}: AboutInfo) {
     const { hasLoading } = useGlobalContext();
     useWOW({ animateClass: "animate__animated" });
+    const formattedProjectNumber = projectNumber ? Number(projectNumber).toLocaleString("en-IN") : "";
+    const aboutTitle = `${formattedProjectNumber ? `<span>${formattedProjectNumber}</span> ` : ''}${aboutSection?.about_title ?? ''}`;
 
     // console.log('country_code', country_code)
     // const qrCode = (country_code == "IN") ? aboutSection?.about_left_image : aboutSection?.international_qr_code;
@@ -44,7 +47,7 @@ export default function HomeDescription({ aboutSection, country_code}: AboutInfo
 
                                     <h1 className={`wow animate__fadeInUp ${Styles.mainTitle}`}
                                         dangerouslySetInnerHTML={{
-                                            __html: aboutSection?.about_title ?? '',
+                                            __html: aboutTitle,
                                         }}
                                     />
                                     {aboutSection?.about_left_button_text && (

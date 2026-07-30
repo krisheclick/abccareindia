@@ -1,6 +1,5 @@
-import { Col, Container, Row, Stack } from "react-bootstrap";
+import { Container, Stack } from "react-bootstrap";
 import Styles from "./style.module.css";
-import ContactForm from "./Form";
 import { safeParse } from "@/utlis/safe_parse";
 
 interface GroupData {
@@ -22,6 +21,13 @@ const ContactFormSection = ({ formData }: { formData?: Props }) => {
         <Stack className={Styles.contact_form_map_section}>
             <Container>
                 <h2 className={`cmn_white_heading text-center ${Styles.contact_us_heading ?? ''}`}>{data?.form_title}</h2>
+            </Container>
+            <div
+                className={Styles.maps}
+                dangerouslySetInnerHTML={{ __html: data?.map || "" }}
+            />
+            {/* <Container>
+                <h2 className={`cmn_white_heading text-center ${Styles.contact_us_heading ?? ''}`}>{data?.form_title}</h2>
                 <div className={Styles.formArea}>
                     <Row className="rowGap">
                         <Col lg={6}>
@@ -37,7 +43,7 @@ const ContactFormSection = ({ formData }: { formData?: Props }) => {
                         </Col>
                     </Row>
                 </div>
-            </Container>
+            </Container> */}
         </Stack>
     )
 }

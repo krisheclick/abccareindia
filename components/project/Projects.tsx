@@ -8,7 +8,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { Autoplay, FreeMode, Navigation } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
-import CustomImage from '@/utlis/imagefunction';
 import { Container, Stack } from 'react-bootstrap';
 import Link from 'next/link';
 import { useGlobalContext } from '@/context/global_context';

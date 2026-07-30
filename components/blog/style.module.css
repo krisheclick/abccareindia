@@ -122,6 +122,7 @@
 }
 .poster img{
     object-fit: contain;
+	object-position: right;
 }
 .date{
     margin-bottom: 16px;

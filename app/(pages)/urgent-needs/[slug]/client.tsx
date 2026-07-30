@@ -17,6 +17,7 @@ import { safeParse } from "@/utlis/safe_parse";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
+import CustomImage from "@/utlis/imagefunction";
 
 interface Gallery {
     upload_type?: string;
@@ -34,6 +35,7 @@ interface UrgentNeedDataType {
 }
 interface UrgentNeedData {
     urgent_need?: UrgentNeedDataType;
+    related_urgent_need_title?: string;
     relatedUrgentNeeds?: UrgentNeedDataType[] | null;
 }
 
@@ -60,18 +62,19 @@ const getUrgentNeedFromResponse = (responseData: unknown): UrgentNeedDataType | 
     return data.urgent_need ?? data.urgentNeed ?? urgentNeeds;
 };
 
-const RelatedUrgentNeeds = ({ items }: { items?: UrgentNeedDataType[] | null }) => {
+const RelatedUrgentNeeds = ({ items, title }: { items?: UrgentNeedDataType[] | null, title?: string }) => {
     const [isBeginning, setIsBeginning] = useState(true);
     const [isEnd, setIsEnd] = useState(false);
     const swiperRef = useRef<SwiperType | null>(null);
 
     if (!items || items.length === 0) return null;
 
+
     return (
         <Stack className={Styles.section}>
             <Container>
                 <div className={`inner_mdlprheading ${Styles.section_content ?? ""}`}>
-                    <h2 className="cmn_black_heading">Related <span>Urgent Needs</span></h2>
+                    <h2 className="cmn_black_heading">{title ?? "Urgent Needs"}</h2>
                 </div>
                 <div className={Styles.slider}>
                     <Swiper
@@ -99,16 +102,14 @@ const RelatedUrgentNeeds = ({ items }: { items?: UrgentNeedDataType[] | null }) 
                         {items.map((item, index) => (
                             <SwiperSlide key={`${item.urgent_need_slug || "urgent-need"}-${index}`}>
                                 <div className={Styles.card}>
-                                    {item.urgent_need_feature_image && (
-                                        <figure className={`custom_image fixedImage ${Styles.card_img}`}>
-                                            <Image
-                                                src={`${process.env.NEXT_PUBLIC_MEDIA_URL}${item.urgent_need_feature_image}`}
-                                                alt={item.urgent_need_title || ""}
-                                                fill
-                                                fetchPriority="high"
-                                            />
-                                        </figure>
-                                    )}
+                                    <figure className={`custom_image fixedImage ${Styles.card_img}`}>
+                                        <Image                                            
+                                            src={item.urgent_need_feature_image ? `${process.env.NEXT_PUBLIC_MEDIA_URL}${item.urgent_need_feature_image}` : "/assets/images/noimage.webp"}
+                                            alt={item.urgent_need_title || ""}
+                                            fill
+                                            fetchPriority="high"
+                                        />
+                                    </figure>
                                     <Stack className={Styles.card_content}>
                                         <div className={Styles.title}>{item.urgent_need_title}</div>
                                         <div
@@ -190,6 +191,8 @@ const SingleUrgentNeed = ({ permalink }: { permalink: string }) => {
     const gallery = safeParse<Gallery[]>(pageData?.urgent_need_gallery);
     const galleryImages = gallery?.filter((item) => item.thumb_name || item.file_name) ?? [];
 
+    console.log('data', data)
+
     return (
         <div className="single-project-page">
             <InnerBanner
@@ -235,19 +238,13 @@ const SingleUrgentNeed = ({ permalink }: { permalink: string }) => {
                                 ))}
                             </Swiper>
                         </Stack>
-                    ) : pageData?.urgent_need_feature_image ? (
+                    ) : (
                         <Stack as="figure" className={Styles.poster}>
                             <Image
-                                src={`${mediaUrl}${pageData.urgent_need_feature_image}`}
-                                alt={pageData.urgent_need_title || "Urgent Need"}
+                                src={pageData?.urgent_need_feature_image ? `${mediaUrl}${pageData.urgent_need_feature_image}` : "/assets/images/noimage.webp"}
+                                alt={pageData?.urgent_need_title || "Urgent Need"}
                                 fill
                             />
-                        </Stack>
-                    ) : (
-                        <Stack className={Styles.poster}>
-                            <div className="d-flex align-items-center justify-content-center h-100 fw-semibold">
-                                No image
-                            </div>
                         </Stack>
                     )}
                     <Stack>
@@ -263,7 +260,7 @@ const SingleUrgentNeed = ({ permalink }: { permalink: string }) => {
                     </Stack>
                 </Container>
             </Stack>
-            <RelatedUrgentNeeds items={data?.relatedUrgentNeeds} />
+            <RelatedUrgentNeeds title={data?.related_urgent_need_title} items={data?.relatedUrgentNeeds} />
         </div>
     );
 };

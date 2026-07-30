@@ -84,16 +84,14 @@ const UrgentNeedList = () => {
                                     </div>
                                 </Col>
                                 <Col lg={6}>
-                                    {item.urgent_need_feature_image && (
-                                        <Link href={`/urgent-needs/${item.urgent_need_slug}`} className={`custom_image fixedImage ${Styles.poster}`}>
-                                            <Image
-                                                src={`${mediaUrl}${item.urgent_need_feature_image}`}
-                                                alt={item.urgent_need_title || ""}
-                                                className="custom-image loaded"
-                                                fill
-                                            />
-                                        </Link>
-                                    )}
+                                    <Link href={`/urgent-needs/${item.urgent_need_slug}`} className={`custom_image fixedImage ${Styles.poster}`}>
+                                        <Image
+                                            src={item.urgent_need_feature_image ? `${mediaUrl}${item.urgent_need_feature_image}` : "/assets/images/noimage.webp"}
+                                            alt={item.urgent_need_title || ""}
+                                            className="custom-image loaded"
+                                            fill
+                                        />
+                                    </Link>
                                 </Col>
                             </Row>
                         </Stack>

@@ -78,20 +78,37 @@ export default function Brand({ brands }: BrandProps) {
                         >
                             {brands.map((brand, index) => (
                                 <SwiperSlide className={Styles.brandItem} key={index}>
-                                    <Link
-                                        href={brand.donor_brand_link || '#'}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="brand-item"
-                                        aria-label={brand.donor_brand_name}
-                                    >
-                                        <Image
-                                            src={`${mediaBaseURL}${brand.donor_brand_logo}`}
-                                            alt={brand.donor_brand_name}
-                                            width={180}
-                                            height={100}
-                                        />
-                                    </Link>
+                                    {brand.donor_brand_link && brand.donor_brand_link !="#" ? (
+                                        <Link
+                                            href={brand.donor_brand_link || '#'}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="brand-item"
+                                            title={brand.donor_brand_name}
+                                            aria-label={brand.donor_brand_name}
+                                        >
+                                            <Image
+                                                src={`${mediaBaseURL}${brand.donor_brand_logo}`}
+                                                alt={brand.donor_brand_name}
+                                                width={180}
+                                                height={100}
+                                            />
+                                        </Link>
+                                    ) : (
+                                        <span
+                                            role="button"
+                                            className="brand-item"
+                                            title={brand.donor_brand_name}
+                                            aria-label={brand.donor_brand_name}
+                                        >
+                                            <Image
+                                                src={`${mediaBaseURL}${brand.donor_brand_logo}`}
+                                                alt={brand.donor_brand_name}
+                                                width={180}
+                                                height={100}
+                                            />
+                                        </span>
+                                    )}
                                 </SwiperSlide>
                             ))}
                         </Swiper>

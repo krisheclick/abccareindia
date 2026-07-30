@@ -7,7 +7,8 @@
 	transform: translateY(-50%);
 }
 .accessibility_icon{
-    background: linear-gradient(215deg, #3d3f82 40%, #ebc436 65%, #000 100%);
+    /* background: linear-gradient(215deg, #3d3f82 40%, #ebc436 65%, #000 100%); */
+    background: #686869;
     padding: 6px;
     cursor: pointer;
     border-radius: 0px 4px 4px 0px;
@@ -15,7 +16,7 @@
     height: var(--size);
     display: grid;
     place-items: center;
-    border: 1px solid #fff;
+    /* border: 1px solid #fff; */
     border-left-color: transparent;
 }
 .accessibility_icon img{

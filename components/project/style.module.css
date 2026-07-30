@@ -97,6 +97,7 @@
 }
 .poster img {
 	object-fit: cover;
+	object-position: right;
 }
 .locationBox {
 	--size: 32px;
