@@ -123,7 +123,7 @@
 }
 .counterCircle {
     --size: 150px;
-    --text: #000;
+    --text: #fff;
     --bg: #F2F2F2;
     --bg: #6AC898;
     background: var(--bg);

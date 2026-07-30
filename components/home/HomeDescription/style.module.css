@@ -2,11 +2,19 @@
   width: 100%;
   overflow: hidden;
 }
+@media only screen and (min-width: 1200px){
+  .left{
+    width: 40%;
+  }
+  .right{
+    width: 60%;
+  }
+}
 .left {
   background: #3d3f82;
   color: #fff;
   position: relative;
-  padding: 20px 60px;
+  padding: 20px 36px;
   display: flex;
   align-items: center;
   justify-content: end;
@@ -16,20 +24,20 @@
   max-width: 500px;
 }
 .smallTitle {
-  margin-bottom: 10px;
-  font-size: 35px;
+  margin-bottom: 6px;
+  font-size: 30px;
   font-weight: 300;
   color: #fff;
 }
 .mainTitle {
-  font-size: 40px;
+  font-size: 36px;
   line-height: 1.25;
   font-weight: 600;
   color: inherit;
 }
 .mainTitle span {
   color: #ffcc33;
-  font-size: 1.5em;
+  font-size: 1.35em;
   font-weight: 700;
 }
 .mainTitle em{
@@ -64,6 +72,7 @@
 }
 .qrTable{
   width: 200px;
+  margin: 0;
 }
 .qrBox img{
   width: 100% !important;
@@ -82,10 +91,10 @@
 }
 .rightContent {
   z-index: 2;
-  padding: 20px 0px 20px 50px;
+  padding: 20px 0px 20px 36px;
 }
 .right h2 {
-  font-size: 45px;
+  font-size: 36px;
   font-weight: 700;
 }
 .right h2 span {
@@ -121,9 +130,9 @@
   background: transparent;
   padding-top: 0;
   width: 100%;
-  max-width: 360px;
+  max-width: 640px;
   flex-shrink: 0;
-  margin-top: auto;
+  /* margin-top: auto; */
 }
 .imageWrap img {
 	position: static !important;
@@ -133,23 +142,42 @@
 .qrBoxSkeleton{
   aspect-ratio: 3/4;
 }
+@media only screen and (max-width: 1800px){
+  .mainTitle, .right h2{
+    font-size: 32px;
+  }
+}
 /* 1400px */
 @media only screen and (max-width: 1600px){
-  .mainTitle{
-    font-size: 36px;
+  .smallTitle{
+    font-size: 26px;
+  }
+  .mainTitle, .right h2{
+    font-size: 28px;
+  }
+  .right{
+    min-height: 350px;
+  }
+  .imageWrap{
+    max-width: 540px;
   }
 }
 /* 1200px */
 @media only screen and (max-width: 1399px){
   .left{
-    padding-inline: 36px;
-    gap: 24px;
+    padding-inline: 30px;
+    gap: 20px;
   }
   .smallTitle{
-    font-size: 30px;
+    font-size: 24px;
   }
   .mainTitle{
-    font-size: 28px;
+    font-size: 26px;
+  }
+  .qrBox {
+    border-radius: 10px;
+    width: 180px;
+    padding: 12px;
   }
   .donateBtn, .secondaryBtn{
     margin-top: 20px;
@@ -157,31 +185,40 @@
     font-size: 15px;
   }
   .right{
-    min-height: 360px;
+    min-height: 300px;
   }
   .rightContent{
-    padding-left: 36px;
+    padding-left: 30px;
   }
   .right h2{
-    font-size: 36px;
+    font-size: 30px;
   }
   .imageWrap{
-    max-width: 220px;
+    max-width: 450px;
   }
 }
 /* 992 */
-@media only screen and (min-width: 992px) and (max-width: 1199px){
+@media only screen and (min-width: 768px) and (max-width: 1199px){
   .left {
     padding-inline: 20px;
   }
-  .mainTitle {
-    font-size: 24px;
+  .left, .right{
+    flex-direction: column;
+  }
+  .mainTitle, .right h2{
+    font-size: 30px;
+  }
+  .mainTitle br{
+    display: none;
   }
   .rightContent{
-    padding-left: 20px;
+    padding: 20px 20px 0px;
   }
-  .right h2{
-    font-size: 26px;
+  .imageWrap{
+    max-width: 100%;
+  }
+  .qrTable{
+    width: 100%;
   }
 }
 /* 768px */
@@ -190,42 +227,37 @@
     justify-content: space-between;
     padding-block: 30px;
   }
-  .imageWrap{
-    max-width: 320px;
-  }
 }
 /* 576px */
 @media only screen and (max-width: 767px){
   .left{
     padding: 20px 16px;
   }
-  .smallTitle{
-    font-size: 24px;
-  }
-  .mainTitle{
-    font-size: 24px;
-  }
   .right{
     min-height: auto;
+    flex-direction: column;
   }
   .rightContent{
-    padding-left: 16px;
+    padding: 20px 16px 0px;
   }
-  .right h2{
+  .mainTitle, .right h2{
     font-size: 30px;
   }
   .imageWrap{
-    max-width: 250px;
+    max-width: 100%;
+  }
+  .qrTable{
+    width: 260px;
   }
 }
 /* 480px */
 @media only screen and (max-width: 575px){ 
   .qrTable,
   .qrBox{
-    width: 150px;
+    width: 210px;
   }
-  .imageWrap{
-    max-width: 180px;
+  .mainTitle, .right h2{
+    font-size: 26px;
   }
 }
 /* 360px */
@@ -236,21 +268,12 @@
   .leftContent{
     width: 100%;
   }
-  .qrTable,
   .qrBox{
     width: auto;
     max-width: 200px;
   }
-  .rightContent {
-    padding-inline: 16px;
-    position: relative;
-  }
-  .imageWrap {
-    max-width: 220px;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    opacity: 0.25;
+  .qrTable{
+    width: 100%;
   }
   .donateBtn, .secondaryBtn {
     margin-top: 10px;

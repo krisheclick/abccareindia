@@ -39,7 +39,7 @@ export default function HomeDescription({ aboutSection, country_code, projectNum
         <section className={Styles.posterAd}>
             <Container fluid className='px-0'>
                 <Row className="g-0 align-items-stretch">
-                    <Col lg={6} className={Styles.left}>
+                    <Col md={6} className={Styles.left}>
                         {!hasLoading && aboutSection ? (
                             <>
                                 <div className={Styles.leftContent}>
@@ -80,19 +80,19 @@ export default function HomeDescription({ aboutSection, country_code, projectNum
                                             <tr>
                                                 <td>
                                                     <strong>Organization A/C No</strong>
-                                                    <p>40099009078 (FCRA Savings Account)</p>
+                                                    <p>100061619259 (Savings Account)</p>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
                                                     <strong>Bank Name</strong>
-                                                    <p>State Bank of India</p>
+                                                    <p>IndusInd Bank Ltd</p>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
                                                     <strong>IFSC Code</strong>
-                                                    <p>SBIN000691</p>
+                                                    <p>INDB0000299</p>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -122,7 +122,7 @@ export default function HomeDescription({ aboutSection, country_code, projectNum
 
                     </Col>
 
-                    <Col lg={6} className={Styles.right}>
+                    <Col md={6} className={Styles.right}>
                         {!hasLoading && aboutSection ? (
                             <>
                                 <div className={Styles.rightContent}>

@@ -8,7 +8,7 @@
 }
 .accessibility_icon{
     /* background: linear-gradient(215deg, #3d3f82 40%, #ebc436 65%, #000 100%); */
-    background: #686869;
+    background: rgba(0,0,0, .85);
     padding: 6px;
     cursor: pointer;
     border-radius: 0px 4px 4px 0px;
