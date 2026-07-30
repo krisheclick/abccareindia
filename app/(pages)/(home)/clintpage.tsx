@@ -106,6 +106,10 @@ interface UrgentNeedsSectionData {
     urgent_button?: string;
     urgent_button_link?: string;
 }
+interface UrgentNeedItem {
+    urgent_need_title?: string;
+    urgent_need_slug?: string;
+}
 interface CounterData {
     our_reach_counter_number?: number;
     our_reach_counter_icon?: string;
@@ -154,6 +158,7 @@ interface PageData {
     success_story?: Success_story[] | null;
     projects?: ProjectItem[] | null;
     charitable_message?: CharitableMessageItem[];
+    urgent_needs?: UrgentNeedItem[] | null;
     our_reach?: OurReachItem[];
     testimonial?: Testimonial[];
     donor_brand?: DonorBrand[];
@@ -212,6 +217,7 @@ const Homeclintpage = () => {
 
             <UrgentNeeds
                 sectionData={customFields?.group_name['urgent-needs-section']}
+                urgentNeeds={data?.urgent_needs}
             />
             <Ourreach
                 sectionData={customFields?.group_name['our-reach-section']}

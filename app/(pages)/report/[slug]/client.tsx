@@ -63,7 +63,6 @@ const SingleReport = ({ permalink }: { permalink: string }) => {
     }, [permalink, setInnerBanner, setHasLoading]);
 
     const report = safeParse<Report[]>(data?.report_data?.report_file);
-    const baseUrl = process.env.NEXT_PUBLIC_ENV_URL || "";
     if (notFound) {
         return <NotFound />
     }
@@ -101,8 +100,7 @@ const SingleReport = ({ permalink }: { permalink: string }) => {
                                                         <CardTitle as="div" className={Styles.cardTitle}>{item.title}</CardTitle>
                                                         {item.file && (
                                                             <Link
-                                                                href={`${baseUrl}/report/${item.file}`}
-                                                                target="_blank"
+                                                                href={`/api/report-download/${encodeURIComponent(item.file)}`}
                                                                 download=""
                                                                 className={Styles.fileDownload}
                                                             >

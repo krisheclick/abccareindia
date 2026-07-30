@@ -51,6 +51,13 @@
 .urgentNeeds_content li:last-child{
     border: none;
 }
+.urgentNeeds_content li a{
+    color: inherit;
+    transition: color 300ms ease-in-out;
+}
+.urgentNeeds_content li a:hover{
+    color: #2B316E;
+}
 .urgentNeeds_content li::before{
     content: '\f00c';
     font: 400 9px / 1 "FontAwesome";

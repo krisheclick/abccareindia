@@ -12,14 +12,19 @@ interface UrgentNeedsSectionData {
     urgent_button?: string;
     urgent_button_link?: string;
 }
+interface UrgentNeedItem {
+    urgent_need_title?: string;
+    urgent_need_slug?: string;
+}
 
 interface UrgentNeedsProps {
     sectionData: UrgentNeedsSectionData | undefined;
+    urgentNeeds?: UrgentNeedItem[] | null;
 }
 
 const mediaBaseURL = process.env.NEXT_PUBLIC_MEDIA_URL;
 
-const UrgentNeeds = ({ sectionData }: UrgentNeedsProps) => {
+const UrgentNeeds = ({ sectionData, urgentNeeds }: UrgentNeedsProps) => {
     const {commonData} = useGlobalContext();
     if (!sectionData) return null;
 
@@ -48,8 +53,18 @@ const UrgentNeeds = ({ sectionData }: UrgentNeedsProps) => {
                                     }}
                                 />
                             )}
-                            {sectionData.urgent_needs_description && (
-                                <div 
+                            {urgentNeeds && urgentNeeds.length > 0 ? (
+                                <ul>
+                                    {urgentNeeds.map((item, index) => (
+                                        <li key={`${item.urgent_need_slug || "urgent-need"}-${index}`}>
+                                            <Link href={`/urgent-needs/${item.urgent_need_slug || ""}`}>
+                                                {item.urgent_need_title}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            ) : sectionData.urgent_needs_description && (
+                                <div
                                     dangerouslySetInnerHTML={{
                                         __html: sectionData.urgent_needs_description,
                                     }}
@@ -57,7 +72,7 @@ const UrgentNeeds = ({ sectionData }: UrgentNeedsProps) => {
                             )}
                             {sectionData.urgent_button && (
                                 <Link 
-                                    href={sectionData.urgent_button_link ?? ''} 
+                                    href="/urgent-needs"
                                     className={Styles.button}
                                     aria-label="About Page Button"
                                 >
