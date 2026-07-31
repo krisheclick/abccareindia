@@ -35,6 +35,12 @@
     line-height: 1.8;
     font-weight: 600;
 }
+.ourReachImage{
+    margin-left: calc(100% - 48vw);
+}
+.modalBody .ourReachImage{
+    margin: 0;
+}
 .ourReachImageLeftCard {
     background: #f9f9f9;
     border-radius: 16px;
@@ -110,19 +116,19 @@
     color: #ffffff;
 }
 .ourReachCounters {
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    --size: 150px;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 24px;
     width: 100%;
     display: grid;
 }
 .ourReachCounter {
     text-align: center;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
     text-wrap: balance;
 }
 .counterCircle {
-    --size: 150px;
     --text: #fff;
     --bg: #F2F2F2;
     --bg: #6AC898;
@@ -174,10 +180,23 @@
     text-align: center;
     margin: 50px 0px 0px;
 }
+@media only screen and (max-width: 1600px){
+    .ourReachImage{
+        margin-left: calc(100% - 58vw);
+    }
+}
 /* 1200px */
 @media only screen and (max-width: 1399px){
     .ourReachSection{
         padding-block: 70px;
+    }
+    .ourReachImage{
+        margin-left: calc(100% - 58vw);
+    }
+}
+@media only screen and (max-width: 1199px){
+    .ourReachImage{
+        margin: 0;
     }
 }
 /* 768px */

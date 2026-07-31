@@ -101,10 +101,10 @@ const Ourreach = ({ sectionData }: SectionDataProps) => {
                         )}
                     </Stack>
                     <Row className={`rowGap gx-xxl-5 ${Styles.ourReach_wrapper}`}>
-                        <Col xl={7} xxl={6}>
+                        <Col xl={8} xxl={7}>
                             <Stack direction="horizontal" className={Styles.ourReachImage ?? ''}>
                                 {!hasLoading && reachItem?.our_reach_feature_image ? (
-                                    <div className={Styles.ourReachImage}>
+                                    <div className={Styles.ourReachImageIn}>
                                         <WestBengalMap/>
                                         {/* <Image
                                             src={`${mediaUrl}${reachItem.our_reach_feature_image}`}
@@ -152,7 +152,7 @@ const Ourreach = ({ sectionData }: SectionDataProps) => {
                             </Stack>
                         </Col>
                         {categoryData?.length && (
-                            <Col xl={5} xxl={6}>
+                            <Col xl={4} xxl={5}>
                                 <Stack direction="horizontal" className={Styles.ourReachRightCard ?? ''}>
                                     <div className={Styles.ourReachCounters}>
                                         {categoryData?.map((item, index) => (
@@ -186,7 +186,7 @@ const Ourreach = ({ sectionData }: SectionDataProps) => {
                     <ModalTitle className="fw-bold"></ModalTitle>
                 </ModalHeader>
 
-                <ModalBody>
+                <ModalBody className={Styles.modalBody}>
                     <Stack
                         direction="horizontal"
                         gap={3}

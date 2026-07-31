@@ -273,7 +273,7 @@ export default function WestBengalMap() {
                     const customArea = area as Area;
                     handleClick(customArea);
                 }}
-                parentWidth={350} />
+                parentWidth={480} />
 
             <div style={{ marginTop: 20 }}>
                 Selected District:

@@ -561,6 +561,10 @@ label{
 .form-control[readonly] {
   cursor: not-allowed;
 }
+.selctDistrict{
+  text-align: center;
+  margin-top: 20px;
+}
 /* 1400px */
 @media only screen and (max-width: 1600px){
   .cmn_white_heading.big, .cmn_black_heading.big {
