@@ -23,7 +23,7 @@ interface ProjectCategory {
 interface LinkObject {
     address_line_1?: string;
     address_line_2?: string;
-    district?: string[];
+    district?: string[] | string;
 }
 interface ProjectItem {
     project_title?: string;
@@ -32,13 +32,42 @@ interface ProjectItem {
     project_feature_image?: string;
     project_button?: string;
     project_video_link?: string;
-    project_location?: LinkObject | null;
+    project_location?: LinkObject | string | null;
     Category?: ProjectCategory;
 }
 interface PaginationData {
     totalPages: number;
     currentPage: number;
 }
+
+const parseProjectLocation = (value: ProjectItem["project_location"]): LinkObject | null => {
+    if (!value) return null;
+    if (typeof value !== "string") return value;
+
+    try {
+        const parsed = JSON.parse(value);
+        return typeof parsed === "string" ? JSON.parse(parsed) : parsed;
+    } catch (error) {
+        console.log("Project location parse error:", (error as Error).message);
+        return null;
+    }
+};
+
+const getLocationItems = (location: LinkObject | null): string[] => {
+    if (!location) return [];
+
+    const districts = Array.isArray(location.district)
+        ? location.district
+        : location.district
+            ? [location.district]
+            : [];
+
+    const addressItems = [location.address_line_1, location.address_line_2].filter(
+        (value): value is string => typeof value === "string" && value.trim() !== ""
+    );
+
+    return [...districts, ...addressItems].filter((value) => value.trim() !== "");
+};
 
 const ProjectList = () => {
 
@@ -187,9 +216,8 @@ const ProjectList = () => {
                 {projectsData && projectsData.length > 0 ? (
                     <Stack className={Styles.projectList}>
                         {projectsData.map((project, index) => {
-                            const location = project.project_location;
-                            const districts = Array.isArray(location?.district) ? location.district : location?.district ? [location.district] : [];
-                            // const location = safeParse<LinkObject>(project.project_location);
+                            const location = parseProjectLocation(project.project_location);
+                            const locationItems = getLocationItems(location);
                             return (
                                 <Stack key={index} className={Styles.project_wrapper}>
                                     <Row className={`gx-lg-0 rowGap ${Styles.row}`}>
@@ -222,9 +250,9 @@ const ProjectList = () => {
                                                         </div>
                                                         <div>{location?.text || "No location available"}</div>
                                                     </div> */}
-                                                    {districts.length > 0 ? (
+                                                    {locationItems.length > 0 ? (
                                                         <div className="locationBoxWrapper">
-                                                            {districts.map((value, index) => (
+                                                            {locationItems.map((value, index) => (
                                                                  <div className={Styles.locationBox} key={index}>
                                                                      <span>
                                                                          <FontAwesomeIcon icon={faLocationDot} />
