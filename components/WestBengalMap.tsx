@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Modal } from 'react-bootstrap';
 // import imageMapResize from 'image-map-resizer';
 import ImageMapper, { MapArea } from 'react-img-mapper';
@@ -26,6 +26,7 @@ export default function WestBengalMap() {
     const [districtData, setDistrictData] = useState<Project[] | null>(null);
     const [ProjectData, setProjectData] = useState<Project[] | null>(null);
     const [loading, setLoading] = useState(false);
+    const [mapWidth, setMapWidth] = useState<number>(320);
 
     // const url = 'https://www.abcindia.org/templates/images/westbengal_map.png';
     // const url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/WestBengalDistricts_numbered.svg/500px-WestBengalDistricts_numbered.svg.png';
@@ -250,6 +251,31 @@ export default function WestBengalMap() {
         setShowModal(false);
     }
 
+    useEffect(() => {
+        // const updateMapWidth = () => {
+        //     setMapWidth(window.innerWidth > 480 ? 480 : 320);
+        // };
+        const updateMapWidth = () => {
+            const screenWidth = window.innerWidth;
+
+            if (screenWidth > 1600) {
+                setMapWidth(580);
+            } else if (screenWidth < 480) {
+                setMapWidth(320);
+            } else {
+                setMapWidth(480);
+            }
+        };
+
+        updateMapWidth();
+
+        window.addEventListener('resize', updateMapWidth);
+
+        return () => {
+            window.removeEventListener('resize', updateMapWidth);
+        };
+    }, []);
+
     return (
         <>
             <ImageMapper
@@ -273,9 +299,9 @@ export default function WestBengalMap() {
                     const customArea = area as Area;
                     handleClick(customArea);
                 }}
-                parentWidth={480} />
+                parentWidth={mapWidth} />
 
-            <div style={{ marginTop: 20 }}>
+            <div className='selectDistrict'>
                 Selected District:
 
                 <strong>

@@ -561,9 +561,14 @@ label{
 .form-control[readonly] {
   cursor: not-allowed;
 }
-.selctDistrict{
+.selectDistrict{
   text-align: center;
   margin-top: 20px;
+}
+.img-mapper-img,
+.img-mapper-canvas,
+.img-mapper-map {
+  max-width: 100% !important;
 }
 /* 1400px */
 @media only screen and (max-width: 1600px){
