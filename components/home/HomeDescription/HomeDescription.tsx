@@ -80,19 +80,19 @@ export default function HomeDescription({ aboutSection, country_code, projectNum
                                             <tr>
                                                 <td>
                                                     <strong>Organization A/C No</strong>
-                                                    <p>100061619259 (Savings Account)</p>
+                                                    <p>40099009078 (FCRA Savings Account)</p>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
                                                     <strong>Bank Name</strong>
-                                                    <p>IndusInd Bank Ltd</p>
+                                                    <p>State Bank Of India</p>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
                                                     <strong>IFSC Code</strong>
-                                                    <p>INDB0000299</p>
+                                                    <p>SBININBB 104</p>
                                                 </td>
                                             </tr>
                                         </tbody>
