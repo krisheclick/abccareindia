@@ -34,6 +34,8 @@ interface LinkObject {
 interface ProjectDataType {
     project_title?: string;
     project_subtitle?: string;
+    project_heading?: string | null;
+    project_banner_title?: string | null;
     project_slug?: string;
     project_short_description?: string;
     project_feature_image?: string;
@@ -46,6 +48,10 @@ interface ProjectData {
     project?: ProjectDataType;
     relatedProjects?: ProjectDataType[] | null;
 }
+
+const getFirstAvailableText = (...values: Array<string | null | undefined>) =>
+    values.find((value) => typeof value === "string" && value.trim() !== "") ?? "";
+
 const SingleProject = ({ permalink }: { permalink: string }) => {
     const { hasLoading, setHasLoading, setInnerBanner, mediaUrl } = useGlobalContext();
     const [notFound, setNotFound] = useState<boolean>(false)
@@ -82,9 +88,15 @@ const SingleProject = ({ permalink }: { permalink: string }) => {
                 }
     
                 setData(response_data ?? undefined);
+                const project = response_data?.project;
                 setInnerBanner({
-                    page_name: response_data?.project?.project_title,
-                    page_feature_image: response_data?.project?.project_feature_image
+                    page_name: getFirstAvailableText(
+                        project?.project_banner_title,
+                        project?.project_heading,
+                        project?.project_title
+                    ),
+                    page_breadcrumb_name: project?.project_title,
+                    page_feature_image: project?.project_feature_image
                 });
             } catch (err: unknown) {
                 console.log('Projects Details API data is something wrong: ', (err as Error).message);
@@ -101,6 +113,7 @@ const SingleProject = ({ permalink }: { permalink: string }) => {
         return <NotFound />
     }
     const pageData = data?.project;
+    const projectHeading = getFirstAvailableText(pageData?.project_heading, pageData?.project_title);
     const gallery = safeParse<Gallery[]>(pageData?.project_gallery);
     // const location = JSON.parse(JSON.parse(pageData?.project_location??null));
     const location: LinkObject | null = pageData?.project_location || null;
@@ -118,7 +131,7 @@ const SingleProject = ({ permalink }: { permalink: string }) => {
                 <Stack className={`pb-0 ${Styles.section}`}>
                     <Container>
                         <Stack className={`inner_mdlprheading ${Styles.section_content ?? ''}`}>
-                            <h1 className={`cmn_black_heading ${Styles.details_title ?? ''}`}>{pageData?.project_title}</h1>
+                            <h1 className={`cmn_black_heading ${Styles.details_title ?? ''}`}>{projectHeading}</h1>
                             {/* <div
                                 className={`paragraph ${Styles.paragraph ?? ''}`}
                                 dangerouslySetInnerHTML={{ __html: pageData?.project_short_description || '' }}

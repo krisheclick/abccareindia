@@ -27,6 +27,8 @@ interface Gallery {
 }
 interface UrgentNeedDataType {
     urgent_need_title?: string;
+    urgent_need_heading?: string | null;
+    urgent_need_banner_title?: string | null;
     urgent_need_slug?: string;
     urgent_need_feature_image?: string;
     urgent_need_short_description?: string;
@@ -38,6 +40,9 @@ interface UrgentNeedData {
     related_urgent_need_title?: string;
     relatedUrgentNeeds?: UrgentNeedDataType[] | null;
 }
+
+const getFirstAvailableText = (...values: Array<string | null | undefined>) =>
+    values.find((value) => typeof value === "string" && value.trim() !== "") ?? "";
 
 const getUrgentNeedFromResponse = (responseData: unknown): UrgentNeedDataType | undefined => {
     if (!responseData || typeof responseData !== "object") return undefined;
@@ -168,7 +173,12 @@ const SingleUrgentNeed = ({ permalink }: { permalink: string }) => {
                 const urgentNeed = getUrgentNeedFromResponse(response_data);
                 setData({ ...response_data, urgent_need: urgentNeed });
                 setInnerBanner({
-                    page_name: urgentNeed?.urgent_need_title,
+                    page_name: getFirstAvailableText(
+                        urgentNeed?.urgent_need_banner_title,
+                        urgentNeed?.urgent_need_heading,
+                        urgentNeed?.urgent_need_title
+                    ),
+                    page_breadcrumb_name: urgentNeed?.urgent_need_title,
                     page_feature_image: urgentNeed?.urgent_need_feature_image,
                 });
             } catch (err: unknown) {
@@ -188,6 +198,7 @@ const SingleUrgentNeed = ({ permalink }: { permalink: string }) => {
     }
 
     const pageData = data?.urgent_need;
+    const urgentNeedHeading = getFirstAvailableText(pageData?.urgent_need_heading, pageData?.urgent_need_title);
     const gallery = safeParse<Gallery[]>(pageData?.urgent_need_gallery);
     const galleryImages = gallery?.filter((item) => item.thumb_name || item.file_name) ?? [];
 
@@ -205,7 +216,7 @@ const SingleUrgentNeed = ({ permalink }: { permalink: string }) => {
                 <Container>
                     <Stack className={`inner_mdlprheading ${Styles.section_content ?? ""}`}>
                         <h1 className={`cmn_black_heading ${Styles.details_title ?? ""}`}>
-                            {pageData?.urgent_need_title}
+                            {urgentNeedHeading}
                         </h1>
                         {pageData?.urgent_need_short_description && (
                             <div

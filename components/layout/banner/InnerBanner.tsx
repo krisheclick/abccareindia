@@ -16,6 +16,7 @@ interface InnerBannerProps {
 const InnerBanner = ({ breadcrumb }: InnerBannerProps) => {
     const { hasLoading, mediaUrl, innerBanner,} = useGlobalContext();
     const title = innerBanner?.page_name ?? '';
+    const breadcrumbTitle = innerBanner?.page_breadcrumb_name ?? innerBanner?.page_name;
     const words = title.trim().split(/\s+/);
     const lastWord = words.pop();
     const firstPart = words.join(' ');
@@ -54,7 +55,7 @@ const InnerBanner = ({ breadcrumb }: InnerBannerProps) => {
                                 <li key={index}><Link href={value?.breadcrumb_slug || ''}>{value.breadcrumb_item}</Link></li>
                             ))
                         )}
-                        <li>{innerBanner?.page_name}</li>
+                        <li>{breadcrumbTitle}</li>
                     </ul>
                 </Container>
             </div>

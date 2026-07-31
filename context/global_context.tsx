@@ -57,6 +57,7 @@ interface setCommonDataType {
 }
 interface BannerData {
     page_name?: string;
+    page_breadcrumb_name?: string;
     page_slug?: string;
     page_feature_image?: string;
 }
