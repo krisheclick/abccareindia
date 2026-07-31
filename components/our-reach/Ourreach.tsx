@@ -100,7 +100,7 @@ const Ourreach = ({ sectionData }: SectionDataProps) => {
                             <p className="short_desc_inherit">{sectionData.our_reach_description}</p>
                         )}
                     </Stack>
-                    <Row className={`rowGap gx-xxl-5 ${Styles.ourReach_wrapper}`}>
+                    <Row className={`rowGap align-items-center gx-xxl-5 ${Styles.ourReach_wrapper ?? ''}`}>
                         <Col xl={8} xxl={7}>
                             <Stack direction="horizontal" className={Styles.ourReachImage ?? ''}>
                                 {!hasLoading && reachItem?.our_reach_feature_image ? (
@@ -122,7 +122,7 @@ const Ourreach = ({ sectionData }: SectionDataProps) => {
                                 {!hasLoading && projects && projects.length > 0 ? (
                                     <div className={Styles.ourReachDescription}>
                                         <ul>
-                                            {projects.slice(0, 10).map((value, index) => (
+                                            {projects.slice(0, 12).map((value, index) => (
                                                 <li key={index} data-color={value.data_color}>
                                                     <Link href={`${appLink}/our-projects/${value.project_slug}`}>{value.project_title}</Link>
                                                 </li>
