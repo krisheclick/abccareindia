@@ -29,7 +29,7 @@ interface Gallery {
 interface LinkObject {
     address_line_1?: string;
     address_line_2?: string;
-    district?: string[];
+    district?: string[] | string;
 }
 interface ProjectDataType {
     project_title?: string;
@@ -41,7 +41,7 @@ interface ProjectDataType {
     project_feature_image?: string;
     project_description?: string;
     project_video_link?: string;
-    project_location?: LinkObject | null;
+    project_location?: LinkObject | string | null;
     project_gallery?: Gallery[] | null;
 }
 interface ProjectData {
@@ -51,6 +51,35 @@ interface ProjectData {
 
 const getFirstAvailableText = (...values: Array<string | null | undefined>) =>
     values.find((value) => typeof value === "string" && value.trim() !== "") ?? "";
+
+const parseProjectLocation = (value: ProjectDataType["project_location"]): LinkObject | null => {
+    if (!value) return null;
+    if (typeof value !== "string") return value;
+
+    try {
+        const parsed = JSON.parse(value);
+        return typeof parsed === "string" ? JSON.parse(parsed) : parsed;
+    } catch (error) {
+        console.log("Project location parse error:", (error as Error).message);
+        return null;
+    }
+};
+
+const getLocationItems = (location: LinkObject | null): string[] => {
+    if (!location) return [];
+
+    const districts = Array.isArray(location.district)
+        ? location.district
+        : location.district
+            ? [location.district]
+            : [];
+
+    const addressItems = [location.address_line_1, location.address_line_2].filter(
+        (value): value is string => typeof value === "string" && value.trim() !== ""
+    );
+
+    return [...districts, ...addressItems].filter((value) => value.trim() !== "");
+};
 
 const SingleProject = ({ permalink }: { permalink: string }) => {
     const { hasLoading, setHasLoading, setInnerBanner, mediaUrl } = useGlobalContext();
@@ -115,9 +144,8 @@ const SingleProject = ({ permalink }: { permalink: string }) => {
     const pageData = data?.project;
     const projectHeading = getFirstAvailableText(pageData?.project_heading, pageData?.project_title);
     const gallery = safeParse<Gallery[]>(pageData?.project_gallery);
-    // const location = JSON.parse(JSON.parse(pageData?.project_location??null));
-    const location: LinkObject | null = pageData?.project_location || null;
-    const districts = Array.isArray(location?.district) ? location.district : location?.district ? [location.district] : [];
+    const location = parseProjectLocation(pageData?.project_location);
+    const locationItems = getLocationItems(location);
 
     return (
         <>
@@ -143,9 +171,9 @@ const SingleProject = ({ permalink }: { permalink: string }) => {
                                     <div>{location?.address_line_1 || "No location available"}</div>
                                 </div>
                             )} */}
-                            {districts.length > 0 ? (
+                            {locationItems.length > 0 ? (
                                 <div className="locationBoxWrapper justify-content-center mt-xl-2">
-                                    {districts.map((value, index) => (
+                                    {locationItems.map((value, index) => (
                                             <div className={Styles.locationBox} key={index}>
                                                 <span>
                                                     <FontAwesomeIcon icon={faLocationDot} />

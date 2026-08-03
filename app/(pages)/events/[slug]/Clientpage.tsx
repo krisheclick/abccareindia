@@ -13,6 +13,8 @@ import Events from "@/components/Event/AllEvent/Events";
 
 interface EventsData {
     event_title?: string;
+    event_heading?: string | null;
+    event_banner_title?: string | null;
     event_page_title?: string;
     event_slug?: string;
     event_feature_image?: string;
@@ -25,6 +27,9 @@ interface EventsData {
 interface PageData {
     event?: EventsData | null;
 }
+
+const getFirstAvailableText = (...values: Array<string | null | undefined>) =>
+    values.find((value) => typeof value === "string" && value.trim() !== "") ?? "";
 
 const SingleClientpage = ({ permalink }: { permalink: string }) => {
     const { setHasLoading, setInnerBanner } = useGlobalContext();
@@ -49,9 +54,15 @@ const SingleClientpage = ({ permalink }: { permalink: string }) => {
                 }
     
                 setData(response_data ?? null);
+                const event = response_data?.event;
                 setInnerBanner({
-                    page_name: response_data?.event?.event_title,
-                    page_feature_image: response_data?.event?.event_banner_image,
+                    page_name: getFirstAvailableText(
+                        event?.event_banner_title,
+                        event?.event_heading,
+                        event?.event_title
+                    ),
+                    page_breadcrumb_name: event?.event_title,
+                    page_feature_image: event?.event_banner_image,
                 });
     
                 window.scrollTo({ top: 0, behavior: "smooth" });
@@ -70,7 +81,7 @@ const SingleClientpage = ({ permalink }: { permalink: string }) => {
     }
 
     const pageData = data?.event;
-    const page_title = pageData?.event_page_title ? pageData?.event_page_title : pageData?.event_title;
+    const page_title = getFirstAvailableText(pageData?.event_heading, pageData?.event_page_title, pageData?.event_title);
     // const customFields = safeParse<PageCustomField>(pageData?.pages_custom_field);
     // const projectsData = customFields?.group_name?.["event-project-section"];
 
