@@ -4,7 +4,6 @@ import Styles from "./style.module.css";
 import { Col, Container, Row } from 'react-bootstrap';
 import CustomImage from '@/utlis/imagefunction';
 import { useGlobalContext } from '@/context/global_context';
-import { useWOW } from '@moondev/next-wow';
 
 interface AboutInfo {
     aboutSection?: {

@@ -5,7 +5,6 @@ import { Col, Container, Row, Stack } from 'react-bootstrap';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightLong } from '@fortawesome/free-solid-svg-icons';
-import { useWOW } from '@moondev/next-wow';
 
 const Donation = () => {
     const { commonData } = useGlobalContext();
