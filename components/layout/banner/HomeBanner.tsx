@@ -34,7 +34,6 @@ const HomeBanner = ({ banner }: { banner?: BannerItem | null }) => {
         }, 300);
     };
 
-    useWOW({ animateClass: "animate__animated" });
     
     const bannerImage =  banner?.banner_link && !hasLoading ? `${mediaUrl}${banner.banner_link}` : "/";
     return (

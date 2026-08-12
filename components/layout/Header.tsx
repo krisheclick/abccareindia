@@ -86,7 +86,6 @@ const Header = () => {
     }, []);
 
     const [openMenu, setOpenMenu] = useState<number | null>(null);
-    useWOW({ animateClass: "animate__animated" });
 
     // Navigation Mobile Menu
     const [show, setShow] = useState(false);

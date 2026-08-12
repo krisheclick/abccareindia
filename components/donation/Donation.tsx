@@ -8,7 +8,6 @@ import { faArrowRightLong } from '@fortawesome/free-solid-svg-icons';
 
 const Donation = () => {
     const { commonData } = useGlobalContext();
-    useWOW({ animateClass: "animate__animated" });
     return (
         <Stack as="section" className={`donation_section ${Styles.donation_section}`}>
             <Container>

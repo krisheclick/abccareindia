@@ -27,7 +27,6 @@ const mediaBaseURL = process.env.NEXT_PUBLIC_MEDIA_URL;
 
 export default function HomeDescription({ aboutSection, country_code, projectNumber}: AboutInfo) {
     const { hasLoading } = useGlobalContext();
-    useWOW({ animateClass: "animate__animated" });
     const formattedProjectNumber = projectNumber ? Number(projectNumber).toLocaleString("en-IN") : "";
     const aboutTitle = `${formattedProjectNumber ? `<span>${formattedProjectNumber}</span> ` : ''}${aboutSection?.about_title ?? ''}`;
 
