@@ -520,6 +520,7 @@ label{
 }
 .filter-bright .counterCircle{
 	background: #cdcdcd;
+  color: #000000;
 }
 .filter-bright .inner_mdlprheading{
 	border-color: #cbc6c6;

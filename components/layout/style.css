@@ -134,6 +134,7 @@
 .staticHeader .nav_wrapper {
 	position: static;
 	background: linear-gradient(215deg, #3d3f82 40%, #ebc436 65%, #000 100%);
+	background: rgba(0,0,0, .85);
 }
 .error-page{
   padding: 120px 0px;
