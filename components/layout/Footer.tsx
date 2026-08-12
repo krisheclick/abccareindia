@@ -83,7 +83,7 @@ const Footer = () => {
                                     <li><span>Head Office:</span><div dangerouslySetInnerHTML={{ __html: commonData?.site_footer_address || '', }} /></li>
                                     <li className='footer_phone_blocks'>
                                         <div className='footer_phone_box'>
-                                            <span>Landline Number</span>
+                                            <span>Landline Number:</span>
                                             <div>
                                                 {landlineNumber1 && <Link href={`tel:${landlineNumber1.replace(/\s+/g, '')}`}>{landlineNumber1}</Link>}
                                                 {landlineNumber2 && (
@@ -95,7 +95,7 @@ const Footer = () => {
                                             </div>
                                         </div>
                                         <div className='footer_phone_box'>
-                                            <span>Call Us At</span>
+                                            <span>Call Us At:</span>
                                             <div>
                                                 {callNumber1 && <Link href={`tel:${callNumber1.replace(/\s+/g, '')}`}>{callNumber1}</Link>}
                                                 {callNumber2 && (
