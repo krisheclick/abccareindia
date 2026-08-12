@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useGlobalContext } from '@/context/global_context';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Social from './Social';
 import './style.css';
 import { usePathname } from 'next/navigation';
@@ -11,6 +11,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
 import MenuLink from '@/utlis/custom_link';
 import ResponsiveHeader from './ResponsiveHeader';
+import 'animate.css';
+// import WOW from 'wowjs';
 
 interface MenuItem {
     url?: string;
@@ -22,6 +24,7 @@ const Header = () => {
     const appLink = process.env.NEXT_PUBLIC_ENV_URL || "";
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     const pathName = usePathname();
+    const wowInstance = useRef<{ init: () => void; sync: () => void } | null>(null);
 
     const { setHasLoading, hasLoading, setMediaUrl, mediaUrl, setCommonData, commonData, setProjectData, staticHeader, setLocationWiseData} = useGlobalContext();
     const [menuData, setMenuData] = useState<MenuItem[] | null>(null);
@@ -93,6 +96,30 @@ const Header = () => {
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
 
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            import('wowjs').then((module) => {
+                wowInstance.current = new module.WOW({
+                    live: false, 
+                    offset: 100, 
+                });
+
+                setTimeout(() => {
+                    wowInstance.current?.init();
+                }, 100);
+            });
+        }
+    }, []);
+
+    useEffect(() => {
+        if (!hasLoading && wowInstance.current) {
+            setTimeout(() => {
+                // Add the ?. operator here to safely invoke sync
+                wowInstance.current?.sync(); 
+            }, 150); 
+        }
+    }, [hasLoading, pathName]);
+
     return (
         <>
             <ResponsiveHeader
@@ -109,10 +136,10 @@ const Header = () => {
                             gap={1}
                             className="top_header_ds justify-content-between"
                         >
-                            <div className="top_header_donate wow animate__fadeInDown"
+                            <div className="top_header_donate wow animate__animated animate__fadeInDown"
                                 dangerouslySetInnerHTML={{ __html: commonData?.site_header_title ?? '' }}
                             />
-                            <Social className='wow animate__fadeInRight top_header_social' />
+                            <Social className='wow animate__animated animate__fadeInRight top_header_social' />
                         </Stack>
                     </Container>
                 </Stack>

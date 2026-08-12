@@ -41,9 +41,9 @@ export default function HomeDescription({ aboutSection, country_code, projectNum
                         {!hasLoading && aboutSection ? (
                             <>
                                 <div className={Styles.leftContent}>
-                                    <div className={`wow animate__lightSpeedInRight ${Styles.smallTitle}`}>{aboutSection?.about_subtitle}</div>
+                                    <div className={`wow animate__animated animate__lightSpeedInRight ${Styles.smallTitle}`}>{aboutSection?.about_subtitle}</div>
 
-                                    <h1 className={`wow animate__fadeInUp ${Styles.mainTitle}`}
+                                    <h1 className={`wow animate__animated animate__fadeInUp ${Styles.mainTitle}`}
                                         dangerouslySetInnerHTML={{
                                             __html: aboutTitle,
                                         }}
@@ -51,7 +51,7 @@ export default function HomeDescription({ aboutSection, country_code, projectNum
                                     {aboutSection?.about_left_button_text && (
                                         <Link
                                             href={aboutSection?.about_left_button_url ?? ''}
-                                            className={`wow animate__backInUp ${Styles.donateBtn}`}
+                                            className={`wow animate__animated animate__backInUp ${Styles.donateBtn}`}
                                             data-wow-delay="1s"
                                         >
                                             {aboutSection?.about_left_button_text}
@@ -63,7 +63,7 @@ export default function HomeDescription({ aboutSection, country_code, projectNum
                                         // src={`${mediaBaseURL}/uploads/page_image/${qrCode}`}
                                         src={`${mediaBaseURL}/uploads/page_image/${aboutSection?.about_left_image}`}
                                         alt="QR Code"
-                                        className={`wow animate__pulse ${Styles.qrBox}`}
+                                        className={`wow animate__animated animate__pulse ${Styles.qrBox}`}
                                         data-wow-delay="1.5s"
                                     />
                                 ) : (
@@ -128,12 +128,12 @@ export default function HomeDescription({ aboutSection, country_code, projectNum
                                         dangerouslySetInnerHTML={{
                                             __html: aboutSection?.about_right_description ?? '',
                                         }}
-                                        className='wow animate__slideInDown'
+                                        className='wow animate__animated animate__slideInDown'
                                     />
                                     {aboutSection?.about_right_button_text && (
                                         <Link
                                             href={aboutSection?.about_right_button_url ?? ''}
-                                            className={`wow animate__slideInUp ${Styles.secondaryBtn}`}
+                                            className={`wow animate__animated animate__slideInUp ${Styles.secondaryBtn}`}
                                         >
                                             {aboutSection?.about_right_button_text}
                                         </Link>
@@ -143,7 +143,7 @@ export default function HomeDescription({ aboutSection, country_code, projectNum
                                     <CustomImage
                                         src={`${mediaBaseURL}/uploads/page_image/${aboutSection?.about_right_image}`}
                                         alt="About Image"
-                                        className={`wow animate__slideInRight ${Styles.imageWrap}`}
+                                        className={`wow animate__animated animate__slideInRight ${Styles.imageWrap}`}
                                     />
                                 )}
                             </>

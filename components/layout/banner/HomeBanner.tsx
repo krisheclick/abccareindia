@@ -56,7 +56,7 @@ const HomeBanner = ({ banner }: { banner?: BannerItem | null }) => {
                         </figure>
                         <Stack className={Styles.bannertext}>
                             <Container>
-                                <div className="wow animate__fadeInRight" data-wow-delay="1s">
+                                <div className="wow animate__animated animate__fadeInRight" data-wow-delay="1s">
                                     <div className={`${Styles.inrbnrhead} ${Styles.homebnrhead}`}>
                                         <em
                                             dangerouslySetInnerHTML={{ __html: banner?.banner_name ?? "" }}
@@ -65,7 +65,7 @@ const HomeBanner = ({ banner }: { banner?: BannerItem | null }) => {
                                             <span
                                                 role="button"
                                                 onClick={() => handleOpenVideo(banner.banner_file_link ?? '')}
-                                                className={`wow animate__heartBeat ${Styles.playBtn}`}
+                                                className={`wow animate__animated animate__heartBeat ${Styles.playBtn}`}
                                                 data-wow-delay="2.5s"
                                                 aria-label="Video Play Button"
                                             >

@@ -107,7 +107,7 @@ const ResponsiveHeader = ({ title = '', menu = [], show, handleClose }: DataProp
                     <p>Menus not Found</p>
                 )}
             </Offcanvas.Body>
-            <Offcanvas.Header className="wow animate__fadeInUp responsive_social">
+            <Offcanvas.Header className="wow animate__animated animate__fadeInUp responsive_social">
                 <span>Follow On:</span>
                 <Social className='top_header_social' />
             </Offcanvas.Header>
