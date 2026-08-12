@@ -65,6 +65,10 @@ const Footer = () => {
     const innerLocation = (pathName === '/');
     const whatsappNumber = commonData?.site_contact_whatsapp_number ?? commonData?.site_contact_phone_1;
     const whatsappHref = whatsappNumber ? `https://wa.me/${whatsappNumber.replace(/\D/g, '')}` : '';
+    const landlineNumber1 = commonData?.site_contact_land_number_1 ?? commonData?.site_footer_phone_1;
+    const landlineNumber2 = commonData?.site_contact_land_number_2 ?? commonData?.site_footer_phone_2;
+    const callNumber1 = commonData?.site_contact_phone_1;
+    const callNumber2 = commonData?.site_contact_phone_2;
 
     return (
         <>
@@ -76,11 +80,31 @@ const Footer = () => {
                             <div className='ftr_cmnbx'>
                                 <div className='ftrcmnheading'>Contact Info</div>
                                 <ul className='ftr_cntcts'>
-                                    <li><span>Stores:</span><div dangerouslySetInnerHTML={{ __html: commonData?.site_footer_address || '', }} /></li>
-                                    <li>
-                                        <span>Phone:</span>
-                                        <div className="d-flex gap-1">
-                                            <Link href={`tel:${commonData?.site_footer_phone_1}`}>{commonData?.site_footer_phone_1}</Link> / <a href={`tel:${commonData?.site_footer_phone_2}`}>{commonData?.site_footer_phone_2}</a>
+                                    <li><span>Head Office:</span><div dangerouslySetInnerHTML={{ __html: commonData?.site_footer_address || '', }} /></li>
+                                    <li className='footer_phone_blocks'>
+                                        <div className='footer_phone_box'>
+                                            <span>Landline Number</span>
+                                            <div>
+                                                {landlineNumber1 && <Link href={`tel:${landlineNumber1.replace(/\s+/g, '')}`}>{landlineNumber1}</Link>}
+                                                {landlineNumber2 && (
+                                                    <>
+                                                        {' / '}
+                                                        <Link href={`tel:${landlineNumber2.replace(/\s+/g, '')}`}>{landlineNumber2}</Link>
+                                                    </>
+                                                )}
+                                            </div>
+                                        </div>
+                                        <div className='footer_phone_box'>
+                                            <span>Call Us At</span>
+                                            <div>
+                                                {callNumber1 && <Link href={`tel:${callNumber1.replace(/\s+/g, '')}`}>{callNumber1}</Link>}
+                                                {callNumber2 && (
+                                                    <>
+                                                        {' / '}
+                                                        <Link href={`tel:${callNumber2.replace(/\s+/g, '')}`}>{callNumber2}</Link>
+                                                    </>
+                                                )}
+                                            </div>
                                         </div>
                                     </li>
                                     <li><Link href={`mailto:${commonData?.site_footer_email}`}><span>Email:</span>{commonData?.site_footer_email}</Link></li>
