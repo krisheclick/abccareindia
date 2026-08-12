@@ -6,7 +6,6 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import { normalizeYouTubeUrl } from '@/utlis/videoUrl';
 import { useGlobalContext } from '@/context/global_context';
-import { useWOW } from "@moondev/next-wow";
 import Styles from "./style.module.css";
 import Image from 'next/image';
 

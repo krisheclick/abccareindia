@@ -10,7 +10,6 @@ import { Container, Stack } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
 import MenuLink from '@/utlis/custom_link';
-import { useWOW } from "@moondev/next-wow";
 import ResponsiveHeader from './ResponsiveHeader';
 
 interface MenuItem {
