@@ -1,5 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'swiper/css';
+import 'swiper/css/autoplay';
+import 'swiper/css/free-mode';
+import 'swiper/css/navigation';
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import AccessibilityTool from "@/components/AccessibilityTool";

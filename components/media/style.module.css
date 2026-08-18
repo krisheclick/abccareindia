@@ -1,0 +1,62 @@
+.gallery {
+    padding: 64px 0;
+}
+.item {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: 14px;
+    background: #eef1f4;
+    box-shadow: 0 10px 30px rgb(20 38 63 / 10%);
+}
+.item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 350ms ease;
+}
+.overlay {
+    position: absolute;
+    inset: auto 0 0;
+    padding: 40px 18px 16px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    opacity: 0;
+    transform: translateY(8px);
+    background: linear-gradient(transparent, rgb(0 0 0 / 72%));
+    transition: opacity 250ms ease, transform 250ms ease;
+}
+
+.item:hover img {
+    transform: scale(1.035);
+}
+
+.item:hover .overlay,
+.item:focus-visible .overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.item:focus-visible {
+    outline: 3px solid #f6b800;
+    outline-offset: 3px;
+}
+
+.skeletonItem {
+    width: 100%;
+    border-radius: 14px;
+}
+
+.empty {
+    margin: 0;
+    padding: 64px 16px;
+    color: #68727d;
+    text-align: center;
+}
+
+@media (max-width: 575px) {
+    .gallery {
+        padding: 40px 0;
+    }
+}

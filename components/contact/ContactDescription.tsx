@@ -137,8 +137,11 @@ export default function ContactDescription({ page_short_description, page_conten
 
                             <div className={styles.link_contact_text}>
                                 {address && (
-                                    <a
-                                        href={address_link ?? "#"}
+                                    // <a
+                                    //     href={address_link ?? "#"}
+                                    //     dangerouslySetInnerHTML={{ __html: address }}
+                                    // />
+                                    <p
                                         dangerouslySetInnerHTML={{ __html: address }}
                                     />
                                 )}

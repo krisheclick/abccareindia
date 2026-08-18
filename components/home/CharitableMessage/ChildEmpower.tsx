@@ -1,13 +1,9 @@
 "use client";
 import { Card, CardBody, Container, Modal, ModalBody, ModalHeader, ModalTitle, Stack } from 'react-bootstrap';
-import 'swiper/css';
-import 'swiper/css/free-mode';
-import 'swiper/css/navigation';
 import Styles from './style.module.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRightLong, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { Autoplay, FreeMode, Navigation } from 'swiper/modules';
 import { useRef, useState } from 'react';
 import type { Swiper as SwiperType } from 'swiper';

@@ -1,14 +1,8 @@
 'use client';
 
 
-import 'swiper/css';
-import 'swiper/css/free-mode';
-import 'swiper/css/navigation';
 import CustomImage from '@/utlis/imagefunction';
 import { Card, Container, Stack } from 'react-bootstrap';
-import 'swiper/css';
-import 'swiper/css/free-mode';
-import 'swiper/css/navigation';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';

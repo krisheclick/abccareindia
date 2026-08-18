@@ -14,9 +14,6 @@ import { Autoplay, FreeMode, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
 import { safeParse } from "@/utlis/safe_parse";
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/navigation";
 import CustomImage from "@/utlis/imagefunction";
 
 interface Gallery {

@@ -1,9 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import 'swiper/css';
-import 'swiper/css/free-mode';
-import 'swiper/css/navigation';
 import Styles from "./style.module.css";
 import { Card, CardBody, CardTitle, Col, Container, Modal, Row, Stack } from 'react-bootstrap';
 import { Swiper, SwiperSlide } from 'swiper/react';

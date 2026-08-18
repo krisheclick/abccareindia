@@ -1,9 +1,6 @@
 'use client';
 
 import { Col, Container, Modal, Row, Stack } from 'react-bootstrap';
-import 'swiper/css';
-import 'swiper/css/free-mode';
-import 'swiper/css/navigation';
 import Styles from "./style.module.css"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import type { Swiper as SwiperType } from 'swiper';
@@ -14,6 +11,7 @@ import { FreeMode, Navigation } from 'swiper/modules';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight, faPlay } from '@fortawesome/free-solid-svg-icons';
 import { useGlobalContext } from '@/context/global_context';
+import Image from 'next/image';
 
 interface MediaData {
     file_name?: string;
@@ -184,11 +182,17 @@ const SuccessStory = ({ pageData, data }: Success_story_Data) => {
                                             {item.thumb_name && (
                                                 
                                                 <Stack className='position-relative'>
-                                                    <CustomImage
-                                                        src={`${mediaUrl}${item?.thumb_name}`}
-                                                        alt={`Success Story ${index + 1}`}
-                                                        className={Styles.video_poster}
-                                                    />
+                                                    <figure className={`custom_image fixedImage ${Styles.video_poster ?? ''}`} >
+                                                        <Image
+                                                            src={`${mediaUrl}${item?.thumb_name}`}
+                                                            alt={`Success Story ${index + 1}`}
+                                                            fill
+                                                            onError={(e) => {
+                                                                e.currentTarget.onerror = null;
+                                                                e.currentTarget.src = "/assets/images/noimage.webp";
+                                                            }}
+                                                        />
+                                                    </figure>
                                                     {item?.media_link ?(
                                                         <>
                                                             <span
