@@ -76,7 +76,7 @@ const Clientpage = ({ page }: Props) => {
                                 __html: projectsData?.events_title ?? "",
                             }}
                         />
-                        <div
+                        <p
                             className={`paragraph ${Styles.paragraph ?? ""}`}
                             dangerouslySetInnerHTML={{
                                 __html: pageData?.page_short_description ?? "",

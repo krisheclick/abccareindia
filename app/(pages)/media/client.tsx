@@ -55,7 +55,7 @@ const MediaClient = () => {
                             className="cmn_black_heading"
                             dangerouslySetInnerHTML={{__html: customData?.page_heading || data?.page_name || ''}}
                         />
-                        <div 
+                        <p 
                             className="paragraph"
                             dangerouslySetInnerHTML={{__html: data?.page_short_description || ''}}
                         />
