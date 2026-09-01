@@ -1,4 +1,4 @@
-export const trimWords = (html?: string, limit = 10): string => {
+export const trimWords = (html?: string | null, limit = 10, suffix = ""): string => {
   if (!html) return "";
 
   const text = html
@@ -6,9 +6,11 @@ export const trimWords = (html?: string, limit = 10): string => {
     .replace(/\s+/g, " ")
     .trim();
 
+  if (!text || limit <= 0) return "";
+
   const words = text.split(/\s+/);
 
   return words.length > limit
-    ? `${words.slice(0, limit).join(" ")}...`
+    ? `${words.slice(0, limit).join(" ")}${suffix}`
     : text;
 };

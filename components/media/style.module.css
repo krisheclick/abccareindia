@@ -34,6 +34,23 @@
     transition: opacity 250ms ease, transform 250ms ease;
 }
 
+.description {
+    position: absolute;
+    z-index: 1;
+    inset: auto 0 0;
+    display: block;
+    min-height: 78px;
+    padding: 34px 18px 16px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.45;
+    background: linear-gradient(#00000008, rgb(0 0 0 / 100%));
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 250ms ease, transform 250ms ease;
+}
+
 .item::after {
     position: absolute;
     inset: 0;
@@ -50,13 +67,20 @@
 .item:hover::after,
 .item:focus-visible::after,
 .item:hover .overlay,
-.item:focus-visible .overlay {
+.item:focus-visible .overlay,
+.item:hover .description,
+.item:focus-visible .description {
     opacity: 1;
 }
 
 .item:hover .overlay,
 .item:focus-visible .overlay {
     transform: translate(-50%, -50%) scale(1);
+}
+
+.item:hover .description,
+.item:focus-visible .description {
+    transform: translateY(0);
 }
 
 .item:focus-visible {
@@ -76,8 +100,14 @@
     text-align: center;
 }
 
-@media (max-width: 575px) {
+@media only screen and (max-width: 575px) {
     .gallery {
         padding: 40px 0;
+    }
+    .description {
+        min-height: 70px;
+        padding: 30px 14px 14px;
+        font-size: 13px;
+        opacity: 1;
     }
 }

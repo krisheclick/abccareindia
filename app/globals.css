@@ -571,6 +571,10 @@ label{
 .img-mapper-map {
   max-width: 100% !important;
 }
+.f-caption {
+  --size: 1600px;
+	max-width: min(98%, var(--size)) !important;
+}
 /* 1400px */
 @media only screen and (max-width: 1600px){
   .cmn_white_heading.big, .cmn_black_heading.big {
@@ -578,6 +582,9 @@ label{
   }
   body{
     font-size: 17px;
+  }
+  .f-caption {
+    --size: 1400px;
   }
 }
 /* 1200px */
@@ -602,6 +609,9 @@ label{
   }
   .whatwedo {
     margin-top: 16px;
+  }
+  .f-caption {
+    --size: 1200px;
   }
 }
 /* 992px */
