@@ -1,6 +1,8 @@
 "use client";
 
 import FancyboxWrapper from "@/utlis/FancyboxWrapper";
+import { faArrowUpRightFromSquare, faEye } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
@@ -12,6 +14,7 @@ interface GalleryItem {
     media_gallery_id: number;
     media_gallery_image: string;
     media_gallery_url: string | null;
+    media_gallery_description: string | null;
 }
 
 const MasonaryGallery = () => {
@@ -61,6 +64,7 @@ const MasonaryGallery = () => {
                                         rel={hasLink ? "noopener noreferrer" : undefined}
                                         data-fancybox={hasLink ? undefined : "media-gallery"}
                                         data-caption={hasLink ? undefined : title}
+                                        aria-label={hasLink ? `Visit link for ${title}` : `View ${title}`}
                                         className={Styles.item}
                                         key={item.media_gallery_id}
                                     >
@@ -72,7 +76,7 @@ const MasonaryGallery = () => {
                                             sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw"
                                         />
                                         <span className={Styles.overlay} aria-hidden="true">
-                                            {hasLink ? "Visit link" : "View image"}
+                                            <FontAwesomeIcon icon={hasLink ? faArrowUpRightFromSquare : faEye} />
                                         </span>
                                     </Link>
                                 );

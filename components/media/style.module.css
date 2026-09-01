@@ -17,25 +17,46 @@
 }
 .overlay {
     position: absolute;
-    inset: auto 0 0;
-    padding: 40px 18px 16px;
-    color: #fff;
-    font-size: 14px;
-    font-weight: 600;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 92%);
+    box-shadow: 0 10px 24px rgb(0 0 0 / 18%);
+    font-size: 18px;
     opacity: 0;
-    transform: translateY(8px);
-    background: linear-gradient(transparent, rgb(0 0 0 / 72%));
+    color: #bf1f2e;
+    transform: translate(-50%, -42%) scale(.92);
     transition: opacity 250ms ease, transform 250ms ease;
+}
+
+.item::after {
+    position: absolute;
+    inset: 0;
+    background: rgb(0 0 0 / 18%);
+    content: "";
+    opacity: 0;
+    transition: opacity 250ms ease;
 }
 
 .item:hover img {
     transform: scale(1.035);
 }
 
+.item:hover::after,
+.item:focus-visible::after,
 .item:hover .overlay,
 .item:focus-visible .overlay {
     opacity: 1;
-    transform: translateY(0);
+}
+
+.item:hover .overlay,
+.item:focus-visible .overlay {
+    transform: translate(-50%, -50%) scale(1);
 }
 
 .item:focus-visible {
