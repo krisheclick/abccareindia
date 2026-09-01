@@ -9,7 +9,7 @@ import { useCallback, useEffect, useState } from "react";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import Styles from "./style.module.css";
 import { useGlobalContext } from "@/context/global_context";
-import { trimWords } from "@/utlis/trimwords";
+import { decodeHtmlEntities, trimWords } from "@/utlis/trimwords";
 import { stripTags } from "@/utlis/strip_tags";
 
 interface GalleryItem {
@@ -58,7 +58,7 @@ const MasonaryGallery = () => {
                                 const hasLink = galleryUrl !== "" && galleryUrl !== "#";
                                 const imageUrl = `${process.env.NEXT_PUBLIC_MEDIA_URL}/uploads/media-gallery/${item.media_gallery_image}`;
                                 const title = `Gallery image ${index + 1}`;
-                                const description = item.media_gallery_description?.trim() || title;
+                                const description = decodeHtmlEntities(item.media_gallery_description?.trim() || title);
                                 const plainDescription = stripTags(description);
                                 const trimDescription = trimWords(description, 20, "");
 
@@ -68,7 +68,7 @@ const MasonaryGallery = () => {
                                         target={hasLink ? "_blank" : undefined}
                                         rel={hasLink ? "noopener noreferrer" : undefined}
                                         data-fancybox={hasLink ? undefined : "media-gallery"}
-                                        data-caption={hasLink ? undefined : description}
+                                        data-caption={hasLink ? undefined : plainDescription}
                                         aria-label={hasLink ? `Visit link for ${plainDescription}` : `View ${plainDescription}`}
                                         className={Styles.item}
                                         key={item.media_gallery_id}
